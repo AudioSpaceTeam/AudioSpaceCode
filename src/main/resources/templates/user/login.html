@@ -2,9 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Login Page</title>
 </head>
 <body>
-
+<h1>Please Log In</h1>
+<hr>
+<div class="container">
+    <form action="/login" method="post">
+        <div class="mb-3">
+            <label for="username" class="username">Username</label>
+            <input type="username" class="username" id="username" aria-describedby="username">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="password">Password</label>
+            <input type="password" class="password" id="password">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="check-box-1">
+            <label class="form-check-label" for="check-box-1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 </body>
 </html>

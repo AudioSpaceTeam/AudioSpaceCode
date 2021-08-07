@@ -115,4 +115,11 @@ public class User {
     this.isPromoter = isPromoter;
   }
 
+  public User(String username, String email, String displayName, String password) {
+    this.username = username;
+    this.email = email;
+    this.displayName = displayName;
+    this.password = password;
+  }
+
 }

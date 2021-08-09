@@ -2,13 +2,11 @@ package com.audiospace.demo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HelloController {
-    @GetMapping("/")
-    public String hello(){
-
-        return "/home";
+public class AuthenticationController {
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "/login";
     }
 }

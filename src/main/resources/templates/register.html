@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+<body>
+
+<h1>Register for Audio Space</h1>
+<form th:action="@{/register}" method="POST" th:object="${user}">
+
+    <label for="displayName">Display Name</label>
+    <input id="displayName" th:field="*{displayName}" />
+    <br>
+    <label for="username">Username</label>
+    <input id="username" th:field="*{username}" />
+    <br>
+    <label for="email">Email</label>
+    <input id="email" th:field="*{email}" />
+    <br>
+    <label for="password">Password</label>
+    <input id="password" type="password" th:field="*{password}" />
+    <br>
+    <label for="passwordConfirm">Confirm password</label>
+    <input id="passwordConfirm" />
+    <br>
+    <label for="bio">Enter a bio</label>
+    <input id="bio" th:field="*{bio}" />
+    <br>
+    <p>Are you a promoter?
+    <br>
+    <input type="radio" id="true" name="isPromoter" value="true">
+    <label for="true">Yes</label>
+    <input type="radio" id="false" name="isPromoter" value="false">
+    <label for="false">No</label></p>
+    <br>
+    <input value="Sign up!" type="submit" />
+</form>
+</body>
+</html>

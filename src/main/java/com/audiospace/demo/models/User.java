@@ -28,9 +28,9 @@ public class User {
 
 //  Profile Image? -- we can add later.
 
-    //  Bio
-    @Column(nullable = false, length = 500)
-    private String bio;
+//  Bio
+  @Column(nullable = false, length = 500)
+  private String bio;
 
     //  Is promoter bool
     @Column(nullable = false)

@@ -34,8 +34,6 @@ public class User {
     //  Bio
     @Column(nullable = false, length = 500)
     private String bio;
-
-
     //  Is promoter bool
     @Column(nullable = false)
     private Boolean isPromoter;
@@ -78,13 +76,6 @@ public class User {
 
     public void setReviewsReceived(List<Review> reviewsReceived) {
         this.reviewsReceived = reviewsReceived;
-    }
-
-    public User(User copy) {
-        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-        email = copy.email;
-        username = copy.username;
-        password = copy.password;
     }
 
     public User(long id, String username, String email, String displayName, String password, String bio, Boolean isPromoter, List<Event> promotedEvents) {
@@ -164,6 +155,14 @@ public class User {
 
     public User() {
 
+    }
+
+    //added authentication model
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
     }
 
     public User(long id, String username, String email, String displayName, String password, String bio, Boolean isPromoter) {

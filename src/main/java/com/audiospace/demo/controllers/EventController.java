@@ -33,9 +33,9 @@ public class EventController {
         @RequestParam(name="location")String location,
         @RequestParam(name="description")String description){
             EventModel event = new EventModel();
-            event.setTitle(title);
-            event.setLocation(location);
-            event.setDescripion(description);
+//            event.setTitle(title);
+//            event.setLocation(location);
+//            event.setDescripion(description);
             return "redirect:/event/submitted";
     }
 }

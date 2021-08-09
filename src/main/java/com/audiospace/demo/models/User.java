@@ -3,25 +3,27 @@ package com.audiospace.demo.models;
 import javax.persistence.*;
 import java.util.List;
 
+
 // Below allows us to the Dependency for creating our users table dynamically without needed to insert it into the console.
 @Entity
 @Table(name = "users")
 public class User {
+
   //  This ID is going to be the MAIN identifier, that is in this class.
 //  Database understands it will be auto incremented inside of mysql.
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+  
   //  Below sets up parameters for our column in the table in the DB.
   @Column(nullable = false, length = 25)
   private String username;
 
-  @Column(nullable = false)
-  private String email;
+    @Column(nullable = false)
+    private String email;
 
-  @Column(nullable = false)
-  private String displayName;
+    @Column(nullable = false)
+    private String displayName;
 
   //  Password
   @Column(nullable = false)
@@ -32,6 +34,7 @@ public class User {
   //  Bio
   @Column(nullable = false, length = 500)
   private String bio;
+
 
   //  Is promoter bool
   @Column(nullable = false)

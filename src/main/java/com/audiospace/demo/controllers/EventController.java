@@ -27,15 +27,15 @@ public class EventController {
     public String formSubmitted(){
         return "event/submitted";
     }
-
-    @PostMapping("/event/create")
-    public String saveCreate(@RequestParam(name = "title") String title,
-        @RequestParam(name="location")String location,
-        @RequestParam(name="description")String description){
-            EventModel event = new EventModel();
+//    @PostMapping("/event/create")
+//    public String saveCreate(@RequestParam(name = "title") String title,
+//        @RequestParam(name="location")String location,
+//        @RequestParam(name="description")String description){
+//            EventModel event = new EventModel();
 //            event.setTitle(title);
 //            event.setLocation(location);
 //            event.setDescripion(description);
-            return "redirect:/event/submitted";
-    }
+//            return "redirect:/event/submitted";
+//    }
+
 }

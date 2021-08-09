@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <th:block th:replace="partials/style.html :: style"></th:block>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body style="background-color: lightgrey">
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+
+<div class="container mt-5">
+
+        <div class="jumbotron">
+            <h1 class="display-4 text-center">Audio Space&trade;</h1>
+            <p class="lead">Welcome to Audio Space&trade; where we connect the musician directly with promoters.</p>
+            <hr class="my-4">
+            <a class="btn btn-dark btn-lg" href="#" role="button">Sign Up!</a>
+        </div>
+    </div>
+
+
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
+
+</body>
+</html>

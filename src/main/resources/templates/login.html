@@ -5,10 +5,19 @@
     <title>Login Page</title>
 </head>
 <body>
-<h1>Please Log In</h1>
-<hr>
+<h3 class="card-title">Login</h3>
+<!--added error message when login-->
+<!--<div th:if="${param.error}">-->
+<!--    Invalid Username or Password.-->
+<!--</div>-->
+<!--added error message when logout-->
+<!--<div th:if="${param.logout}">-->
+<!--    You have been logged out.-->
+<!--</div>-->
+<!--form-->
 <div class="container">
-    <form action="/login" method="post">
+    <!--    added action for login-->
+    <form action="" th:action="@{/login}" method="post">
         <div class="mb-3">
             <label for="username" class="username">Username</label>
             <input type="username" class="username" id="username" aria-describedby="username">
@@ -18,8 +27,8 @@
             <input type="password" class="password" id="password">
         </div>
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="check-box-1">
-            <label class="form-check-label" for="check-box-1">Check me out</label>
+            <input type="checkbox" class="form-check-input" id="remember-me">
+            <label class="form-check-label" for="remember-me">Remember me</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

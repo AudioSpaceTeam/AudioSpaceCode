@@ -63,6 +63,15 @@ public class User {
   )
   private List<Event> slotted;
 
+//  Many to many genres
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+    name ="users_genres",
+    joinColumns ={@JoinColumn(name = "user_id")},
+    inverseJoinColumns = {@JoinColumn(name ="genre_id")}
+  )
+  private List<Genre> genres;
+
 
   public List<Review> getReviewsGiven() {
     return reviewsGiven;

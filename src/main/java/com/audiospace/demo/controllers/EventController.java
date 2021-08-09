@@ -27,7 +27,6 @@ public class EventController {
     public String formSubmitted(){
         return "event/submitted";
     }
-
 //    @PostMapping("/event/create")
 //    public String saveCreate(@RequestParam(name = "title") String title,
 //        @RequestParam(name="location")String location,
@@ -38,4 +37,5 @@ public class EventController {
 //            event.setDescripion(description);
 //            return "redirect:/event/submitted";
 //    }
+
 }

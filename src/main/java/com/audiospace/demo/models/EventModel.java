@@ -4,8 +4,8 @@ import java.util.List;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Entity
-@Table
+//@Entity
+//@Table
 public class EventModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

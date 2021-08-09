@@ -1,5 +1,7 @@
 package com.audiospace.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +35,9 @@ public class Event {
 //  Not yet...
 
   //  DATETIME DATETIME
-  @Column(nullable = false)
+  @Column
+  @Temporal(TemporalType.DATE)
+  @JsonFormat(pattern="yyyy-MM-dd")
   private Date datetime;
 
   //  price double

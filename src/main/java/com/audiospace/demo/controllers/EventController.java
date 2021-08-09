@@ -1,7 +1,7 @@
 package com.audiospace.demo.controllers;
 
-import com.audiospace.demo.models.EventModel;
-import com.audiospace.demo.models.EventRepository;
+import com.audiospace.demo.models.Event;
+import com.audiospace.demo.repositories.EventRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

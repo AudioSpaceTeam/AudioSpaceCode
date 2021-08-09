@@ -47,6 +47,16 @@ public class Event {
   @JoinColumn(name = "promoter_id")
   private User promoter;
 
+//Should be many to many with genres
+//  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "genre")
+//  private List<Genre> genres;
+
+
+
+  public Event(){
+
+  }
+
   public Event(long id, String title, String description, Integer slots, String location, Date datetime, Double price, User promoter) {
     this.id = id;
     this.title = title;

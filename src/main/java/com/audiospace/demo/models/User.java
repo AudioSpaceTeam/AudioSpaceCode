@@ -41,10 +41,32 @@ public class User {
 //  Below says 1 user to many events...
 //  Cascade is when the user gets deleted, all of it's associated ads would also get deleted.
 //  We are then mapping this under the user
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "promoter")
   private List<Event> promotedEvents;
 //  Above is now a reference to all the events the user should have associated with it?
 
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewer")
+  private List<Review> reviewsGiven;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewee")
+  private List<Review> reviewsReceived;
+
+  public List<Review> getReviewsGiven() {
+    return reviewsGiven;
+  }
+
+  public void setReviewsGiven(List<Review> reviewsGiven) {
+    this.reviewsGiven = reviewsGiven;
+  }
+
+  public List<Review> getReviewsReceived() {
+    return reviewsReceived;
+  }
+
+  public void setReviewsReceived(List<Review> reviewsReceived) {
+    this.reviewsReceived = reviewsReceived;
+  }
 
   public User(long id, String username, String email, String displayName, String password, String bio, Boolean isPromoter, List<Event> promotedEvents) {
     this.id = id;

@@ -1,13 +1,10 @@
 package com.audiospace.demo.controllers;
 
-import com.audiospace.demo.models.EventModel;
-import com.audiospace.demo.models.EventRepository;
+import com.audiospace.demo.models.Event;
+import com.audiospace.demo.repositories.EventRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class EventController {
@@ -19,7 +16,7 @@ public class EventController {
 
     @GetMapping("/event/create")
     public String createAd(Model model) {
-        model.addAttribute("event",eventDao.findAll());
+        model.addAttribute("event",new Event());
         return "event/create";
     }
 
@@ -29,13 +26,10 @@ public class EventController {
     }
 
     @PostMapping("/event/create")
-    public String saveCreate(@RequestParam(name = "title") String title,
-        @RequestParam(name="location")String location,
-        @RequestParam(name="description")String description){
-            EventModel event = new EventModel();
-            event.setTitle(title);
-            event.setLocation(location);
-            event.setDescripion(description);
+    public String saveCreate(@ModelAttribute Event event){
+        event.setPrice(5.00);
+        event.setSlots(4);
+        eventDao.save(event);
             return "redirect:/event/submitted";
     }
 }

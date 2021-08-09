@@ -32,12 +32,12 @@ public class Event {
 //  Event flyer image
 //  Not yet...
 
-  //  DATETIME DATETIME
-  @Column(nullable = false)
-  private Date datetime;
+//  //  DATETIME DATETIME
+//  @Column(nullable = true)
+//  private Date datetime;
 
   //  price double
-  @Column(nullable = false)
+  @Column(nullable = true)
   private Double price;
 
   //  Promoter ID FK
@@ -81,44 +81,48 @@ public class Event {
 
   }
 
-  public Event(long id, String title, String description, Integer slots, String location, Date datetime, Double price, User promoter) {
+  public Event(long id, String title, String description, Integer slots, String location, Double price, User promoter) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.slots = slots;
     this.location = location;
-    this.datetime = datetime;
     this.price = price;
     this.promoter = promoter;
   }
 
-  public Event(String title, String description, Integer slots, String location, Date datetime, Double price, User promoter) {
+  public Event(String title, String description, Integer slots, String location, Double price, User promoter) {
     this.title = title;
     this.description = description;
     this.slots = slots;
     this.location = location;
-    this.datetime = datetime;
     this.price = price;
     this.promoter = promoter;
   }
 
-  public Event(String title, String description, Integer slots, String location, Date datetime, Double price) {
+  public Event(String title, String description, Integer slots, String location, Double price) {
     this.title = title;
     this.description = description;
     this.slots = slots;
     this.location = location;
-    this.datetime = datetime;
     this.price = price;
   }
 
-  public Event(long id, String title, String description, Integer slots, String location, Date datetime, Double price) {
+  public Event(long id, String title, String description, Integer slots, String location, Double price) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.slots = slots;
     this.location = location;
-    this.datetime = datetime;
     this.price = price;
+  }
+
+  public Event(long id, String title, String description, String location) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.location = location;
+
   }
 
   public long getId() {
@@ -161,13 +165,13 @@ public class Event {
     this.location = location;
   }
 
-  public Date getDatetime() {
-    return datetime;
-  }
-
-  public void setDatetime(Date datetime) {
-    this.datetime = datetime;
-  }
+//  public Date getDatetime() {
+//    return datetime;
+//  }
+//
+//  public void setDatetime(Date datetime) {
+//    this.datetime = datetime;
+//  }
 
   public Double getPrice() {
     return price;

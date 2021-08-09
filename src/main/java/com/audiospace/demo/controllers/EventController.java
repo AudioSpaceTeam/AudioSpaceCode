@@ -37,5 +37,4 @@ public class EventController {
 //            event.setDescripion(description);
 //            return "redirect:/event/submitted";
 //    }
-
 }

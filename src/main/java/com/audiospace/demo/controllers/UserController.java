@@ -39,4 +39,10 @@ public class UserController {
         userDao.save(user);
         return "redirect:/login";
     }
+
+    @GetMapping("/profile")
+    public String showUserInfo(Model model){
+        model.addAttribute("user", new User());
+        return "/profile";
+    }
 }

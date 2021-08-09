@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <!--added style-->
+    <th:block th:replace="partials/style.html :: style"></th:block>
 </head>
 <body>
+<!--added navbar-->
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
     <h3 class="card-title">Log In</h3>
     <div th:if="${param.error}">
-        Invalid Username and Password.
+        <i class="far fa-meh-rolling-eyes"></i>
+        Ups... something is wrong.
     </div>
     <div th:if="${param.logout}">
         You have been logged out.

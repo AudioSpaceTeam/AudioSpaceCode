@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <th:block th:replace="partials/style.html :: style"></th:block>
+<body>
+    <nav th:replace="partials/navbar.html :: navbar"></nav>
+    <div class="container">
+        <H1>Welcome <span th:text="${user.username}"></span></H1>
+    </div>
+    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+</body>
+</html>

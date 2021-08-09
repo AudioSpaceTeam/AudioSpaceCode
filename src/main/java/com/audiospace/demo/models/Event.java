@@ -46,14 +46,38 @@ public class Event {
   @ManyToOne
   @JoinColumn(name = "promoter_id")
   private User promoter;
+//Many to many with user's performing or "slotted"
+  @ManyToMany(mappedBy = "slotted")
+  private List<User> slottedUsers;
 
-//Should be many to many with genres
-//  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "genre")
-//  private List<Genre> genres;
+  //Should be many to many with genres
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+    name ="events_genres",
+    joinColumns ={@JoinColumn(name = "event_id")},
+    inverseJoinColumns = {@JoinColumn(name ="genre_id")}
+  )
+  private List<Genre> genres;
 
 
 
-  public Event(){
+  public List<User> getSlottedUsers() {
+    return slottedUsers;
+  }
+
+  public void setSlottedUsers(List<User> slottedUsers) {
+    this.slottedUsers = slottedUsers;
+  }
+
+  public List<Genre> getGenres() {
+    return genres;
+  }
+
+  public void setGenres(List<Genre> genres) {
+    this.genres = genres;
+  }
+
+  public Event() {
 
   }
 
@@ -78,7 +102,7 @@ public class Event {
     this.promoter = promoter;
   }
 
-  public Event( String title, String description, Integer slots, String location, Date datetime, Double price) {
+  public Event(String title, String description, Integer slots, String location, Date datetime, Double price) {
     this.title = title;
     this.description = description;
     this.slots = slots;

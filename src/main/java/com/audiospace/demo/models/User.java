@@ -14,7 +14,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-  
+
   //  Below sets up parameters for our column in the table in the DB.
   @Column(nullable = false, length = 25)
   private String username;
@@ -55,6 +55,15 @@ public class User {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewee")
   private List<Review> reviewsReceived;
 
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+    name ="users_events",
+    joinColumns ={@JoinColumn(name = "user_id")},
+    inverseJoinColumns = {@JoinColumn(name ="event_id")}
+  )
+  private List<Event> slotted;
+
+
   public List<Review> getReviewsGiven() {
     return reviewsGiven;
   }
@@ -89,21 +98,6 @@ public class User {
   public void setPromotedEvents(List<Event> promotedEvents) {
     this.promotedEvents = promotedEvents;
   }
-
-
-  //  Set performers to events
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//      name="user_events",
-//      joinColumns={@JoinColumn(name="user_id")},
-//      inverseJoinColumns={@JoinColumn(name="event_id")}
-//    )
-//    private List<Event> performEvents;
-
-//  Reviews
-
-//  Genres
-
 
   public long getId() {
     return id;

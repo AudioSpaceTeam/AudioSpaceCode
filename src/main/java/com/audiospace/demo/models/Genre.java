@@ -1,6 +1,7 @@
 package com.audiospace.demo.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "genres")
@@ -14,9 +15,16 @@ public class Genre {
   private String genreName;
 
 //  Many to many with events
-//  @ManyToMany
-//  @JoinColumn(name = "event_id")
-//  private Event event;
+@ManyToMany(mappedBy = "genres")
+private List<Event> events;
+
+  public List<Event> getEvents() {
+    return events;
+  }
+
+  public void setEvents(List<Event> events) {
+    this.events = events;
+  }
 
   public Genre(String genreName) {
     this.genreName = genreName;

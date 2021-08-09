@@ -32,7 +32,7 @@ public class User {
   private String bio;
 
 //  Is promoter bool
-  @Column(nullable = false)
+  @Column(nullable = true)
   private Boolean isPromoter;
 
 

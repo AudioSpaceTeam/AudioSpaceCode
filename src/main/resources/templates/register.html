@@ -11,6 +11,9 @@
     <label for="displayName">Display Name</label>
     <input id="displayName" th:field="*{displayName}" />
     <br>
+    <label for="username">Username</label>
+    <input id="username" th:field="*{username}" />
+    <br>
     <label for="email">Email</label>
     <input id="email" th:field="*{email}" />
     <br>
@@ -19,6 +22,9 @@
     <br>
     <label for="passwordConfirm">Confirm password</label>
     <input id="passwordConfirm" />
+    <br>
+    <label for="bio">Enter a bio</label>
+    <input id="bio" th:field="*{bio}" />
     <br>
     <p>Are you a promoter?
     <br>
@@ -29,6 +35,5 @@
     <br>
     <input value="Sign up!" type="submit" />
 </form>
-
 </body>
 </html>

@@ -6,10 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
-    private UserRepository user;
+    private final UserRepository userDao;
+    public UserController(UserRepository userDao){
+        this.userDao = userDao;
+    }
 
     @GetMapping("/register")
     public String showSignupForm(Model model){
@@ -18,8 +22,13 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user){
-        user.save(user);
-        return "redirect:/login";
+    public String saveUser(@ModelAttribute User user, @RequestParam String isPromoter){
+        if(isPromoter.equals("true")){
+            user.setPromoter(true);
+        } else {
+            user.setPromoter(false);
+        }
+        userDao.save(user);
+        return "redirect:/register";
     }
 }

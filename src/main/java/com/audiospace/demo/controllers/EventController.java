@@ -28,14 +28,14 @@ public class EventController {
         return "event/submitted";
     }
 
-    @PostMapping("/event/create")
-    public String saveCreate(@RequestParam(name = "title") String title,
-        @RequestParam(name="location")String location,
-        @RequestParam(name="description")String description){
-            EventModel event = new EventModel();
-            event.setTitle(title);
-            event.setLocation(location);
-            event.setDescripion(description);
-            return "redirect:/event/submitted";
-    }
+//    @PostMapping("/event/create")
+//    public String saveCreate(@RequestParam(name = "title") String title,
+//        @RequestParam(name="location")String location,
+//        @RequestParam(name="description")String description){
+//            EventModel event = new EventModel();
+//            event.setTitle(title);
+//            event.setLocation(location);
+//            event.setDescripion(description);
+//            return "redirect:/event/submitted";
+//    }
 }

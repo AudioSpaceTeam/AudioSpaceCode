@@ -17,15 +17,11 @@
     <form th:action="@{/login}" method="post">
         <div class="mb-3">
             <label for="username" class="username">Username</label>
-            <input name="username" type="username" class="username" id="username" aria-describedby="username">
+            <input name="username" type="text" class="username" id="username" aria-describedby="username">
         </div>
         <div class="mb-3">
             <label for="password" class="password">Password</label>
             <input name="password" type="password" class="password" id="password">
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="remember-me">
-            <label class="form-check-label" for="remember-me">Remember me</label>
         </div>
         <button type="submit" class="btn btn-primary" value="Log in">Log in</button>
     </form>

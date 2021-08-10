@@ -1,6 +1,7 @@
 package com.audiospace.demo.controllers;
 
 import com.audiospace.demo.models.Event;
+import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.repositories.UserRepository;
@@ -25,10 +26,12 @@ public class EventController {
     return "event/create";
   }
 
+
   @GetMapping("/event/submitted")
   public String formSubmitted(){
     return "event/submitted";
   }
+
 
   @PostMapping("/event/create")
   public String saveCreate(@ModelAttribute Event event){
@@ -39,4 +42,5 @@ public class EventController {
     eventDao.save(event);
     return "redirect:/event/submitted";
   }
+
 }

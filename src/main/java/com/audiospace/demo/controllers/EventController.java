@@ -27,18 +27,14 @@ public class EventController {
   }
 
 
-  @GetMapping("/event/submitted")
-  public String formSubmitted() {
-    return "event/submitted";
-  }
-
-
   @PostMapping("/event/create")
-  public String saveCreate(@ModelAttribute Event event) {
+  public String saveCreate(@ModelAttribute Event event, Model model){
+
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     event.setPromoter(userDao.findById(currentUser.getId()));
     eventDao.save(event);
-    return "redirect:/event/submitted";
+    model.addAttribute("event", event);
+    return "/event/submitted";
   }
 
 }

@@ -16,7 +16,6 @@
 
     <form th:action="@{/event/create}" th:method="post" th:object="${event}">
         <label for="title">Title:</label>
-
         <br>
         <input th:field="*{title}" id="title"/>
         <br>

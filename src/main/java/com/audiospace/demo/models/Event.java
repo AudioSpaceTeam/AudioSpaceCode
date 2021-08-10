@@ -1,6 +1,11 @@
 package com.audiospace.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -33,8 +38,29 @@ public class Event {
 //  Not yet...
 
 //  //  DATETIME DATETIME
-//  @Column(nullable = true)
-//  private Date datetime;
+//@Column
+//@Temporal(TemporalType.TIMESTAMP)
+//@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//private Date dateTime;
+//
+//  public Date getDateTime() {
+//    return dateTime;
+//  }
+//
+//  public void setDateTime(Date dateTime) {
+//    this.dateTime = dateTime;
+//  }
+
+@Column(name="startDateTime",columnDefinition="TIMESTAMP")
+private LocalDateTime startDateTime;
+
+  public LocalDateTime getStartDateTime() {
+    return startDateTime;
+  }
+
+  public void setStartDateTime(LocalDateTime startDateTime) {
+    this.startDateTime = startDateTime;
+  }
 
   //  price double
   @Column(nullable = true)

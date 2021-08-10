@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import java.util.List;
 
 @Controller
@@ -28,10 +32,16 @@ public class EventController {
     return "/event/create";
 }
 
-@PostMapping("/event/create")
-  public String submitEvent(@ModelAttribute Event event, Model model){
-      User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    event.setPromoter(userDao.findById(currentUser.getId()));
+  @PostMapping("/event/create")
+  public String saveCreate(@RequestParam(name = "dateTime") String dateTime,
+                           @ModelAttribute Event event) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    event.setPromoter(currentUser);
+    
+    System.out.println(dateTime);
+    System.out.println(LocalDateTime.parse(dateTime));
+    
+    event.setStartDateTime(LocalDateTime.parse(dateTime));
     eventDao.save(event);
   model.addAttribute("event", event);
     return "/event/submitted";

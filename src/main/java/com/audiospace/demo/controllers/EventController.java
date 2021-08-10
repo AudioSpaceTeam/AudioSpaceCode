@@ -37,7 +37,6 @@ public class EventController {
   public String saveCreate(@ModelAttribute Event event) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     event.setPromoter(userDao.findById(currentUser.getId()));
-
     eventDao.save(event);
     return "redirect:/event/submitted";
   }

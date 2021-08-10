@@ -3,12 +3,13 @@ import java.util.Random;
 import com.audiospace.demo.models.Event;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
-import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class EventController {
@@ -19,25 +20,7 @@ public class EventController {
     this.eventDao = eventDao;
     this.userDao = userDao;
   }
-//
-//  @GetMapping("/event/create")
-//  public String createAd(Model model) {
-//    model.addAttribute("event",new Event());
-//    return "event/create";
-//  }
 
-
-//  @GetMapping("/event/submitted")
-//  public String formSubmitted(){
-//    return "event/submitted";
-//  }
-
-
-
-//    model.addAttribute("event", event);
-//    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    event.setPromoter(userDao.findById(currentUser.getId()));
-//    eventDao.save(event);
 
 @GetMapping("/event/create")
   public String createEvent(Model model){
@@ -53,5 +36,6 @@ public class EventController {
   model.addAttribute("event", event);
     return "/event/submitted";
 }
+
 
 }

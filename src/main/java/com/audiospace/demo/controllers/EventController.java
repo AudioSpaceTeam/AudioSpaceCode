@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Controller
 public class EventController {
   private final EventRepository eventDao;
@@ -34,9 +37,14 @@ public class EventController {
 
 
   @PostMapping("/event/create")
-  public String saveCreate(@ModelAttribute Event event) {
+  public String saveCreate(@RequestParam(name = "dateTime") Date dateTime,
+                           @ModelAttribute Event event) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     event.setPromoter(userDao.findById(currentUser.getId()));
+    System.out.println(dateTime);
+//    event.setDateTime(Date.parse(dateTime));
+
+
     eventDao.save(event);
     return "redirect:/event/submitted";
   }

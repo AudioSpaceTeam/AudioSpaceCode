@@ -18,12 +18,25 @@
         <br>
         <input th:field="*{location}" id="location">
         <br>
+        <label for="price">Price:</label>
+        <br>
+        <input th:field="*{price}" id="price">
         <label for="description">Description:</label>
         <br>
         <textarea th:field="*{description}" id="description"></textarea>
         <br>
+        <label for="slots">Available slots:</label>
+        <br>
+        <input th:field="*{slots}" id="slots">
+        <br>
+        <label for="description">Description:</label>
+        <br>
+        <textarea th:field="*{description}" id="description"></textarea>
+        <br>
+
         <button type="submit">Submit</button>
     </form>
+
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>
 </html>

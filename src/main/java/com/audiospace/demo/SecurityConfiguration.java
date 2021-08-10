@@ -12,45 +12,74 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private UserDetailsLoader usersLoader;
+  private UserDetailsLoader usersLoader;
 
-    public SecurityConfiguration(UserDetailsLoader usersLoader) {
-        this.usersLoader = usersLoader;
-    }
+  public SecurityConfiguration(UserDetailsLoader usersLoader) {
+    this.usersLoader = usersLoader;
+  }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(usersLoader) // How to find users by their username
-                .passwordEncoder(passwordEncoder()) // How to encode and verify passwords
-        ;
-    }
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth
+      .userDetailsService(usersLoader) // How to find users by their username
+      .passwordEncoder(passwordEncoder()) // How to encode and verify passwords
+    ;
+  }
+  //Modify this part for authentication
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+      .formLogin()
+      .loginPage("/login")
+      .defaultSuccessUrl("/profile")
+      .permitAll()
+      .and()
+      .logout()
+      .logoutSuccessUrl("/login?logout")
+      .permitAll()
+      .and()
+      .authorizeRequests()
+      .antMatchers(
+        "/event/create",
+        "/event/submitted")
+      .authenticated()
+      .and()
+      .authorizeRequests()
+      .antMatchers(
+        "/",
+        "/register",
+        "/js/**", // had to add this to not restrict scripts
+        "/css/**", // had to add this to not restrict stylesheets
+        "/img/**") // had to add this to not restrict images
+      .permitAll()
+      .anyRequest().authenticated();
+  }
 
-    //Modify this part for authentication
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/profile")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login?logout")
-                .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/",
-                        "/register",
-                        "/js/**", // had to add this to not restrict scripts
-                        "/css/**", // had to add this to not restrict stylesheets
-                        "/img/**") // had to add this to not restrict images
-                .permitAll()
-                .anyRequest().authenticated();
-    }
+//  @Override
+//  protected void configure(HttpSecurity http) throws Exception {
+//    http
+//      .formLogin()
+//      .loginPage("/login")
+//      .defaultSuccessUrl("/profile")
+//      .permitAll()
+//      .and()
+//      .logout()
+//      .logoutSuccessUrl("/login?logout")
+//      .permitAll()
+//      .and()
+//      .authorizeRequests()
+//      .antMatchers(
+//        "/",
+//        "/register",
+//        "/js/**", // had to add this to not restrict scripts
+//        "/css/**", // had to add this to not restrict stylesheets
+//        "/img/**") // had to add this to not restrict images
+//      .permitAll()
+//      .anyRequest().authenticated();
+//  }
 }

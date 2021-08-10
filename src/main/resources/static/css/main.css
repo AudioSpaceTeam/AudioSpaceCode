@@ -1,0 +1,26 @@
+/*.ColorPallet{*/
+/*  color:#3E4259;*/
+/*  color:#675F73;*/
+/*  color: #bf8484;*/
+/*  color:#f2f2f0;*/
+/*  color:#535877;*/
+/*  color:#292C3B;*/
+
+
+/*  color: #2b2d3d;*/
+/*  color: #434a4c;*/
+/*  color: #5d3030;*/
+/*  color: #1c1e20;*/
+/*  color: #3a3b53;*/
+/*  color: #1c1e2a;*/
+
+/*}*/
+
+body{
+  background-color: lightgrey;
+}
+
+#navbarLogo{
+  width: 5%;
+  height: 5%;
+}

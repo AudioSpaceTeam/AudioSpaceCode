@@ -175,6 +175,10 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+        displayName = copy.displayName;
+        bio = copy.bio;
+        isPromoter = copy.isPromoter;
+        promotedEvents = copy.promotedEvents;
     }
 
     public User(long id, String username, String email, String displayName, String password, String bio, Boolean isPromoter) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Navbar</title>
@@ -9,7 +9,7 @@
 <nav th:fragment="navbar">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">
+      <a id="navbarA" class="navbar-brand" href="/">
 <!--        <img th:src="images/logoTransparent.png" src="logoTransparent.png" alt="Audio Space"/>-->
         <img id="navbarLogo" src="/img/logoTransparent.png" alt="Audio Space"/>
       </a>
@@ -23,13 +23,19 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/event">Events</a>
+          </li>
+          <li  sec:authorize="!isAuthenticated()">
             <a class="nav-link" href="/login">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/">Events</a>
+          <li  sec:authorize="!isAuthenticated()">
+            <a class="nav-link" href="/register">Register!</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/">Events</a>
+          <li  sec:authorize="isAuthenticated()">
+          <a class="nav-link" href="/event/create">Create Event</a>
+          </li>
+          <li  sec:authorize="isAuthenticated()">
+          <a class="nav-link" href="/profile">My Profile</a>
           </li>
 <!--          <li class="nav-item dropdown">-->
 <!--            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"-->

@@ -15,27 +15,27 @@ public class EventController {
   private final EventRepository eventDao;
   private final UserRepository userDao;
 
-  public EventController(EventRepository eventDao, UserRepository userDao){
+  public EventController(EventRepository eventDao, UserRepository userDao) {
     this.eventDao = eventDao;
     this.userDao = userDao;
   }
 
   @GetMapping("/event/create")
   public String createAd(Model model) {
-    model.addAttribute("event",new Event());
+    model.addAttribute("event", new Event());
     return "event/create";
   }
 
 
   @GetMapping("/event/submitted")
-  public String formSubmitted(){
+  public String formSubmitted() {
     return "event/submitted";
   }
 
 
   @PostMapping("/event/create")
-  public String saveCreate(@ModelAttribute Event event){
-   User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+  public String saveCreate(@ModelAttribute Event event) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     event.setPromoter(userDao.findById(currentUser.getId()));
 
     eventDao.save(event);

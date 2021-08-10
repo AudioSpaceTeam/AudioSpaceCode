@@ -36,15 +36,18 @@ public class EventController {
   }
 
 
+  //  @PostMapping("/event/create")
+//  public String saveCreate(@RequestParam(name = "dateTime") Date dateTime,
+//                           @ModelAttribute Event event) {
   @PostMapping("/event/create")
-  public String saveCreate(@RequestParam(name = "dateTime") Date dateTime,
+  public String saveCreate(@RequestParam(name = "dateTime") String dateTime,
                            @ModelAttribute Event event) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    event.setPromoter(userDao.findById(currentUser.getId()));
+    event.setPromoter(currentUser);
     System.out.println(dateTime);
-//    event.setDateTime(Date.parse(dateTime));
 
-
+    System.out.println(LocalDateTime.parse(dateTime));
+    event.setStartDateTime(LocalDateTime.parse(dateTime));
     eventDao.save(event);
     return "redirect:/event/submitted";
   }

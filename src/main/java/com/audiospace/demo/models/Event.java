@@ -38,21 +38,29 @@ public class Event {
 //  Not yet...
 
 //  //  DATETIME DATETIME
-@Column
-@Temporal(TemporalType.TIMESTAMP)
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-private Date dateTime;
+//@Column
+//@Temporal(TemporalType.TIMESTAMP)
+//@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//private Date dateTime;
+//
+//  public Date getDateTime() {
+//    return dateTime;
+//  }
+//
+//  public void setDateTime(Date dateTime) {
+//    this.dateTime = dateTime;
+//  }
 
-  public Date getDateTime() {
-    return dateTime;
+@Column(name="startDateTime",columnDefinition="TIMESTAMP")
+private LocalDateTime startDateTime;
+
+  public LocalDateTime getStartDateTime() {
+    return startDateTime;
   }
 
-  public void setDateTime(Date dateTime) {
-    this.dateTime = dateTime;
+  public void setStartDateTime(LocalDateTime startDateTime) {
+    this.startDateTime = startDateTime;
   }
-//@Column(name="startDateTime",columnDefinition="TIMESTAMP")
-//private LocalDateTime startDateTime;
-
 
   //  price double
   @Column(nullable = true)

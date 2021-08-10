@@ -18,6 +18,10 @@ public class Genre {
 @ManyToMany(mappedBy = "genres")
 private List<Event> events;
 
+  //  Many to many with users
+  @ManyToMany(mappedBy = "genres")
+  private List<User> users;
+
   public List<Event> getEvents() {
     return events;
   }

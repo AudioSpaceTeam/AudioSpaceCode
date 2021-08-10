@@ -1,44 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Register</title>
-    <th:block th:replace="partials/style.html :: style"></th:block>
+  <meta charset="UTF-8"/>
+  <title>Register</title>
+  <th:block th:replace="partials/style.html :: style"></th:block>
 <body>
-    <nav th:replace="partials/navbar.html :: navbar"></nav>
-    <div class="container">
-        <h1>Register for Audio Space</h1>
-        <form th:action="@{/register}" method="POST" th:object="${user}">
+<!--<th:block th:include="partials/navbar.html :: navbar"></th:block>-->
 
-            <label for="displayName">Display Name</label>
-            <input id="displayName" th:field="*{displayName}" />
-            <br>
-            <label for="username">Username</label>
-            <input id="username" th:field="*{username}" />
-            <br>
-            <label for="email">Email</label>
-            <input id="email" th:field="*{email}" />
-            <br>
-            <label for="password">Password</label>
-            <input id="password" type="password" th:field="*{password}" />
-            <br>
-            <label for="passwordConfirm">Confirm password</label>
-            <input id="passwordConfirm" />
-            <br>
-            <label for="bio">Enter a bio</label>
-            <input id="bio" th:field="*{bio}" />
-            <br>
-            <p>Are you a promoter?
-            <br>
-            <input type="radio" id="true" name="isPromoter" value="true">
-            <label for="true">Yes</label>
-            <input type="radio" id="false" name="isPromoter" value="false">
-            <label for="false">No</label></p>
-            <br>
-            <input value="Sign up!" type="submit" />
-        </form>
-    </div>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<div class="container">
+  <h1>Register for Audio Space</h1>
+  <form th:action="@{/register}" method="POST" th:object="${user}">
 
-    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+    <label for="displayName">Display Name</label>
+    <input id="displayName" th:field="*{displayName}"/>
+    <br>
+    <label for="username">Username</label>
+    <input id="username" th:field="*{username}"/>
+    <br>
+    <label for="email">Email</label>
+    <input id="email" th:field="*{email}"/>
+    <br>
+    <label for="password">Password</label>
+    <input id="password" type="password" th:field="*{password}"/>
+    <br>
+    <label for="passwordConfirm">Confirm password</label>
+    <input id="passwordConfirm"/>
+    <br>
+    <label for="bio">Enter a bio</label>
+    <input id="bio" th:field="*{bio}"/>
+    <br>
+    <p>Are you a promoter?
+      <br>
+      <input type="radio" id="true" name="isPromoter" value="true">
+      <label for="true">Yes</label>
+      <input type="radio" id="false" name="isPromoter" value="false">
+      <label for="false">No</label></p>
+    <br>
+    <input value="Sign up!" type="submit"/>
+  </form>
+</div>
+
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>
 </html>

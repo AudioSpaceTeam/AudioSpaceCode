@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create Post</title>
+    <th:block th:replace="partials/style.html :: style"></th:block>
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
     <h1>Create a post!</h1>
 
     <form th:action="@{/event/create}" th:method="post" th:object="${event}">
@@ -22,6 +24,6 @@
         <br>
         <button type="submit">Submit</button>
     </form>
-
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>
 </html>

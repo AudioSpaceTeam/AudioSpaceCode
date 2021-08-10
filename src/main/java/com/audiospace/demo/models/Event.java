@@ -46,7 +46,7 @@ public class Event {
   @ManyToOne
   @JoinColumn(name = "promoter_id")
   private User promoter;
-//Many to many with user's performing or "slotted"
+  //Many to many with user's performing or "slotted"
   @ManyToMany(mappedBy = "slotted")
   private List<User> slottedUsers;
 

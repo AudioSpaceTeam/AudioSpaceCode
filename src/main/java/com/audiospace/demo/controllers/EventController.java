@@ -27,8 +27,7 @@ public class EventController {
 
   @PostMapping("/event/create")
   public String saveCreate(@ModelAttribute Event event){
-    event.setPrice(5.00);
-    event.setSlots(4);
+
     eventDao.save(event);
     return "redirect:/event/submitted";
   }

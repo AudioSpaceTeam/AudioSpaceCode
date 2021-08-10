@@ -38,7 +38,7 @@ public class Event {
 
   //  price double
   @Column(nullable = true)
-  private Double price;
+  private String price;
 
   //  Promoter ID FK
   // Establishes that there's going to be multiple events tied back to One user.
@@ -81,7 +81,7 @@ public class Event {
 
   }
 
-  public Event(long id, String title, String description, Integer slots, String location, Double price, User promoter) {
+  public Event(long id, String title, String description, Integer slots, String location, String price, User promoter) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -91,7 +91,7 @@ public class Event {
     this.promoter = promoter;
   }
 
-  public Event(String title, String description, Integer slots, String location, Double price, User promoter) {
+  public Event(String title, String description, Integer slots, String location, String price, User promoter) {
     this.title = title;
     this.description = description;
     this.slots = slots;
@@ -100,7 +100,7 @@ public class Event {
     this.promoter = promoter;
   }
 
-  public Event(String title, String description, Integer slots, String location, Double price) {
+  public Event(String title, String description, Integer slots, String location, String price) {
     this.title = title;
     this.description = description;
     this.slots = slots;
@@ -108,7 +108,7 @@ public class Event {
     this.price = price;
   }
 
-  public Event(long id, String title, String description, Integer slots, String location, Double price) {
+  public Event(long id, String title, String description, Integer slots, String location, String price) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -173,11 +173,11 @@ public class Event {
 //    this.datetime = datetime;
 //  }
 
-  public Double getPrice() {
+  public String getPrice() {
     return price;
   }
 
-  public void setPrice(Double price) {
+  public void setPrice(String price) {
     this.price = price;
   }
 

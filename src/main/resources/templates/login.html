@@ -1,35 +1,125 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Login Page</title>-->
+<!--    &lt;!&ndash;added style&ndash;&gt;-->
+<!--    <th:block th:replace="partials/style.html :: style"></th:block>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;added navbar&ndash;&gt;-->
+<!--<nav th:replace="partials/navbar.html :: navbar"></nav>-->
+<!--<div class="container">-->
+<!--    <h3 class="card-title">Log In</h3>-->
+<!--    <div th:if="${param.error}">-->
+<!--        <i class="far fa-meh-rolling-eyes"></i>-->
+<!--        Ups... something is wrong.-->
+<!--    </div>-->
+<!--    <div th:if="${param.logout}">-->
+<!--        You have been logged out.-->
+<!--    </div>-->
+<!--    &lt;!&ndash;    added action for login&ndash;&gt;-->
+<!--    <form th:action="@{/login}" method="post">-->
+<!--        <div class="mb-3">-->
+<!--            <label for="username" class="username">Username</label>-->
+<!--            <input name="username" type="text" class="username" id="username" aria-describedby="username">-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="password" class="password">Password</label>-->
+<!--            <input name="password" type="password" class="password" id="password">-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-primary" value="Log in">Log in</button>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Login Page</title>
-    <!--added style-->
+    <title>Login</title>
     <th:block th:replace="partials/style.html :: style"></th:block>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <!-- Bootstrap CSS -->
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+            integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+            crossorigin="anonymous"
+    />
 </head>
 <body>
-<!--added navbar-->
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container">
-    <h3 class="card-title">Log In</h3>
-    <div th:if="${param.error}">
-        <i class="far fa-meh-rolling-eyes"></i>
-        Ups... something is wrong.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
-    <!--    added action for login-->
-    <form th:action="@{/login}" method="post">
-        <div class="mb-3">
-            <label for="username" class="username">Username</label>
-            <input name="username" type="text" class="username" id="username" aria-describedby="username">
+<!--<div class="container">-->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-sd-3 offset-lg-4">
+                    <h1 class="mb-3 text-center">Please log in</h1>
+                    <div th:if="${param.error}">
+                        <i class="far fa-meh-rolling-eyes"></i>
+                        Ups... something is wrong.
+                    </div>
+                    <div th:if="${param.logout}">
+                        You have been logged out.
+                    </div>
+                    <form th:action="@{/login}" method="post" class="mb-3">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input
+                                    type="text"
+                                    name="username"
+                                    class="form-control"
+                                    placeholder="username"
+                                    id="username"
+                                    required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input
+                                    type="password"
+                                    name="password"
+                                    class="form-control"
+                                    id="password"
+                                    required
+                            />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Login
+                        </button>
+                    </form>
+                    <div class="text-center">
+                        <p>or..</p>
+                        <a href="#" class="btn btn-success">Create account</a>
+                        <p class="small">
+                            <a href="#">Have you forgotten your account details?</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="password" class="password">Password</label>
-            <input name="password" type="password" class="password" id="password">
-        </div>
-        <button type="submit" class="btn btn-primary" value="Log in">Log in</button>
-    </form>
-</div>
+    </div>
+<!--</div>-->
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"
+></script>
+<!--<script-->
+<!--        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"-->
+<!--        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"-->
+<!--        crossorigin="anonymous"-->
+<!--&gt;</script>-->
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"
+></script>
 </body>
 </html>

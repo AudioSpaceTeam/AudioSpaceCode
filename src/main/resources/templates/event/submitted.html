@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Thank you!</title>
+    <th:block th:replace="partials/style.html :: style"></th:block>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<div class="container">
     <h1>Thank you for your submission form!</h1>
+
+</div>
+
+    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
 </body>
 </html>

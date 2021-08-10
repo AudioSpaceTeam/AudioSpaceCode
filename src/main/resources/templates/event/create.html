@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <th:block th:replace="partials/style.html :: style"></th:block>
 </head>
 <body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<div class="container">
     <h1>Create a post!</h1>
 
     <form th:action="@{/event/create}" th:method="post" th:object="${event}">
@@ -18,7 +23,7 @@
         <br>
         <label for="price">Price:</label>
         <br>
-        <input th:field="*{price}" id="price">
+        <input th:field="*{price}" id="price" placeholder="$">
         <br>
         <label for="slots">Available slots:</label>
         <br>
@@ -31,6 +36,10 @@
 
         <button type="submit">Submit</button>
     </form>
+</div>
+
+    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
 </body>
 </html>

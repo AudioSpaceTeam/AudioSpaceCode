@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>View on Map</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet'/>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
+    <th:block th:replace="partials/style.html :: style"></th:block>
+<body>
+    <nav th:replace="partials/navbar.html :: navbar"></nav>
+    <div class="container">
+        <form>
+            <input class="form-control me-2" id="mapSearch" type="search" placeholder="Enter your location" style="width: 200px; margin: 3px;">
+            <button class="btn btn-dark" id="btn" type="submit" style="padding: 3px;">Search</button>
+        </form>
+        <div id='map' style="width: 750px; height: 600px; margin: auto;"></div>
+    </div>
+
+    <script src="/js/keys.js"></script>
+    <script th:src="@{/js/mapbox.js}"></script>
+    <script src="js/mapbox-geocoder-utils.js"></script>
+    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+</body>
+</html>

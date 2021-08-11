@@ -16,6 +16,7 @@
   <h1>Create a post!</h1>
 
   <form th:action="@{/event/create}" th:method="post" th:object="${event}">
+
     <label for="title">Title:</label>
     <br>
     <input th:field="*{title}" id="title"/>
@@ -36,10 +37,13 @@
     <br>
     <textarea th:field="*{description}" id="description"></textarea>
     <br>
-    <label for="dateTime">Day of Event (date and time):</label>
-    <input  type="datetime-local" id="dateTime" name="dateTime">
+    <label for="startDateTime">Start Day of Event (date and time):</label>
     <br>
-<!--    th:field="*{dateTime}"-->
+    <input type="datetime-local" id="startDateTime" name="startDateTime"/>
+    <br> <label for="endDateTime">End Day of Event (date and time):</label>
+    <br>
+    <input type="datetime-local" id="endDateTime" name="endDateTime"/>
+    <br>
     <button type="submit">Submit</button>
   </form>
 </div>

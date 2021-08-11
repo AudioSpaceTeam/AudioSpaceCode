@@ -160,7 +160,7 @@
 
                 <div class="form-check form-check-inline">
                   <label class="form-check-label">
-                    <input
+                    <input id="notPromoter"
                       type="radio"
                       name="isPromoter"
                       id="false"
@@ -170,6 +170,9 @@
                     />
                     No
                   </label>
+                </div>
+                <div id="genres">
+                  Options for generes go here
                 </div>
                 <button type="submit" class="btn btn-primary btn-block mb-3" value="Sign up!">
                   Create account
@@ -190,6 +193,7 @@
       </div>
     </div>
   </div>
+  <h3 id="testJ">Testing Jquery</h3>
 </div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 <!-- Optional JavaScript -->
@@ -208,7 +212,9 @@
   integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
   crossorigin="anonymous"></script>
 <script>
-  $
+$('#testJ').hover(function (){
+  $(this).css('background-color','green')
+});
 </script>
 
 </body>

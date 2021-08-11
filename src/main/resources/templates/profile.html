@@ -10,23 +10,11 @@
         <h1 class="text-center">Welcome <span th:text="${user.username}"></span></h1>
         <br>
         <h3>Here are your planned events:</h3>
-        <div>
-            <table class="table table-bordered">
-                <thead class="table table-dark">
-                <tr>
-                    <th>Event</th>
-                </tr>
-                </thead>
-                <tbody>
-                <th:block th:each="event : ${user}">
-                    <!--                listCategories comes from the CategoryController-->
-                    <tr>
-                        <td>[[${user.event}]]</td>
-                    </tr>
-                </th:block>
-                </tbody>
-            </table>
-        </div>
+        <div>Event:</div>
+        <div th:text="${user.promotedEvents}"></div>
+        <div th:text="${user.getPromotedEvents()}"></div>
+        <div th:text="${user.displayName}"></div>
+
     </div>
     <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>

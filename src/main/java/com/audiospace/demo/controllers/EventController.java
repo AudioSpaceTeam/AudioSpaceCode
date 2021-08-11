@@ -19,13 +19,15 @@ import java.util.List;
 
 @Controller
 public class EventController {
-    private final EventRepository eventDao;
-    private final UserRepository userDao;
 
-    public EventController(EventRepository eventDao, UserRepository userDao) {
-        this.eventDao = eventDao;
-        this.userDao = userDao;
-    }
+  private final EventRepository eventDao;
+  private final UserRepository userDao;
+
+  public EventController(EventRepository eventDao, UserRepository userDao){
+    this.eventDao = eventDao;
+    this.userDao = userDao;
+  }
+
 
     //added show an view events
     @GetMapping("/event")
@@ -41,17 +43,20 @@ public class EventController {
         return "event/show";
     }
 
+    //For create.html
+
     @GetMapping("/event/create")
     public String createEvent(Model model) {
         model.addAttribute("event", new Event());
         return "/event/create";
     }
 
+
     @PostMapping("/event/create")
     public String saveCreate(@RequestParam(name = "startDateTime") String startDateTime, @RequestParam(name = "endDateTime") String endDateTime, @ModelAttribute Event event, Model model) {
+
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         event.setPromoter(currentUser);
-
         event.setStartDateTime(LocalDateTime.parse(startDateTime));
         event.setEndDateTime(LocalDateTime.parse(endDateTime));
         eventDao.save(event);

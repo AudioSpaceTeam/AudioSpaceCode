@@ -1,5 +1,7 @@
 package com.audiospace.demo.controllers;
+
 import java.util.Random;
+
 import com.audiospace.demo.models.Event;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
@@ -9,10 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import java.util.List;
 
 @Controller
 public class EventController {
+
   private final EventRepository eventDao;
   private final UserRepository userDao;
 
@@ -22,38 +29,38 @@ public class EventController {
   }
 
 
-  @GetMapping("/event/create")
-  public String createAd(Model model) {
-    model.addAttribute("event", new Event());
-    return "event/create";
-  }
 
+    //added show an view events
+    @GetMapping("/event")
+    public String viewEvent(Model model) {
+        model.addAttribute("event", eventDao.findAll());
+        return "event/index";
+    }
 
-  @PostMapping("/event/create")
-  public String saveCreate(@ModelAttribute Event event, Model model){
+    @GetMapping("/event/{id}")
+    public String singleEvent(@PathVariable long id, Model model) {
+        Event event = eventDao.getById(id);
+        model.addAttribute("event", event);
+        return "event/show";
+    }
 
-    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    event.setPromoter(userDao.findById(currentUser.getId()));
-    eventDao.save(event);
-    model.addAttribute("event", event);
-    return "/event/submitted";
-  }
+    //For create.html
+    @GetMapping("/event/create")
+    public String createEvent(Model model) {
+        model.addAttribute("event", new Event());
+        return "/event/create";
+    }
+    //For create.html
+    @PostMapping("/event/create")
+    public String saveCreate(@RequestParam(name = "startDateTime") String startDateTime, @ModelAttribute Event event, Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        event.setPromoter(currentUser);
 
-
-@GetMapping("/event/create")
-  public String createEvent(Model model){
-    model.addAttribute("event", new Event());
-    return "/event/create";
-}
-
-@PostMapping("/event/create")
-  public String submitEvent(@ModelAttribute Event event, Model model){
-      User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    event.setPromoter(userDao.findById(currentUser.getId()));
-    eventDao.save(event);
-  model.addAttribute("event", event);
-    return "/event/submitted";
-}
+        event.setStartDateTime(LocalDateTime.parse(startDateTime));
+        eventDao.save(event);
+        model.addAttribute("event", event);
+        return "/event/submitted";
+    }
 
 
 }

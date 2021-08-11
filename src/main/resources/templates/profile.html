@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Register</title>
     <th:block th:replace="partials/style.html :: style"></th:block>
 <body>
-    <nav th:replace="partials/navbar.html :: navbar"></nav>
-    <div class="container">
-        <h1>Welcome <span th:text="${user.username}"></span></h1>
-    </div>
-    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<div class="container">
+    <h1 class="text-center">Welcome <span th:text="${user.username}"></span></h1>
+    <br>
+    <h3>Here are your planned events:</h3>
+    <div>Event:</div>
+    <div th:text="${user.promotedEvents}"></div>
+    <div th:text="${user.getPromotedEvents()}"></div>
+    <div th:text="${user.displayName}"></div>
+
+</div>
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>
 </html>

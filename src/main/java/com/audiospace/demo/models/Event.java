@@ -61,10 +61,20 @@ private LocalDateTime startDateTime;
   public void setStartDateTime(LocalDateTime startDateTime) {
     this.startDateTime = startDateTime;
   }
+  @Column(name="endDateTime",columnDefinition="TIMESTAMP")
+private LocalDateTime endDateTime;
+
+  public LocalDateTime getEndDateTime() {
+    return endDateTime;
+  }
+
+  public void setEndDateTime(LocalDateTime endDateTime) {
+    this.endDateTime = endDateTime;
+  }
 
   //  price double
   @Column(nullable = true)
-  private String price;
+  private Double price;
 
   //  Promoter ID FK
   // Establishes that there's going to be multiple events tied back to One user.
@@ -107,7 +117,7 @@ private LocalDateTime startDateTime;
 
   }
 
-  public Event(long id, String title, String description, Integer slots, String location, String price, User promoter) {
+  public Event(long id, String title, String description, Integer slots, String location, Double price, User promoter,LocalDateTime startDateTime, LocalDateTime endDateTime) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -115,9 +125,12 @@ private LocalDateTime startDateTime;
     this.location = location;
     this.price = price;
     this.promoter = promoter;
+    this.startDateTime = startDateTime;
+    this.endDateTime = endDateTime;
+
   }
 
-  public Event(String title, String description, Integer slots, String location, String price, User promoter) {
+  public Event(String title, String description, Integer slots, String location, Double price, User promoter) {
     this.title = title;
     this.description = description;
     this.slots = slots;
@@ -126,7 +139,7 @@ private LocalDateTime startDateTime;
     this.promoter = promoter;
   }
 
-  public Event(String title, String description, Integer slots, String location, String price) {
+  public Event(String title, String description, Integer slots, String location, Double price) {
     this.title = title;
     this.description = description;
     this.slots = slots;
@@ -134,7 +147,7 @@ private LocalDateTime startDateTime;
     this.price = price;
   }
 
-  public Event(long id, String title, String description, Integer slots, String location, String price) {
+  public Event(long id, String title, String description, Integer slots, String location, Double price) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -199,11 +212,11 @@ private LocalDateTime startDateTime;
 //    this.datetime = datetime;
 //  }
 
-  public String getPrice() {
+  public Double getPrice() {
     return price;
   }
 
-  public void setPrice(String price) {
+  public void setPrice(Double price) {
     this.price = price;
   }
 

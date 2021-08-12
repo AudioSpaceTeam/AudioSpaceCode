@@ -23,13 +23,12 @@
                 <p>Click any event to view all of its content.</p>
             </div>
         </div>
-        <div th:each="event : ${event}">
+        <div th:each="event : ${events}">
             <div class="card offwhite-body">
                 <div class="card-content preview-post">
                     <p th:text="${event.description}"></p>
                     <p th:text="${event.location}"></p>
                     <p th:text="${event.startDateTime}"></p>
-                    <p th:text="${event.endDateTime}"></p>
                     <p th:text="${event.slots}"></p>
                     <p th:text="${event.price}"></p>
                 </div>

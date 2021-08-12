@@ -8,10 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,23 +48,26 @@ public class UserController {
   @GetMapping("/profile")
   public String showUserInfo(Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
+    model.addAttribute("user", userDao.findById(currentUser.getId()));
 
-    long id = currentUser.getId();
+    model.addAttribute("profileOwner",true );
 
-    List<Event> eventsList = eventDao.findAll();
-    List<Event> userEvents = new ArrayList<>();
-    for(Event event : eventsList){
-      if(event.getPromoter().getId() == currentUser.getId()){
-        userEvents.add(event);
-      }
-    }
-    model.addAttribute("userEvents", userEvents);
-
-
-//    List<Event> events = currentUser.getPromotedEvents();
-//    model.addAttribute("testEvent", testEvent);
-//    model.addAttribute("userEvents", currentUser.getPromotedEvents());
-    model.addAttribute("user", currentUser);
     return "profile";
   }
+
+  @GetMapping("/profile/{id}")
+  public String showUserInfo(@PathVariable long id, Model model) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
+    model.addAttribute("user", userDao.findById(id));
+    model.addAttribute("profileOwner", id == currentUser.getId());
+
+    return "profile";
+  }
+//  Come back to this above, to make it check if the user owns the profile or not.
+//  If they own it, then IT should display a different welcome message...
+//  and enable an edit button?
+//  and if not a review button.
+
 }

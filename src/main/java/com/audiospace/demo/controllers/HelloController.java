@@ -21,4 +21,10 @@ public class HelloController {
     public String employees() {
         return "/employees";
     }
+
+    //added contact
+    @GetMapping("/contact")
+    public String contact() {
+        return "/contact";
+    }
 }

@@ -32,12 +32,18 @@ public class EventController {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @GetMapping("/event/create")
   public String createEvent(Model model){
 =======
   @GetMapping("/event/create")
   public String createEvent(Model model) {
 >>>>>>> a588cb89da32322aa77bbbe232b5d032ec057727
+=======
+
+  @GetMapping("/event/create")
+  public String createEvent(Model model) {
+>>>>>>> 82b77e30983c85b15ef998e6e57bf99a02883222
     model.addAttribute("event", new Event());
     return "event/create";
   }

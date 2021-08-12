@@ -41,7 +41,7 @@ public class EventController {
   //added show an view events
   @GetMapping("/event")
   public String viewEvent(Model model) {
-    model.addAttribute("event", eventDao.findAll());
+    model.addAttribute("events", eventDao.findAll());
     return "event/index";
   }
 

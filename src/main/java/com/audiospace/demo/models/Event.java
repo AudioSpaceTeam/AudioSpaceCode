@@ -50,7 +50,7 @@ public class Event {
 //  public void setDateTime(Date dateTime) {
 //    this.dateTime = dateTime;
 //  }
-  
+
     //StartTime
     @Column(name = "startDateTime", columnDefinition = "TIMESTAMP")
     private LocalDateTime startDateTime;
@@ -63,7 +63,6 @@ public class Event {
         this.startDateTime = startDateTime;
     }
 
-<
     //Endtime
 //    @Column(name = "endDateTime", columnDefinition = "TIMESTAMP")
 //    private LocalDateTime endDateTime;

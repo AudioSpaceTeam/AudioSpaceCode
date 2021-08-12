@@ -1,5 +1,7 @@
 package com.audiospace.demo.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Random;
 
 import com.audiospace.demo.models.Event;
@@ -27,6 +29,7 @@ public class EventController {
     this.eventDao = eventDao;
     this.userDao = userDao;
   }
+
 
 
   @GetMapping("/event/create")
@@ -68,6 +71,7 @@ public class EventController {
     model.addAttribute("event", event);
     return "/event/submitted";
   }
+
 
 
 }

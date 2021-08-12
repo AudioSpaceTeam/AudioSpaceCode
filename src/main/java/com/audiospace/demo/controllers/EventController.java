@@ -1,5 +1,7 @@
 package com.audiospace.demo.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Random;
 
 import com.audiospace.demo.models.Event;
@@ -27,6 +29,8 @@ public class EventController {
     this.eventDao = eventDao;
     this.userDao = userDao;
   }
+    SimpleDateFormat SDFormat = new SimpleDateFormat("MM/ dd/ yy");
+    Calendar cal = Calendar.getInstance();
 
 
     //added show an view events
@@ -53,12 +57,12 @@ public class EventController {
 
 
     @PostMapping("/event/create")
-    public String saveCreate(@RequestParam(name = "startDateTime") String startDateTime, @RequestParam(name = "endDateTime") String endDateTime, @ModelAttribute Event event, Model model) {
+    public String saveCreate(@RequestParam(name="startDateTime")String startDateTime, @ModelAttribute Event event, Model model) {
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         event.setPromoter(currentUser);
         event.setStartDateTime(LocalDateTime.parse(startDateTime));
-        event.setEndDateTime(LocalDateTime.parse(endDateTime));
+////        event.setEndDateTime(LocalDateTime.parse(endDateTime));
         eventDao.save(event);
         model.addAttribute("event", event);
         return "/event/submitted";

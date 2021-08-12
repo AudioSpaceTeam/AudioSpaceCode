@@ -29,7 +29,7 @@ public class EventController {
 @GetMapping("/event/create")
   public String createEvent(Model model){
     model.addAttribute("event", new Event());
-    return "/event/create";
+    return "event/create";
 }
 
   @PostMapping("/event/create")
@@ -45,7 +45,7 @@ public class EventController {
     event.setStartDateTime(LocalDateTime.parse(dateTime));
     eventDao.save(event);
     model.addAttribute("event", event);
-    return "/event/submitted";
+    return "event/submitted";
 }
 
 

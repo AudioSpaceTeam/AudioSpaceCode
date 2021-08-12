@@ -27,19 +27,24 @@
     <br>
     <label for="price">Price:</label>
     <br>
-    <input th:field="*{price}" id="price" placeholder="$">
+    <input name="price" type="number" step=".01" id="price" placeholder="$">
     <br>
     <label for="slots">Available slots:</label>
     <br>
-    <input th:field="*{slots}" id="slots">
+    <input th:field="*{slots}" type="number" id="slots">
     <br>
     <label for="description">Description:</label>
     <br>
     <textarea th:field="*{description}" id="description"></textarea>
     <br>
+<<<<<<< HEAD
     <label for="DateTime">Start Day of Event (date and time):</label>
     <br>
     <input type="datetime-local" id="DateTime" name="DateTime"/>
+=======
+    <label for="dateTime">Day of Event (date and time):</label>
+    <input  type="datetime-local" id="dateTime" name="dateTime">
+>>>>>>> a588cb89da32322aa77bbbe232b5d032ec057727
     <br>
     <button type="submit">Submit</button>
   </form>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>View on Map</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet'/>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
     <th:block th:replace="partials/style.html :: style"></th:block>
@@ -14,11 +15,27 @@
             <button class="btn btn-dark" id="btn" type="submit" style="padding: 3px;">Search</button>
         </form>
         <div id='map' style="width: 750px; height: 600px; margin: auto;"></div>
+
+        <div class="hiddenMap" th:each="event: ${eventList}" style="display: none;">
+        <p th:text="'Your Post ID: ' + ${event.id}">
+        <p th:text="'Start Time: ' + ${event.startDateTime}"></p>
+        <p class="title" th:text="${event.title}"></p>
+        <p class="eventLocation" th:text="'Location: ' + ${event.location}"></p>
+        <p th:text="'Price: $' + ${event.price}"></p>
+        <p th:text="'Slots: ' + ${event.slots}"></p>
+        <p th:text="'Description: ' + ${event.description}"></p>
+        </div>
+
+
+
+
+
     </div>
 
-    <script src="/js/keys.js"></script>
+    <script th:src="@{/js/keys.js}"></script>
+    <script th:src="@{/js/mapbox-geocoder-utils.js}"></script>
     <script th:src="@{/js/mapbox.js}"></script>
-    <script src="js/mapbox-geocoder-utils.js"></script>
     <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<!--    <footer th:replace="partials/footer.html :: footer"></footer>-->
 </body>
 </html>

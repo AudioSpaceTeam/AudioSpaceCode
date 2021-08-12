@@ -10,8 +10,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
     @GetMapping("/")
-    public String hello(Model model) {
 
-        return "home";
+    public String hello() {
+        return "/home";
+
+    }
+
+    //added employees
+    @GetMapping("/employees")
+    public String employees() {
+        return "/employees";
     }
 }

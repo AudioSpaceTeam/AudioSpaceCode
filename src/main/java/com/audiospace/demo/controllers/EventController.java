@@ -32,6 +32,9 @@ public class EventController {
 
 
 
+
+
+
   @GetMapping("/event/create")
   public String createEvent(Model model) {
     model.addAttribute("event", new Event());
@@ -63,8 +66,8 @@ public class EventController {
     event.setPromoter(currentUser);
     event.setPrice(Double.parseDouble(price));
 
-    System.out.println(dateTime);
-    System.out.println(LocalDateTime.parse(dateTime));
+//    System.out.println(dateTime);
+//    System.out.println(LocalDateTime.parse(dateTime));
 
     event.setStartDateTime(LocalDateTime.parse(dateTime));
     eventDao.save(event);

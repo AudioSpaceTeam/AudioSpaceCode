@@ -3,26 +3,57 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <th:block th:replace="partials/style.html :: style"></th:block>
 <body>
 </div>
     <nav th:replace="partials/navbar.html :: navbar"></nav>
     <div class="container">
-      
-        <h1 class="text-center">Welcome <span th:text="${user.username}"></span></h1>
-        <br>
-        <h3>Here are your planned events:</h3>
-        <div>
-        <div th:each="event : ${userEvents}">
-                    <!-- listCategories comes from the CategoryController-->
-        <br>
-        <h3 th:text="${event.title}"></h3>
-        </div>
-         
-        </div>
+
+      <div class="d-flex flex-row  justify-content-center bg-warning">
+          <div class="d-flex flex-column align-items-center col-md-6">
+              <div class="d-flex flex-row justify-content-center">
+                  <div class="d-flex flex-column align-content-center">
+                      <h1 class="text-center">Welcome <span th:text="${user.username}"></span></h1>
+                      <br>
+                      <h3>Here are your planned events:</h3>
+                      <div>
+                          <div th:each="event : ${userEvents}">
+                              <!-- listCategories comes from the CategoryController-->
+                              <br>
+                              <h3 th:text="${event.title}"></h3>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+
+          <div class="d-flex flex-column align-items-center bg-info col-md-6">
+              <div class="d-flex flex-row justify-content-start">
+                  <div class="d-flex flex-column align-content-center bg-danger">
+                      <div>
+                          <h3>Your Average Rate:</h3>
+                          <h3>4.5</h3>
+                          <br>
+                          <h4><a href="http://localhost:8080/reviews/your_rating">View Your Ratings</a></h4>
+                      </div>
+                  </div>
+
+              </div>
+
+          </div>
+          
+      </div>
+
     </div>
 
     <th:block th:replace="partials/scripts.html :: scripts"></th:block>
     <footer th:replace="partials/footer.html :: footer"></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
 </body>
 </html>

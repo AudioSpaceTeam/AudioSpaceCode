@@ -19,6 +19,10 @@
     marker.on('dragend', function() {
         // Events popup here
     })
+
+    var popupOptions = {
+        anchor: "top",
+    }
 // Search function
     function mapSearch(input) {
         geocode(input, MAPBOX_ACCESS_TOKEN).then(function (results){
@@ -29,12 +33,6 @@
                 speed: 2,
                 essential: true,
             });
-
-            // use these coords for events
-            var newCoords = {
-                lat: results[1],
-                lng: results[0]
-            }
         })
     }
 // Runs function on click
@@ -44,3 +42,36 @@
         var searchResult = document.querySelector('#mapSearch').value;
         mapSearch(searchResult);
     });
+
+
+    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+    let addresses = $(".eventLocation");
+    for(let locate of addresses) {
+        let loc = locate.innerText;
+        geocode(loc, MAPBOX_ACCESS_TOKEN).then(function (address) {
+            let popup = new mapboxgl.Popup(popupOptions)
+                .setHTML(loc);
+            let marker = new mapboxgl.Marker({
+                color: '#007c6f',
+            })
+                .setLngLat(address)
+                .setPopup(popup)
+                .addTo(map);
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

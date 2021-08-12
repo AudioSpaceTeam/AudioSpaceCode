@@ -51,6 +51,7 @@ public class Event {
 //    this.dateTime = dateTime;
 //  }
 
+    //StartTime
     @Column(name = "startDateTime", columnDefinition = "TIMESTAMP")
     private LocalDateTime startDateTime;
 
@@ -62,16 +63,18 @@ public class Event {
         this.startDateTime = startDateTime;
     }
 
-    @Column(name = "endDateTime", columnDefinition = "TIMESTAMP")
-    private LocalDateTime endDateTime;
+    //Endtime
+//    @Column(name = "endDateTime", columnDefinition = "TIMESTAMP")
+//    private LocalDateTime endDateTime;
+//
+//    public LocalDateTime getEndDateTime() {
+//        return endDateTime;
+//    }
+//
+//    public void setEndDateTime(LocalDateTime endDateTime) {
+//        this.endDateTime = endDateTime;
+//    }
 
-    public LocalDateTime getEndDateTime() {
-        return endDateTime;
-    }
-
-    public void setEndDateTime(LocalDateTime endDateTime) {
-        this.endDateTime = endDateTime;
-    }
 
     //  price double
     @Column(nullable = true)
@@ -117,7 +120,9 @@ public class Event {
 
     }
 
-    public Event(long id, String title, String description, Integer slots, String location, Double price, User promoter, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+
+    public Event(long id, String title, String description, Integer slots, String location, Double price, User promoter, LocalDateTime startDateTime) {
+
         this.id = id;
         this.title = title;
         this.description = description;
@@ -126,9 +131,8 @@ public class Event {
         this.price = price;
         this.promoter = promoter;
         this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
 
-    }
+   }
 
     public Event(String title, String description, Integer slots, String location, Double price, User promoter) {
         this.title = title;

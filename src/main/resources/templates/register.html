@@ -141,6 +141,7 @@
                                     </label>
                                 </div>
 
+
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         <input
@@ -154,6 +155,9 @@
                                         No
                                     </label>
                                 </div>
+                                 <div id="genres">
+                                 Options for generes go here
+                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block mb-3" value="Sign up!">
                                     Create account
                                 </button>
@@ -173,6 +177,10 @@
             </div>
         </div>
     </div>
+
+  </div>
+  <h3 id="testJ">Testing Jquery</h3>
+
 </div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 <footer th:replace="partials/footer.html :: footer"></footer>
@@ -190,7 +198,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
         integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
-<script>
+
+$('#testJ').hover(function (){
+  $(this).css('background-color','green')
+});
+
 </script>
 
 </body>

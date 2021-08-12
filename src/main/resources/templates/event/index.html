@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>show</title>
     <th:block th:replace="partials/style.html :: style"></th:block>
@@ -15,21 +14,28 @@
     />
 </head>
 <body class="main">
-<nav th:replace="partials/david-partials :: navbar"/>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="jumbotron jumbotron-fluid">
-    <div class="card offwhite-body">
-        <div class="card-image">
-            <div class="form-group">
-                <h3 th:text="${event.title}"></h3>
-                <p th:text="${event.description}"></p>
-                <p th:text="${event.location}"></p>
-                <p th:text="${event.startDateTime}"></p>
-                <p th:text="${event.endDateTime}"></p>
-                <p th:text="${event.slots}"></p>
-                <p th:text="${event.price}"></p>
+    <main class="container">
+        <div class="card offwhite-body">
+            <div class="card-image">
+                <h4 class="card-title">Viewing All Events</h4>
+                <p>Click any event to view all of its content.</p>
             </div>
         </div>
-    </div>
+        <div th:each="event : ${event}">
+            <div class="card offwhite-body">
+                <div class="card-content preview-post">
+                    <p th:text="${event.description}"></p>
+                    <p th:text="${event.location}"></p>
+                    <p th:text="${event.startDateTime}"></p>
+                    <p th:text="${event.endDateTime}"></p>
+                    <p th:text="${event.slots}"></p>
+                    <p th:text="${event.price}"></p>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
 <script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

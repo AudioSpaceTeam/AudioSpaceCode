@@ -1,28 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <meta charset="UTF-8" http-equiv="Content-Type" content="text/html">
     <title>Thank you!</title>
     <th:block th:replace="partials/style.html :: style"></th:block>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
-    <h1>Thank you for your submission form!</h1>
+
+    <h1 th:text="'Thank you for your submission form, ' + ${event.promoter} + '!'"></h1>
+
     <p th:text="'Your Post ID: ' + ${event.id}">
+    <p th:text="'Start Time: ' + ${event.startDateTime}"></p>
     <h1 th:text="${event.title}"></h1>
     <h5 th:text="'Location: ' + ${event.location}"></h5>
     <h5 th:text="'Price: $' + ${event.price}"></h5>
     <h5 th:text="'Slots: ' + ${event.slots}"></h5>
     <h5 th:text="'Description: ' + ${event.description}"></h5>
-    //The code
+
+
 </div>
 
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+<footer th:replace="partials/footer.html :: footer"></footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-
 </body>
 </html>

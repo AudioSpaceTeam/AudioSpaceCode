@@ -51,7 +51,6 @@ public class Event {
 //    this.dateTime = dateTime;
 //  }
 
-    //StartTime
     @Column(name = "startDateTime", columnDefinition = "TIMESTAMP")
     private LocalDateTime startDateTime;
 

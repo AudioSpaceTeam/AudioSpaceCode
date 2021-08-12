@@ -18,12 +18,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <th:block th:each="event : ${user}">
-                    <!--                listCategories comes from the CategoryController-->
-                    <tr>
-                        <td>[[${user.event}]]</td>
-                    </tr>
-                </th:block>
+                <div th:each="event : ${userEvents}">
+                    <!-- listCategories comes from the CategoryController-->
+                  <br>
+                   <h3 th:text="${event.title}"></h3>
+                </div>
                 </tbody>
             </table>
         </div>

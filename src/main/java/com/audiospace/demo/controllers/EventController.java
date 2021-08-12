@@ -29,6 +29,13 @@ public class EventController {
   }
 
 
+
+@GetMapping("/event/create")
+  public String createEvent(Model model){
+    model.addAttribute("event", new Event());
+    return "event/create";
+}
+
     //added show an view events
     @GetMapping("/event")
     public String viewEvent(Model model) {
@@ -45,24 +52,21 @@ public class EventController {
 
     //For create.html
 
-    @GetMapping("/event/create")
-    public String createEvent(Model model) {
-        model.addAttribute("event", new Event());
-        return "/event/create";
-    }
+@PostMapping("/event/create")
+  public String saveCreate(@RequestParam(name = "dateTime") String dateTime,
+                           @ModelAttribute Event event,
+                           Model model) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    event.setPromoter(currentUser);
 
+    System.out.println(dateTime);
+    System.out.println(LocalDateTime.parse(dateTime));
 
-    @PostMapping("/event/create")
-    public String saveCreate(@RequestParam(name = "startDateTime") String startDateTime, @RequestParam(name = "endDateTime") String endDateTime, @ModelAttribute Event event, Model model) {
-
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        event.setPromoter(currentUser);
-        event.setStartDateTime(LocalDateTime.parse(startDateTime));
-        event.setEndDateTime(LocalDateTime.parse(endDateTime));
-        eventDao.save(event);
-        model.addAttribute("event", event);
-        return "/event/submitted";
-    }
+    event.setStartDateTime(LocalDateTime.parse(dateTime));
+    eventDao.save(event);
+    model.addAttribute("event", event);
+    return "event/submitted";
+}
 
 
 }

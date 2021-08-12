@@ -64,7 +64,7 @@ public class UserController {
     model.addAttribute("userEvents", userEvents);
 
 
-//    Event testEvent = currentUser.getPromotedEvents().get(1);
+//    List<Event> events = currentUser.getPromotedEvents();
 //    model.addAttribute("testEvent", testEvent);
 //    model.addAttribute("userEvents", currentUser.getPromotedEvents());
     model.addAttribute("user", currentUser);

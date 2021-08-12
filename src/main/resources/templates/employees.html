@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <title>Employees</title>
+    <th:block th:replace="partials/style.html :: style"></th:block>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<div class="container my-3 my-sm-5">
+    <h1 class="mb-3 mb-sm-5 text-center">Meet the team</h1>
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3 text-center">
+            <img src="https://avatars.githubusercontent.com/u/80721797?v=4" class="img-fluid rounded-circle mb-1"
+                 alt="alejandro-cabrera">
+            <ul class="list-inline mb-1">
+                <li class="list-inline-item small"><a href="https://github.com/cabrera-alejandr26" target="_Blank"><img
+                        align="center"
+                        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" height="40"
+                        width="40" alt="Github"/></a></li>
+                <li class="list-inline-item small"><a href="https://www.linkedin.com/in/alejandro-cabrera09/"
+                                                      target="_Blank"><img align="center"
+                                                                           src="https://image.similarpng.com/very-thumbnail/2020/07/Linkedin-logo-on-transparent-Background-PNG-.png"
+                                                                           height="40" width="40" alt="LinkedIn"/></a>
+                </li>
+            </ul>
+            <h5>Alejandro Cabrera</h5>
+            <p>Software Developer</p>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3 text-center">
+            <img src="https://avatars.githubusercontent.com/u/80721771?v=4" class="img-fluid rounded-circle mb-1"
+                 alt="savanna-garcia">
+            <ul class="list-inline mb-1">
+                <li class="list-inline-item small"><a href="https://github.com/SavannaMarie" target="_Blank"><img
+                        align="center"
+                        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" height="40"
+                        width="40" alt="Github"/></a></li>
+                <li class="list-inline-item small"><a href="https://www.linkedin.com/in/savanna-m-garcia/"
+                                                      target="_Blank"><img align="center"
+                                                                           src="https://image.similarpng.com/very-thumbnail/2020/07/Linkedin-logo-on-transparent-Background-PNG-.png"
+                                                                           height="40" width="40" alt="LinkedIn"/></a>
+                </li>
+            </ul>
+            <h5>Savanna Garcia</h5>
+            <p>Software Developer</p>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3 text-center">
+            <img src="https://avatars.githubusercontent.com/u/80540405?v=4" class="img-fluid rounded-circle mb-1"
+                 alt="carlos-munoz">
+            <ul class="list-inline mb-1">
+                <li class="list-inline-item small"><a href="https://github.com/carlosmunozus03" target="_Blank"><img
+                        align="center"
+                        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" height="40"
+                        width="40" alt="Github"/></a></li>
+                <li class="list-inline-item small"><a href="https://www.linkedin.com/in/carlos-munoz-ba516a214/"
+                                                      target="_Blank"><img align="center"
+                                                                           src="https://image.similarpng.com/very-thumbnail/2020/07/Linkedin-logo-on-transparent-Background-PNG-.png"
+                                                                           height="40" width="40" alt="LinkedIn"/></a>
+                </li>
+            </ul>
+            <h5>Carlos Munoz</h5>
+            <p>Software Developer</p>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3 text-center">
+            <img src="https://avatars.githubusercontent.com/u/80721800?v=4" class="img-fluid rounded-circle mb-1"
+                 alt="alex-santamaria">
+            <ul class="list-inline mb-1">
+                <li class="list-inline-item small"><a href="https://github.com/Santamaria-Alex" target="_Blank"><img
+                        align="center"
+                        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" height="40"
+                        width="40" alt="Github"/></a></li>
+                <li class="list-inline-item small"><a href="https://www.linkedin.com/in/alex-santamaria-768806215/"
+                                                      target="_Blank"><img align="center"
+                                                                           src="https://image.similarpng.com/very-thumbnail/2020/07/Linkedin-logo-on-transparent-Background-PNG-.png"
+                                                                           height="40" width="40" alt="LinkedIn"/></a>
+                </li>
+            </ul>
+            <h5>Alex Santamaria</h5>
+            <p>Software Developer</p>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3 text-center">
+            <img src="https://avatars.githubusercontent.com/u/80721887?v=4" class="img-fluid rounded-circle mb-1"
+                 alt="joshua-williams">
+            <ul class="list-inline mb-1">
+                <li class="list-inline-item small"><a href="https://github.com/Joshua-Williams8" target="_Blank"><img
+                        align="center"
+                        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" height="40"
+                        width="40" alt="Github"/></a></li>
+                <li class="list-inline-item small"><a href="https://www.linkedin.com/in/josh-williams8/"
+                                                      target="_Blank"><img align="center"
+                                                                           src="https://image.similarpng.com/very-thumbnail/2020/07/Linkedin-logo-on-transparent-Background-PNG-.png"
+                                                                           height="40" width="40" alt="LinkedIn"/></a>
+                </li>
+            </ul>
+            <h5>Joshua Williams</h5>
+            <p>Software Developer</p>
+        </div>
+<!--        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3 text-center">-->
+        <!--            <img src="../static/img/logoTransparent.png" class="img-fluid rounded-circle mb-1"-->
+        <!--                 alt="audio-space-logo">-->
+        <!--            <ul class="list-inline mb-1">-->
+        <!--                <li class="list-inline-item small"><a href="https://github.com/AudioSpaceTeam/AudioSpaceCode"-->
+        <!--                                                      target="_Blank"><img-->
+        <!--                        align="center"-->
+        <!--                        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" height="40"-->
+        <!--                        width="40" alt="Github"/></a>-->
+        <!--                </li>-->
+        <!--            </ul>-->
+        <!--            <h5>Audio Space Project</h5>-->
+        <!--            <p>Neptune Cohort Codeup</p>-->
+        <!--        </div>-->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+</div>
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
+</body>
+</html>

@@ -51,22 +51,7 @@ public class UserController {
   @GetMapping("/profile")
   public String showUserInfo(Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-    long id = currentUser.getId();
-
-    List<Event> eventsList = eventDao.findAll();
-    List<Event> userEvents = new ArrayList<>();
-    for(Event event : eventsList){
-      if(event.getPromoter().getId() == currentUser.getId()){
-        userEvents.add(event);
-      }
-    }
-    model.addAttribute("userEvents", userEvents);
-
-
-//    List<Event> events = currentUser.getPromotedEvents();
-//    model.addAttribute("testEvent", testEvent);
-//    model.addAttribute("userEvents", currentUser.getPromotedEvents());
+    model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
     model.addAttribute("user", currentUser);
     return "profile";
   }

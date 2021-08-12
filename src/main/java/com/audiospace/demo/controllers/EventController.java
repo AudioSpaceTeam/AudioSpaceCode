@@ -1,5 +1,7 @@
 package com.audiospace.demo.controllers;
+
 import java.util.Random;
+
 import com.audiospace.demo.models.Event;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @Controller
 public class EventController {
+
   private final EventRepository eventDao;
   private final UserRepository userDao;
 
@@ -26,13 +29,30 @@ public class EventController {
   }
 
 
+
 @GetMapping("/event/create")
   public String createEvent(Model model){
     model.addAttribute("event", new Event());
-    return "/event/create";
+    return "event/create";
 }
 
-  @PostMapping("/event/create")
+    //added show an view events
+    @GetMapping("/event")
+    public String viewEvent(Model model) {
+        model.addAttribute("event", eventDao.findAll());
+        return "event/index";
+    }
+
+    @GetMapping("/event/{id}")
+    public String singleEvent(@PathVariable long id, Model model) {
+        Event event = eventDao.getById(id);
+        model.addAttribute("event", event);
+        return "event/show";
+    }
+
+    //For create.html
+
+@PostMapping("/event/create")
   public String saveCreate(@RequestParam(name = "dateTime") String dateTime,
                            @ModelAttribute Event event,
                            Model model) {
@@ -45,7 +65,7 @@ public class EventController {
     event.setStartDateTime(LocalDateTime.parse(dateTime));
     eventDao.save(event);
     model.addAttribute("event", event);
-    return "/event/submitted";
+    return "event/submitted";
 }
 
 

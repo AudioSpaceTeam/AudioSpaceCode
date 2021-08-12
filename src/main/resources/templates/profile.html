@@ -5,18 +5,23 @@
     <title>Register</title>
     <th:block th:replace="partials/style.html :: style"></th:block>
 <body>
-<nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container">
-    <h1 class="text-center">Welcome <span th:text="${user.username}"></span></h1>
-    <br>
-    <h3>Here are your planned events:</h3>
-    <div>Event:</div>
-    <div th:text="${user.promotedEvents}"></div>
-    <div th:text="${user.getPromotedEvents()}"></div>
-    <div th:text="${user.displayName}"></div>
-
 </div>
-<th:block th:replace="partials/scripts.html :: scripts"></th:block>
-<footer th:replace="partials/footer.html :: footer"></footer>
+    <nav th:replace="partials/navbar.html :: navbar"></nav>
+    <div class="container">
+      
+        <h1 class="text-center">Welcome <span th:text="${user.username}"></span></h1>
+        <br>
+        <h3>Here are your planned events:</h3>
+        <div>
+        <div th:each="event : ${userEvents}">
+                    <!-- listCategories comes from the CategoryController-->
+        <br>
+        <h3 th:text="${event.title}"></h3>
+        </div>
+         
+        </div>
+    </div>
+    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+    <footer th:replace="partials/footer.html :: footer"></footer>
 </body>
 </html>

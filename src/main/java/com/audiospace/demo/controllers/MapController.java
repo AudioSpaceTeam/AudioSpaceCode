@@ -10,6 +10,6 @@ public class MapController {
     @GetMapping("/map")
     public String showSignupForm(Model model) {
         model.addAttribute("user", new User());
-        return "/map";
+        return "map";
     }
 }

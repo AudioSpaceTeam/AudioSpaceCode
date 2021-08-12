@@ -33,6 +33,13 @@ public class EventController {
     Calendar cal = Calendar.getInstance();
 
 
+
+@GetMapping("/event/create")
+  public String createEvent(Model model){
+    model.addAttribute("event", new Event());
+    return "event/create";
+}
+
     //added show an view events
     @GetMapping("/event")
     public String viewEvent(Model model) {
@@ -49,11 +56,12 @@ public class EventController {
 
     //For create.html
 
-    @GetMapping("/event/create")
-    public String createEvent(Model model) {
-        model.addAttribute("event", new Event());
-        return "/event/create";
-    }
+@PostMapping("/event/create")
+  public String saveCreate(@RequestParam(name = "dateTime") String dateTime,
+                           @ModelAttribute Event event,
+                           Model model) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    event.setPromoter(currentUser);
 
 
     @PostMapping("/event/create")
@@ -67,6 +75,16 @@ public class EventController {
         model.addAttribute("event", event);
         return "/event/submitted";
     }
+
+    System.out.println(dateTime);
+    System.out.println(LocalDateTime.parse(dateTime));
+
+    event.setStartDateTime(LocalDateTime.parse(dateTime));
+    eventDao.save(event);
+    model.addAttribute("event", event);
+    return "event/submitted";
+}
+
 
 
 }

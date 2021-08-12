@@ -50,8 +50,13 @@ public class Event {
 //  public void setDateTime(Date dateTime) {
 //    this.dateTime = dateTime;
 //  }
+<<<<<<< HEAD
   
 //    StartTime
+=======
+
+    //StartTime
+>>>>>>> 6a60e52dd95cc1f0c4a4fd46518f139e21e3b585
     @Column(name = "startDateTime", columnDefinition = "TIMESTAMP")
     private LocalDateTime startDateTime;
 
@@ -63,7 +68,10 @@ public class Event {
         this.startDateTime = startDateTime;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a60e52dd95cc1f0c4a4fd46518f139e21e3b585
     //Endtime
 //    @Column(name = "endDateTime", columnDefinition = "TIMESTAMP")
 //    private LocalDateTime endDateTime;

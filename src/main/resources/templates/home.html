@@ -1,25 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <meta charset="UTF-8"/>
     <title></title>
     <th:block th:replace="partials/style.html :: style"></th:block>
-    </head>
+</head>
 <body style="background-color: lightgrey">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 
 <div class="container mt-5">
 
-        <div class="jumbotron">
-            <h1 class="display-4 text-center">Audio Space&trade;</h1>
-            <h1>Welcome</h1>
-            <p class="lead">Welcome to Audio Space&trade; where we connect the musician directly with promoters.</p>
-            <hr class="my-4">
-            <a class="btn btn-dark btn-lg" href="#" role="button">Sign Up!</a>
-        </div>
+    <div class="jumbotron">
+        <h1 class="display-4 text-center">Audio Space&trade;</h1>
+        <h1>Welcome</h1>
+        <p class="lead">Welcome to Audio Space&trade; where we connect the musician directly with promoters.</p>
+        <hr class="my-4">
+        <a class="btn btn-dark btn-lg" href="/register" role="button">Sign Up!</a>
     </div>
-
-
+</div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 
 </body>

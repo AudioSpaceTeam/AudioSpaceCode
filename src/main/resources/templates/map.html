@@ -15,27 +15,20 @@
             <button class="btn btn-dark" id="btn" type="submit" style="padding: 3px;">Search</button>
         </form>
         <div id='map' style="width: 750px; height: 600px; margin: auto;"></div>
-
         <div class="hiddenMap" th:each="event: ${eventList}" style="display: none;">
-        <p th:text="'Your Post ID: ' + ${event.id}">
-        <p th:text="'Start Time: ' + ${event.startDateTime}"></p>
-        <p class="title" th:text="${event.title}"></p>
-        <p class="eventLocation" th:text="'Location: ' + ${event.location}"></p>
-        <p th:text="'Price: $' + ${event.price}"></p>
-        <p th:text="'Slots: ' + ${event.slots}"></p>
-        <p th:text="'Description: ' + ${event.description}"></p>
+        <p class="eventId" th:text="${event.id}">
+        <p th:text="${event.startDateTime}"></p>
+        <p class="eventTitle" th:text="${event.title}"></p>
+        <p class="eventLocation" th:text=" ${event.location}"></p>
+        <p th:text="${event.price}"></p>
+        <p th:text="${event.slots}"></p>
+        <p th:text="${event.description}"></p>
         </div>
-
-
-
-
-
     </div>
-
     <script th:src="@{/js/keys.js}"></script>
     <script th:src="@{/js/mapbox-geocoder-utils.js}"></script>
     <script th:src="@{/js/mapbox.js}"></script>
     <th:block th:replace="partials/scripts.html :: scripts"></th:block>
-<!--    <footer th:replace="partials/footer.html :: footer"></footer>-->
+    <footer th:replace="partials/footer.html :: footer"></footer>
 </body>
 </html>

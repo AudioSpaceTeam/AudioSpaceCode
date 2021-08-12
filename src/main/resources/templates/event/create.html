@@ -37,9 +37,9 @@
     <br>
     <textarea th:field="*{description}" id="description"></textarea>
     <br>
-    <label for="startDateTime">Start Day of Event (date and time):</label>
+    <label for="DateTime">Start Day of Event (date and time):</label>
     <br>
-    <input th:field="*{startDateTime}" id="startDateTime" name="startDateTime"/>
+    <input type="datetime-local" id="DateTime" name="DateTime"/>
     <br>
     <button type="submit">Submit</button>
   </form>

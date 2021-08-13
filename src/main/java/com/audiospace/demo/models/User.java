@@ -34,7 +34,24 @@ public class User {
     //  Bio
     @Column(nullable = true, length = 500)
     private String bio;
-    //  Is promoter bool
+
+  public List<Event> getSlotted() {
+    return slotted;
+  }
+
+  public void setSlotted(List<Event> slotted) {
+    this.slotted = slotted;
+  }
+
+  public List<Genre> getGenres() {
+    return genres;
+  }
+
+  public void setGenres(List<Genre> genres) {
+    this.genres = genres;
+  }
+
+  //  Is promoter bool
     @Column(nullable = false)
     private Boolean isPromoter;
 

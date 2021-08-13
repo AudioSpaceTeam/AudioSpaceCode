@@ -51,7 +51,7 @@ public class UserController {
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
     model.addAttribute("user", userDao.findById(currentUser.getId()));
 
-    model.addAttribute("profileOwner",true );
+    model.addAttribute("profileOwner", true);
 
     return "profile";
   }
@@ -65,6 +65,50 @@ public class UserController {
 
     return "profile";
   }
+
+  @GetMapping("/profile/{id}/edit")
+  public String editUserInfo(@PathVariable long id, Model model) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    if (currentUser.getId() != userDao.findById(id).getId()) {
+      return "redirect:/profile/" + id;
+    } else {
+      model.addAttribute("user", userDao.findById(id));
+      return "user/edit";
+    }
+
+  }
+
+  @PostMapping("/profile/{id}/edit")
+  public String saveUserInfo(@ModelAttribute User user,
+                             @PathVariable long id,
+                             Model model,
+                             @RequestParam String isPromoter,
+                             @RequestParam String password) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    if (currentUser.getId() != userDao.findById(id).getId()) {
+      return "redirect:/profile/" + id;
+    } else {
+      if (isPromoter.equals("true")) {
+        user.setPromoter(true);
+      } else {
+        user.setPromoter(false);
+      }
+      if(!passwordEncoder.matches(password, currentUser.getPassword())){
+        System.out.println(currentUser.getPassword());
+        System.out.println(password);
+        System.out.println(passwordEncoder.matches(currentUser.getPassword(),password));
+        return "redirect:/profile/" + id + "/edit";
+      }
+      String hash = passwordEncoder.encode(password);
+      user.setPassword(hash);
+      userDao.save(user);
+      model.addAttribute("user", userDao.findById(id));
+      return "profile";
+    }
+
+  }
+
+
 //  Come back to this above, to make it check if the user owns the profile or not.
 //  If they own it, then IT should display a different welcome message...
 //  and enable an edit button?

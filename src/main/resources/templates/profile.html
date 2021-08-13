@@ -14,16 +14,15 @@
     <br>
     <h3 class="text-center">Here are your planned events:</h3>
 
-    <div class="row row-cols-xs-12 row-cols-sm-8 row-cols-md-4 g-4">
+    <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     <div th:each="event : ${userEvents}">
             <div class="col d-flex align-items-center justify-content-center">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem; height: 20rem">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${event.title}"></h5>
                         <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
                         <p class="card-text" th:text="${event.description}"></p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                        <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
                     </div>
                 </div>
             </div>

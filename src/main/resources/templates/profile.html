@@ -13,50 +13,19 @@
     <h1 class="text-center">Welcome <span th:text="${user.username}"></span></h1>
     <br>
     <h3 class="text-center">Here are your planned events:</h3>
-<!--    old code-->
-<!--    <div>-->
-<!--        <table class="table table-bordered">-->
-<!--            <thead class="table table-dark">-->
-<!--            <tr>-->
-<!--                <th>Event</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <div th:each="event : ${userEvents}">-->
-<!--                &lt;!&ndash; listCategories comes from the CategoryController&ndash;&gt;-->
-<!--                <br>-->
-<!--                <h3 th:text="${event.title}"></h3>-->
-<!--            </div>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--    old code-->
 
+    <div class="row row-cols-xs-12 row-cols-sm-8 row-cols-md-4 g-4">
     <div th:each="event : ${userEvents}">
-    <div class="card">
-        <div class="card__inner">
-            <div class="card__face card__face--front">
-                <ul>
-                    <li><h2 th:text="${event.title}">test</h2></li>
-                    <li><h3 th:text="${event.location}">test</h3></li>
-                    <li><div th:text="${event.description}">test</div></li>
-                </ul>
-
-
-                    <div class="card__face card__face--back">
-                    <div class="card__content">
-                        <div class="card__header">
-<!--                            <img src="pp.jpg" alt="band/venue image" class="pp"/>-->
-
-<!--                            <h2 th:text="${event.title}"></h2>-->
-                        </div>
-                        <div class="card__body">
-<!--                            <h3 th:text="${event.location}"></h3>-->
-<!--                            <p th:text="${event.description}"></p>-->
-                        </div>
+            <div class="col d-flex align-items-center justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${event.title}"></h5>
+                        <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
+                        <p class="card-text" th:text="${event.description}"></p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
 </div>
@@ -108,14 +77,6 @@
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </div>
     <footer th:replace="partials/footer.html :: footer"></footer>
-
-<script>
-    const card = document.querySelector(".card__inner");
-
-    card.addEventListener("click", function (e) {
-        card.classList.toggle('is-flipped');
-    });
-</script>
 
 </body>
 </html>

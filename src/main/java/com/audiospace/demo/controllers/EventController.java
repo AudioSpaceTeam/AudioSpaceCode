@@ -52,6 +52,9 @@ public class EventController {
   public String singleEvent(@PathVariable long id, Model model) {
     Event event = eventDao.getById(id);
     model.addAttribute("event", event);
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    Our boolean to see if the current user is the owner or not.
+    model.addAttribute("isOwner", event.getPromoter().getId() == currentUser.getId());
     return "event/show";
   }
 
@@ -63,16 +66,25 @@ public class EventController {
                            @ModelAttribute Event event,
                            Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    event.setPromoter(currentUser);
+    event.setPromoter(userDao.findById(currentUser.getId()));
     event.setPrice(Double.parseDouble(price));
-
-//    System.out.println(dateTime);
-//    System.out.println(LocalDateTime.parse(dateTime));
 
     event.setStartDateTime(LocalDateTime.parse(dateTime));
     eventDao.save(event);
     model.addAttribute("event", event);
     return "/event/submitted";
+  }
+
+  @GetMapping("/event/{id}/edit")
+  public String editEvent(@PathVariable long id, Model model) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    Event event = eventDao.getById(id);
+    if (event.getPromoter().getId() != currentUser.getId()){
+      return "redirect:/event/" + id;
+    } else {
+      model.addAttribute("event", event);
+      return "event/edit";
+    }
   }
 
 

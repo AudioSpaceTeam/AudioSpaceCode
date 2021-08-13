@@ -31,10 +31,6 @@ public class EventController {
   }
 
 
-
-
-
-
   @GetMapping("/event/create")
   public String createEvent(Model model) {
     model.addAttribute("event", new Event());
@@ -79,7 +75,7 @@ public class EventController {
   public String editEvent(@PathVariable long id, Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     Event event = eventDao.getById(id);
-    if (event.getPromoter().getId() != currentUser.getId()){
+    if (event.getPromoter().getId() != currentUser.getId()) {
       return "redirect:/event/" + id;
     } else {
       model.addAttribute("event", event);
@@ -87,6 +83,17 @@ public class EventController {
     }
   }
 
+  @PostMapping("/event/{id}/delete")
+  public String eventDelete(@RequestParam(name = "id") long id) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    Event event = eventDao.getById(id);
+    if (event.getPromoter().getId() != currentUser.getId()) {
+      return "redirect:/event/" + id;
+    } else {
+      eventDao.deleteById(id);
+      return "redirect:/event";
+    }
+  }
 
 
 }

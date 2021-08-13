@@ -8,22 +8,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 </head>
 <body class="main">
-<nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="jumbotron jumbotron-fluid">
-    <div class="card offwhite-body">
-        <div class="card-image">
-            <div class="form-group">
-                <h3 th:text="${event.title}"></h3>
-                <p th:text="${event.description}"></p>
-                <p th:text="${event.location}"></p>
-                <p th:text="${event.startDateTime}"></p>
-                <p th:text="${event.slots}"></p>
-                <p th:text="${event.price}"></p>
-                <a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a>
+
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="card offwhite-body">
+            <div class="card-image">
+                <div class="form-group">
+                    <h3 th:text="${event.title}"></h3>
+                    <p th:text="${event.description}"></p>
+                    <p th:text="${event.location}"></p>
+                    <p th:text="${event.startDateTime}"></p>
+                    <p th:text="${event.slots}"></p>
+                    <p th:text="${event.price}"></p>
+                    <a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
     <footer th:replace="partials/footer.html :: footer"></footer>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>

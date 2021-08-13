@@ -3,7 +3,6 @@ package com.audiospace.demo.controllers;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
-
 import com.audiospace.demo.models.Event;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;

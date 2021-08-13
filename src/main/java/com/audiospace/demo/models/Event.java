@@ -119,8 +119,8 @@ public class Event {
 
     }
 
-
-    public Event(long id, String title, String description, Integer slots, String location, Double price, User promoter, LocalDateTime startDateTime) {
+    public Event(long id, String title, String description, Integer slots, String location, Double price,
+                 User promoter, LocalDateTime startDateTime) {
 
         this.id = id;
         this.title = title;
@@ -230,6 +230,7 @@ public class Event {
     public void setPromoter(User promoter) {
         this.promoter = promoter;
     }
+
 
     //  bands sloted?
 //    @ManyToMany(mappedBy = "performers")

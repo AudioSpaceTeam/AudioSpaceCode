@@ -10,7 +10,6 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a id="navbarA" class="navbar-brand" href="/">
-<!--        <img th:src="images/logoTransparent.png" src="logoTransparent.png" alt="Audio Space"/>-->
         <img id="navbarLogo" src="/img/logoTransparent.png" alt="Audio Space"/>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -25,6 +24,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/event">Events</a>
           </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/map">View Events Map</a>
+            </li>
           <li  sec:authorize="!isAuthenticated()">
             <a class="nav-link" href="/login">Login</a>
           </li>
@@ -37,13 +39,9 @@
           <li  sec:authorize="isAuthenticated()">
           <a class="nav-link" href="/profile">My Profile</a>
           </li>
-<!--          <li  sec:authorize="isAuthenticated()">-->
-<!--            <a class="nav-link" href="/logout">Logout</a>-->
-<!--          </li>-->
           <li sec:authorize="isAuthenticated()">
             <form id="logoutButton" th:action="@{/logout}" th:method="post">
               <a class="nav-link" onclick="this.parentNode.submit();">Logout</a>
-              <!--              <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
             </form>
           </li>
 <!--          <li class="nav-item dropdown">-->

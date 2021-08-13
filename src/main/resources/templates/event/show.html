@@ -6,14 +6,6 @@
     <th:block th:replace="partials/style.html :: style"></th:block>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-  <script>
-    var myModal = document.getElementById('exampleModal')
-    var myInput = document.getElementById('myInput')
-
-    myModal.addEventListener('shown.bs.modal', function () {
-      myInput.focus()
-    })
-  </script>
 </head>
 <body class="main">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
@@ -27,6 +19,7 @@
                 <p th:text="${event.startDateTime}"></p>
                 <p th:text="${event.slots}"></p>
                 <p th:text="${event.price}"></p>
+                <a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a>
             </div>
         </div>
     </div>

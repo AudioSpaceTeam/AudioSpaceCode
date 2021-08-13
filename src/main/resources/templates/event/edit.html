@@ -32,8 +32,11 @@
           ARE YOU SURE YOU WANT TO DELETE THIS EVENT?
         </div>
         <div class="modal-footer">
+          <form th:method="post" th:action="@{|/event/${event.getId()}/delete|}">
+            <input hidden name="id" th:value="${event.id}">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-danger">Delete Event</button>
+          </form>
         </div>
       </div>
     </div>

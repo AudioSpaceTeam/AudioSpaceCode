@@ -19,7 +19,7 @@
                     <p th:text="${event.location}"></p>
                     <p th:text="${event.startDateTime}"></p>
                     <p th:text="${event.slots}"></p>
-                    <p th:text="${event.price}"></p>
+                    <p th:text="'$'+${event.price}"></p>
                     <a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a>
                 </div>
             </div>

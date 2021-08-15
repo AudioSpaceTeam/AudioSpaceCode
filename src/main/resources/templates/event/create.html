@@ -27,7 +27,7 @@
     <br>
     <label for="price">Price:</label>
     <br>
-    <input name="price" type="number" step=".01" id="price" placeholder="$">
+    <input name="price" type="number" step=".02" id="price" placeholder="$">
     <br>
     <label for="slots">Available slots:</label>
     <br>
@@ -38,6 +38,7 @@
     <textarea th:field="*{description}" id="description"></textarea>
     <br>
     <label for="dateTime">Day of Event (date and time):</label>
+    <br>
     <input  type="datetime-local" id="dateTime" name="dateTime">
     <br>
     <button type="submit">Submit</button>

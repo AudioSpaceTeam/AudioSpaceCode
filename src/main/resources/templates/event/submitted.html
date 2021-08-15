@@ -13,13 +13,13 @@
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
 
-    <h1 th:text="'Thank you for your submission form, ' + ${user.username} + '!'"></h1>
+    <h1 th:text="'Thank you for your submission form!'"></h1>
 
     <p th:text="'Your Post ID: ' + ${event.id}">
     <p th:text="'Start Time: ' + ${event.startDateTime}"></p>
     <h1 th:text="${event.title}"></h1>
     <h5 th:text="'Location: ' + ${event.location}"></h5>
-    <h5 th:text="'Price: $' + ${event.price}"></h5>
+    <h5 th:text="'Price: $' + ${event.price}" step=".02"></h5>
     <h5 th:text="'Slots: ' + ${event.slots}"></h5>
     <h5 th:text="'Description: ' + ${event.description}"></h5>
 

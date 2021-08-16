@@ -1,8 +1,8 @@
 package com.audiospace.demo.controllers;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Random;
+import java.util.*;
+
 import com.audiospace.demo.models.Event;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
-import java.util.List;
 
 @Controller
 public class EventController {
@@ -33,12 +30,14 @@ public class EventController {
   @GetMapping("/event/create")
   public String createEvent(Model model) {
     model.addAttribute("event", new Event());
+    model.addAttribute("users", userDao.findAll());
     return "event/create";
   }
 
   //added show an view events
   @GetMapping("/event")
   public String viewEvent(Model model) {
+    //      TODO: make it so only users who are NOT promoters show in list.
     model.addAttribute("events", eventDao.findAll());
     return "event/index";
   }
@@ -50,6 +49,7 @@ public class EventController {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //    Our boolean to see if the current user is the owner or not.
     model.addAttribute("isOwner", event.getPromoter().getId() == currentUser.getId());
+    model.addAttribute("performers", event.getSlottedUsers());
     return "event/show";
   }
 
@@ -59,15 +59,35 @@ public class EventController {
   public String saveCreate(@RequestParam(name = "dateTime") String dateTime,
                            @RequestParam(name = "price") String price,
                            @ModelAttribute Event event,
+                           @RequestParam String[] bandIds,
                            Model model) {
+
+    //Added user
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     event.setPromoter(userDao.findById(currentUser.getId()));
     event.setPrice(Double.parseDouble(price));
 
     event.setStartDateTime(LocalDateTime.parse(dateTime));
+    List<User> slottedPerformers = new ArrayList<>();
+    for(String band : bandIds){
+      if(band.equalsIgnoreCase("ignore")){
+        continue;
+      }
+//      System.out.println(band + " Band id");
+//      We are ADDING to the slotted performers list,
+//      We are finding the user BY ID
+//      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
+      slottedPerformers.add(userDao.findById(Long.parseLong(band)));
+    }
+    event.setSlottedUsers(slottedPerformers);
     eventDao.save(event);
+    for(User slotted : slottedPerformers){
+      slotted.getSlotted().add(event);
+      userDao.save(slotted);
+    }
+    model.addAttribute("user", currentUser);
     model.addAttribute("event", event);
-    return "/event/submitted";
+    return "event/submitted";
   }
 
   @GetMapping("/event/{id}/edit")
@@ -77,6 +97,8 @@ public class EventController {
     if (event.getPromoter().getId() != currentUser.getId()) {
       return "redirect:/event/" + id;
     } else {
+//      TODO: make it so only users who are NOT promoters show in list.
+      model.addAttribute("users", userDao.findAll());
       model.addAttribute("event", event);
       return "event/edit";
     }

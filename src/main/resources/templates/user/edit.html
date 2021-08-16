@@ -12,6 +12,38 @@
 
 <div class="container">
   <h1>Edit your profile</h1>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Delete Account?
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" th:text="${user.username}">Modal Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?
+        </div>
+        <div class="modal-footer">
+          <form th:method="post" th:action="@{|/profile/${user.getId()}/delete|}">
+            <label for="passwordDelete">Enter your password to confirm deletion: </label>
+            <br>
+            <input type="password" name="passwordDelete" placeholder="Password" id="passwordDelete"/>
+            <br>
+            <input hidden name="id" th:value="${user.id}">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Delete Account</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <form th:action="@{|/profile/${user.getId()}/edit|}" th:method="post" th:object="${user}">
     <label for="displayName">Display Name: </label>
     <br>
@@ -27,7 +59,7 @@
     <br>
     <label for="password">Re-enter password to confirm changes: </label>
     <br>
-    <input name="password" placeholder="Password" id="password"/>
+    <input type="password" name="password" placeholder="Password" id="password"/>
     <br>
     <input hidden th:field="*{id}" th:value="${user.id}">
     <input hidden th:field="*{username}" th:value="${user.username}">

@@ -66,8 +66,9 @@ public class EventController {
 
     event.setStartDateTime(LocalDateTime.parse(dateTime));
     eventDao.save(event);
+    model.addAttribute("user", currentUser);
     model.addAttribute("event", event);
-    return "/event/submitted";
+    return "event/submitted";
   }
 
   @GetMapping("/event/{id}/edit")

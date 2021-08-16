@@ -39,8 +39,9 @@
           <li  sec:authorize="isAuthenticated()">
           <a class="nav-link" href="/profile">My Profile</a>
           </li>
+<!--            added the cursor pointer at logout-->
           <li sec:authorize="isAuthenticated()">
-            <form id="logoutButton" th:action="@{/logout}" th:method="post">
+            <form id="logoutButton" th:action="@{/logout}" th:method="post" style="cursor: pointer">
               <a class="nav-link" onclick="this.parentNode.submit();">Logout</a>
             </form>
           </li>

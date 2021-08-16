@@ -28,6 +28,11 @@
             </div>
         </div>
 </div>
+
+<!--    added button delete account-->
+    <form th:action="@{/events/{id}/delete}" th:method="POST">
+        <button th:type="submit" class="btn-submit">Delete Account</button>
+    </form>
   
     <div class="container">
 

@@ -40,6 +40,12 @@
     <label for="dateTime">Day of Event (date and time):</label>
     <input  type="datetime-local" id="dateTime" name="dateTime">
     <br>
+    <h5>Bands playing at the event: </h5>
+    <br>
+    <input hidden type="checkbox" th:id="ignore" name="bandIds" value="ignore" checked>
+    <div th:each="user: ${users}">
+      <label th:for="${user.getId()}"><input type="checkbox" th:id="${user.id}" name="bandIds" th:value="${user.id}" th:text="${user.username}">User</label>
+    </div>
     <button type="submit">Submit</button>
   </form>
 </div>

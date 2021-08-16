@@ -29,8 +29,21 @@ public class EventController {
 
   @GetMapping("/event/create")
   public String createEvent(Model model) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    if(!currentUser.getPromoter()){
+      return "redirect:/event";
+    }
     model.addAttribute("event", new Event());
-    model.addAttribute("users", userDao.findAll());
+
+    //      List for users who are not promoters
+    List<User> notPromoters = new ArrayList<>();
+    for(User userP : userDao.findAll()){
+//        If a user is not a promoter, then we want to add them to the list.
+      if(!userP.getPromoter()){
+        notPromoters.add(userP);
+      }
+    }
+    model.addAttribute("users", notPromoters);
     return "event/create";
   }
 
@@ -96,8 +109,16 @@ public class EventController {
     if (event.getPromoter().getId() != currentUser.getId()) {
       return "redirect:/event/" + id;
     } else {
-//      TODO: make it so only users who are NOT promoters show in list.
-      model.addAttribute("users", userDao.findAll());
+
+//      List for users who are not promoters
+      List<User> notPromoters = new ArrayList<>();
+      for(User userP : userDao.findAll()){
+//        If a user is not a promoter, then we want to add them to the list.
+        if(!userP.getPromoter()){
+          notPromoters.add(userP);
+        }
+      }
+      model.addAttribute("users", notPromoters);
       model.addAttribute("event", event);
       return "event/edit";
     }

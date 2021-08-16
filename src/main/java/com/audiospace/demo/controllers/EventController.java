@@ -74,6 +74,7 @@ public class EventController {
                            @RequestParam String[] bandIds,
                            Model model) {
 
+    //Added user
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     event.setPromoter(userDao.findById(currentUser.getId()));
     event.setPrice(Double.parseDouble(price));

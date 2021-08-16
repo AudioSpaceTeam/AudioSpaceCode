@@ -33,7 +33,7 @@
           <form th:method="post" th:action="@{|/profile/${user.getId()}/delete|}">
             <label for="passwordDelete">Enter your password to confirm deletion: </label>
             <br>
-            <input name="passwordDelete" placeholder="Password" id="passwordDelete"/>
+            <input type="password" name="passwordDelete" placeholder="Password" id="passwordDelete"/>
             <br>
             <input hidden name="id" th:value="${user.id}">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -59,7 +59,7 @@
     <br>
     <label for="password">Re-enter password to confirm changes: </label>
     <br>
-    <input name="password" placeholder="Password" id="password"/>
+    <input type="password" name="password" placeholder="Password" id="password"/>
     <br>
     <input hidden th:field="*{id}" th:value="${user.id}">
     <input hidden th:field="*{username}" th:value="${user.username}">

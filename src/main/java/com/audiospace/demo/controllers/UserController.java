@@ -93,10 +93,10 @@ public class UserController {
       } else {
         user.setPromoter(false);
       }
-      if(!passwordEncoder.matches(password, currentUser.getPassword())){
-        System.out.println(currentUser.getPassword());
-        System.out.println(password);
-        System.out.println(passwordEncoder.matches(currentUser.getPassword(),password));
+      if (!passwordEncoder.matches(password, currentUser.getPassword())) {
+//        System.out.println(currentUser.getPassword());
+//        System.out.println(password);
+//        System.out.println(passwordEncoder.matches(currentUser.getPassword(), password));
         return "redirect:/profile/" + id + "/edit";
       }
       String hash = passwordEncoder.encode(password);
@@ -104,6 +104,25 @@ public class UserController {
       userDao.save(user);
       model.addAttribute("user", userDao.findById(id));
       return "profile";
+    }
+
+  }
+
+  @PostMapping("/profile/{id}/delete")
+  public String deleteUser(@ModelAttribute User user,
+                           @PathVariable long id,
+                           @RequestParam String passwordDelete) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    if (currentUser.getId() != userDao.findById(id).getId()) {
+      return "redirect:/profile/" + id;
+    } else {
+      if (!passwordEncoder.matches(passwordDelete, currentUser.getPassword())) {
+        return "redirect:/profile/" + id + "/edit";
+      }
+      User deleteMe = userDao.findById(currentUser.getId());
+      userDao.deleteById(deleteMe.getId());
+      return "redirect:/login";
+//      Todo: Ask about where to redirect for logout after deleting a user...
     }
 
   }

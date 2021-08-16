@@ -122,6 +122,7 @@ public class UserController {
       User deleteMe = userDao.findById(currentUser.getId());
       userDao.deleteById(deleteMe.getId());
       return "redirect:/login";
+//      Ask about where to redirect for logout after deleting a user...
     }
 
   }

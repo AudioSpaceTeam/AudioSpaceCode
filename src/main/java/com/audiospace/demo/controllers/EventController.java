@@ -30,16 +30,16 @@ public class EventController {
   @GetMapping("/event/create")
   public String createEvent(Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    if(!currentUser.getPromoter()){
+    if (!currentUser.getPromoter()) {
       return "redirect:/event";
     }
     model.addAttribute("event", new Event());
 
     //      List for users who are not promoters
     List<User> notPromoters = new ArrayList<>();
-    for(User userP : userDao.findAll()){
+    for (User userP : userDao.findAll()) {
 //        If a user is not a promoter, then we want to add them to the list.
-      if(!userP.getPromoter()){
+      if (!userP.getPromoter()) {
         notPromoters.add(userP);
       }
     }
@@ -50,7 +50,6 @@ public class EventController {
   //added show an view events
   @GetMapping("/event")
   public String viewEvent(Model model) {
-    //      TODO: make it so only users who are NOT promoters show in list.
     model.addAttribute("events", eventDao.findAll());
     return "event/index";
   }
@@ -81,8 +80,8 @@ public class EventController {
 
     event.setStartDateTime(LocalDateTime.parse(dateTime));
     List<User> slottedPerformers = new ArrayList<>();
-    for(String band : bandIds){
-      if(band.equalsIgnoreCase("ignore")){
+    for (String band : bandIds) {
+      if (band.equalsIgnoreCase("ignore")) {
         continue;
       }
 //      System.out.println(band + " Band id");
@@ -93,7 +92,7 @@ public class EventController {
     }
     event.setSlottedUsers(slottedPerformers);
     eventDao.save(event);
-    for(User slotted : slottedPerformers){
+    for (User slotted : slottedPerformers) {
       slotted.getSlotted().add(event);
       userDao.save(slotted);
     }
@@ -112,9 +111,9 @@ public class EventController {
 
 //      List for users who are not promoters
       List<User> notPromoters = new ArrayList<>();
-      for(User userP : userDao.findAll()){
+      for (User userP : userDao.findAll()) {
 //        If a user is not a promoter, then we want to add them to the list.
-        if(!userP.getPromoter()){
+        if (!userP.getPromoter()) {
           notPromoters.add(userP);
         }
       }
@@ -134,6 +133,22 @@ public class EventController {
       eventDao.deleteById(id);
       return "redirect:/event";
     }
+  }
+
+  @PostMapping("/event/search")
+  public String eventSearch(@RequestParam(name = "search") String search,
+                            Model model) {
+//    List<Event> queryEvents = new ArrayList<>();
+
+//    for(Event eventQ : eventDao.findAll()){
+//
+//    }
+
+    List<Event> queryEvents = eventDao.findAllByTitleContainingOrDescriptionContaining(search,search);
+
+
+    model.addAttribute("events", queryEvents);
+    return "event/index";
   }
 
 

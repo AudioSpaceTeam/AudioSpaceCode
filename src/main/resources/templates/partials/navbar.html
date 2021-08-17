@@ -33,6 +33,9 @@
           <li  sec:authorize="!isAuthenticated()">
             <a class="nav-link" href="/register">Register!</a>
           </li>
+<!--          Todo: Add variable for checking if someone is a promoter to EVERY controller.-->
+<!--          <li th:="variable for checking if promoter." sec:authorize="isAuthenticated()">-->
+<!--${#authentication.getName()}-->
           <li  sec:authorize="isAuthenticated()">
           <a class="nav-link" href="/event/create">Create Event</a>
           </li>

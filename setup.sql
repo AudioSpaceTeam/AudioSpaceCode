@@ -9,3 +9,11 @@ DROP DATABASE IF EXISTS audiospace_db;
 CREATE DATABASE IF NOT EXISTS audiospace_db;
 -- # Make sure you are using said database to run anything.
 USE audiospace_db;
+
+# Incase you need to drop the tables uncomment out below, and run these.
+# SET FOREIGN_KEY_CHECKS = 0;
+# DROP TABLE events,events_genres,events_users, genres,reviews,users,users_genres;
+# SET FOREIGN_KEY_CHECKS = 1;
+
+
+

@@ -56,6 +56,7 @@ public class UserController {
         return "profile";
     }
 
+
     @GetMapping("/profile/{id}")
     public String showUserInfo(@PathVariable long id, Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -75,6 +76,36 @@ public class UserController {
             model.addAttribute("user", userDao.findById(id));
             return "user/edit";
         }
+
+
+  }
+
+  @PostMapping("/profile/{id}/edit")
+  public String saveUserInfo(@ModelAttribute User user,
+                             @PathVariable long id,
+                             Model model,
+                             @RequestParam String isPromoter,
+                             @RequestParam String password) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    if (currentUser.getId() != userDao.findById(id).getId()) {
+      return "redirect:/profile/" + id;
+    } else {
+      if (isPromoter.equals("true")) {
+        user.setPromoter(true);
+      } else {
+        user.setPromoter(false);
+      }
+      if (!passwordEncoder.matches(password, currentUser.getPassword())) {
+//        System.out.println(currentUser.getPassword());
+//        System.out.println(password);
+//        System.out.println(passwordEncoder.matches(currentUser.getPassword(), password));
+        return "redirect:/profile/" + id + "/edit";
+      }
+      String hash = passwordEncoder.encode(password);
+      user.setPassword(hash);
+      userDao.save(user);
+      model.addAttribute("user", userDao.findById(id));
+      return "profile";
 
     }
 
@@ -106,6 +137,7 @@ public class UserController {
             return "profile";
         }
 
+
     }
 
     //User delete account option. Im no sure.
@@ -121,6 +153,26 @@ public class UserController {
         userDao.delete(userDao.getById(id));
         return "redirect:/user";
     }
+
+  @PostMapping("/profile/{id}/delete")
+  public String deleteUser(@ModelAttribute User user,
+                           @PathVariable long id,
+                           @RequestParam String passwordDelete) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    if (currentUser.getId() != userDao.findById(id).getId()) {
+      return "redirect:/profile/" + id;
+    } else {
+      if (!passwordEncoder.matches(passwordDelete, currentUser.getPassword())) {
+        return "redirect:/profile/" + id + "/edit";
+      }
+      User deleteMe = userDao.findById(currentUser.getId());
+      userDao.deleteById(deleteMe.getId());
+      return "redirect:/login";
+//      Todo: Ask about where to redirect for logout after deleting a user...
+    }
+
+  }
+
 
 //  Come back to this above, to make it check if the user owns the profile or not.
 //  If they own it, then IT should display a different welcome message...

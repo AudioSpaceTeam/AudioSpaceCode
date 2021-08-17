@@ -24,7 +24,7 @@
   <h5 th:text="'Description: ' + ${event.description}"></h5>
   <h5 th:text="'Slots: ' + ${event.slots}"></h5>
   <h5>These users are playing at your event.</h5>
-  <div th:each="user : ${event.slottedUsers}">
+  <div th:each="user : ${event.performers}">
     <h6 th:text="${user.getDisplayName()}"></h6>
   </div>
 

@@ -34,7 +34,6 @@ public class EventController {
       return "redirect:/event";
     }
     model.addAttribute("event", new Event());
-
     //      List for users who are not promoters
     List<User> notPromoters = new ArrayList<>();
     for (User userP : userDao.findAll()) {
@@ -61,12 +60,11 @@ public class EventController {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //    Our boolean to see if the current user is the owner or not.
     model.addAttribute("isOwner", event.getPromoter().getId() == currentUser.getId());
-    model.addAttribute("performers", event.getSlottedUsers());
+//    model.addAttribute("performers", event);
     return "event/show";
   }
 
   //For create.html
-
   @PostMapping("/event/create")
   public String saveCreate(@RequestParam(name = "dateTime") String dateTime,
                            @RequestParam(name = "price") String price,
@@ -80,23 +78,22 @@ public class EventController {
     event.setPrice(Double.parseDouble(price));
 
     event.setStartDateTime(LocalDateTime.parse(dateTime));
+
+//    Below stuff was fine below leave alone... dude.
     List<User> slottedPerformers = new ArrayList<>();
+
     for (String band : bandIds) {
       if (band.equalsIgnoreCase("ignore")) {
         continue;
       }
-//      System.out.println(band + " Band id");
+      System.out.println(band + " Band id");
 //      We are ADDING to the slotted performers list,
 //      We are finding the user BY ID
 //      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
       slottedPerformers.add(userDao.findById(Long.parseLong(band)));
     }
-    event.setSlottedUsers(slottedPerformers);
+    event.setPerformers(slottedPerformers);
     eventDao.save(event);
-    for (User slotted : slottedPerformers) {
-      slotted.getSlotted().add(event);
-      userDao.save(slotted);
-    }
     model.addAttribute("user", currentUser);
     model.addAttribute("event", event);
     return "event/submitted";
@@ -118,6 +115,12 @@ public class EventController {
           notPromoters.add(userP);
         }
       }
+      List<User> currentPerformers = new ArrayList<>();
+      for(User userC : userDao.findAllBySlotted(eventDao.findById(id))){
+        currentPerformers.add(userC);
+        userC.setSlotted(new ArrayList<>());
+      }
+      model.addAttribute("performers",currentPerformers);
       model.addAttribute("users", notPromoters);
       model.addAttribute("event", event);
       return "event/edit";

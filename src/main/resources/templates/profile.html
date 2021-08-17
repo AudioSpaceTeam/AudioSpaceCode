@@ -71,6 +71,31 @@
             </div>
           </div>
         </div>
+
+</div>
+
+<!--    added button delete account-->
+    <form th:action="@{/events/{id}/delete}" th:method="POST">
+        <button th:type="submit" class="btn-submit">Delete Account</button>
+    </form>
+  
+    <div class="container">
+
+      <div class="d-flex flex-row  justify-content-center bg-warning">
+          <div class="d-flex flex-column align-items-center bg-info col-md-6">
+              <div class="d-flex flex-row justify-content-start">
+                  <div class="d-flex flex-column align-content-center bg-danger">
+                      <div>
+                          <h3>Your Average Rate:</h3>
+                          <h3>4.5</h3>
+                          <br>
+                          <h4><a href="http://localhost:8080/reviews/your_rating">View Your Ratings</a></h4>
+                      </div>
+                  </div>
+
+              </div>
+
+
       </div>
     </div>
   </div>
@@ -87,6 +112,7 @@
               <p class="card-text" th:text="${event.description}"></p>
               <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
             </div>
+
           </div>
         </div>
       </div>

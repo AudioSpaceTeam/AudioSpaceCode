@@ -73,8 +73,13 @@
     <div th:each="user: ${users}">
     <label th:for="${user.getId()}"><input type="checkbox" th:id="${user.id}" name="bandIds" th:value="${user.id}" th:text="${user.username}">User</label>
     </div>
-    <br>
 
+    <h5>Performers currently added...: </h5>
+    <div th:each="userS : ${performers}">
+<!--      <input hidden type="checkbox" th:id="${userS.id}" name="removeBandIds" th:value="${userS.id}" checked>-->
+      <p th:text="${userS.username}"></p>
+    </div>
+    <br>
 
 
 

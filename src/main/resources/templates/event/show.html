@@ -60,7 +60,7 @@
           <p th:text="${event.startDateTime}"></p>
           <p th:text="${event.slots}"></p>
           <p>List of Performers:</p>
-          <div th:each="slotted : ${performers}">
+          <div th:each="slotted : ${event.performers}">
             <p th:text="${slotted.displayName}"></p>
           </div>
           <p th:text="'$' + ${event.price}"></p>

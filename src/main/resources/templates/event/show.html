@@ -2,76 +2,71 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <title>show</title>
+  <title>Viewing Event</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <th:block th:replace="partials/style.html :: style"></th:block>
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="../../static/css/starRating.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-
 </head>
 <body class="main">
-<nav th:replace="partials/navbar.html :: navbar"></nav>
-
-
-
+    <nav th:replace="partials/navbar.html :: navbar"></nav>
+    <div class="container">
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" th:text="${event.title}">Modal Title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><!-- The X Button -->
-                </div>
-                <div class="modal-body">
-                    YOUR RATE:
-                    <div class="rating">
-                        <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-                        <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-                        <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-                        <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-                        <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" th:text="${event.title}">Modal Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><!-- The X Button -->
                     </div>
-                    <textarea class="description" placeholder="Comments:"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <form th:method="post" th:action="@{|/event/${event.getId()}/delete|}">
-                        <input hidden name="id" th:value="${event.id}">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-warning">Submit Rating</button>
-                    </form>
+                    <div class="modal-body">
+                        YOUR RATE:
+                        <div class="rating">
+                            <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                            <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                            <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                            <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                        </div>
+                        <textarea class="description" placeholder="Comments:"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <form th:method="post" th:action="@{|/event/${event.getId()}/delete|}">
+                            <input hidden name="id" th:value="${event.id}">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-warning">Submit Rating</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-  <div class="jumbotron jumbotron-fluid">
-    <div class="card offwhite-body">
-      <div class="card-image">
-        <div class="form-group">
-          <h3 th:text="${event.title}"></h3>
-          <p th:text="${event.description}"></p>
-          <p th:text="${event.location}"></p>
-          <p th:text="${event.startDateTime}"></p>
-          <p th:text="${event.slots}"></p>
-          <p>List of Performers:</p>
-          <div th:each="slotted : ${event.performers}">
-            <p th:text="${slotted.displayName}"></p>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="card offwhite-body d-flex">
+          <div class="card-image">
+            <span class="form-group">
+                <h2>Event details:</h2>
+                <h4 th:text="${event.title}"></h4>
+                <span th:text="${event.description}"></span><br>
+                <span th:text="'This event pays $' + ${event.price} + '0 per band'"></span>
+                <p><span th:text="${event.slots}"></span> slots available to play at <span th:text="${event.location}"></span> starting @ <span th:text="${event.startDateTime}"></span></p>
+                <p>Current bands scheduled to perform:<br>
+                    <span th:each="slotted : ${event.performers}">
+                        <span th:text="${slotted.displayName}"></span>,
+                    </span>
+                </p>
+                <a th:href="@{|/profile/${event.getPromoter().getId()}|}">View <span th:text="${event.getPromoter().getDisplayName()}"></span>'s profile</a>
+                <p><a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a></p>
+                <!-- Modal -->
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Rate Event
+                </button>
           </div>
-          <p th:text="'$' + ${event.price}"></p>
-            <p><a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a></p>
-
-            <!-- Modal -->
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Rate Event
-            </button>
-
+        </div>
       </div>
     </div>
-  </div>
 </div>
-
 
 <footer th:replace="partials/footer.html :: footer"></footer>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>

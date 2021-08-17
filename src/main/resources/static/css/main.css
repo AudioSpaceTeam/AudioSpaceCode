@@ -44,3 +44,7 @@ body{
   margin: 0;
   padding: 0;
 }
+
+.card {
+  padding: 20px;
+}

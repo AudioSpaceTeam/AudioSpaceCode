@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.audiospace.demo.models.Event;
+import com.audiospace.demo.models.Review;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.UserRepository;
@@ -20,10 +21,12 @@ public class EventController {
 
   private final EventRepository eventDao;
   private final UserRepository userDao;
+  private final ReviewPageController reviewDao;
 
-  public EventController(EventRepository eventDao, UserRepository userDao) {
+  public EventController(EventRepository eventDao, UserRepository userDao, ReviewPageController reviewDao) {
     this.eventDao = eventDao;
     this.userDao = userDao;
+    this.reviewDao = reviewDao;
   }
 
 
@@ -58,6 +61,7 @@ public class EventController {
   public String singleEvent(@PathVariable long id, Model model) {
     Event event = eventDao.getById(id);
     model.addAttribute("event", event);
+    model.addAttribute("review", new Review());
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //    Our boolean to see if the current user is the owner or not.
     model.addAttribute("isOwner", event.getPromoter().getId() == currentUser.getId());

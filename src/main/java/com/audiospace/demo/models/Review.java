@@ -9,13 +9,13 @@ public class Review {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @Column(nullable = false, length = 300)
+  @Column(nullable = true, length = 300)
   private String title;
 
-  @Column(nullable = false, length = 300)
+  @Column(nullable = true, length = 300)
   private String body;
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   private Integer rating;
 
   public Review(String title, String body, Integer rating) {

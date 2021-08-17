@@ -56,6 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/event",
                         "/event/{id}",
                         "/register",
+                        "/users/{id}/delete", //added for admin can delete user
                         "/js/**", // had to add this to not restrict scripts
                         "/css/**", // had to add this to not restrict stylesheets
                         "/img/**") // had to add this to not restrict images

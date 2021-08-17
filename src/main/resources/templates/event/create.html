@@ -45,7 +45,14 @@
     <br>
     <input hidden type="checkbox" th:id="ignore" name="bandIds" value="ignore" checked>
     <div th:each="user: ${users}">
-      <label th:for="${user.getId()}"><input type="checkbox" th:id="${user.id}" name="bandIds" th:value="${user.id}" th:text="${user.username}">User</label>
+      <label th:for="${user.getId()}"><input type="checkbox" th:id="${user.id}" name="bandIds" th:value="${user.id}" th:text="${user.username}"></label>
+    </div>
+    <br>
+    <h5>Genres for the Event: </h5>
+    <br>
+    <input hidden type="checkbox" th:id="ignore" name="bandIds" value="ignore" checked>
+    <div th:each="genre: ${genres}">
+      <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}"></label>
     </div>
     <button type="submit" class="btn btn-dark mt-3">Submit</button>
   </form>

@@ -50,7 +50,7 @@
     <br>
     <h5>Genres for the Event: </h5>
     <br>
-    <input hidden type="checkbox" th:id="ignore" name="bandIds" value="ignore" checked>
+    <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
     <div th:each="genre: ${genres}">
       <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}"></label>
     </div>

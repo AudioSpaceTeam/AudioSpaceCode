@@ -12,17 +12,37 @@
 <div class="container">
   <h1 class="text-center">Welcome <span th:text="${user.username}"></span></h1>
   <br>
-  <h3 class="text-center">Here are your planned events:</h3>
-
-  <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-    <div th:each="event : ${userEvents}">
-      <div class="col d-flex align-items-center justify-content-center">
-        <div class="card" style="width: 18rem; height: 20rem">
-          <div class="card-body">
-            <h5 class="card-title" th:text="${event.title}"></h5>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
-            <p class="card-text" th:text="${event.description}"></p>
-            <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
+<!--  Below list are the user's promoted events.-->
+  <div th:if="${user.getPromoter()}">
+    <h3 class="text-center">Here are your planned events:</h3>
+    <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <div th:each="event : ${userEvents}">
+        <div class="col d-flex align-items-center justify-content-center">
+          <div class="card" style="width: 18rem; height: 20rem">
+            <div class="card-body">
+              <h5 class="card-title" th:text="${event.title}"></h5>
+              <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
+              <p class="card-text" th:text="${event.description}"></p>
+              <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--Below is for the performers profile-->
+  <div th:if="!${user.getPromoter()}">
+    <h3 class="text-center">Here are the events you are playing at:</h3>
+    <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <div th:each="event : ${user.slotted}">
+        <div class="col d-flex align-items-center justify-content-center">
+          <div class="card" style="width: 18rem; height: 20rem">
+            <div class="card-body">
+              <h5 class="card-title" th:text="${event.title}"></h5>
+              <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
+              <p class="card-text" th:text="${event.description}"></p>
+              <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
+            </div>
           </div>
         </div>
       </div>

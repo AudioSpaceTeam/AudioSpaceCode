@@ -1,12 +1,7 @@
 package com.audiospace.demo.controllers;
 
 import java.text.SimpleDateFormat;
-
-import java.util.Calendar;
-import java.util.Random;
-
 import java.util.*;
-
 
 import com.audiospace.demo.models.Event;
 import com.audiospace.demo.models.Genre;
@@ -24,38 +19,6 @@ import java.time.LocalDateTime;
 
 @Controller
 public class EventController {
-
-
-    private final EventRepository eventDao;
-    private final UserRepository userDao;
-
-    public EventController(EventRepository eventDao, UserRepository userDao) {
-        this.eventDao = eventDao;
-        this.userDao = userDao;
-    }
-
-
-    @GetMapping("/event/create")
-    public String createEvent(Model model) {
-        model.addAttribute("event", new Event());
-        return "event/create";
-    }
-
-    //added show an view events
-    @GetMapping("/event")
-    public String viewEvent(Model model) {
-        model.addAttribute("events", eventDao.findAll());
-        return "event/index";
-    }
-
-    @GetMapping("/event/{id}")
-    public String singleEvent(@PathVariable long id, Model model) {
-        Event event = eventDao.getById(id);
-        model.addAttribute("event", event);
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    Our boolean to see if the current user is the owner or not.
-        model.addAttribute("isOwner", event.getPromoter().getId() == currentUser.getId());
-        return "event/show";
 
   private final EventRepository eventDao;
   private final UserRepository userDao;
@@ -184,38 +147,20 @@ public class EventController {
       model.addAttribute("event", event);
       model.addAttribute("genres", genreDao.findAll());
       return "event/edit";
-
     }
+  }
 
-    //For create.html
-
-    @PostMapping("/event/create")
-    public String saveCreate(@RequestParam(name = "dateTime") String dateTime,
-                             @RequestParam(name = "price") String price,
-                             @ModelAttribute Event event,
-                             Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        event.setPromoter(userDao.findById(currentUser.getId()));
-        event.setPrice(Double.parseDouble(price));
-
-        event.setStartDateTime(LocalDateTime.parse(dateTime));
-        eventDao.save(event);
-        model.addAttribute("event", event);
-        return "/event/submitted";
+  @PostMapping("/event/{id}/delete")
+  public String eventDelete(@RequestParam(name = "id") long id) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    Event event = eventDao.getById(id);
+    if (event.getPromoter().getId() != currentUser.getId()) {
+      return "redirect:/event/" + id;
+    } else {
+      eventDao.deleteById(id);
+      return "redirect:/event";
     }
-
-
-    @GetMapping("/event/{id}/edit")
-    public String editEvent(@PathVariable long id, Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Event event = eventDao.getById(id);
-        if (event.getPromoter().getId() != currentUser.getId()) {
-            return "redirect:/event/" + id;
-        } else {
-            model.addAttribute("event", event);
-            return "event/edit";
-        }
-    }
+  }
 
   @PostMapping("/event/search")
   public String eventSearch(@RequestParam String search,
@@ -260,16 +205,4 @@ public class EventController {
   }
 
 
-
-    @PostMapping("/event/{id}/delete")
-    public String eventDelete(@RequestParam(name = "id") long id) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Event event = eventDao.getById(id);
-        if (event.getPromoter().getId() != currentUser.getId()) {
-            return "redirect:/event/" + id;
-        } else {
-            eventDao.deleteById(id);
-            return "redirect:/event";
-        }
-    }
 }

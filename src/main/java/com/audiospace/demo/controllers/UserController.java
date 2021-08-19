@@ -61,11 +61,10 @@ public class UserController {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
     model.addAttribute("user", userDao.findById(currentUser.getId()));
-    model.addAttribute("review", new Review());
-    model.addAttribute("event", new Event());
+//    model.addAttribute("review", new Review());
+//    model.addAttribute("event", new Event());
 
     model.addAttribute("profileOwner", true);
-    model.addAttribute("review", new Review());
 
     return "profile";
   }
@@ -76,7 +75,7 @@ public class UserController {
     model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
     model.addAttribute("user", userDao.findById(id));
     model.addAttribute("profileOwner", id == currentUser.getId());
-    model.addAttribute("review", new Review());
+//    model.addAttribute("review", new Review());
 
     return "profile";
   }

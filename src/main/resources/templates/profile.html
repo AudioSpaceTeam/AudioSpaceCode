@@ -54,11 +54,11 @@
         <!--  End Profile Card-->
         <!--  Below list are the user's promoted events.-->
         <div th:if="${user.getPromoter()}">
-            <h3 class="text-center">Here are your planned events:</h3>
-            <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
+            <h3 class="text-left">Current planned events:</h3>
+            <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
                 <div th:each="event : ${userEvents}">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <div class="card">
+                        <div class="card card-events">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${event.title}"></h5>
                                 <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
@@ -70,14 +70,14 @@
                 </div>
             </div>
             <!--    added button delete account-->
-            <form th:action="@{/events/{id}/delete}" th:method="POST">
-                <button th:type="submit" class="btn-submit">Delete Account</button>
-            </form>
+<!--            <form th:action="@{/events/{id}/delete}" th:method="POST">-->
+<!--                <button th:type="submit" class="btn-submit">Delete Account</button>-->
+<!--            </form>-->
             <!--Below is for the performers profile-->
             <div th:if="!${user.getPromoter()}">
-                <h3 class="text-center">Here are the events you are playing at:</h3>
+                <h3 class="text-left">Current planned events:</h3>
                 <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-                    <div th:each="event : ${user.slotted}">
+                    <div th:each="event : ${userEvents}">
                         <div class="col d-flex align-items-center justify-content-center">
                             <div class="card" style="width: 18rem; height: 20rem">
                                 <div class="card-body">

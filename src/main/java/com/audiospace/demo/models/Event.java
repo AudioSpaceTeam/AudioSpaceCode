@@ -237,8 +237,23 @@ public class Event {
     this.promoter = promoter;
   }
 
+  public List<User> getPerformers() {
+    return performers;
+  }
 
-  //  bands sloted?
+  public void setPerformers(List<User> performers) {
+    this.performers = performers;
+  }
+
+  public List<User> getRequesters() {
+    return requesters;
+  }
+
+  public void setRequesters(List<User> requesters) {
+    this.requesters = requesters;
+  }
+
+//  bands sloted?
 //    @ManyToMany(mappedBy = "performers")
 //    private List<User> performers;
 

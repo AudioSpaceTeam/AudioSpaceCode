@@ -220,4 +220,11 @@ public class User {
     this.isPromoter = isPromoter;
   }
 
+  public List<Event> getRequested() {
+    return requested;
+  }
+
+  public void setRequested(List<Event> requested) {
+    this.requested = requested;
+  }
 }

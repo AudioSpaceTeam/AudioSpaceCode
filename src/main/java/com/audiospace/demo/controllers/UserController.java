@@ -57,12 +57,12 @@ public class UserController {
   }
 
   @GetMapping("/profile")
-  public String showUserInfo(@ModelAttribute  Model model) {
+  public String showUserInfo(Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
     model.addAttribute("user", userDao.findById(currentUser.getId()));
-//    model.addAttribute("review", new Review());
-//    model.addAttribute("event", new Event());
+    model.addAttribute("review", new Review());
+    model.addAttribute("event", new Event());
 
     model.addAttribute("profileOwner", true);
 

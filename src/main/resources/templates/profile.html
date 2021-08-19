@@ -126,77 +126,10 @@
             </div>
         </div>
     </div>
-
-    <div class="container">
-
-        <div class="d-flex flex-row  justify-content-center">
-            <div class="d-flex flex-column align-items-center  col-md-6">
-                <div class="d-flex flex-row justify-content-start">
-                    <div class="d-flex flex-column align-content-center">
-                        <div>
-                            <h3>Your Average Rate:</h3>
-                            <h3>4.5</h3>
-                            <br>
-                            <h4><a href="http://localhost:8080/reviews/your_rating">View Your Ratings</a></h4>
-                        </div>
-                    </div>
-
-                </div>
+</div>
 
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-<!--Below is for the performers profile-->
-  <div th:if="!${user.getPromoter()}">
-    <h3 class="text-center">Here are the events you are playing at:</h3>
-    <h4>Below are the genres your band fits under...</h4>
-<!--  Below was just so make sure the genres were being set to users properly.-->
-<!--    <div th:each="genre : ${user.getGenres()}">-->
-<!--      <p th:text="${genre.genreName}"></p>-->
-<!--    </div>-->
-    <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-      <div th:each="event : ${user.slotted}">
-        <div class="col d-flex align-items-center justify-content-center">
-          <div class="card" style="width: 18rem; height: 20rem">
-            <div class="card-body">
-              <h5 class="card-title" th:text="${event.title}"></h5>
-              <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
-              <p class="card-text" th:text="${event.description}"></p>
-              <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!--  Review stuff below-->
-  <div class="container">
-
-    <div class="d-flex flex-row  justify-content-center bg-warning">
-      <div class="d-flex flex-column align-items-center bg-info col-md-6">
-        <div class="d-flex flex-row justify-content-start">
-          <div class="d-flex flex-column align-content-center bg-danger">
-            <div>
-              <h3>Your Average Rate:</h3>
-              <h3>4.5</h3>
-              <br>
-
-            </div>
-
-        </div>
-
-
-      </div>
-    </div>
-
-
-  </div>
 
 
 

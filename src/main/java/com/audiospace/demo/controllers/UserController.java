@@ -156,25 +156,25 @@ public class UserController {
     }
 
   }
-
-//Testing
-  @GetMapping("/review")
-  public String ratingForm(Model model){
-    model.addAttribute("review", new Review()); //Send it to the review for form
-    return "/review";
-  }
-
-  @PostMapping("/review")
-  public String ratingSubmit(@RequestParam String none){
-   Review review = new Review();
-    review.setReviewee(userDao.findById(1));
-    review.setReviewer(userDao.findById(2));
-    review.setBody("Hello there");
-    review.setRating(4);
-    review.setTitle("new Title");
-    reviewDao.save(review);
-    return "redirect:/profile";
-  }
+//
+////Testing
+//  @GetMapping("/review")
+//  public String ratingForm(Model model){
+//    model.addAttribute("review", new Review()); //Send it to the review for form
+//    return "/review";
+//  }
+//
+//  @PostMapping("/review")
+//  public String ratingSubmit(@RequestParam String none){
+//   Review review = new Review();
+//    review.setReviewee(userDao.findById(1));
+//    review.setReviewer(userDao.findById(2));
+//    review.setBody("Hello there");
+//    review.setRating(4);
+//    review.setTitle("new Title");
+//    reviewDao.save(review);
+//    return "redirect:/profile";
+//  }
 
 //  Come back to this above, to make it check if the user owns the profile or not.
 //  If they own it, then IT should display a different welcome message...

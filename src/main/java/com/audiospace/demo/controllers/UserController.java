@@ -9,6 +9,7 @@ import com.audiospace.demo.models.Genre;
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.repositories.GenreRepository;
+import com.audiospace.demo.repositories.ReviewRepository;
 import com.audiospace.demo.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,14 +26,15 @@ public class UserController {
   //  added login properties & passwordEncoder dependency
   private final PasswordEncoder passwordEncoder;
   private final EventRepository eventDao;
-
+  private final ReviewRepository reviewDao;
   private final GenreRepository genreDao;
 
-  public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, EventRepository eventDao, GenreRepository genreDao) {
+  public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, EventRepository eventDao, GenreRepository genreDao, ReviewRepository reviewDao) {
     this.userDao = userDao;
     this.passwordEncoder = passwordEncoder;
     this.eventDao = eventDao;
     this.genreDao = genreDao;
+    this.reviewDao = reviewDao;
   }
 
   @GetMapping("/register")
@@ -53,28 +55,36 @@ public class UserController {
     userDao.save(user);
     return "redirect:/login";
   }
-
+  // For viewing profile
   @GetMapping("/profile")
-  public String showUserInfo(@ModelAttribute  Model model) {
+  public String showUserInfo( Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
+    model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     model.addAttribute("user", userDao.findById(currentUser.getId()));
     model.addAttribute("review", new Review());
     model.addAttribute("event", new Event());
-
     model.addAttribute("profileOwner", true);
-    model.addAttribute("review", new Review());
-
     return "profile";
+  }
+  //For submitting review
+  @PostMapping("/profile")
+  public String submitReview(@ModelAttribute Review review, @RequestParam long userID, @RequestParam long currentUserID){
+    review.setReviewee(userDao.findById(userID));
+    review.setReviewer(userDao.findById(currentUserID));
+    reviewDao.save(review);
+    return "redirect:/profile";
   }
 
   @GetMapping("/profile/{id}")
   public String showUserInfo(@PathVariable long id, Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
+    model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     model.addAttribute("user", userDao.findById(id));
-    model.addAttribute("profileOwner", id == currentUser.getId());
     model.addAttribute("review", new Review());
+    model.addAttribute("profileOwner", id == currentUser.getId());
+//    model.addAttribute("review", new Review());
 
     return "profile";
   }

@@ -1,29 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
-
     <meta charset="UTF-8"/>
     <title>Register</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <th:block th:replace="partials/style.html :: style"></th:block>
     <link rel="stylesheet" href="../static/css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <!--  <link rel="stylesheet" href="../static/css/profile-card.css">-->
-
-  <meta charset="UTF-8"/>
-  <title>Profile</title>
-  <th:block th:replace="partials/style.html :: style"></th:block>
-
+    <meta charset="UTF-8"/>
+    <title>Profile</title>
+    <th:block th:replace="partials/style.html :: style"></th:block>
+</head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
-
-    <h1 class="text-center">Welcome <span th:text="${user.username}"></span></h1>
-    <br>
-
     <!--  Profile Card-->
     <div class="profile-card-container">
         <div class="profile-card">
@@ -43,7 +31,18 @@
                     <a href="" class="fab fa-twitter"></a>
                     <a href="" class="fab fa-youtube"></a>
                 </div>
-                <a href="" class="contact-btn">Contact</a>
+                <a href="" class="contact-btn">Contact </a>
+                <br>
+                <!-- Button trigger modal -->
+                <a  th:if="${!profileOwner}">
+                    <button type="button" class="btn contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Review
+                    </button>
+                </a>
+
+
+
+                <a th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}" class="contact-btn">Edit Profile</a>
             </div>
             <div class="card-footer">
                 <div class="numbers">
@@ -63,8 +62,6 @@
         </div>
     </div>
     <!--  End Profile Card-->
-
-
     <!--  Below list are the user's promoted events.-->
     <div th:if="${user.getPromoter()}">
         <h3 class="text-center">Here are your planned events:</h3>
@@ -81,31 +78,11 @@
                     </div>
                 </div>
             </div>
-
-
-            <!--    added button delete account-->
-            <form th:action="@{/events/{id}/delete}" th:method="POST">
-                <button th:type="submit" class="btn-submit">Delete Account</button>
-            </form>
-
-            <div class="container">
-
-                <div class="d-flex flex-row  justify-content-center bg-warning">
-                    <div class="d-flex flex-column align-items-center bg-info col-md-6">
-                        <div class="d-flex flex-row justify-content-start">
-                            <div class="d-flex flex-column align-content-center bg-danger">
-                                <div>
-                                    <h3>Your Average Rate:</h3>
-                                    <h3>4.5</h3>
-                                    <br>
-                                    <h4><a href="http://localhost:8080/reviews/your_rating">View Your Ratings</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+        <!--    added button delete account-->
+        <form th:action="@{/events/{id}/delete}" th:method="POST">
+            <button th:type="submit" class="btn-submit">Delete Account</button>
+        </form>
         <!--Below is for the performers profile-->
         <div th:if="!${user.getPromoter()}">
             <h3 class="text-center">Here are the events you are playing at:</h3>
@@ -122,23 +99,46 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" th:text="${user.username}">Modal Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form th:action="@{/profile}" th:method="post" th:object="${review}">
+                <div class="modal-body">
+                    Your Rating:
+
+
+                        <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label for="1">☆</label>
+                        <input type="radio" name="rating" value="2" id="2" th:field="*{rating}"><label for="2">☆</label>
+                        <input type="radio" name="rating" value="3" id="3" th:field="*{rating}"><label for="3">☆</label>
+                        <input type="radio" name="rating" value="4" id="4" th:field="*{rating}"><label for="4">☆</label>
+                        <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label for="5">☆</label>
+                        <br>
+                        <textarea th:field="*{body}" placeholder="Comments:"></textarea>
+                </div>
+                <div class="modal-footer">
+
+                    <input hidden name="currentUserID" th:value="${currentUser.id}">
+                    <input hidden name="userID" th:value="${user.id}">
+                        <button type="submit" class="btn btn-danger">Submit Review</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+                </form>
 
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-</div>
-
-<a th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}">Edit Your Profile.</a>
-
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 <footer th:replace="partials/footer.html :: footer"></footer>
-
 </body>
 </html>

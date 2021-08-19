@@ -2,6 +2,7 @@ package com.audiospace.demo.controllers;
 
 import com.audiospace.demo.models.Event;
 import com.audiospace.demo.models.Genre;
+import com.audiospace.demo.models.Review;
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.repositories.GenreRepository;
@@ -54,7 +55,7 @@ public class UserController {
   }
 
   @GetMapping("/profile")
-  public String showUserInfo( Model model) {
+  public String showUserInfo(Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
@@ -67,7 +68,7 @@ public class UserController {
 
   //For submitting review
   @PostMapping("/profile")
-  public String submitReview(@ModelAttribute Review review, @RequestParam long userID, @RequestParam long currentUserID){
+  public String submitReview(@ModelAttribute Review review, @RequestParam long userID, @RequestParam long currentUserID) {
     review.setReviewee(userDao.findById(userID));
     review.setReviewer(userDao.findById(currentUserID));
     reviewDao.save(review);
@@ -97,79 +98,56 @@ public class UserController {
       model.addAttribute("genres", genreDao.findAll());
       return "user/edit";
 
-    }
-
-    @GetMapping("/profile/{id}")
-    public String showUserInfo(@PathVariable long id, Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
-        model.addAttribute("user", userDao.findById(id));
-        model.addAttribute("profileOwner", id == currentUser.getId());
-
-        return "profile";
-    }
-
-    @GetMapping("/profile/{id}/edit")
-    public String editUserInfo(@PathVariable long id, Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (currentUser.getId() != userDao.findById(id).getId()) {
-            return "redirect:/profile/" + id;
-        } else {
-            model.addAttribute("user", userDao.findById(id));
-            model.addAttribute("genres", genreDao.findAll());
-            return "user/edit";
-        }
 
     }
+  }
 
-    @PostMapping("/profile/{id}/edit")
-    public String saveUserInfo(@ModelAttribute User user,
-                               @PathVariable long id,
-                               Model model,
-                               @RequestParam String isPromoter,
-                               @RequestParam String password,
-                               @RequestParam String[] genreIds) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (currentUser.getId() != userDao.findById(id).getId()) {
-            return "redirect:/profile/" + id;
-        } else {
-            if (isPromoter.equals("true")) {
-                user.setPromoter(true);
-            } else {
-                user.setPromoter(false);
-            }
-            if (!passwordEncoder.matches(password, currentUser.getPassword())) {
+  @PostMapping("/profile/{id}/edit")
+  public String saveUserInfo(@ModelAttribute User user,
+                             @PathVariable long id,
+                             Model model,
+                             @RequestParam String isPromoter,
+                             @RequestParam String password,
+                             @RequestParam String[] genreIds) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    if (currentUser.getId() != userDao.findById(id).getId()) {
+      return "redirect:/profile/" + id;
+    } else {
+      if (isPromoter.equals("true")) {
+        user.setPromoter(true);
+      } else {
+        user.setPromoter(false);
+      }
+      if (!passwordEncoder.matches(password, currentUser.getPassword())) {
 //        System.out.println(currentUser.getPassword());
 //        System.out.println(password);
 //        System.out.println(passwordEncoder.matches(currentUser.getPassword(), password));
-                return "redirect:/profile/" + id + "/edit";
-            }
-            String hash = passwordEncoder.encode(password);
-            user.setPassword(hash);
+        return "redirect:/profile/" + id + "/edit";
+      }
+      String hash = passwordEncoder.encode(password);
+      user.setPassword(hash);
 //    genre set code below.
-            List<Genre> selectedGenres = new ArrayList<>();
+      List<Genre> selectedGenres = new ArrayList<>();
 
-            for (String genre : genreIds) {
-                if (genre.equalsIgnoreCase("ignore")) {
-                    continue;
-                }
-                System.out.println(genre + " Genre id");
+      for (String genre : genreIds) {
+        if (genre.equalsIgnoreCase("ignore")) {
+          continue;
+        }
+        System.out.println(genre + " Genre id");
 //      We are ADDING to the slotted performers list,
 //      We are finding the user BY ID
 //      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
-                selectedGenres.add(genreDao.findGenreByGenreName(genre));
-            }
-            user.setGenres(selectedGenres);
+        selectedGenres.add(genreDao.findGenreByGenreName(genre));
+      }
+      user.setGenres(selectedGenres);
 
-            userDao.save(user);
-            model.addAttribute("user", userDao.findById(id));
-            return "redirect:/profile/";
-        }
-
+      userDao.save(user);
+      model.addAttribute("user", userDao.findById(id));
+      return "redirect:/profile/";
     }
 
-
   }
+
 
   @PostMapping("/profile/{id}/delete")
   public String deleteUser(@ModelAttribute User user,
@@ -186,7 +164,7 @@ public class UserController {
       //      TODO: figure out why it isn't cascading correctly but this fixes it for now...
       deleteMe.setSlotted(new ArrayList<>());
       deleteMe.setRequested(new ArrayList<>());
-      for(Event event: deleteMe.getPromotedEvents()){
+      for (Event event : deleteMe.getPromotedEvents()) {
         event.setPerformers(new ArrayList<>());
         event.setRequesters(new ArrayList<>());
         event.setGenres(new ArrayList<>());
@@ -203,13 +181,12 @@ public class UserController {
       return "redirect:/login";
 
 //      Todo: Ask about where to redirect for logout after deleting a user...
-        }
-
     }
-
 
   }
 
+
+}
 
 
 //  Come back to this above, to make it check if the user owns the profile or not.
@@ -217,4 +194,3 @@ public class UserController {
 //  and enable an edit button?
 //  and if not a review button.
 
-}

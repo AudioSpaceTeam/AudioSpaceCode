@@ -33,4 +33,7 @@ public class ReviewPageController {
     public String yourRatePromoter(){
         return "reviews/your_rating";
     }
+
+    public void save(Review review) {
+    }
 }

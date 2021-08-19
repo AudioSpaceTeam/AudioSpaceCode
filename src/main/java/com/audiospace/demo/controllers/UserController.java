@@ -1,6 +1,7 @@
 package com.audiospace.demo.controllers;
 
 import com.audiospace.demo.models.Event;
+import com.audiospace.demo.models.Review;
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.repositories.UserRepository;
@@ -19,11 +20,13 @@ public class UserController {
   //  added login properties & passwordEncoder dependency
   private final PasswordEncoder passwordEncoder;
   private final EventRepository eventDao;
+  private final ReviewPageController reviewDao;
 
-  public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, EventRepository eventDao) {
+  public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, EventRepository eventDao, ReviewPageController reviewDao) {
     this.userDao = userDao;
     this.passwordEncoder = passwordEncoder;
     this.eventDao = eventDao;
+    this.reviewDao = reviewDao;
   }
 
   @GetMapping("/register")
@@ -46,12 +49,15 @@ public class UserController {
   }
 
   @GetMapping("/profile")
-  public String showUserInfo(Model model) {
+  public String showUserInfo(@ModelAttribute  Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
     model.addAttribute("user", userDao.findById(currentUser.getId()));
+    model.addAttribute("review", new Review());
+    model.addAttribute("event", new Event());
 
     model.addAttribute("profileOwner", true);
+    model.addAttribute("review", new Review());
 
     return "profile";
   }
@@ -62,6 +68,7 @@ public class UserController {
     model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
     model.addAttribute("user", userDao.findById(id));
     model.addAttribute("profileOwner", id == currentUser.getId());
+    model.addAttribute("review", new Review());
 
     return "profile";
   }
@@ -127,6 +134,24 @@ public class UserController {
 
   }
 
+//Testing
+  @GetMapping("/review")
+  public String ratingForm(Model model){
+    model.addAttribute("review", new Review()); //Send it to the review for form
+    return "/review";
+  }
+
+  @PostMapping("/review")
+  public String ratingSubmit(@RequestParam String none){
+   Review review = new Review();
+    review.setReviewee(userDao.findById(1));
+    review.setReviewer(userDao.findById(2));
+    review.setBody("Hello there");
+    review.setRating(4);
+    review.setTitle("new Title");
+    reviewDao.save(review);
+    return "redirect:/profile";
+  }
 
 //  Come back to this above, to make it check if the user owns the profile or not.
 //  If they own it, then IT should display a different welcome message...

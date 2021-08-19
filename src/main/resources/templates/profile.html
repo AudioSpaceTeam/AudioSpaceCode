@@ -10,6 +10,42 @@
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" th:text="${event.title}">Modal Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><!-- The X Button -->
+        </div>
+        <div class="modal-body">
+          YOUR RATING:
+
+            <div class="rating">
+
+<!--              <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label for="1">☆</label>-->
+<!--              <input type="radio" name="rating" value="2" id="2" th:field="*{rating}"><label for="2">☆</label>-->
+<!--              <input type="radio" name="rating" value="3" id="3" th:field="*{rating}"><label for="3">☆</label>-->
+<!--              <input type="radio" name="rating" value="4" id="4" th:field="*{rating}"><label for="4">☆</label>-->
+<!--              <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label for="5">☆</label>-->
+
+<!--            <textarea class="description" placeholder="Comments:" th:field="*{body}"></textarea>-->
+
+
+          </div>
+
+        <div class="modal-footer">
+          <form th:action="@{/review}" th:method="post">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-warning">Submit Rating</button>
+            <input type="text" th:value="none" name="none" id="none" hidden>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <h1 class="text-center">Welcome <span th:text="${user.username}"></span></h1>
   <br>
 <!--  Below list are the user's promoted events.-->
@@ -59,7 +95,10 @@
               <h3>Your Average Rate:</h3>
               <h3>4.5</h3>
               <br>
-              <h4><a href="http://localhost:8080/reviews/your_rating">View Your Ratings</a></h4>
+              <!-- Modal -->
+              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Rate Event
+              </button>
             </div>
           </div>
 

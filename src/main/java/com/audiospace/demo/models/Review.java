@@ -55,6 +55,14 @@ public class Review {
     return body;
   }
 
+  public User getReviewer() {
+    return reviewer;
+  }
+
+  public void setReviewer(User reviewer) {
+    this.reviewer = reviewer;
+  }
+
   public void setBody(String body) {
     this.body = body;
   }

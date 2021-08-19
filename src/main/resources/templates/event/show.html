@@ -16,39 +16,7 @@
 
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" th:text="${event.title}">Modal Title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><!-- The X Button -->
-                </div>
-                <div class="modal-body">
-                    YOUR RATING:
-                    <form th:action="@{/event/show}" th:method="post" th:object="${review}">
-                        <div class="rating">
 
-                            <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label for="1">☆</label>
-                            <input type="radio" name="rating" value="2" id="2" th:field="*{rating}"><label for="2">☆</label>
-                            <input type="radio" name="rating" value="3" id="3" th:field="*{rating}"><label for="3">☆</label>
-                            <input type="radio" name="rating" value="4" id="4" th:field="*{rating}"><label for="4">☆</label>
-                            <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label for="5">☆</label>
-                        </div>
-                        <textarea class="description" placeholder="Comments:" th:field="*{body}"></textarea>
-                    </form>
-
-                </div>
-                <div class="modal-footer">
-                    <form th:method="post" th:action="">
-                        <input hidden name="id" th:value="${event.id}">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-warning">Submit Rating</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
   <div class="jumbotron jumbotron-fluid">
     <div class="card offwhite-body">
@@ -66,10 +34,7 @@
           <p th:text="'$' + ${event.price}"></p>
             <p><a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a></p>
 
-            <!-- Modal -->
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Rate Event
-            </button>
+
 
       </div>
     </div>

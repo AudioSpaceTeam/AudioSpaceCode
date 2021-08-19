@@ -49,6 +49,7 @@ public class EventController {
     return "event/create";
   }
 
+
   //added show an view events
   @GetMapping("/event")
   public String viewEvent(Model model) {
@@ -60,13 +61,13 @@ public class EventController {
   public String singleEvent(@PathVariable long id, Model model) {
     Event event = eventDao.getById(id);
     model.addAttribute("event", event);
-    model.addAttribute("review", new Review());
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //    Our boolean to see if the current user is the owner or not.
     model.addAttribute("isOwner", event.getPromoter().getId() == currentUser.getId());
 //    model.addAttribute("performers", event);
     return "event/show";
   }
+
 
   //For create.html
   @PostMapping("/event/create")

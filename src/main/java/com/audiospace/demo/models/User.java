@@ -107,6 +107,8 @@ public class User {
     this.reviewsReceived = reviewsReceived;
   }
 
+
+
   public User(long id, String username, String email, String displayName, String password, String bio, Boolean isPromoter, List<Event> promotedEvents) {
     this.id = id;
     this.username = username;

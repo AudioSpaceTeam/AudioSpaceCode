@@ -12,7 +12,7 @@ USE audiospace_db;
 
 # Incase you need to drop the tables uncomment out below, and run these.
 # SET FOREIGN_KEY_CHECKS = 0;
-# DROP TABLE events,events_genres,events_users, genres,reviews,users,users_genres;
+# DROP TABLE events,events_genres,events_performers,events_requesters, genres,reviews,users,users_genres;
 # SET FOREIGN_KEY_CHECKS = 1;
 
 

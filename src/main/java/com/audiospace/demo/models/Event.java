@@ -90,7 +90,6 @@ public class Event {
 
 //TODO: refer to Jay's video for how to set this up. with Confirmed vs unconfirmed.
   @ManyToMany(cascade = CascadeType.ALL)
-
   @JoinTable(name = "events_performers",
     joinColumns = {@JoinColumn(name = "event_id")},
     inverseJoinColumns = {@JoinColumn(name = "user_id")}

@@ -14,9 +14,9 @@ public class Genre {
   @Column(nullable = false, length = 25)
   private String genreName;
 
-//  Many to many with events
-@ManyToMany(mappedBy = "genres")
-private List<Event> events;
+  //  Many to many with events
+  @ManyToMany(mappedBy = "genres")
+  private List<Event> events;
 
   //  Many to many with users
   @ManyToMany(mappedBy = "genres")

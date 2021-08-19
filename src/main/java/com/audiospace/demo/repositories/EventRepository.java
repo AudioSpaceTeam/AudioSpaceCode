@@ -11,7 +11,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
   List<Event> findAllByTitleContainingOrDescriptionContaining(String title, String description);
 
-  void deleteById(long id);
+//  void deleteById(long id);
 
 
   Event findByTitle(String title);

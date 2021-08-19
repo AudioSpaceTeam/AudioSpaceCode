@@ -9,6 +9,12 @@
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="../../static/css/starRating.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <style>
+      .card {
+          padding: 20px;
+      }
+
+  </style>
 </head>
 <body class="main">
     <nav th:replace="partials/navbar.html :: navbar"></nav>
@@ -59,9 +65,10 @@
                 <a th:href="@{|/profile/${event.getPromoter().getId()}|}">View <span th:text="${event.getPromoter().getDisplayName()}"></span>'s profile</a>
                 <p><a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a></p>
                 <!-- Modal -->
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Rate Event
                 </button>
+            </span>
           </div>
         </div>
       </div>

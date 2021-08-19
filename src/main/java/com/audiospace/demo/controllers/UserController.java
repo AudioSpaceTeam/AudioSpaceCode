@@ -151,6 +151,22 @@ public class UserController {
         return "redirect:/profile/" + id + "/edit";
       }
       User deleteMe = userDao.findById(currentUser.getId());
+      //      TODO: figure out why it isn't cascading correctly but this fixes it for now...
+      deleteMe.setSlotted(new ArrayList<>());
+      deleteMe.setRequested(new ArrayList<>());
+      for(Event event: deleteMe.getPromotedEvents()){
+        event.setPerformers(new ArrayList<>());
+        event.setRequesters(new ArrayList<>());
+        event.setGenres(new ArrayList<>());
+//        event.setPromoter(null);
+        eventDao.save(event);
+        eventDao.delete(event);
+      }
+      deleteMe.setPromotedEvents(new ArrayList<>());
+      deleteMe.setReviewsGiven(new ArrayList<>());
+      deleteMe.setReviewsReceived(new ArrayList<>());
+      deleteMe.setGenres(new ArrayList<>());
+      userDao.save(deleteMe);
       userDao.deleteById(deleteMe.getId());
       return "redirect:/login";
 //      Todo: Ask about where to redirect for logout after deleting a user...

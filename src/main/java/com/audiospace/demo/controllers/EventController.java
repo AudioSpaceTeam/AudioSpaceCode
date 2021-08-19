@@ -214,7 +214,12 @@ public class EventController {
     if (event.getPromoter().getId() != currentUser.getId()) {
       return "redirect:/event/" + id;
     } else {
-      eventDao.deleteById(id);
+//      TODO: figure out why it isn't cascading correctly but this fixes it for now...
+      event.setPerformers(new ArrayList<>());
+      event.setRequesters(new ArrayList<>());
+      event.setGenres(new ArrayList<>());
+      eventDao.save(event);
+      eventDao.delete(event);
       return "redirect:/event";
     }
   }

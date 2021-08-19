@@ -24,11 +24,12 @@
           <span th:text="${event.description}"></span><br>
           <span th:text="'This event pays $' + ${event.price} + '0 per band'"></span>
           <p><span th:text="${event.slots}"></span> slots available to play at <span th:text="${event.location}"></span> starting @ <span th:text="${event.startDateTime}"></span></p>
-          <p>Current bands scheduled to perform:<br>
-            <span th:each="slotted : ${event.performers}">
-                        <span th:text="${slotted.displayName}"></span>,
-                    </span>
-          </p>
+            <p>Current bands scheduled to perform:</p>
+            <ul>
+                <li th:each="slotted : ${event.performers}">
+                    <span th:text="${slotted.displayName}"></span>
+                </li>
+            </ul>
           <a th:href="@{|/profile/${event.getPromoter().getId()}|}">View <span th:text="${event.getPromoter().getDisplayName()}"></span>'s profile</a>
           <p><a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a></p>
           <!--              Below are options for the Performers/request-->
@@ -73,7 +74,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 <footer th:replace="partials/footer.html :: footer"></footer>

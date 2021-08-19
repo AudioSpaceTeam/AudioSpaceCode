@@ -1,10 +1,15 @@
 package com.audiospace.demo.controllers;
 
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import com.audiospace.demo.models.Event;
+
+import com.audiospace.demo.models.Review;
+
 import com.audiospace.demo.models.Genre;
+
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.GenreRepository;
@@ -22,12 +27,14 @@ public class EventController {
 
   private final EventRepository eventDao;
   private final UserRepository userDao;
+
   private final GenreRepository genreDao;
 
   public EventController(EventRepository eventDao, UserRepository userDao, GenreRepository genreDao) {
     this.eventDao = eventDao;
     this.userDao = userDao;
     this.genreDao = genreDao;
+
   }
 
 
@@ -50,6 +57,7 @@ public class EventController {
     model.addAttribute("genres", genreDao.findAll());
     return "event/create";
   }
+
 
   //added show an view events
   @GetMapping("/event")
@@ -117,6 +125,7 @@ public class EventController {
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     return "event/show";
   }
+
 
   //For create.html
   @PostMapping("/event/create")

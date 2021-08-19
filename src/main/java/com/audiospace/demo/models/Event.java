@@ -90,6 +90,7 @@ public class Event {
 
 //TODO: refer to Jay's video for how to set this up. with Confirmed vs unconfirmed.
   @ManyToMany(cascade = CascadeType.ALL)
+
   @JoinTable(name = "events_performers",
     joinColumns = {@JoinColumn(name = "event_id")},
     inverseJoinColumns = {@JoinColumn(name = "user_id")}
@@ -106,9 +107,9 @@ public class Event {
   //Should be many to many with genres
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
-    name = "events_genres",
-    joinColumns = {@JoinColumn(name = "event_id")},
-    inverseJoinColumns = {@JoinColumn(name = "genre_id")}
+          name = "events_genres",
+          joinColumns = {@JoinColumn(name = "event_id")},
+          inverseJoinColumns = {@JoinColumn(name = "genre_id")}
   )
   private List<Genre> genres;
 
@@ -245,6 +246,7 @@ public class Event {
     this.performers = performers;
   }
 
+
   public List<User> getRequesters() {
     return requesters;
   }
@@ -260,3 +262,4 @@ public class Event {
 
 
 }
+

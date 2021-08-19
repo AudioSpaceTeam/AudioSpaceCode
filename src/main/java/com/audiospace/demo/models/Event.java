@@ -12,27 +12,27 @@ import java.util.List;
 @Entity
 @Table(name = "events")
 public class Event {
-  //  This ID is going to be the MAIN identifier, that is in this class.
+    //  This ID is going to be the MAIN identifier, that is in this class.
 //  Database understands it will be auto incremented inside of mysql.
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-  //  Below sets up parameters for our column in the table in the DB.
-  @Column(nullable = false, length = 40)
-  private String title;
+    //  Below sets up parameters for our column in the table in the DB.
+    @Column(nullable = false, length = 40)
+    private String title;
 
-  //  Below sets up parameters for our column in the table in the DB.
-  @Column(nullable = false, length = 500)
-  private String description;
+    //  Below sets up parameters for our column in the table in the DB.
+    @Column(nullable = false, length = 500)
+    private String description;
 
-  //  Max BAnds INT
-  @Column(nullable = false)
-  private Integer slots;
+    //  Max BAnds INT
+    @Column(nullable = false)
+    private Integer slots;
 
-  //  Location String (for reverse geocoding)
-  @Column(nullable = false, length = 100)
-  private String location;
+    //  Location String (for reverse geocoding)
+    @Column(nullable = false, length = 100)
+    private String location;
 
 //  Event flyer image
 //  Not yet...
@@ -51,18 +51,18 @@ public class Event {
 //    this.dateTime = dateTime;
 //  }
 
-  @Column(name = "startDateTime", columnDefinition = "TIMESTAMP")
-  private LocalDateTime startDateTime;
+    @Column(name = "startDateTime", columnDefinition = "TIMESTAMP")
+    private LocalDateTime startDateTime;
 
-  public LocalDateTime getStartDateTime() {
-    return startDateTime;
-  }
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
 
-  public void setStartDateTime(LocalDateTime startDateTime) {
-    this.startDateTime = startDateTime;
-  }
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
+    }
 
-  //Endtime
+    //Endtime
 //    @Column(name = "endDateTime", columnDefinition = "TIMESTAMP")
 //    private LocalDateTime endDateTime;
 //
@@ -75,22 +75,22 @@ public class Event {
 //    }
 
 
-  //  price double
-  @Column(nullable = true)
-  private Double price;
+    //  price double
+    @Column(nullable = true)
+    private Double price;
 
-  //  Promoter ID FK
-  // Establishes that there's going to be multiple events tied back to One user.
-  // Join column binds the relationship together?
-  @ManyToOne
-  @JoinColumn(name = "promoter_id")
-  private User promoter;
-  //Many to many with user's performing or "slotted"
+    //  Promoter ID FK
+    // Establishes that there's going to be multiple events tied back to One user.
+    // Join column binds the relationship together?
+    @ManyToOne
+    @JoinColumn(name = "promoter_id")
+    private User promoter;
+    //Many to many with user's performing or "slotted"
 //    @ManyToMany(mappedBy = "slotted")
+
 
 //TODO: refer to Jay's video for how to set this up. with Confirmed vs unconfirmed.
   @ManyToMany(cascade = CascadeType.ALL)
-
   @JoinTable(name = "events_performers",
     joinColumns = {@JoinColumn(name = "event_id")},
     inverseJoinColumns = {@JoinColumn(name = "user_id")}
@@ -214,6 +214,7 @@ public class Event {
     this.location = location;
   }
 
+
 //  public Date getDatetime() {
 //    return datetime;
 //  }
@@ -222,21 +223,22 @@ public class Event {
 //    this.datetime = datetime;
 //  }
 
-  public Double getPrice() {
-    return price;
-  }
+    public Double getPrice() {
+        return price;
+    }
 
-  public void setPrice(Double price) {
-    this.price = price;
-  }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
-  public User getPromoter() {
-    return promoter;
-  }
+    public User getPromoter() {
+        return promoter;
+    }
 
-  public void setPromoter(User promoter) {
-    this.promoter = promoter;
-  }
+    public void setPromoter(User promoter) {
+        this.promoter = promoter;
+    }
+
 
   public List<User> getPerformers() {
     return performers;

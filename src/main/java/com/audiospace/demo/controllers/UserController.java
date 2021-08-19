@@ -1,11 +1,8 @@
 package com.audiospace.demo.controllers;
 
 import com.audiospace.demo.models.Event;
-
-import com.audiospace.demo.models.Review;
-
 import com.audiospace.demo.models.Genre;
-
+import com.audiospace.demo.models.Review;
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.repositories.GenreRepository;
@@ -22,6 +19,7 @@ import java.util.List;
 
 @Controller
 public class UserController {
+
   private final UserRepository userDao;
   //  added login properties & passwordEncoder dependency
   private final PasswordEncoder passwordEncoder;
@@ -55,9 +53,11 @@ public class UserController {
     userDao.save(user);
     return "redirect:/login";
   }
+
   // For viewing profile
   @GetMapping("/profile")
-  public String showUserInfo( Model model) {
+
+  public String showUserInfo(Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
@@ -67,13 +67,14 @@ public class UserController {
     model.addAttribute("profileOwner", true);
     return "profile";
   }
+
   //For submitting review
   @PostMapping("/profile")
-  public String submitReview(@ModelAttribute Review review, @RequestParam long userID, @RequestParam long currentUserID){
+  public String submitReview(@ModelAttribute Review review, @RequestParam long userID, @RequestParam long currentUserID) {
     review.setReviewee(userDao.findById(userID));
     review.setReviewer(userDao.findById(currentUserID));
     reviewDao.save(review);
-    return "redirect:/profile";
+    return "redirect:/profile/" + userID;
   }
 
   @GetMapping("/profile/{id}")
@@ -98,8 +99,9 @@ public class UserController {
       model.addAttribute("user", userDao.findById(id));
       model.addAttribute("genres", genreDao.findAll());
       return "user/edit";
-    }
 
+
+    }
   }
 
   @PostMapping("/profile/{id}/edit")
@@ -148,6 +150,7 @@ public class UserController {
 
   }
 
+
   @PostMapping("/profile/{id}/delete")
   public String deleteUser(@ModelAttribute User user,
                            @PathVariable long id,
@@ -160,35 +163,34 @@ public class UserController {
         return "redirect:/profile/" + id + "/edit";
       }
       User deleteMe = userDao.findById(currentUser.getId());
+      //      TODO: figure out why it isn't cascading correctly but this fixes it for now...
+      deleteMe.setSlotted(new ArrayList<>());
+      deleteMe.setRequested(new ArrayList<>());
+      for (Event event : deleteMe.getPromotedEvents()) {
+        event.setPerformers(new ArrayList<>());
+        event.setRequesters(new ArrayList<>());
+        event.setGenres(new ArrayList<>());
+//        event.setPromoter(null);
+        eventDao.save(event);
+        eventDao.delete(event);
+      }
+      deleteMe.setPromotedEvents(new ArrayList<>());
+      deleteMe.setReviewsGiven(new ArrayList<>());
+      deleteMe.setReviewsReceived(new ArrayList<>());
+      deleteMe.setGenres(new ArrayList<>());
+      userDao.save(deleteMe);
       userDao.deleteById(deleteMe.getId());
       return "redirect:/login";
+
 //      Todo: Ask about where to redirect for logout after deleting a user...
     }
 
   }
-//
-////Testing
-//  @GetMapping("/review")
-//  public String ratingForm(Model model){
-//    model.addAttribute("review", new Review()); //Send it to the review for form
-//    return "/review";
-//  }
-//
-//  @PostMapping("/review")
-//  public String ratingSubmit(@RequestParam String none){
-//   Review review = new Review();
-//    review.setReviewee(userDao.findById(1));
-//    review.setReviewer(userDao.findById(2));
-//    review.setBody("Hello there");
-//    review.setRating(4);
-//    review.setTitle("new Title");
-//    reviewDao.save(review);
-//    return "redirect:/profile";
-//  }
+}
+
 
 //  Come back to this above, to make it check if the user owns the profile or not.
 //  If they own it, then IT should display a different welcome message...
 //  and enable an edit button?
 //  and if not a review button.
 
-}

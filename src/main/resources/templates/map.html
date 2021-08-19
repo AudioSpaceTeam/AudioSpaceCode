@@ -1,21 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <meta charset="UTF-8"/>
     <title>View on Map</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet'/>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
     <th:block th:replace="partials/style.html :: style"></th:block>
 <body>
-    <nav th:replace="partials/navbar.html :: navbar"></nav>
-    <div class="container">
-        <form>
-            <input class="form-control me-2" id="mapSearch" type="search" placeholder="Enter your location" style="width: 200px; margin: 3px;">
-            <button class="btn btn-dark" id="btn" type="submit" style="padding: 3px;">Search</button>
-        </form>
-        <div id='map' style="width: 750px; height: 600px; margin: auto;"></div>
-        <div class="hiddenMap" th:each="event: ${eventList}" style="display: none;">
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<div class="container mt-5">
+    <div class="text-center mt-5">
+        <div class="header text-center"><h3 style="color: #00796D">Search you city</h3></div>
+        <h1>Create events as a promoter and find the exact location with your application.</h1>
+        <p>We want to make life easier and we know that extra help doesn't hurt. Use the map application to search for
+            events in your country.</p>
+    </div>
+
+    <hr class="my-4">
+    <!--            form go here-->
+    <!--        <form>-->
+    <!--            <input class="form-control me-2" id="mapSearch" type="search" placeholder="Enter your location"-->
+    <!--                   style="width: 200px; margin: 3px;">-->
+    <!--            <button class="btn btn-dark" id="btn" type="submit" style="padding: 3px;">Search</button>-->
+    <!--        </form>-->
+
+    <form class="row g-3">
+        <div class="col-auto">
+            <label for="mapSearch" class="visually-hidden"></label>
+            <input type="search" class="form-control" id="mapSearch" placeholder="Enter you location">
+        </div>
+    </form>
+    <div class="col-auto">
+        <a class="contact-btn" id="btn" href="#">Search</a>
+    </div>
+    <hr class="my-4">
+
+    <!--        map go here-->
+    <div id='map' style="width: 750px; height: 600px; margin: auto;"></div>
+    <div class="hiddenMap" th:each="event: ${eventList}" style="display: none;">
         <p class="eventId" th:text="${event.id}">
         <p th:text="${event.startDateTime}"></p>
         <p class="eventTitle" th:text="${event.title}"></p>
@@ -23,12 +47,13 @@
         <p th:text="${event.price}"></p>
         <p th:text="${event.slots}"></p>
         <p th:text="${event.description}"></p>
-        </div>
     </div>
-    <script th:src="@{/js/keys.js}"></script>
-    <script th:src="@{/js/mapbox-geocoder-utils.js}"></script>
-    <script th:src="@{/js/mapbox.js}"></script>
-    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
-    <footer th:replace="partials/footer.html :: footer"></footer>
+    <br>
+</div>
+<script th:src="@{/js/keys.js}"></script>
+<script th:src="@{/js/mapbox-geocoder-utils.js}"></script>
+<script th:src="@{/js/mapbox.js}"></script>
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<footer th:replace="partials/footer.html :: footer"></footer>
 </body>
 </html>

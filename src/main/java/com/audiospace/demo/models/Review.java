@@ -41,6 +41,16 @@ public class Review {
     this.id = id;
   }
 
+<<<<<<< HEAD
+=======
+//  public String getTitle() {
+//    return title;
+//  }
+//
+//  public void setTitle(String title) {
+//    this.title = title;
+//  }
+>>>>>>> e38a3b3780557b87d6da91ea68363d2b6e974610
 
   public String getBody() {
     return body;
@@ -74,6 +84,7 @@ public class Review {
   @JoinColumn(name = "reviewee_id")
   private User reviewee;
 
+<<<<<<< HEAD
   public Review(String body, Integer rating, User reviewer, User reviewee) {
     this.body = body;
     this.rating = rating;
@@ -88,6 +99,8 @@ public class Review {
     this.reviewer = reviewer;
     this.reviewee = reviewee;
   }
+=======
+>>>>>>> e38a3b3780557b87d6da91ea68363d2b6e974610
 
   public User getReviewee() {
     return reviewee;

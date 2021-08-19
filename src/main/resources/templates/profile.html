@@ -32,16 +32,12 @@
                     <a href="" class="fab fa-youtube"></a>
                 </div>
                 <a href="" class="contact-btn">Contact </a>
-                <br>
                 <!-- Button trigger modal -->
-                <a  th:if="${!profileOwner}">
+                <a th:if="${!profileOwner}">
                     <button type="button" class="btn contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Review
                     </button>
                 </a>
-
-
-
                 <a th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}" class="contact-btn">Edit Profile</a>
             </div>
             <div class="card-footer">
@@ -65,10 +61,10 @@
     <!--  Below list are the user's promoted events.-->
     <div th:if="${user.getPromoter()}">
         <h3 class="text-center">Here are your planned events:</h3>
-        <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
             <div th:each="event : ${userEvents}">
                 <div class="col d-flex align-items-center justify-content-center">
-                    <div class="card" style="width: 18rem; height: 20rem">
+                    <div class="card">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${event.title}"></h5>
                             <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
@@ -79,10 +75,6 @@
                 </div>
             </div>
         </div>
-        <!--    added button delete account-->
-        <form th:action="@{/events/{id}/delete}" th:method="POST">
-            <button th:type="submit" class="btn-submit">Delete Account</button>
-        </form>
         <!--Below is for the performers profile-->
         <div th:if="!${user.getPromoter()}">
             <h3 class="text-center">Here are the events you are playing at:</h3>
@@ -102,7 +94,6 @@
             </div>
         </div>
     </div>
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -112,8 +103,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form th:action="@{/profile}" th:method="post" th:object="${review}">
-                <div class="modal-body">
-                    Your Rating:
+                    <div class="modal-body">
+                        Your Rating:
 
 
                         <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label for="1">☆</label>
@@ -123,15 +114,15 @@
                         <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label for="5">☆</label>
                         <br>
                         <textarea th:field="*{body}" placeholder="Comments:"></textarea>
-                </div>
-                <div class="modal-footer">
+                    </div>
+                    <div class="modal-footer">
 
-                    <input hidden name="currentUserID" th:value="${currentUser.id}">
-                    <input hidden name="userID" th:value="${user.id}">
+                        <input hidden name="currentUserID" th:value="${currentUser.id}">
+                        <input hidden name="userID" th:value="${user.id}">
                         <button type="submit" class="btn btn-danger">Submit Review</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-                </div>
+                    </div>
                 </form>
 
             </div>

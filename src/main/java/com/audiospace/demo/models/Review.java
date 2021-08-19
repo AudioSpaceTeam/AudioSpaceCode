@@ -9,8 +9,8 @@ public class Review {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @Column(nullable = true, length = 300)
-  private String title;
+//  @Column(nullable = true, length = 300)
+//  private String title;
 
   @Column(nullable = true, length = 300)
   private String body;
@@ -18,8 +18,7 @@ public class Review {
   @Column(nullable = true)
   private Integer rating;
 
-  public Review(String title, String body, Integer rating) {
-    this.title = title;
+  public Review(String body, Integer rating) {
     this.body = body;
     this.rating = rating;
   }
@@ -28,9 +27,8 @@ public class Review {
 
   }
 
-  public Review(long id, String title, String body, Integer rating) {
+  public Review(long id, String body, Integer rating) {
     this.id = id;
-    this.title = title;
     this.body = body;
     this.rating = rating;
   }
@@ -43,13 +41,13 @@ public class Review {
     this.id = id;
   }
 
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
+//  public String getTitle() {
+//    return title;
+//  }
+//
+//  public void setTitle(String title) {
+//    this.title = title;
+//  }
 
   public String getBody() {
     return body;
@@ -83,22 +81,6 @@ public class Review {
   @JoinColumn(name = "reviewee_id")
   private User reviewee;
 
-  public Review(String title, String body, Integer rating, User reviewer, User reviewee) {
-    this.title = title;
-    this.body = body;
-    this.rating = rating;
-    this.reviewer = reviewer;
-    this.reviewee = reviewee;
-  }
-
-  public Review(long id, String title, String body, Integer rating, User reviewer, User reviewee) {
-    this.id = id;
-    this.title = title;
-    this.body = body;
-    this.rating = rating;
-    this.reviewer = reviewer;
-    this.reviewee = reviewee;
-  }
 
   public User getReviewee() {
     return reviewee;

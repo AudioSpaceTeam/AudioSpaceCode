@@ -57,23 +57,33 @@ public class UserController {
   }
 
   @GetMapping("/profile")
-  public String showUserInfo(Model model) {
+  public String showUserInfo( Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
+    model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     model.addAttribute("user", userDao.findById(currentUser.getId()));
     model.addAttribute("review", new Review());
     model.addAttribute("event", new Event());
-
     model.addAttribute("profileOwner", true);
-
     return "profile";
+  }
+
+  //For submitting review
+  @PostMapping("/profile")
+  public String submitReview(@ModelAttribute Review review, @RequestParam long userID, @RequestParam long currentUserID){
+    review.setReviewee(userDao.findById(userID));
+    review.setReviewer(userDao.findById(currentUserID));
+    reviewDao.save(review);
+    return "redirect:/profile/" + userID;
   }
 
   @GetMapping("/profile/{id}")
   public String showUserInfo(@PathVariable long id, Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
+    model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     model.addAttribute("user", userDao.findById(id));
+    model.addAttribute("review", new Review());
     model.addAttribute("profileOwner", id == currentUser.getId());
 //    model.addAttribute("review", new Review());
 
@@ -174,24 +184,6 @@ public class UserController {
 
   }
 
-//Testing
-  @GetMapping("/review")
-  public String ratingForm(Model model){
-    model.addAttribute("review", new Review()); //Send it to the review for form
-    return "/review";
-  }
-
-  @PostMapping("/review")
-  public String ratingSubmit(@RequestParam String none){
-   Review review = new Review();
-    review.setReviewee(userDao.findById(1));
-    review.setReviewer(userDao.findById(2));
-    review.setBody("Hello there");
-    review.setRating(4);
-    review.setTitle("new Title");
-    reviewDao.save(review);
-    return "redirect:/profile";
-  }
 
 //  Come back to this above, to make it check if the user owns the profile or not.
 //  If they own it, then IT should display a different welcome message...

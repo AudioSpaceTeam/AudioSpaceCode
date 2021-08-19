@@ -12,27 +12,27 @@ import java.util.List;
 @Entity
 @Table(name = "events")
 public class Event {
-  //  This ID is going to be the MAIN identifier, that is in this class.
+    //  This ID is going to be the MAIN identifier, that is in this class.
 //  Database understands it will be auto incremented inside of mysql.
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-  //  Below sets up parameters for our column in the table in the DB.
-  @Column(nullable = false, length = 40)
-  private String title;
+    //  Below sets up parameters for our column in the table in the DB.
+    @Column(nullable = false, length = 40)
+    private String title;
 
-  //  Below sets up parameters for our column in the table in the DB.
-  @Column(nullable = false, length = 500)
-  private String description;
+    //  Below sets up parameters for our column in the table in the DB.
+    @Column(nullable = false, length = 500)
+    private String description;
 
-  //  Max BAnds INT
-  @Column(nullable = false)
-  private Integer slots;
+    //  Max BAnds INT
+    @Column(nullable = false)
+    private Integer slots;
 
-  //  Location String (for reverse geocoding)
-  @Column(nullable = false, length = 100)
-  private String location;
+    //  Location String (for reverse geocoding)
+    @Column(nullable = false, length = 100)
+    private String location;
 
 //  Event flyer image
 //  Not yet...
@@ -51,18 +51,18 @@ public class Event {
 //    this.dateTime = dateTime;
 //  }
 
-  @Column(name = "startDateTime", columnDefinition = "TIMESTAMP")
-  private LocalDateTime startDateTime;
+    @Column(name = "startDateTime", columnDefinition = "TIMESTAMP")
+    private LocalDateTime startDateTime;
 
-  public LocalDateTime getStartDateTime() {
-    return startDateTime;
-  }
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
 
-  public void setStartDateTime(LocalDateTime startDateTime) {
-    this.startDateTime = startDateTime;
-  }
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
+    }
 
-  //Endtime
+    //Endtime
 //    @Column(name = "endDateTime", columnDefinition = "TIMESTAMP")
 //    private LocalDateTime endDateTime;
 //
@@ -75,136 +75,136 @@ public class Event {
 //    }
 
 
-  //  price double
-  @Column(nullable = true)
-  private Double price;
+    //  price double
+    @Column(nullable = true)
+    private Double price;
 
-  //  Promoter ID FK
-  // Establishes that there's going to be multiple events tied back to One user.
-  // Join column binds the relationship together?
-  @ManyToOne
-  @JoinColumn(name = "promoter_id")
-  private User promoter;
-  //Many to many with user's performing or "slotted"
+    //  Promoter ID FK
+    // Establishes that there's going to be multiple events tied back to One user.
+    // Join column binds the relationship together?
+    @ManyToOne
+    @JoinColumn(name = "promoter_id")
+    private User promoter;
+    //Many to many with user's performing or "slotted"
 //    @ManyToMany(mappedBy = "slotted")
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "events_users",
-          joinColumns = {@JoinColumn(name = "event_id")},
-          inverseJoinColumns = {@JoinColumn(name = "user_id")}
-  )
-  private List<User> performers;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "events_users",
+            joinColumns = {@JoinColumn(name = "event_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
+    private List<User> performers;
 
 
-  //Should be many to many with genres
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(
-          name = "events_genres",
-          joinColumns = {@JoinColumn(name = "event_id")},
-          inverseJoinColumns = {@JoinColumn(name = "genre_id")}
-  )
-  private List<Genre> genres;
+    //Should be many to many with genres
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "events_genres",
+            joinColumns = {@JoinColumn(name = "event_id")},
+            inverseJoinColumns = {@JoinColumn(name = "genre_id")}
+    )
+    private List<Genre> genres;
 
 
-  public List<Genre> getGenres() {
-    return genres;
-  }
+    public List<Genre> getGenres() {
+        return genres;
+    }
 
-  public void setGenres(List<Genre> genres) {
-    this.genres = genres;
-  }
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
 
-  public Event() {
+    public Event() {
 
-  }
+    }
 
-  public Event(long id, String title, String description, Integer slots, String location, Double price,
-               User promoter, LocalDateTime startDateTime) {
+    public Event(long id, String title, String description, Integer slots, String location, Double price,
+                 User promoter, LocalDateTime startDateTime) {
 
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.slots = slots;
-    this.location = location;
-    this.price = price;
-    this.promoter = promoter;
-    this.startDateTime = startDateTime;
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.slots = slots;
+        this.location = location;
+        this.price = price;
+        this.promoter = promoter;
+        this.startDateTime = startDateTime;
 
-  }
+    }
 
-  public Event(String title, String description, Integer slots, String location, Double price, User promoter) {
-    this.title = title;
-    this.description = description;
-    this.slots = slots;
-    this.location = location;
-    this.price = price;
-    this.promoter = promoter;
-  }
+    public Event(String title, String description, Integer slots, String location, Double price, User promoter) {
+        this.title = title;
+        this.description = description;
+        this.slots = slots;
+        this.location = location;
+        this.price = price;
+        this.promoter = promoter;
+    }
 
-  public Event(String title, String description, Integer slots, String location, Double price) {
-    this.title = title;
-    this.description = description;
-    this.slots = slots;
-    this.location = location;
-    this.price = price;
-  }
+    public Event(String title, String description, Integer slots, String location, Double price) {
+        this.title = title;
+        this.description = description;
+        this.slots = slots;
+        this.location = location;
+        this.price = price;
+    }
 
-  public Event(long id, String title, String description, Integer slots, String location, Double price) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.slots = slots;
-    this.location = location;
-    this.price = price;
-  }
+    public Event(long id, String title, String description, Integer slots, String location, Double price) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.slots = slots;
+        this.location = location;
+        this.price = price;
+    }
 
-  public Event(long id, String title, String description, String location) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.location = location;
+    public Event(long id, String title, String description, String location) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.location = location;
 
-  }
+    }
 
-  public long getId() {
-    return id;
-  }
+    public long getId() {
+        return id;
+    }
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public Integer getSlots() {
-    return slots;
-  }
+    public Integer getSlots() {
+        return slots;
+    }
 
-  public void setSlots(Integer slots) {
-    this.slots = slots;
-  }
+    public void setSlots(Integer slots) {
+        this.slots = slots;
+    }
 
-  public String getLocation() {
-    return location;
-  }
+    public String getLocation() {
+        return location;
+    }
 
-  public void setLocation(String location) {
-    this.location = location;
-  }
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
 //  public Date getDatetime() {
 //    return datetime;
@@ -214,33 +214,33 @@ public class Event {
 //    this.datetime = datetime;
 //  }
 
-  public Double getPrice() {
-    return price;
-  }
+    public Double getPrice() {
+        return price;
+    }
 
-  public void setPrice(Double price) {
-    this.price = price;
-  }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
-  public User getPromoter() {
-    return promoter;
-  }
+    public User getPromoter() {
+        return promoter;
+    }
 
-  public void setPromoter(User promoter) {
-    this.promoter = promoter;
-  }
+    public void setPromoter(User promoter) {
+        this.promoter = promoter;
+    }
 
 
-  //  bands sloted?
+    //  bands sloted?
 //    @ManyToMany(mappedBy = "performers")
 //    private List<User> performers;
 
 
-  public List<User> getPerformers() {
-    return performers;
-  }
+    public List<User> getPerformers() {
+        return performers;
+    }
 
-  public void setPerformers(List<User> performers) {
-    this.performers = performers;
-  }
+    public void setPerformers(List<User> performers) {
+        this.performers = performers;
+    }
 }

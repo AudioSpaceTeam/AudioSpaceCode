@@ -1,63 +1,77 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Create Event</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  <th:block th:replace="partials/style.html :: style"></th:block>
+    <meta charset="UTF-8">
+    <title>Create Event</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <th:block th:replace="partials/style.html :: style"></th:block>
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 
-<div class="container">
 
-
-  <h1>Create an Event!</h1>
-
-  <form th:action="@{/event/create}" th:method="post" th:object="${event}">
-
-    <label for="title">Title:</label>
-    <br>
-    <input th:field="*{title}" id="title"/>
-    <br>
-    <label for="location">Location:</label>
-    <br>
-    <input th:field="*{location}" id="location">
-    <br>
-    <label for="price">Price: $</label>
-    <br>
-    <input name="price" type="number" step=".01" id="price" placeholder="$">
-    <br>
-    <label for="slots">Available slots:</label>
-    <br>
-    <input th:field="*{slots}" type="number" id="slots">
-    <br>
-    <label for="description">Description:</label>
-    <br>
-    <textarea th:field="*{description}" id="description"></textarea>
-    <br>
-    <label for="dateTime">Day of Event (date and time):</label>
-    <br>
-    <input  type="datetime-local" id="dateTime" name="dateTime">
-    <br>
-    <h5>Bands playing at the event: </h5>
-    <br>
-    <input hidden type="checkbox" th:id="ignore" name="bandIds" value="ignore" checked>
-    <div th:each="user: ${users}">
-      <label th:for="${user.getId()}"><input type="checkbox" th:id="${user.id}" name="bandIds" th:value="${user.id}" th:text="${user.username}"></label>
+<div class="container mt-5">
+    <div class="text-center mt-5">
+        <div class="header text-center"><h3 style="color: #00796D">Create an event!</h3></div>
+        <h1>Create events as a promoter and get noticed.</h1>
+        <p>Audio Space's goal is to make the connection between promoters and musicians as easy as possible. Our
+            platform aims to facilitate the process of booking shows and managing events.</p>
     </div>
-    <br>
-    <h5>Genres for the Event: </h5>
-    <br>
-    <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
-    <div th:each="genre: ${genres}">
-      <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}"></label>
+    <hr class="my-4">
+
+    <div class="container">
+
+        <h3>Please fill in...</h3>
+        <form th:action="@{/event/create}" th:method="post" th:object="${event}">
+
+            <label for="title">Title:</label>
+            <br>
+            <input th:field="*{title}" id="title"/>
+            <br>
+            <label for="location">Location:</label>
+            <br>
+            <input th:field="*{location}" id="location">
+            <br>
+            <label for="price">Price: $</label>
+            <br>
+            <input name="price" type="number" step=".01" id="price" placeholder="$">
+            <br>
+            <label for="slots">Available slots:</label>
+            <br>
+            <input th:field="*{slots}" type="number" id="slots">
+            <br>
+            <label for="description">Description:</label>
+            <br>
+            <textarea th:field="*{description}" id="description"></textarea>
+            <br>
+            <label for="dateTime">Day of Event (date and time):</label>
+            <br>
+            <input type="datetime-local" id="dateTime" name="dateTime">
+            <hr>
+            <h5>Bands playing at the event: </h5>
+            <br>
+            <input hidden type="checkbox" th:id="ignore" name="bandIds" value="ignore" checked>
+            <div th:each="user: ${users}">
+                <label th:for="${user.getId()}"><input type="checkbox" th:id="${user.id}" name="bandIds"
+                                                       th:value="${user.id}" th:text="${user.username}"></label>
+            </div>
+            <hr class="my-4">
+            <h5>Genres for the Event: </h5>
+            <br>
+            <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
+            <div th:each="genre: ${genres}">
+                <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds"
+                                                          th:value="${genre.genreName}"
+                                                          th:text="${genre.genreName}"></label>
+            </div>
+            <hr class="my-4">
+            <!--    <button type="submit" class="btn btn-dark mt-3">Submit</button>-->
+            <a class="contact-btn" href="/event/create">Create Event</a>
+        </form>
+        <br>
     </div>
-    <button type="submit" class="btn btn-dark mt-3">Submit</button>
-  </form>
 </div>
-
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"

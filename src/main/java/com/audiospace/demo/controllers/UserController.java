@@ -1,11 +1,7 @@
 package com.audiospace.demo.controllers;
 
 import com.audiospace.demo.models.Event;
-
-import com.audiospace.demo.models.Review;
-
 import com.audiospace.demo.models.Genre;
-
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.repositories.GenreRepository;
@@ -22,6 +18,7 @@ import java.util.List;
 
 @Controller
 public class UserController {
+
   private final UserRepository userDao;
   //  added login properties & passwordEncoder dependency
   private final PasswordEncoder passwordEncoder;
@@ -99,53 +96,78 @@ public class UserController {
       model.addAttribute("user", userDao.findById(id));
       model.addAttribute("genres", genreDao.findAll());
       return "user/edit";
+
     }
 
-  }
+    @GetMapping("/profile/{id}")
+    public String showUserInfo(@PathVariable long id, Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
+        model.addAttribute("user", userDao.findById(id));
+        model.addAttribute("profileOwner", id == currentUser.getId());
 
-  @PostMapping("/profile/{id}/edit")
-  public String saveUserInfo(@ModelAttribute User user,
-                             @PathVariable long id,
-                             Model model,
-                             @RequestParam String isPromoter,
-                             @RequestParam String password,
-                             @RequestParam String[] genreIds) {
-    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    if (currentUser.getId() != userDao.findById(id).getId()) {
-      return "redirect:/profile/" + id;
-    } else {
-      if (isPromoter.equals("true")) {
-        user.setPromoter(true);
-      } else {
-        user.setPromoter(false);
-      }
-      if (!passwordEncoder.matches(password, currentUser.getPassword())) {
+        return "profile";
+    }
+
+    @GetMapping("/profile/{id}/edit")
+    public String editUserInfo(@PathVariable long id, Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (currentUser.getId() != userDao.findById(id).getId()) {
+            return "redirect:/profile/" + id;
+        } else {
+            model.addAttribute("user", userDao.findById(id));
+            model.addAttribute("genres", genreDao.findAll());
+            return "user/edit";
+        }
+
+    }
+
+    @PostMapping("/profile/{id}/edit")
+    public String saveUserInfo(@ModelAttribute User user,
+                               @PathVariable long id,
+                               Model model,
+                               @RequestParam String isPromoter,
+                               @RequestParam String password,
+                               @RequestParam String[] genreIds) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (currentUser.getId() != userDao.findById(id).getId()) {
+            return "redirect:/profile/" + id;
+        } else {
+            if (isPromoter.equals("true")) {
+                user.setPromoter(true);
+            } else {
+                user.setPromoter(false);
+            }
+            if (!passwordEncoder.matches(password, currentUser.getPassword())) {
 //        System.out.println(currentUser.getPassword());
 //        System.out.println(password);
 //        System.out.println(passwordEncoder.matches(currentUser.getPassword(), password));
-        return "redirect:/profile/" + id + "/edit";
-      }
-      String hash = passwordEncoder.encode(password);
-      user.setPassword(hash);
+                return "redirect:/profile/" + id + "/edit";
+            }
+            String hash = passwordEncoder.encode(password);
+            user.setPassword(hash);
 //    genre set code below.
-      List<Genre> selectedGenres = new ArrayList<>();
+            List<Genre> selectedGenres = new ArrayList<>();
 
-      for (String genre : genreIds) {
-        if (genre.equalsIgnoreCase("ignore")) {
-          continue;
-        }
-        System.out.println(genre + " Genre id");
+            for (String genre : genreIds) {
+                if (genre.equalsIgnoreCase("ignore")) {
+                    continue;
+                }
+                System.out.println(genre + " Genre id");
 //      We are ADDING to the slotted performers list,
 //      We are finding the user BY ID
 //      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
-        selectedGenres.add(genreDao.findGenreByGenreName(genre));
-      }
-      user.setGenres(selectedGenres);
+                selectedGenres.add(genreDao.findGenreByGenreName(genre));
+            }
+            user.setGenres(selectedGenres);
 
-      userDao.save(user);
-      model.addAttribute("user", userDao.findById(id));
-      return "redirect:/profile/";
+            userDao.save(user);
+            model.addAttribute("user", userDao.findById(id));
+            return "redirect:/profile/";
+        }
+
     }
+
 
   }
 
@@ -179,10 +201,15 @@ public class UserController {
       userDao.save(deleteMe);
       userDao.deleteById(deleteMe.getId());
       return "redirect:/login";
+
 //      Todo: Ask about where to redirect for logout after deleting a user...
+        }
+
     }
 
+
   }
+
 
 
 //  Come back to this above, to make it check if the user owns the profile or not.

@@ -63,7 +63,8 @@ public class EventController {
   public String singleEvent(@PathVariable long id, Model model) {
     Event event = eventDao.getById(id);
     model.addAttribute("event", event);
-    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User aUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User currentUser = userDao.findById(aUser.getId());
 //    Our boolean to see if the current user is the owner or not.
     boolean isOwner = event.getPromoter().getId() == currentUser.getId();
     //We are setting these false and changing it to true if they are one.
@@ -74,11 +75,31 @@ public class EventController {
     if(!currentUser.getPromoter()){
       isPerformer = true;
 //      We are checking if the current user has the event in their list of request.
+      if(currentUser.getRequested().isEmpty()){
+        boolean isReqOrSlot = isRequester || isSlotted;
+        model.addAttribute("isReqOrSlot", isReqOrSlot);
+        model.addAttribute("isOwner", isOwner);
+        model.addAttribute("isPerformer", isPerformer);
+        model.addAttribute("isRequester", isRequester);
+        model.addAttribute("isSlotted",isSlotted);
+        model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
+        return "event/show";
+      }
       for(Event eventCheck : currentUser.getRequested()){
         if(eventCheck.getId() == event.getId()){
           isRequester = true;
           break;
         }
+      }
+      if(currentUser.getSlotted().isEmpty()){
+        boolean isReqOrSlot = isRequester || isSlotted;
+        model.addAttribute("isReqOrSlot", isReqOrSlot);
+        model.addAttribute("isOwner", isOwner);
+        model.addAttribute("isPerformer", isPerformer);
+        model.addAttribute("isRequester", isRequester);
+        model.addAttribute("isSlotted",isSlotted);
+        model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
+        return "event/show";
       }
       for(Event eventCheck : currentUser.getSlotted()){
         if(eventCheck.getId() == event.getId()){
@@ -87,6 +108,8 @@ public class EventController {
         }
       }
     }
+    boolean isReqOrSlot = isRequester || isSlotted;
+    model.addAttribute("isReqOrSlot", isReqOrSlot);
     model.addAttribute("isOwner", isOwner);
     model.addAttribute("isPerformer", isPerformer);
     model.addAttribute("isRequester", isRequester);
@@ -229,8 +252,8 @@ public class EventController {
     return "event/index";
   }
 
-  @PostMapping("/event/{id}/add/requester")
-  public String eventAddRequester(@PathVariable long id,
+  @PostMapping("/event/add/requester")
+  public String eventAddRequester(@RequestParam long id,
                                Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     Event event = eventDao.findById(id);
@@ -242,8 +265,8 @@ public class EventController {
     return "redirect:/event/" + id;
   }
 
-  @PostMapping("/event/{id}/add/performer")
-  public String eventAddPerformer(@PathVariable long id,
+  @PostMapping("/event/add/performer")
+  public String eventAddPerformer(@RequestParam long id,
                                @RequestParam long requesterId,
                                Model model) {
 //    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -257,8 +280,8 @@ public class EventController {
     return "redirect:/event/" + id;
   }
 
-  @PostMapping("/event/{id}/remove/requester")
-  public String eventRemoveRequester(@PathVariable long id,
+  @PostMapping("/event/remove/requester")
+  public String eventRemoveRequester(@RequestParam long id,
                                      @RequestParam long requesterId,
                                Model model) {
 //    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -271,8 +294,8 @@ public class EventController {
     return "redirect:/event/" + id;
   }
 
-  @PostMapping("/event/{id}/remove/performer")
-  public String eventRemovePerformer(@PathVariable long id,
+  @PostMapping("/event/remove/performer")
+  public String eventRemovePerformer(@RequestParam long id,
                                      @RequestParam long performerId,
                                      Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

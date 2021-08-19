@@ -88,13 +88,21 @@ public class Event {
   //Many to many with user's performing or "slotted"
 //    @ManyToMany(mappedBy = "slotted")
 
+//TODO: refer to Jay's video for how to set this up. with Confirmed vs unconfirmed.
   @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "events_users",
-          joinColumns = {@JoinColumn(name = "event_id")},
-          inverseJoinColumns = {@JoinColumn(name = "user_id")}
+
+  @JoinTable(name = "events_performers",
+    joinColumns = {@JoinColumn(name = "event_id")},
+    inverseJoinColumns = {@JoinColumn(name = "user_id")}
   )
   private List<User> performers;
 
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "events_requesters",
+    joinColumns = {@JoinColumn(name = "event_id")},
+    inverseJoinColumns = {@JoinColumn(name = "user_id")}
+  )
+  private List<User> requesters;
 
   //Should be many to many with genres
   @ManyToMany(cascade = CascadeType.ALL)
@@ -230,12 +238,6 @@ public class Event {
     this.promoter = promoter;
   }
 
-
-  //  bands sloted?
-//    @ManyToMany(mappedBy = "performers")
-//    private List<User> performers;
-
-
   public List<User> getPerformers() {
     return performers;
   }
@@ -243,4 +245,21 @@ public class Event {
   public void setPerformers(List<User> performers) {
     this.performers = performers;
   }
+
+
+  public List<User> getRequesters() {
+    return requesters;
+  }
+
+  public void setRequesters(List<User> requesters) {
+    this.requesters = requesters;
+  }
+
+//  bands sloted?
+//    @ManyToMany(mappedBy = "performers")
+//    private List<User> performers;
+
+
+
 }
+

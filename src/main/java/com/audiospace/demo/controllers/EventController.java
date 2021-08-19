@@ -1,12 +1,18 @@
 package com.audiospace.demo.controllers;
 
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import com.audiospace.demo.models.Event;
+
 import com.audiospace.demo.models.Review;
+
+import com.audiospace.demo.models.Genre;
+
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
+import com.audiospace.demo.repositories.GenreRepository;
 import com.audiospace.demo.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,12 +27,14 @@ public class EventController {
 
   private final EventRepository eventDao;
   private final UserRepository userDao;
-  private final ReviewPageController reviewDao;
 
-  public EventController(EventRepository eventDao, UserRepository userDao, ReviewPageController reviewDao) {
+  private final GenreRepository genreDao;
+
+  public EventController(EventRepository eventDao, UserRepository userDao, GenreRepository genreDao) {
     this.eventDao = eventDao;
     this.userDao = userDao;
-    this.reviewDao = reviewDao;
+    this.genreDao = genreDao;
+
   }
 
 
@@ -46,6 +54,7 @@ public class EventController {
       }
     }
     model.addAttribute("users", notPromoters);
+    model.addAttribute("genres", genreDao.findAll());
     return "event/create";
   }
 
@@ -54,6 +63,7 @@ public class EventController {
   @GetMapping("/event")
   public String viewEvent(Model model) {
     model.addAttribute("events", eventDao.findAll());
+    model.addAttribute("genres", genreDao.findAll());
     return "event/index";
   }
 
@@ -75,6 +85,7 @@ public class EventController {
                            @RequestParam(name = "price") String price,
                            @ModelAttribute Event event,
                            @RequestParam String[] bandIds,
+                           @RequestParam String[] genreIds,
                            Model model) {
 
     //Added user
@@ -84,20 +95,35 @@ public class EventController {
 
     event.setStartDateTime(LocalDateTime.parse(dateTime));
 
-//    Below stuff was fine below leave alone... dude.
+//    Below stuff is for making a list of the selected performers.
     List<User> slottedPerformers = new ArrayList<>();
 
     for (String band : bandIds) {
       if (band.equalsIgnoreCase("ignore")) {
         continue;
       }
-      System.out.println(band + " Band id");
+//      System.out.println(band + " Band id");
 //      We are ADDING to the slotted performers list,
 //      We are finding the user BY ID
 //      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
       slottedPerformers.add(userDao.findById(Long.parseLong(band)));
     }
     event.setPerformers(slottedPerformers);
+    //    Below stuff is for making a list of the selected performers.
+    List<Genre> selectedGenres = new ArrayList<>();
+
+    for (String genre : genreIds) {
+      if (genre.equalsIgnoreCase("ignore")) {
+        continue;
+      }
+      System.out.println(genre + " Genre id");
+//      We are ADDING to the slotted performers list,
+//      We are finding the user BY ID
+//      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
+      selectedGenres.add(genreDao.findGenreByGenreName(genre));
+    }
+    event.setGenres(selectedGenres);
+
     eventDao.save(event);
     model.addAttribute("user", currentUser);
     model.addAttribute("event", event);
@@ -121,13 +147,14 @@ public class EventController {
         }
       }
       List<User> currentPerformers = new ArrayList<>();
-      for(User userC : userDao.findAllBySlotted(eventDao.findById(id))){
+      for (User userC : userDao.findAllBySlotted(eventDao.findById(id))) {
         currentPerformers.add(userC);
         userC.setSlotted(new ArrayList<>());
       }
-      model.addAttribute("performers",currentPerformers);
+      model.addAttribute("performers", currentPerformers);
       model.addAttribute("users", notPromoters);
       model.addAttribute("event", event);
+      model.addAttribute("genres", genreDao.findAll());
       return "event/edit";
     }
   }
@@ -145,18 +172,44 @@ public class EventController {
   }
 
   @PostMapping("/event/search")
-  public String eventSearch(@RequestParam(name = "search") String search,
+  public String eventSearch(@RequestParam String search,
+                            @RequestParam String[] genreIds,
                             Model model) {
-//    List<Event> queryEvents = new ArrayList<>();
 
-//    for(Event eventQ : eventDao.findAll()){
-//
-//    }
+    //    Below stuff is for making a list of the selected performers.
+    List<Genre> selectedGenres = new ArrayList<>();
 
-    List<Event> queryEvents = eventDao.findAllByTitleContainingOrDescriptionContaining(search,search);
+    for (String genre : genreIds) {
+      if (genre.equalsIgnoreCase("ignore")) {
+        continue;
+      }
+      System.out.println(genre + " Genre id");
+//      We are ADDING to the slotted performers list,
+//      We are finding the user BY ID
+//      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
+      selectedGenres.add(genreDao.findGenreByGenreName(genre));
+    }
 
+    List<Event> queryEvents = eventDao.findAllByTitleContainingOrDescriptionContaining(search, search);
+//    If no genres are selected only search by desc and title.
+    if(selectedGenres.isEmpty()){
+      model.addAttribute("events", queryEvents);
+      model.addAttribute("genres", genreDao.findAll());
+      return "event/index";
 
-    model.addAttribute("events", queryEvents);
+    }
+    List<Event> queryGenreEvents = new ArrayList<>();
+
+    for (Event event : queryEvents) {
+      for (Genre genre : selectedGenres) {
+        if (event.getGenres().contains(genre)){
+          queryGenreEvents.add(event);
+        }
+      }
+    }
+
+    model.addAttribute("events", queryGenreEvents);
+    model.addAttribute("genres", genreDao.findAll());
     return "event/index";
   }
 

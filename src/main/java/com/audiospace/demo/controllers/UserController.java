@@ -1,9 +1,14 @@
 package com.audiospace.demo.controllers;
 
 import com.audiospace.demo.models.Event;
+
 import com.audiospace.demo.models.Review;
+
+import com.audiospace.demo.models.Genre;
+
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.EventRepository;
+import com.audiospace.demo.repositories.GenreRepository;
 import com.audiospace.demo.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,13 +25,14 @@ public class UserController {
   //  added login properties & passwordEncoder dependency
   private final PasswordEncoder passwordEncoder;
   private final EventRepository eventDao;
-  private final ReviewPageController reviewDao;
 
-  public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, EventRepository eventDao, ReviewPageController reviewDao) {
+  private final GenreRepository genreDao;
+
+  public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, EventRepository eventDao, GenreRepository genreDao) {
     this.userDao = userDao;
     this.passwordEncoder = passwordEncoder;
     this.eventDao = eventDao;
-    this.reviewDao = reviewDao;
+    this.genreDao = genreDao;
   }
 
   @GetMapping("/register")
@@ -80,6 +86,7 @@ public class UserController {
       return "redirect:/profile/" + id;
     } else {
       model.addAttribute("user", userDao.findById(id));
+      model.addAttribute("genres", genreDao.findAll());
       return "user/edit";
     }
 
@@ -90,7 +97,8 @@ public class UserController {
                              @PathVariable long id,
                              Model model,
                              @RequestParam String isPromoter,
-                             @RequestParam String password) {
+                             @RequestParam String password,
+                             @RequestParam String[] genreIds) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     if (currentUser.getId() != userDao.findById(id).getId()) {
       return "redirect:/profile/" + id;
@@ -108,9 +116,24 @@ public class UserController {
       }
       String hash = passwordEncoder.encode(password);
       user.setPassword(hash);
+//    genre set code below.
+      List<Genre> selectedGenres = new ArrayList<>();
+
+      for (String genre : genreIds) {
+        if (genre.equalsIgnoreCase("ignore")) {
+          continue;
+        }
+        System.out.println(genre + " Genre id");
+//      We are ADDING to the slotted performers list,
+//      We are finding the user BY ID
+//      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
+        selectedGenres.add(genreDao.findGenreByGenreName(genre));
+      }
+      user.setGenres(selectedGenres);
+
       userDao.save(user);
       model.addAttribute("user", userDao.findById(id));
-      return "profile";
+      return "redirect:/profile/";
     }
 
   }

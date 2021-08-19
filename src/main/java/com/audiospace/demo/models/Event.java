@@ -90,8 +90,8 @@ public class Event {
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "events_users",
-    joinColumns = {@JoinColumn(name = "event_id")},
-    inverseJoinColumns = {@JoinColumn(name = "user_id")}
+          joinColumns = {@JoinColumn(name = "event_id")},
+          inverseJoinColumns = {@JoinColumn(name = "user_id")}
   )
   private List<User> performers;
 
@@ -99,9 +99,9 @@ public class Event {
   //Should be many to many with genres
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
-    name = "events_genres",
-    joinColumns = {@JoinColumn(name = "event_id")},
-    inverseJoinColumns = {@JoinColumn(name = "genre_id")}
+          name = "events_genres",
+          joinColumns = {@JoinColumn(name = "event_id")},
+          inverseJoinColumns = {@JoinColumn(name = "genre_id")}
   )
   private List<Genre> genres;
 

@@ -27,6 +27,11 @@
   <div th:each="user : ${event.performers}">
     <h6 th:text="${user.getDisplayName()}"></h6>
   </div>
+  <h5>These are the genres you selected.</h5>
+  <div th:each="genre : ${event.genres}">
+    <h6 th:text="${genre.genreName}"></h6>
+  </div>
+
 
 </div>
 

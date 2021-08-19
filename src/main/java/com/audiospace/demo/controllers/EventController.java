@@ -5,11 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import com.audiospace.demo.models.Event;
-
-import com.audiospace.demo.models.Review;
-
 import com.audiospace.demo.models.Genre;
-
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.GenreRepository;
@@ -27,16 +23,13 @@ public class EventController {
 
   private final EventRepository eventDao;
   private final UserRepository userDao;
-
   private final GenreRepository genreDao;
 
   public EventController(EventRepository eventDao, UserRepository userDao, GenreRepository genreDao) {
     this.eventDao = eventDao;
     this.userDao = userDao;
     this.genreDao = genreDao;
-
   }
-
 
   @GetMapping("/event/create")
   public String createEvent(Model model) {
@@ -80,37 +73,37 @@ public class EventController {
     boolean isRequester = false;
     boolean isSlotted = false;
 //    We are checking if the current user is a performer or not.
-    if(!currentUser.getPromoter()){
+    if (!currentUser.getPromoter()) {
       isPerformer = true;
 //      We are checking if the current user has the event in their list of request.
-      if(currentUser.getRequested().isEmpty()){
+      if (currentUser.getRequested().isEmpty()) {
         boolean isReqOrSlot = isRequester || isSlotted;
         model.addAttribute("isReqOrSlot", isReqOrSlot);
         model.addAttribute("isOwner", isOwner);
         model.addAttribute("isPerformer", isPerformer);
         model.addAttribute("isRequester", isRequester);
-        model.addAttribute("isSlotted",isSlotted);
+        model.addAttribute("isSlotted", isSlotted);
         model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
         return "event/show";
       }
-      for(Event eventCheck : currentUser.getRequested()){
-        if(eventCheck.getId() == event.getId()){
+      for (Event eventCheck : currentUser.getRequested()) {
+        if (eventCheck.getId() == event.getId()) {
           isRequester = true;
           break;
         }
       }
-      if(currentUser.getSlotted().isEmpty()){
+      if (currentUser.getSlotted().isEmpty()) {
         boolean isReqOrSlot = isRequester || isSlotted;
         model.addAttribute("isReqOrSlot", isReqOrSlot);
         model.addAttribute("isOwner", isOwner);
         model.addAttribute("isPerformer", isPerformer);
         model.addAttribute("isRequester", isRequester);
-        model.addAttribute("isSlotted",isSlotted);
+        model.addAttribute("isSlotted", isSlotted);
         model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
         return "event/show";
       }
-      for(Event eventCheck : currentUser.getSlotted()){
-        if(eventCheck.getId() == event.getId()){
+      for (Event eventCheck : currentUser.getSlotted()) {
+        if (eventCheck.getId() == event.getId()) {
           isSlotted = true;
           break;
         }
@@ -121,7 +114,7 @@ public class EventController {
     model.addAttribute("isOwner", isOwner);
     model.addAttribute("isPerformer", isPerformer);
     model.addAttribute("isRequester", isRequester);
-    model.addAttribute("isSlotted",isSlotted);
+    model.addAttribute("isSlotted", isSlotted);
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     return "event/show";
   }
@@ -146,6 +139,7 @@ public class EventController {
 //    Below stuff is for making a list of the selected performers.
     List<User> slottedPerformers = new ArrayList<>();
 
+
 //    for (String band : bandIds) {
 //      if (band.equalsIgnoreCase("ignore")) {
 //        continue;
@@ -165,6 +159,7 @@ public class EventController {
         continue;
       }
       System.out.println(genre + " Genre id");
+
 //      We are ADDING to the slotted performers list,
 //      We are finding the user BY ID
 //      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
@@ -187,6 +182,7 @@ public class EventController {
     } else {
 
 //      List for users who are not promoters
+
 //      List<User> notPromoters = new ArrayList<>();
 //      for (User userP : userDao.findAll()) {
 ////        If a user is not a promoter, then we want to add them to the list.
@@ -214,7 +210,12 @@ public class EventController {
     if (event.getPromoter().getId() != currentUser.getId()) {
       return "redirect:/event/" + id;
     } else {
-      eventDao.deleteById(id);
+//      TODO: figure out why it isn't cascading correctly but this fixes it for now...
+      event.setPerformers(new ArrayList<>());
+      event.setRequesters(new ArrayList<>());
+      event.setGenres(new ArrayList<>());
+      eventDao.save(event);
+      eventDao.delete(event);
       return "redirect:/event";
     }
   }
@@ -252,6 +253,7 @@ public class EventController {
       for (Genre genre : selectedGenres) {
         if (event.getGenres().contains(genre)) {
           queryGenreEvents.add(event);
+
         }
       }
     }
@@ -263,7 +265,7 @@ public class EventController {
 
   @PostMapping("/event/add/requester")
   public String eventAddRequester(@RequestParam long id,
-                               Model model) {
+                                  Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     Event event = eventDao.findById(id);
     User requester = userDao.findById(currentUser.getId());
@@ -276,8 +278,8 @@ public class EventController {
 
   @PostMapping("/event/add/performer")
   public String eventAddPerformer(@RequestParam long id,
-                               @RequestParam long requesterId,
-                               Model model) {
+                                  @RequestParam long requesterId,
+                                  Model model) {
 //    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     Event event = eventDao.findById(id);
     User requester = userDao.findById(requesterId);
@@ -292,7 +294,7 @@ public class EventController {
   @PostMapping("/event/remove/requester")
   public String eventRemoveRequester(@RequestParam long id,
                                      @RequestParam long requesterId,
-                               Model model) {
+                                     Model model) {
 //    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     Event event = eventDao.findById(id);
     User requester = userDao.findById(requesterId);

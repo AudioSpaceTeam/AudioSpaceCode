@@ -76,9 +76,12 @@ public class User {
 //            joinColumns = {@JoinColumn(name = "user_id")},
 //            inverseJoinColumns = {@JoinColumn(name = "event_id")}
 //    )
-
+//TODO: refer to Jay's video for how to set this up. with Confirmed vs unconfirmed.
   @ManyToMany(mappedBy = "performers")
   private List<Event> slotted;
+
+  @ManyToMany(mappedBy = "requesters")
+  private List<Event> requested;
 
 
   public List<Review> getReviewsGiven() {
@@ -106,6 +109,8 @@ public class User {
   public void setReviewsReceived(List<Review> reviewsReceived) {
     this.reviewsReceived = reviewsReceived;
   }
+
+
 
   public User(long id, String username, String email, String displayName, String password, String bio, Boolean isPromoter, List<Event> promotedEvents) {
     this.id = id;
@@ -217,4 +222,11 @@ public class User {
     this.isPromoter = isPromoter;
   }
 
+  public List<Event> getRequested() {
+    return requested;
+  }
+
+  public void setRequested(List<Event> requested) {
+    this.requested = requested;
+  }
 }

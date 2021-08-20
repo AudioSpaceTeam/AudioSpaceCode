@@ -11,9 +11,16 @@ CREATE DATABASE IF NOT EXISTS audiospace_db;
 USE audiospace_db;
 
 # Incase you need to drop the tables uncomment out below, and run these.
-# SET FOREIGN_KEY_CHECKS = 0;
-# DROP TABLE events,events_genres,events_performers,events_requesters, genres,reviews,users,users_genres;
-# SET FOREIGN_KEY_CHECKS = 1;
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE events,events_genres,events_performers,events_requesters, genres,reviews,users,users_genres;
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+#Example
+
+# dokku mysql:connect audiospace_db
+
 
 
 

@@ -17,7 +17,8 @@
             <div class="profile-card">
                 <div class="card-header">
                     <div class="pic">
-                        <img src="/img/logoTransparent.png" alt="No Profile Picture">
+<!--                        <img src="https://cdn.filestackcontent.com/r9qCfN3WQpqCvGkUBQuJ" alt="No Profile Picture">-->
+                        <img th:src="${user.imageUrl}" alt="No Profile Picture">
                     </div>
                     <div class="name" th:text="${user.displayName}"></div>
                     <div class="desc" th:if="${user.getPromoter()}">

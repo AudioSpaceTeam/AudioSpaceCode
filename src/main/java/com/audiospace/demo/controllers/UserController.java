@@ -1,13 +1,8 @@
 package com.audiospace.demo.controllers;
 
-import com.audiospace.demo.models.Event;
-import com.audiospace.demo.models.Genre;
-import com.audiospace.demo.models.Review;
-import com.audiospace.demo.models.User;
-import com.audiospace.demo.repositories.EventRepository;
-import com.audiospace.demo.repositories.GenreRepository;
-import com.audiospace.demo.repositories.ReviewRepository;
-import com.audiospace.demo.repositories.UserRepository;
+import com.audiospace.demo.models.*;
+import com.audiospace.demo.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -96,6 +91,7 @@ public class UserController {
     } else {
       model.addAttribute("user", userDao.findById(id));
       model.addAttribute("genres", genreDao.findAll());
+
       return "user/edit";
 
 
@@ -108,7 +104,8 @@ public class UserController {
                              Model model,
                              @RequestParam String isPromoter,
                              @RequestParam String password,
-                             @RequestParam String[] genreIds) {
+                             @RequestParam String[] genreIds,
+                             @RequestParam(name = "fileupload") String url) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     if (currentUser.getId() != userDao.findById(id).getId()) {
       return "redirect:/profile/" + id;
@@ -140,6 +137,9 @@ public class UserController {
         selectedGenres.add(genreDao.findGenreByGenreName(genre));
       }
       user.setGenres(selectedGenres);
+
+      user.setImageUrl(url);
+
 
       userDao.save(user);
       model.addAttribute("user", userDao.findById(id));

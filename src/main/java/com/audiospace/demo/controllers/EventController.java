@@ -78,33 +78,12 @@ public class EventController {
 //    We are checking if the current user is a performer or not.
     if (!currentUser.getPromoter()) {
       isPerformer = true;
-//      We are checking if the current user has the event in their list of request.
-//      if (currentUser.getSlotted().isEmpty()) {
-//        boolean isReqOrSlot = isRequester || isSlotted;
-//        model.addAttribute("isReqOrSlot", isReqOrSlot);
-//        model.addAttribute("isOwner", isOwner);
-//        model.addAttribute("isPerformer", isPerformer);
-//        model.addAttribute("isRequester", isRequester);
-//        model.addAttribute("isSlotted", isSlotted);
-//        model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
-//        return "event/show";
-//      }
       for (Event eventCheck : currentUser.getSlotted()) {
         if (eventCheck.getId() == event.getId()) {
           isSlotted = true;
           break;
         }
       }
-//      if (currentUser.getRequested().isEmpty()) {
-//        boolean isReqOrSlot = isRequester || isSlotted;
-//        model.addAttribute("isReqOrSlot", isReqOrSlot);
-//        model.addAttribute("isOwner", isOwner);
-//        model.addAttribute("isPerformer", isPerformer);
-//        model.addAttribute("isRequester", isRequester);
-//        model.addAttribute("isSlotted", isSlotted);
-//        model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
-//        return "event/show";
-//      }
       for (Event eventCheck : currentUser.getRequested()) {
         if (eventCheck.getId() == event.getId()) {
           isRequester = true;
@@ -140,22 +119,6 @@ public class EventController {
 
     event.setStartDateTime(LocalDateTime.parse(dateTime));
 
-//    Below stuff is for making a list of the selected performers.
-    List<User> slottedPerformers = new ArrayList<>();
-
-
-//    for (String band : bandIds) {
-//      if (band.equalsIgnoreCase("ignore")) {
-//        continue;
-//      }
-////      System.out.println(band + " Band id");
-////      We are ADDING to the slotted performers list,
-////      We are finding the user BY ID
-////      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
-//      slottedPerformers.add(userDao.findById(Long.parseLong(band)));
-//    }
-//    event.setPerformers(slottedPerformers);
-    //    Below stuff is for making a list of the selected performers.
     List<Genre> selectedGenres = new ArrayList<>();
 
     for (String genre : genreIds) {
@@ -223,8 +186,8 @@ public class EventController {
       return "redirect:/event";
     }
   }
-
-  @PostMapping("/event/search")
+//Below is our search, TODO:change to a GET?
+  @PostMapping("/event")
   public String eventSearch(@RequestParam String search,
                             @RequestParam String[] genreIds,
                             Model model) {

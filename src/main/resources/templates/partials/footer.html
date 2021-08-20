@@ -7,6 +7,8 @@
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <!--    fontawesome kit-->
+    <script src="https://kit.fontawesome.com/d0d640b552.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <footer th:fragment="footer" class="small bg-light">
@@ -69,32 +71,34 @@
                 </ul>
             </div>
             <div class="col-12 col-sm-6 col-md-3">
-                <div class="dropdown dropup p-0">
+                <div class="btn-group dropup">
                     <button
                             type="button"
-                            class="btn btn-secondary btn-sm dropdown-toggle"
+                            class="btn btn-secondary btn-sm dropdown-toggle "
                             id="dropdownMenuButton"
-                            data-toggle="dropdown"
+                            data-bs-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
                     >
                         Or... in LinkedIn:
                     </button>
+
+
                     <!--                    button menu linkedin-->
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropUp">
-                        <li><a target="_blank" href="https://www.linkedin.com/in/alejandro-cabrera09/"
-                               class="dropdown-item"><i class="fas fa-guitar"></i> Alejandro Cabrera</a></li>
-                        <li><a target="_blank" href="https://www.linkedin.com/in/savanna-m-garcia/"
-                               class="dropdown-item"><i class="fas fa-guitar"></i> Savanna
-                            Garcia</a></li>
-                        <li><a target="_blank" href="https://www.linkedin.com/in/carlos-munoz-ba516a214/"
-                               class="dropdown-item"><i class="fas fa-guitar"></i> Carlos Munoz</a></li>
-                        <li><a target="_blank" href="https://www.linkedin.com/in/alex-santamaria-768806215/"
-                               class="dropdown-item"><i class="fas fa-drum"></i> Alex Santamaria</a></li>
-                        <li><a target="_blank" href="https://www.linkedin.com/in/josh-williams8/"
-                               class="dropdown-item"><i class="fas fa-drum-steelpan"></i> Joshua
-                            Williams</a></li>
-                    </ul>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropUp">
+                        <a target="_blank" href="https://www.linkedin.com/in/alejandro-cabrera09/"
+                           class="dropdown-item"><i class="fas fa-guitar"></i> Alejandro Cabrera</a>
+                        <a target="_blank" href="https://www.linkedin.com/in/savanna-m-garcia/"
+                           class="dropdown-item"><i class="fas fa-guitar"></i> Savanna
+                            Garcia</a>
+                        <a target="_blank" href="https://www.linkedin.com/in/carlos-munoz-ba516a214/"
+                           class="dropdown-item"><i class="fas fa-guitar"></i> Carlos Munoz</a></li>
+                        <a target="_blank" href="https://www.linkedin.com/in/alex-santamaria-768806215/"
+                           class="dropdown-item"><i class="fas fa-drum"></i> Alex Santamaria</a>
+                        <a target="_blank" href="https://www.linkedin.com/in/josh-williams8/"
+                           class="dropdown-item"><i class="fas fa-drum-steelpan"></i> Joshua
+                            Williams</a>
+                    </div>
                 </div>
             </div>
         </div>

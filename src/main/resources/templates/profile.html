@@ -43,7 +43,7 @@
             <div class="card-footer">
                 <div class="numbers">
                     <div class="item">
-                        <span>120</span>Posts
+                        <span>4.5</span><a th:if="${profileOwner}" data-bs-toggle="modal" data-bs-target="#exampleModalReview">Reviews</a>
                     </div>
                     <div class="border"></div>
                     <div class="item">
@@ -94,7 +94,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal 1 -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -128,6 +128,74 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Review -->
+    <div class="modal fade" id="exampleModalReview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelreview" th:text="${user.username}">Modal Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <h1 class="reviews d-flex flex-row justify-content-start align-items-center">Your Reviews:</h1>
+                <hr>
+                <div class="scroll container">
+                    <div th:each="review : ${user.getReviewsReceived()}">
+                        <div class="d-flex flex-row justify-content-between align-items-center">
+                            <p class="userName" th:text="${review.getReviewer().getDisplayName()}"}></p>
+                            <p class="rate" th:text="'Rating: ' + ${review.rating} + '☆'"></p>
+                        </div>
+                        <div class="lightBG">
+                            <p class="comment">Comments:</p>
+                            <p class="textSize" th:text="${review.body}"></p>
+                        </div>
+                        <hr>
+
+                    </div>
+                </div>
+
+            </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+<!--<nav id="navbar-example2" class="navbar navbar-light bg-light px-3">-->
+<!--    <a class="navbar-brand" href="#">Navbar</a>-->
+<!--    <ul class="nav nav-pills">-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="#scrollspyHeading1">First</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="#scrollspyHeading2">Second</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item dropdown">-->
+<!--            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>-->
+<!--            <ul class="dropdown-menu">-->
+<!--                <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>-->
+<!--                <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>-->
+<!--                <li><hr class="dropdown-divider"></li>-->
+<!--                <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>-->
+<!--            </ul>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->
+<!--<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">-->
+<!--    <h4 id="scrollspyHeading1">First heading</h4>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="scrollspyHeading2">Second heading</h4>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="scrollspyHeading3">Third heading</h4>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="scrollspyHeading4">Fourth heading</h4>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="scrollspyHeading5">Fifth heading</h4>-->
+<!--    <p>...</p>-->
+<!--</div>-->
+
 </div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 <footer th:replace="partials/footer.html :: footer"></footer>

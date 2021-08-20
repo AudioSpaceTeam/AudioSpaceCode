@@ -155,3 +155,44 @@ body{
 .eventCard {
   max-width: 60vw;
 }
+
+
+.userName{
+  font-size: x-large;
+  font-weight: bold;
+  padding: .3rem;
+
+}
+.reviews{
+  margin-bottom: 0rem;
+  margin-top: 1rem;
+  padding: .5rem;
+}
+.rate{
+  font-weight: bold;
+}
+.lightBG{
+  border-radius: .5rem;
+  background-color: #e3e3e3;
+  padding: .5rem;
+}
+
+.comment{
+  margin-bottom: .3rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.textSize{
+  font-size: small;
+
+}
+.scroll {
+  height:50vh;
+  overflow-y: scroll;
+  padding: .5rem;
+}
+
+.modal-content{
+  padding: .5rem;
+}

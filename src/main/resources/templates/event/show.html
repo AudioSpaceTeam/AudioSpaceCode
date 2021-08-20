@@ -39,11 +39,17 @@
               <input hidden name="id" th:value="${event.getId()}">
               <a onclick="this.parentNode.submit();">Request to Play.</a>
             </form>
-
+            <!--                Below we are checking if the person is the a requester... already so they can remove their selves if they want.-->
             <form th:if="${isRequester}" th:action="@{/event/remove/requester}" th:method="post" style="cursor: pointer">
               <input hidden name="id" th:value="${event.getId()}">
               <input hidden name="requesterId" th:value="${currentUser.getId()}">
               <a onclick="this.parentNode.submit();">Remove Request to Play.</a>
+            </form>
+            <!--                Below we are checking if the person is the a performer... already so they can remove their selves if they want.-->
+            <form th:if="${isSlotted}" th:action="@{/event/remove/performer}" th:method="post" style="cursor: pointer">
+              <input hidden name="id" th:value="${event.getId()}">
+              <input hidden name="performerId" th:value="${currentUser.getId()}">
+              <a onclick="this.parentNode.submit();">Remove myself from Performer List.</a>
             </form>
           </div>
           <!--               Below are the options for the owner...-->

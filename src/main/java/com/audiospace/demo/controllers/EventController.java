@@ -299,7 +299,7 @@ public class EventController {
     eventDao.save(event);
 //    Email stuff below.
     String emailPromoter = requester.getDisplayName() + " has been added to your event, " + event.getTitle() + "!";
-    String emailPerformer =  "Your request to join " + event.getTitle() + "was approved! Please email the promoter at: " + event.getPromoter().getEmail();
+    String emailPerformer =  "Your request to join " + event.getTitle() + " was approved! Please email the promoter at: " + event.getPromoter().getEmail();
 
     emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
     emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);

@@ -38,11 +38,26 @@ public class UserController {
   @GetMapping("/register")
   public String showSignupForm(Model model) {
     model.addAttribute("user", new User());
+    model.addAttribute("hasErrors",false);
+    model.addAttribute("errorText","");
     return "register";
   }
-
+// Todo: make it so users cannot share a username/have spaces in their name.
   @PostMapping("/register")
-  public String saveUser(@ModelAttribute User user, @RequestParam String isPromoter) {
+  public String saveUser(@ModelAttribute User user, @RequestParam String isPromoter, Model model) {
+    if(!userDao.findAllByUsername(user.getUsername()).isEmpty()){
+//      Todo: add an error message to tell user username is taken already.
+      model.addAttribute("user",user);
+      model.addAttribute("hasErrors",true);
+      model.addAttribute("errorText", "The username " + user.getUsername() + " is taken!");
+      return "register";
+    }
+    if(user.getEmail().contains("@") && user.getEmail().contains(".")){
+      model.addAttribute("user",user);
+      model.addAttribute("hasErrors",true);
+      model.addAttribute("errorText", "The email " + user.getEmail() + " is invalid!");
+      return "register";
+    }
     if (isPromoter.equals("true")) {
       user.setPromoter(true);
     } else {

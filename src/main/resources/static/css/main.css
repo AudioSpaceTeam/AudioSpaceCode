@@ -26,8 +26,8 @@
   text-decoration: none;
 }
 
-body{
-  background-color: lightgrey;
+body {
+  /*background-color: #344B47;*/
   font-family: montserrat, sans-serif;
   width: 100%;
   height: 100vh;

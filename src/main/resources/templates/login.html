@@ -2,28 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <title>Login</title>
+    <meta charset="UTF-8"/>
     <th:block th:replace="partials/style.html :: style"></th:block>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <!-- Bootstrap CSS -->
-    <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-            integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-            crossorigin="anonymous"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<!--<div class="container">-->
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
         <div class="row">
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-sd-3 offset-lg-4">
                 <h1 class="mb-3 text-center">Please log in</h1>
                 <div th:if="${param.error}">
                     <i class="far fa-meh-rolling-eyes"></i>
-                    Ups... something is wrong.
+                    Oops... something is wrong.
                 </div>
                 <div th:if="${param.logout}">
                     You have been logged out.
@@ -65,20 +57,7 @@
         </div>
     </div>
 </div>
-<script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-        crossorigin="anonymous"
-></script>
+<footer th:replace="partials/footer.html :: footer"></footer>
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>
 </html>

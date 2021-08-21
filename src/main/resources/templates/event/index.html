@@ -1,21 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
+    <title>Viewing all events</title>
     <meta charset="UTF-8"/>
-    <title></title>
     <th:block th:replace="partials/style.html :: style"></th:block>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-            integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-            crossorigin="anonymous"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 </head>
-<body style="background-color: lightgrey">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container mt-5">
     <div class="text-center mt-5">
@@ -143,12 +133,7 @@
 <!--    </main>-->
 <!--</div>-->
 
-<script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous">
-</script>
-<th:block th:replace="partials/scripts.html :: scripts"></th:block>
 <footer th:replace="partials/footer.html :: footer"></footer>
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>
 </html>

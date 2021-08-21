@@ -1,8 +1,12 @@
 package com.audiospace.demo.repositories;
 
 import com.audiospace.demo.models.Review;
+import com.audiospace.demo.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ReviewRepository extends JpaRepository<Review,Long> {
+import java.util.List;
 
+public interface ReviewRepository extends JpaRepository<Review,Long> {
+    public List<Review> findByReviewee_Id(Integer reviewee_id);
+    Review findById(long id);
 }

@@ -69,6 +69,7 @@ public class UserController {
     return "redirect:/login";
   }
 
+
   @GetMapping("/profile")
   public String showUserInfo(Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -95,13 +96,16 @@ public class UserController {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
+    model.addAttribute("revieweeUser", reviewDao.findById(id).getReviewee());
     model.addAttribute("user", userDao.findById(id));
     model.addAttribute("review", new Review());
     model.addAttribute("profileOwner", id == currentUser.getId());
+
 //    model.addAttribute("review", new Review());
 
     return "profile";
   }
+
 
   @GetMapping("/profile/{id}/edit")
   public String editUserInfo(@PathVariable long id, Model model) {
@@ -199,8 +203,6 @@ public class UserController {
     }
 
   }
-
-
 }
 
 

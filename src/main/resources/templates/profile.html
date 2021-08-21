@@ -29,20 +29,24 @@
                     <a href="" class="fab fa-youtube"></a>
                 </div>
                 <a href="" class="contact-btn">Contact </a>
+
                 <a th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}" class="contact-btn">Edit
                     Profile</a>
+
                 <!-- Button trigger modal -->
                 <a th:if="${!profileOwner}">
                     <button type="button" class="btn contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Review
                     </button>
                 </a>
+
             </div>
             <div class="card-footer">
                 <div class="numbers">
                     <div class="item">
-                        <span>120</span>Posts
-                    </div>
+
+                        <span>4.5</span><a th:if="${profileOwner}" data-bs-toggle="modal" data-bs-target="#exampleModalReview">Reviews</a>
+                </div>
                     <div class="border"></div>
                     <div class="item">
                         <span>120</span>Following
@@ -58,11 +62,19 @@
     <!--  End Profile Card-->
     <!--  Below list are the user's promoted events.-->
     <div th:if="${user.getPromoter()}">
+
+        <h3 class="text-center">Here are your planned events:</h3>
+        <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
+            <div th:each="event : ${userEvents}">
+                <div class="col d-flex align-items-center justify-content-center">
+                    <div class="card">
+
         <h3 class="text-left">Current planned events:</h3>
         <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
             <div th:each="event : ${userEvents}">
                 <div class="col d-flex align-items-center justify-content-center">
                     <div class="card card-events">
+
                         <div class="card-body">
                             <h5 class="card-title" th:text="${event.title}"></h5>
                             <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
@@ -73,6 +85,13 @@
                 </div>
             </div>
         </div>
+
+        <!--Below is for the performers profile-->
+        <div th:if="!${user.getPromoter()}">
+            <h3 class="text-center">Here are the events you are playing at:</h3>
+            <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                <div th:each="event : ${user.slotted}">
+
         <!--    added button delete account-->
         <!--            <form th:action="@{/events/{id}/delete}" th:method="POST">-->
         <!--                <button th:type="submit" class="btn-submit">Delete Account</button>-->
@@ -82,6 +101,7 @@
             <h3 class="text-left">Current planned events:</h3>
             <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
                 <div th:each="event : ${userEvents}">
+
                     <div class="col d-flex align-items-center justify-content-center">
                         <div class="card" style="width: 18rem; height: 20rem">
                             <div class="card-body">
@@ -96,13 +116,16 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
+
+    <!-- Modal 1 -->
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel" th:text="${user.username}">Modal Title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                 </div>
                 <form th:action="@{/profile}" th:method="post" th:object="${review}">
                     <div class="modal-body">
@@ -130,6 +153,43 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Review -->
+    <div class="modal fade" id="exampleModalReview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelreview" th:text="${user.username}">Modal Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <h1 class="reviews d-flex flex-row justify-content-start align-items-center">Your Reviews:</h1>
+                <hr>
+                <div class="scroll container">
+                    <div th:each="review : ${user.getReviewsReceived()}">
+                        <div class="d-flex flex-row justify-content-between align-items-center">
+                            <p class="userName" th:text="${review.getReviewer().getDisplayName()}"}></p>
+                            <p class="rate" th:text="'Rating: ' + ${review.rating} + '☆'"></p>
+                        </div>
+                        <div class="lightBG">
+                            <p class="comment">Comments:</p>
+                            <p class="textSize" th:text="${review.body}"></p>
+                        </div>
+                        <hr>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+             
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 </div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>
@@ -137,3 +197,41 @@
 
 
 
+<!--<nav id="navbar-example2" class="navbar navbar-light bg-light px-3">-->
+<!--    <a class="navbar-brand" href="#">Navbar</a>-->
+<!--    <ul class="nav nav-pills">-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="#scrollspyHeading1">First</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="#scrollspyHeading2">Second</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item dropdown">-->
+<!--            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>-->
+<!--            <ul class="dropdown-menu">-->
+<!--                <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>-->
+<!--                <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>-->
+<!--                <li><hr class="dropdown-divider"></li>-->
+<!--                <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>-->
+<!--            </ul>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->
+<!--<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">-->
+<!--    <h4 id="scrollspyHeading1">First heading</h4>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="scrollspyHeading2">Second heading</h4>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="scrollspyHeading3">Third heading</h4>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="scrollspyHeading4">Fourth heading</h4>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="scrollspyHeading5">Fifth heading</h4>-->
+<!--    <p>...</p>-->
+<!--</div>-->
+
+</div>
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<footer th:replace="partials/footer.html :: footer"></footer>
+</body>
+</html>

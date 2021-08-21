@@ -31,9 +31,9 @@ public class User {
 
 //  Profile Image? -- we can add later.
 
-  //  Bio
-  @Column(nullable = true, length = 500)
-  private String bio;
+//  //  Bio
+//  @Column(nullable = false, length = 500)
+//  private String bio;
 
   public List<Event> getSlotted() {
     return slotted;
@@ -67,7 +67,7 @@ public class User {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewer")
   private List<Review> reviewsGiven;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewer")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewee")
   private List<Review> reviewsReceived;
 
 //    @ManyToMany(cascade = CascadeType.ALL)
@@ -112,13 +112,12 @@ public class User {
 
 
 
-  public User(long id, String username, String email, String displayName, String password, String bio, Boolean isPromoter, List<Event> promotedEvents) {
+  public User(long id, String username, String email, String displayName, String password, Boolean isPromoter, List<Event> promotedEvents) {
     this.id = id;
     this.username = username;
     this.email = email;
     this.displayName = displayName;
     this.password = password;
-    this.bio = bio;
     this.isPromoter = isPromoter;
     this.promotedEvents = promotedEvents;
   }
@@ -171,14 +170,6 @@ public class User {
     this.password = password;
   }
 
-  public String getBio() {
-    return bio;
-  }
-
-  public void setBio(String bio) {
-    this.bio = bio;
-  }
-
   public Boolean getPromoter() {
     return isPromoter;
   }
@@ -198,27 +189,24 @@ public class User {
     username = copy.username;
     password = copy.password;
     displayName = copy.displayName;
-    bio = copy.bio;
     isPromoter = copy.isPromoter;
     promotedEvents = copy.promotedEvents;
   }
 
-  public User(long id, String username, String email, String displayName, String password, String bio, Boolean isPromoter) {
+  public User(long id, String username, String email, String displayName, String password, Boolean isPromoter) {
     this.id = id;
     this.username = username;
     this.email = email;
     this.displayName = displayName;
     this.password = password;
-    this.bio = bio;
     this.isPromoter = isPromoter;
   }
 
-  public User(String username, String email, String displayName, String password, String bio, Boolean isPromoter) {
+  public User(String username, String email, String displayName, String password, Boolean isPromoter) {
     this.username = username;
     this.email = email;
     this.displayName = displayName;
     this.password = password;
-    this.bio = bio;
     this.isPromoter = isPromoter;
   }
 

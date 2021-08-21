@@ -1,21 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
+    <title>Viewing all events</title>
     <meta charset="UTF-8"/>
-    <title></title>
     <th:block th:replace="partials/style.html :: style"></th:block>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-            integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-            crossorigin="anonymous"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 </head>
-<body style="background-color: lightgrey">
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container mt-5">
     <div class="text-center mt-5">
@@ -27,25 +17,34 @@
     <hr class="my-4">
 
     <div class="text-center mt-5">
-        <form th:action="@{/event/search}" th:method="post">
+        <form th:action="@{/event}" th:method="post">
 
             <!--            input search name-->
             <div class="mb-3">
-                <label for="search" class="form-label">Search for name</label>
+                <h3><label for="search" class="form-label">Search for Event</label></h3>
                 <input name="search" id="search" type="text" class="form-control"
                        aria-describedby="search-event" placeholder="Event name">
-                <div id="#" class="form-text">Or...</div>
+              <!--                <form th:action="@{/event/search}" th:method="post">-->
+              <!--                    <h4 class="card-title"><label for="search">Search for an Event: </label></h4>-->
+              <!--                    &lt;!&ndash;          Below searches by description and title.&ndash;&gt;-->
+              <!--                    <input name="search" id="search" type="text">-->
+
+              <div id="#" class="form-text">Or...</div>
             </div>
 
             <!--            Checkbox search genre here-->
-            <div class="form-check" th:each="genre: ${genres}">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" th:id="${genre.genreName}"
+          <div class="flex-box">
+            <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
+            <div th:each="genre: ${genres}">
+                <input class="form-check-input" type="checkbox" th:id="${genre.genreName}"
                        name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}">
-                <label class="form-check-label" for="defaultCheck1" th:for="${genre.genreName}"></label>
+                <label class="form-check-label" th:for="${genre.genreName}"></label>
             </div>
+
+          </div>
             <div id="##" class="form-text">Select for genre</div>
             <br>
-            <a class="contact-btn" href="#">Go for it!</a>
+            <button class="contact-btn" type="submit">Search!</button>
         </form>
         <hr class="my-4">
         <h1>Viewing All Events</h1>
@@ -76,8 +75,9 @@
         </div>
     </div>
 </div>
-<br>
-
+<hr>
+<a class="contact-btn" href="#top">Go to top</a>
+<hr>
 
 <!--<div class="jumbotron jumbotron-fluid">-->
 <!--    <main class="container">-->
@@ -133,12 +133,7 @@
 <!--    </main>-->
 <!--</div>-->
 
-<script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous">
-</script>
-<th:block th:replace="partials/scripts.html :: scripts"></th:block>
 <footer th:replace="partials/footer.html :: footer"></footer>
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>
 </html>

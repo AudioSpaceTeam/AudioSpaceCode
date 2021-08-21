@@ -12,19 +12,19 @@ public class HelloController {
     @GetMapping("/")
 
     public String hello() {
-        return "/home";
+        return "home";
 
     }
 
     //added employees
     @GetMapping("/employees")
     public String employees() {
-        return "/employees";
+        return "employees";
     }
 
     //added contact
     @GetMapping("/contact")
     public String contact() {
-        return "/contact";
+        return "contact";
     }
 }

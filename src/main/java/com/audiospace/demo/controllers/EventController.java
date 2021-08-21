@@ -10,6 +10,7 @@ import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.GenreRepository;
 import com.audiospace.demo.repositories.UserRepository;
+import com.audiospace.demo.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +25,13 @@ public class EventController {
   private final EventRepository eventDao;
   private final UserRepository userDao;
   private final GenreRepository genreDao;
+  private final EmailService emailSvc;
 
-  public EventController(EventRepository eventDao, UserRepository userDao, GenreRepository genreDao) {
+  public EventController(EventRepository eventDao, UserRepository userDao, GenreRepository genreDao, EmailService emailSvc) {
     this.eventDao = eventDao;
     this.userDao = userDao;
     this.genreDao = genreDao;
+    this.emailSvc = emailSvc;
   }
 
   @GetMapping("/event/create")
@@ -75,16 +78,11 @@ public class EventController {
 //    We are checking if the current user is a performer or not.
     if (!currentUser.getPromoter()) {
       isPerformer = true;
-//      We are checking if the current user has the event in their list of request.
-      if (currentUser.getRequested().isEmpty()) {
-        boolean isReqOrSlot = isRequester || isSlotted;
-        model.addAttribute("isReqOrSlot", isReqOrSlot);
-        model.addAttribute("isOwner", isOwner);
-        model.addAttribute("isPerformer", isPerformer);
-        model.addAttribute("isRequester", isRequester);
-        model.addAttribute("isSlotted", isSlotted);
-        model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
-        return "event/show";
+      for (Event eventCheck : currentUser.getSlotted()) {
+        if (eventCheck.getId() == event.getId()) {
+          isSlotted = true;
+          break;
+        }
       }
       for (Event eventCheck : currentUser.getRequested()) {
         if (eventCheck.getId() == event.getId()) {
@@ -92,22 +90,7 @@ public class EventController {
           break;
         }
       }
-      if (currentUser.getSlotted().isEmpty()) {
-        boolean isReqOrSlot = isRequester || isSlotted;
-        model.addAttribute("isReqOrSlot", isReqOrSlot);
-        model.addAttribute("isOwner", isOwner);
-        model.addAttribute("isPerformer", isPerformer);
-        model.addAttribute("isRequester", isRequester);
-        model.addAttribute("isSlotted", isSlotted);
-        model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
-        return "event/show";
-      }
-      for (Event eventCheck : currentUser.getSlotted()) {
-        if (eventCheck.getId() == event.getId()) {
-          isSlotted = true;
-          break;
-        }
-      }
+
     }
     boolean isReqOrSlot = isRequester || isSlotted;
     model.addAttribute("isReqOrSlot", isReqOrSlot);
@@ -136,22 +119,6 @@ public class EventController {
 
     event.setStartDateTime(LocalDateTime.parse(dateTime));
 
-//    Below stuff is for making a list of the selected performers.
-    List<User> slottedPerformers = new ArrayList<>();
-
-
-//    for (String band : bandIds) {
-//      if (band.equalsIgnoreCase("ignore")) {
-//        continue;
-//      }
-////      System.out.println(band + " Band id");
-////      We are ADDING to the slotted performers list,
-////      We are finding the user BY ID
-////      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
-//      slottedPerformers.add(userDao.findById(Long.parseLong(band)));
-//    }
-//    event.setPerformers(slottedPerformers);
-    //    Below stuff is for making a list of the selected performers.
     List<Genre> selectedGenres = new ArrayList<>();
 
     for (String genre : genreIds) {
@@ -219,8 +186,8 @@ public class EventController {
       return "redirect:/event";
     }
   }
-
-  @PostMapping("/event/search")
+//Below is our search, TODO:change to a GET?
+  @PostMapping("/event")
   public String eventSearch(@RequestParam String search,
                             @RequestParam String[] genreIds,
                             Model model) {
@@ -272,6 +239,12 @@ public class EventController {
 
     event.getRequesters().add(requester);
     eventDao.save(event);
+//    Email stuff below.
+    String emailPromoter = requester.getDisplayName() + " Just requested to join your event, " + event.getTitle() + "!";
+    String emailPerformer =  "You requested to join your event, " + event.getTitle() + "!";
+
+    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
+    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
 
     return "redirect:/event/" + id;
   }
@@ -287,6 +260,13 @@ public class EventController {
     event.getRequesters().remove(requester);
     event.getPerformers().add(requester);
     eventDao.save(event);
+//    Email stuff below.
+    String emailPromoter = requester.getDisplayName() + " has been added to your event, " + event.getTitle() + "!";
+    String emailPerformer =  "Your request to join " + event.getTitle() + " was approved! Please email the promoter at: " + event.getPromoter().getEmail();
+
+    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
+    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
+
 
     return "redirect:/event/" + id;
   }
@@ -301,6 +281,13 @@ public class EventController {
 
     event.getRequesters().remove(requester);
     eventDao.save(event);
+    //    Email stuff below.
+    String emailPromoter = requester.getDisplayName() + " had their request to join your event removed.";
+    String emailPerformer =  "Your request to join your event, " + event.getTitle() + "was removed :c.";
+
+    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
+    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
+
 
     return "redirect:/event/" + id;
   }
@@ -315,6 +302,13 @@ public class EventController {
 
     event.getPerformers().remove(performer);
     eventDao.save(event);
+    //    Email stuff below.
+    String emailPromoter = performer.getDisplayName() + " is no longer performing at " + event.getTitle() + ".";
+    String emailPerformer =  "You were removed from " + event.getTitle() + " sorry. :C";
+
+    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
+    emailSvc.prepareAndSend(performer.getEmail(),event.getTitle(),emailPerformer);
+
 
     return "redirect:/event/" + id;
   }

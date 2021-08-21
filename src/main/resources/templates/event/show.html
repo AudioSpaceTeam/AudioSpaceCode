@@ -24,11 +24,12 @@
           <span th:text="${event.description}"></span><br>
           <span th:text="'This event pays $' + ${event.price} + '0 per band'"></span>
           <p><span th:text="${event.slots}"></span> slots available to play at <span th:text="${event.location}"></span> starting @ <span th:text="${event.startDateTime}"></span></p>
-          <p>Current bands scheduled to perform:<br>
-            <span th:each="slotted : ${event.performers}">
-                        <span th:text="${slotted.displayName}"></span>,
-                    </span>
-          </p>
+            <p>Current bands scheduled to perform:</p>
+            <ul>
+                <li th:each="slotted : ${event.performers}">
+                    <span th:text="${slotted.displayName}"></span>
+                </li>
+            </ul>
           <a th:href="@{|/profile/${event.getPromoter().getId()}|}">View <span th:text="${event.getPromoter().getDisplayName()}"></span>'s profile</a>
           <p><a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a></p>
           <!--              Below are options for the Performers/request-->
@@ -36,44 +37,51 @@
             <!--                Below we are checking if the person is the NOT a requester or a performer...-->
             <form th:if="!${isReqOrSlot}" th:action="@{|/event/add/requester|}" th:method="post" style="cursor: pointer">
               <input hidden name="id" th:value="${event.getId()}">
-              <a onclick="this.parentNode.submit();">Request to Play.</a>
+              <a class="btn btn-info" onclick="this.parentNode.submit();">Request to Play.</a>
             </form>
-
+            <!--                Below we are checking if the person is the a requester... already so they can remove their selves if they want.-->
             <form th:if="${isRequester}" th:action="@{/event/remove/requester}" th:method="post" style="cursor: pointer">
               <input hidden name="id" th:value="${event.getId()}">
               <input hidden name="requesterId" th:value="${currentUser.getId()}">
-              <a onclick="this.parentNode.submit();">Remove Request to Play.</a>
+              <a class="btn btn-warning" onclick="this.parentNode.submit();">Remove Request to Play.</a>
+            </form>
+            <!--                Below we are checking if the person is the a performer... already so they can remove their selves if they want.-->
+            <form th:if="${isSlotted}" th:action="@{/event/remove/performer}" th:method="post" style="cursor: pointer">
+              <input hidden name="id" th:value="${event.getId()}">
+              <input hidden name="performerId" th:value="${currentUser.getId()}">
+              <a class="btn btn-danger" onclick="this.parentNode.submit();">Remove myself from Performer List.</a>
             </form>
           </div>
           <!--               Below are the options for the owner...-->
           <div th:if="${isOwner}">
             <!--                to accept request/remove...-->
+            <h5>Event Roster Controls Below.</h5>
             <div th:each="requester : ${event.getRequesters()}">
-
+              <h6>Options for <span th:text="${requester.username}"></span></h6>
               <form th:action="@{/event/add/performer}" th:method="post" style="cursor: pointer">
                 <input hidden name="id" th:value="${event.getId()}">
                 <input hidden name="requesterId" th:value="${requester.getId()}">
-                <a onclick="this.parentNode.submit();">Add: <span th:text="${requester.username}"></span> to performers List.</a>
+                <a class="btn btn-success" onclick="this.parentNode.submit();">Add: <span th:text="${requester.username}"></span> to performers List.</a>
               </form>
               <form th:action="@{/event/remove/requester}" th:method="post" style="cursor: pointer">
                 <input hidden name="id" th:value="${event.getId()}">
                 <input hidden name="requesterId" th:value="${requester.getId()}">
-                <a onclick="this.parentNode.submit();">Remove: <span th:text="${requester.username}"></span> from requesters List.</a>
+                <a class="btn btn-warning" onclick="this.parentNode.submit();">Remove: <span th:text="${requester.username}"></span> from requesters List.</a>
               </form>
             </div>
             <!--                These are for removing performers.-->
             <div th:each="performer : ${event.performers}">
+              <h6>Options for <span th:text="${performer.username}"></span></h6>
               <form th:action="@{/event/remove/performer}" th:method="post" style="cursor: pointer">
                 <input hidden name="id" th:value="${event.getId()}">
                 <input hidden name="performerId" th:value="${performer.getId()}">
-                <a onclick="this.parentNode.submit();">Remove: <span th:text="${performer.username}"></span> from performers List.</a>
+                <a class="btn btn-danger" onclick="this.parentNode.submit();">Remove: <span th:text="${performer.username}"></span> from performers List.</a>
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 <footer th:replace="partials/footer.html :: footer"></footer>

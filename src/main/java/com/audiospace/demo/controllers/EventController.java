@@ -243,8 +243,8 @@ public class EventController {
     String emailPromoter = requester.getDisplayName() + " Just requested to join your event, " + event.getTitle() + "!";
     String emailPerformer =  "You requested to join your event, " + event.getTitle() + "!";
 
-    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
-    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
+//    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
+//    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
 
     return "redirect:/event/" + id;
   }
@@ -264,8 +264,8 @@ public class EventController {
     String emailPromoter = requester.getDisplayName() + " has been added to your event, " + event.getTitle() + "!";
     String emailPerformer =  "Your request to join " + event.getTitle() + " was approved! Please email the promoter at: " + event.getPromoter().getEmail();
 
-    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
-    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
+//    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
+//    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
 
 
     return "redirect:/event/" + id;
@@ -285,8 +285,8 @@ public class EventController {
     String emailPromoter = requester.getDisplayName() + " had their request to join your event removed.";
     String emailPerformer =  "Your request to join your event, " + event.getTitle() + "was removed :c.";
 
-    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
-    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
+//    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
+//    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
 
 
     return "redirect:/event/" + id;
@@ -306,8 +306,8 @@ public class EventController {
     String emailPromoter = performer.getDisplayName() + " is no longer performing at " + event.getTitle() + ".";
     String emailPerformer =  "You were removed from " + event.getTitle() + " sorry. :C";
 
-    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
-    emailSvc.prepareAndSend(performer.getEmail(),event.getTitle(),emailPerformer);
+//    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
+//    emailSvc.prepareAndSend(performer.getEmail(),event.getTitle(),emailPerformer);
 
 
     return "redirect:/event/" + id;

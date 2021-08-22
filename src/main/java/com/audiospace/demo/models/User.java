@@ -30,6 +30,21 @@ public class User {
   private String password;
 
 //  Profile Image? -- we can add later.
+  @Column(nullable = true, length = 600)
+  private String imageUrl;
+
+  //imageUrl constructor
+  public User(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
 
 //  //  Bio
 //  @Column(nullable = false, length = 500)

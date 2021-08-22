@@ -46,9 +46,17 @@ public class User {
     this.imageUrl = imageUrl;
   }
 
-//  //  Bio
-//  @Column(nullable = false, length = 500)
-//  private String bio;
+  //  Bio
+  @Column(nullable = true, length = 500)
+  private String bio;
+
+  public String getBio() {
+    return bio;
+  }
+
+  public void setBio(String bio) {
+    this.bio = bio;
+  }
 
   public List<Event> getSlotted() {
     return slotted;

@@ -53,7 +53,7 @@
             let marker = new mapboxgl.Marker({
                 color: '#007c6f',
             })
-                .setLngLat(address)
+                .setLngLat(address )
                 .setPopup(popup)
                 .addTo(map);
         })

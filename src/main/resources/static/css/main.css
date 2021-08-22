@@ -16,8 +16,12 @@
 
 /*}*/
 .container {
-  height: 100vh;
+  background-color: #d8dedd;
 }
+.footer-as {
+  background-color: #344B47;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -25,11 +29,14 @@
   text-decoration: none;
 }
 
-body{
-  background-color: lightgrey;
+body {
+  background-color: #ffffff;
   font-family: montserrat, sans-serif;
   width: 100%;
   height: 100vh;
+}
+.navbar {
+  background-color: #344B47;
 }
 
 .profile-card-container{
@@ -154,4 +161,45 @@ body{
 }
 .eventCard {
   max-width: 60vw;
+}
+
+
+.userName{
+  font-size: x-large;
+  font-weight: bold;
+  padding: .3rem;
+
+}
+.reviews{
+  margin-bottom: 0rem;
+  margin-top: 1rem;
+  padding: .5rem;
+}
+.rate{
+  font-weight: bold;
+}
+.lightBG{
+  border-radius: .5rem;
+  background-color: #e3e3e3;
+  padding: .5rem;
+}
+
+.comment{
+  margin-bottom: .3rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.textSize{
+  font-size: small;
+
+}
+.scroll {
+  height:50vh;
+  overflow-y: scroll;
+  padding: .5rem;
+}
+
+.modal-content{
+  padding: .5rem;
 }

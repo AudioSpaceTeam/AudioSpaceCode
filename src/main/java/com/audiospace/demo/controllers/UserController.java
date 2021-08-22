@@ -33,11 +33,26 @@ public class UserController {
   @GetMapping("/register")
   public String showSignupForm(Model model) {
     model.addAttribute("user", new User());
+    model.addAttribute("hasErrors",false);
+    model.addAttribute("errorText","");
     return "register";
   }
-
+// Todo: make it so users cannot share a username/have spaces in their name.
   @PostMapping("/register")
-  public String saveUser(@ModelAttribute User user, @RequestParam String isPromoter) {
+  public String saveUser(@ModelAttribute User user, @RequestParam String isPromoter, Model model) {
+    if(!userDao.findAllByUsername(user.getUsername()).isEmpty()){
+//      Todo: add an error message to tell user username is taken already.
+      model.addAttribute("user",user);
+      model.addAttribute("hasErrors",true);
+      model.addAttribute("errorText", "The username " + user.getUsername() + " is taken!");
+      return "register";
+    }
+    if(user.getEmail().contains("@") && user.getEmail().contains(".")){
+      model.addAttribute("user",user);
+      model.addAttribute("hasErrors",true);
+      model.addAttribute("errorText", "The email " + user.getEmail() + " is invalid!");
+      return "register";
+    }
     if (isPromoter.equals("true")) {
       user.setPromoter(true);
     } else {
@@ -48,6 +63,7 @@ public class UserController {
     userDao.save(user);
     return "redirect:/login";
   }
+
 
   @GetMapping("/profile")
   public String showUserInfo(Model model) {
@@ -75,13 +91,16 @@ public class UserController {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
+    model.addAttribute("revieweeUser", reviewDao.findById(id).getReviewee());
     model.addAttribute("user", userDao.findById(id));
     model.addAttribute("review", new Review());
     model.addAttribute("profileOwner", id == currentUser.getId());
+
 //    model.addAttribute("review", new Review());
 
     return "profile";
   }
+
 
   @GetMapping("/profile/{id}/edit")
   public String editUserInfo(@PathVariable long id, Model model) {
@@ -184,8 +203,6 @@ public class UserController {
     }
 
   }
-
-
 }
 
 

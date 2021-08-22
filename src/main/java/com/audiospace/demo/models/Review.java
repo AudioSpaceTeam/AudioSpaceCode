@@ -9,9 +9,6 @@ public class Review {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-//  @Column(nullable = true, length = 300)
-//  private String title;
-
   @Column(nullable = true, length = 300)
   private String body;
 
@@ -41,13 +38,6 @@ public class Review {
     this.id = id;
   }
 
-//  public String getTitle() {
-//    return title;
-//  }
-//
-//  public void setTitle(String title) {
-//    this.title = title;
-//  }
 
   public String getBody() {
     return body;
@@ -82,6 +72,22 @@ public class Review {
   private User reviewee;
 
 
+  public Review(String body, Integer rating, User reviewer, User reviewee) {
+    this.body = body;
+    this.rating = rating;
+    this.reviewer = reviewer;
+    this.reviewee = reviewee;
+  }
+
+  public Review(long id, String body, Integer rating, User reviewer, User reviewee) {
+    this.id = id;
+    this.body = body;
+    this.rating = rating;
+    this.reviewer = reviewer;
+    this.reviewee = reviewee;
+  }
+
+
   public User getReviewee() {
     return reviewee;
   }
@@ -89,4 +95,12 @@ public class Review {
   public void setReviewee(User reviewee) {
     this.reviewee = reviewee;
   }
+
+//  public User getReviewer() {
+//    return reviewer;
+//  }
+//
+//  public void setReviewer(User reviewer) {
+//    this.reviewer = reviewer;
+//  }
 }

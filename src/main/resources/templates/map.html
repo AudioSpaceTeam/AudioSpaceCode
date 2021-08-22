@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
-    <meta charset="UTF-8"/>
     <title>View on Map</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -48,7 +47,7 @@
         <p th:text="${event.slots}"></p>
         <p th:text="${event.description}"></p>
     </div>
-    <br>
+    <hr class="my-4">
 </div>
 <script th:src="@{/js/keys.js}"></script>
 <script th:src="@{/js/mapbox-geocoder-utils.js}"></script>

@@ -7,3 +7,6 @@ VALUES ('Rock'),
        ('Techno'),
        ('Rap/Hiphop'),
        ('Reggae');
+
+# INSERT INTO audiospace_db.events(description, location, price, slots, start_date_time, title, promoter_id)
+# VALUES ('This is a description', 'Codeup',59.99,3,)

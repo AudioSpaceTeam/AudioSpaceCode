@@ -177,6 +177,9 @@ body {
 }
 .rate{
   font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: .3rem;
+  padding:.3rem;
 }
 .lightBG{
   border-radius: .5rem;

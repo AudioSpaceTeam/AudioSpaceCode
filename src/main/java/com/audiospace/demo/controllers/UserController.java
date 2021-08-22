@@ -73,10 +73,19 @@ public class UserController {
   @GetMapping("/profile")
   public String showUserInfo(Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    //Logic to get Average Review=======================================================================================
+    List<Review> reviews = reviewDao.findAllByRevieweeId(currentUser.getId());
+    double total = 0;
+    for(Review review: reviews){
+      total += review.getRating();
+    }
+    double ratingAverage = total/reviews.size();
+    //==================================================================================================================
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     model.addAttribute("user", userDao.findById(currentUser.getId()));
     model.addAttribute("review", new Review());
+    model.addAttribute("ratingAverage", ratingAverage);
     model.addAttribute("event", new Event());
     model.addAttribute("profileOwner", true);
     return "profile";
@@ -94,15 +103,22 @@ public class UserController {
   @GetMapping("/profile/{id}")
   public String showUserInfo(@PathVariable long id, Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    Logic to get Average Review=======================================================================================
+    List<Review> reviews = reviewDao.findAllByRevieweeId(currentUser.getId());
+    double total = 0;
+    for(Review review: reviews){
+      total += review.getRating();
+    }
+    double ratingAverage = total/reviews.size();
+//    ==================================================================================================================
     model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     model.addAttribute("revieweeUser", reviewDao.findById(id).getReviewee());
     model.addAttribute("user", userDao.findById(id));
     model.addAttribute("review", new Review());
+    model.addAttribute("reviewAverage", ratingAverage);
+    model.addAttribute("event", new Event());
     model.addAttribute("profileOwner", id == currentUser.getId());
-
-//    model.addAttribute("review", new Review());
-
     return "profile";
   }
 

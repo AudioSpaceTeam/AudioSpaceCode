@@ -93,6 +93,8 @@ public class EventController {
 
     }
     boolean isReqOrSlot = isRequester || isSlotted;
+    boolean eventNotFull = event.getSlots() > event.getPerformers().size();
+    model.addAttribute("eventNotFull", eventNotFull);
     model.addAttribute("isReqOrSlot", isReqOrSlot);
     model.addAttribute("isOwner", isOwner);
     model.addAttribute("isPerformer", isPerformer);

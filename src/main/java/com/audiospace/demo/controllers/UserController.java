@@ -115,7 +115,7 @@ public class UserController {
 //    ==================================================================================================================
     model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
-    model.addAttribute("revieweeUser", reviewDao.findById(id).getReviewee());
+//    model.addAttribute("revieweeUser", reviewDao.findById(id).getReviewee());
     model.addAttribute("user", userDao.findById(id));
     model.addAttribute("review", new Review());
     model.addAttribute("ratingAverage", newAverage);

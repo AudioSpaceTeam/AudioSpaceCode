@@ -6,60 +6,61 @@
     <th:block th:replace="partials/style.html :: style"></th:block>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 </head>
-<nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container containerEvents">
-    <div class="card searchEventCard">
-        <form th:action="@{/event}" th:method="post">
-            <div>
-                <p>
-                    <label for="search" class="form-label">Search events</label>
-                    <input name="search" id="search" type="text" class="form-control searchInput" aria-describedby="search-event" placeholder="Event name">
-                </p>
-            </div>
-            <div class="genre">
-                <p>Select Genre</p>
-                    <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
-                    <div th:each="genre: ${genres}">
-                        <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}"></label>
-                    </div>
-            </div>
-            <br>
-            <button class="btn eventSearchButton" type="submit">Search</button>
-        </form>
-    </div>
-    <div class="card eventsDisplayCard">
-        <div class="text-center">
-            <h3>Events currently scheduled</h3>
-        </div>
-        <div class="eventBody">
-            <div th:each="event : ${events}">
-                <div class="card userImageCard">
-                    <div class="pic">
-                        <img th:src="${event.promoter.imageUrl}" alt="No Profile Picture">
-                    </div>
+<body>
+    <nav th:replace="partials/navbar.html :: navbar"></nav>
+    <div class="container containerEvents">
+        <div class="card searchEventCard">
+            <form th:action="@{/event}" th:method="post">
+                <div>
+                    <p>
+                        <label for="search" class="form-label">Search events</label>
+                        <input name="search" id="search" type="text" class="form-control searchInput" aria-describedby="search-event" placeholder="Event name">
+                    </p>
                 </div>
-                <div class="card mainEvents">
-                    <div class="card">
-                        <div class="card-body displayEvent">
-                            <p class="card-text">
-                            <span th:text="${event.title}"></span> @ <span th:text="${event.location}"></span>
-                            <p th:text="${event.description}">
-                            <p th:text="${event.startDateTime}">
-                            <div align="right">
-                                <a th:href="@{|/event/${event.getId()}|}">More info</a>
-                            </div>
+                <div class="genre">
+                    <p>Select Genre</p>
+                        <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
+                        <div th:each="genre: ${genres}">
+                            <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}"></label>
                         </div>
-                     </div>
+                </div>
+                <br>
+                <button class="btn eventSearchButton" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="card eventsDisplayCard">
+            <div class="text-center">
+                <h3>Events currently scheduled</h3>
+            </div>
+            <div class="eventBody">
+                <div th:each="event : ${events}">
+                    <div class="card userImageCard">
+                        <div class="pic">
+                            <img th:src="${event.promoter.imageUrl}" alt="No Profile Picture">
+                        </div>
+                    </div>
+                    <div class="card mainEvents">
+                        <div class="card">
+                            <div class="card-body displayEvent">
+                                <p class="card-text">
+                                <span th:text="${event.title}"></span> @ <span th:text="${event.location}"></span>
+                                <p th:text="${event.description}">
+                                <p th:text="${event.startDateTime}">
+                                <div align="right">
+                                    <a th:href="@{|/event/${event.getId()}|}">More info</a>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <hr>
-        <div align="right">
-            <a class="contact-btn" href="#top">Back to top</a>
+            <hr>
+            <div align="right">
+                <a class="contact-btn" href="#top">Back to top</a>
+            </div>
         </div>
     </div>
-</div>
-<footer th:replace="partials/footer.html :: footer"></footer>
-<th:block th:replace="partials/scripts.html :: scripts"></th:block>
+    <footer th:replace="partials/footer.html :: footer"></footer>
+    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>
 </html>

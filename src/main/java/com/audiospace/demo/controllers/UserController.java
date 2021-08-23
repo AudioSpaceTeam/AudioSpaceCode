@@ -79,14 +79,23 @@ public class UserController {
     }
     double ratingAverage = total/reviews.size();
     String newAverage = df1.format(ratingAverage);
+    double recentAverage = Double.parseDouble(newAverage);
+    if(Double.isNaN(recentAverage)){
+      recentAverage = 0;
+    }
     //==================================================================================================================
+
+
+
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     model.addAttribute("user", userDao.findById(currentUser.getId()));
     model.addAttribute("review", new Review());
-    model.addAttribute("ratingAverage", newAverage);
+    model.addAttribute("ratingAverage", recentAverage);
     model.addAttribute("event", new Event());
     model.addAttribute("profileOwner", true);
+
+
     return "profile";
   }
 
@@ -110,13 +119,19 @@ public class UserController {
     }
     double ratingAverage = total/reviews.size();
     String newAverage = df1.format(ratingAverage);
+    double recentAverage = Double.parseDouble(newAverage);
+    if(Double.isNaN(recentAverage)){
+      recentAverage = 0;
+    }
+
+
 //    ==================================================================================================================
     model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     model.addAttribute("revieweeUser", reviewDao.findById(id).getReviewee());
     model.addAttribute("user", userDao.findById(id));
     model.addAttribute("review", new Review());
-    model.addAttribute("ratingAverage", newAverage);
+    model.addAttribute("ratingAverage", recentAverage);
     model.addAttribute("event", new Event());
     model.addAttribute("profileOwner", id == currentUser.getId());
     return "profile";

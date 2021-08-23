@@ -5,8 +5,10 @@
     <title>Register</title>
     <th:block th:replace="partials/style.html :: style"></th:block>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script src="../static/js/loading-screen.js"></script>
 </head>
 <body>
+
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container">
     <!--Profile Card ================================================================================================-->
@@ -44,7 +46,7 @@
                 <div class="numbers">
                     <div class="item">
 
-                        <span th:text="${ratingAverage}"></span>
+                        <span th:text="${ratingAverage}">0</span>
                         <a  data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
 
                         <div class="border"></div>
@@ -173,6 +175,7 @@
 
 </div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<script></script>
 <footer th:replace="partials/footer.html :: footer"></footer>
 </body>
 </html>

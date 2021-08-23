@@ -210,7 +210,7 @@ body {
 /*Star Rating CSS*/
 .rotate{
   transform: translate(-50%, -50%) rotateY(180deg);
-  margin-left: 3rem;
+  margin-left: 5.5rem;
 }
 
 .rating input{
@@ -219,6 +219,7 @@ body {
 
 .rating label i{
   cursor: pointer;
+  margin-left: 1rem;
 }
 /*.rating i:hover{*/
 /*  color:#FFD600;*/
@@ -256,6 +257,21 @@ input#5:checked ~ label{
 .textRect {
   width: 100%;
 }
+
+/*CREATE.HTML*/
+.push-down{
+  margin-top: 2rem;
+}
+
+.down{
+  margin-top: 3rem;
+}
+
+.TitleForm{
+  width:100%;
+  margin-bottom: 1rem;
+}
+
 
 
 

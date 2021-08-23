@@ -12,39 +12,39 @@
 
 <div class="container">
   <h1>Edit your profile</h1>
-<!--TODO: change delete to disable...-->
+  <!--TODO: change delete to disable...-->
   <!-- Button trigger modal -->
-<!--  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
-<!--    Delete Account?-->
-<!--  </button>-->
+  <!--  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+  <!--    Delete Account?-->
+  <!--  </button>-->
 
-<!--  &lt;!&ndash; Modal &ndash;&gt;-->
-<!--  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog modal-dialog-centered">-->
-<!--      <div class="modal-content">-->
-<!--        <div class="modal-header">-->
-<!--          <h5 class="modal-title" id="exampleModalLabel" th:text="${user.username}">Modal Title</h5>-->
-<!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--        </div>-->
-<!--        <div class="modal-body">-->
-<!--          ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-<!--          <form th:method="post" th:action="@{|/profile/${user.getId()}/delete|}">-->
-<!--            <label for="passwordDelete">Enter your password to confirm deletion: </label>-->
-<!--            <br>-->
-<!--            <input type="password" name="passwordDelete" placeholder="Password" id="passwordDelete"/>-->
-<!--            <br>-->
-<!--            <input hidden name="id" th:value="${user.id}">-->
-<!--            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--            <button type="submit" class="btn btn-danger">Delete Account</button>-->
-<!--          </form>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-  <form th:action="@{|/profile/${user.getId()}/edit|}" th:method="post" th:object="${user}">
+  <!--  &lt;!&ndash; Modal &ndash;&gt;-->
+  <!--  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+  <!--    <div class="modal-dialog modal-dialog-centered">-->
+  <!--      <div class="modal-content">-->
+  <!--        <div class="modal-header">-->
+  <!--          <h5 class="modal-title" id="exampleModalLabel" th:text="${user.username}">Modal Title</h5>-->
+  <!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+  <!--        </div>-->
+  <!--        <div class="modal-body">-->
+  <!--          ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?-->
+  <!--        </div>-->
+  <!--        <div class="modal-footer">-->
+  <!--          <form th:method="post" th:action="@{|/profile/${user.getId()}/delete|}">-->
+  <!--            <label for="passwordDelete">Enter your password to confirm deletion: </label>-->
+  <!--            <br>-->
+  <!--            <input type="password" name="passwordDelete" placeholder="Password" id="passwordDelete"/>-->
+  <!--            <br>-->
+  <!--            <input hidden name="id" th:value="${user.id}">-->
+  <!--            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+  <!--            <button type="submit" class="btn btn-danger">Delete Account</button>-->
+  <!--          </form>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+<div class="box">
+  <form id="pick-form" th:action="@{|/profile/${user.getId()}/edit|}" th:method="post" th:object="${user}">
     <label for="displayName">Display Name: </label>
     <br>
     <input th:field="*{displayName}" id="displayName"/>
@@ -53,11 +53,26 @@
     <br>
     <input th:field="*{email}" id="email"/>
     <br>
+<!--    <div class="box">alex-->
+<!--      <form id="pick-form">alex-->
+        <div class="field">
+          <div class="control">
+            <button class="button" type="button" id="picker">Pick file</button>
+            <input type="hidden" id="fileupload" name="fileupload">
+          </div>
+          <div class="control" id="nameBox"></div>
+          <div class="control" id="urlBox"></div>
+        </div>
+<!--        <div class="field">-->
+<!--          <div class="control">-->
+<!--            <input class="button" type="submit" value="Submit">-->
+<!--          </div>-->
+<!--        </div>-->
     <label for="bio">Bio: </label>
     <br>
     <input th:field="*{bio}" id="bio"/>
     <br>
-<!--    Stuff below for genreIds-->
+    <!--    Stuff below for genreIds-->
     <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
     <div th:if="!${user.getPromoter()}">
       <h5>Genres for the Band: </h5>
@@ -75,15 +90,71 @@
     <input hidden th:field="*{id}" th:value="${user.id}">
     <input hidden th:field="*{username}" th:value="${user.username}">
     <input hidden name="isPromoter" th:value="${user.getPromoter()}">
-    <button type="submit">Submit</button>
+<!--    <button type="submit">Submit</button>-->
+    <input class="button" value="Submit" type="submit">
+
 
   </form>
+</div>
 
 
 </div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </div>
 <footer th:replace="partials/footer.html :: footer"></footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="../../static/js/keys.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+
+
+<script>
+// Set up the picker
+const client = filestack.init('Ay308pTSYSUWR4gzj51Q8z');
+const options = {
+onUploadDone: updateForm,
+maxSize: 10 * 1024 * 1024,
+accept: 'image/*',
+uploadInBackground: false,
+};
+const picker = client.picker(options);
+
+// Get references to the DOM elements
+
+const form = document.getElementById('pick-form');
+const fileInput = document.getElementById('fileupload');
+const btn = document.getElementById('picker');
+const nameBox = document.getElementById('nameBox');
+const urlBox = document.getElementById('urlBox');
+
+// Add our event listeners
+
+btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    picker.open();
+  });
+
+  form.addEventListener('submit', function (e) {
+    // e.preventDefault();
+    alert('Submitting: ' + fileInput.value);
+  });
+
+  // Helper to overwrite the field input value
+
+  function updateForm (result) {
+    const fileData = result.filesUploaded[0];
+    fileInput.value = fileData.url;
+
+    // Some ugly DOM code to show some data.
+    const name = document.createTextNode('Selected: ' + fileData.filename);
+    const url = document.createElement('a');
+    url.href = fileData.url;
+    url.appendChild(document.createTextNode(fileData.url));
+    nameBox.appendChild(name);
+    urlBox.appendChild(document.createTextNode('Uploaded to: '));
+    urlBox.appendChild(url);
+  };
+</script>
 
 
 </body>

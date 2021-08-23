@@ -27,6 +27,7 @@
                     <a href="" class="fab fa-facebook"></a>
                     <a href="" class="fab fa-twitter"></a>
                     <a href="" class="fab fa-youtube"></a>
+                    <a href="" class="fab fa-star"></a>
                 </div>
                 <a href="" class="contact-btn">Contact</a>
                 <a class="contact-btn" th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}">
@@ -44,7 +45,7 @@
                     <div class="item">
 
                         <span th:text="${ratingAverage}"></span>
-                        <a  th:if="${profileOwner}" data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
+                        <a  data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
 
                         <div class="border"></div>
                     </div>
@@ -120,14 +121,18 @@
                 </div>
                 <form th:action="@{/profile}" th:method="post" th:object="${review}">
                     <div class="modal-body">
-                        Your Rating:
-                        <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label for="1">☆</label>
-                        <input type="radio" name="rating" value="2" id="2" th:field="*{rating}"><label for="2">☆</label>
-                        <input type="radio" name="rating" value="3" id="3" th:field="*{rating}"><label for="3">☆</label>
-                        <input type="radio" name="rating" value="4" id="4" th:field="*{rating}"><label for="4">☆</label>
-                        <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label for="5">☆</label>
-                        <br>
-                        <textarea th:field="*{body}" placeholder="Comments:"></textarea>
+                        <p>Your Rating:</p>
+                        <div class="rating d-flex flex-row align-items-center justify-content-start">
+                            <div class="rotate d-flex flex-row align-items-center justify-content-center">
+                                <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label for="5"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" value="4" id="4" th:field="*{rating}"><label for="4"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" value="3" id="3" th:field="*{rating}"><label for="3"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" value="2" id="2" th:field="*{rating}"><label for="2"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label for="1"><i class="fas fa-star"></i></label>
+                                <br>
+                            </div>
+                        </div>
+                        <textarea class="textRect" th:field="*{body}" placeholder="Comments:"></textarea>
                     </div>
                     <div class="modal-footer">
                             <input hidden name="currentUserID" th:value="${currentUser.id}">

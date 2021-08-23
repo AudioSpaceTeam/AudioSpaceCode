@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class UserController {
   private final EventRepository eventDao;
   private final ReviewRepository reviewDao;
   private final GenreRepository genreDao;
+
+  public static final DecimalFormat df1 = new DecimalFormat( "#.#" );
 
   public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, EventRepository eventDao, GenreRepository genreDao, ReviewRepository reviewDao) {
     this.userDao = userDao;
@@ -75,12 +78,13 @@ public class UserController {
       total += review.getRating();
     }
     double ratingAverage = total/reviews.size();
+    String newAverage = df1.format(ratingAverage);
     //==================================================================================================================
     model.addAttribute("userEvents", userDao.findById(currentUser.getId()).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     model.addAttribute("user", userDao.findById(currentUser.getId()));
     model.addAttribute("review", new Review());
-    model.addAttribute("ratingAverage", ratingAverage);
+    model.addAttribute("ratingAverage", newAverage);
     model.addAttribute("event", new Event());
     model.addAttribute("profileOwner", true);
     return "profile";
@@ -99,19 +103,20 @@ public class UserController {
   public String showUserInfo(@PathVariable long id, Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //    Logic to get Average Review=======================================================================================
-    List<Review> reviews = reviewDao.findAllByRevieweeId(currentUser.getId());
+    List<Review> reviews = reviewDao.findAllByRevieweeId(id);//From path variable
     double total = 0;
     for(Review review: reviews){
       total += review.getRating();
     }
     double ratingAverage = total/reviews.size();
+    String newAverage = df1.format(ratingAverage);
 //    ==================================================================================================================
     model.addAttribute("userEvents", userDao.findById(id).getPromotedEvents());
     model.addAttribute("currentUser", userDao.findById(currentUser.getId()));
     model.addAttribute("revieweeUser", reviewDao.findById(id).getReviewee());
     model.addAttribute("user", userDao.findById(id));
     model.addAttribute("review", new Review());
-    model.addAttribute("reviewAverage", ratingAverage);
+    model.addAttribute("ratingAverage", newAverage);
     model.addAttribute("event", new Event());
     model.addAttribute("profileOwner", id == currentUser.getId());
     return "profile";

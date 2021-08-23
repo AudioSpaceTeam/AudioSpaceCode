@@ -210,6 +210,7 @@ body {
 /*Star Rating CSS*/
 .rotate{
   transform: translate(-50%, -50%) rotateY(180deg);
+  margin-left: 3rem;
 }
 
 .rating input{
@@ -241,17 +242,20 @@ body {
 
 .rating input:not(:checked) ~ label:hover,
 .rating input:not(:checked) ~ label:hover ~ label{
-  color:#fd4;
+  color:#ffc107;
 }
 .rating input:checked ~ label{
   color:#fd4;
 }
 
 input#5:checked ~ label{
-  color: #fe7;
+  color: #ffc107;
   text-shadow: 0 0 20px #952;
 }
 
+.textRect {
+  width: 100%;
+}
 
 
 

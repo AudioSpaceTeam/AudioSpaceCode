@@ -5,20 +5,53 @@
     <title>Register</title>
     <th:block th:replace="partials/style.html :: style"></th:block>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script src="../static/js/loading-screen.js"></script>
 </head>
 <body>
-    <nav th:replace="partials/navbar.html :: navbar"></nav>
-    <div class="container">
-        <!--Profile Card ================================================================================================-->
-        <div class="profile-card-container">
-            <div class="profile-card">
-                <div class="card-header">
-                    <div class="pic">
-                        <img th:src="${user.imageUrl}" alt="No Profile Picture">
-                    </div>
-                    <div class="name" th:text="${user.displayName}"></div>
-                    <div class="desc" th:if="${user.getPromoter()}">
-                        <div>Promoter</div>
+
+
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<div class="container">
+    <!--Profile Card ================================================================================================-->
+    <div class="profile-card-container">
+        <div class="profile-card">
+            <div class="card-header">
+                <div class="pic">
+                    <img th:src="${user.imageUrl}" alt="No Profile Picture">
+                </div>
+                <div class="name" th:text="${user.displayName}"></div>
+                <div class="desc" th:if="${user.getPromoter()}">
+                    <div>Promoter</div>
+                </div>
+                <div class="desc" th:if="!${user.getPromoter()}">
+                    <div>Musician/Band</div>
+                </div>
+                <div class="sm">
+                    <a href="" class="fab fa-facebook"></a>
+                    <a href="" class="fab fa-twitter"></a>
+                    <a href="" class="fab fa-youtube"></a>
+                    <a href="" class="fab fa-star"></a>
+                </div>
+                <a href="" class="contact-btn">Contact</a>
+                <a class="contact-btn" th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}">
+                    Edit Profile
+                </a>
+                    <!-- Rating trigger modal -->
+                    <button th:if="${!profileOwner}" type="button" class="btn contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Review Promoter
+                    </button>
+
+            </div>
+            <!--CardFooter============================================================================================-->
+            <div class="card-footer">
+                <div class="numbers">
+                    <div class="item">
+
+                        <span th:text="${ratingAverage}">0</span>
+                        <a  data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
+
+                        <div class="border"></div>
+
                     </div>
                     <div class="desc" th:if="!${user.getPromoter()}">
                         <div>Musician/Band</div>
@@ -161,7 +194,11 @@
             </div>
         </div>
     </div>
-    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
-    <footer th:replace="partials/footer.html :: footer"></footer>
+
+
+</div>
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<script></script>
+<footer th:replace="partials/footer.html :: footer"></footer>
 </body>
 </html>

@@ -50,7 +50,7 @@ public class UserController {
       model.addAttribute("errorText", "The username " + user.getUsername() + " is taken!");
       return "register";
     }
-    if(user.getEmail().contains("@") && user.getEmail().contains(".")){
+    if(!user.getEmail().contains("@") && !user.getEmail().contains(".")){
       model.addAttribute("user",user);
       model.addAttribute("hasErrors",true);
       model.addAttribute("errorText", "The email " + user.getEmail() + " is invalid!");
@@ -63,6 +63,8 @@ public class UserController {
     }
     String hash = passwordEncoder.encode(user.getPassword());
     user.setPassword(hash);
+//    Setting their image to our default logo.
+    user.setImageUrl("https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50");
     userDao.save(user);
     return "redirect:/login";
   }
@@ -156,9 +158,6 @@ public class UserController {
         user.setPromoter(false);
       }
       if (!passwordEncoder.matches(password, currentUser.getPassword())) {
-//        System.out.println(currentUser.getPassword());
-//        System.out.println(password);
-//        System.out.println(passwordEncoder.matches(currentUser.getPassword(), password));
         return "redirect:/profile/" + id + "/edit";
       }
       String hash = passwordEncoder.encode(password);

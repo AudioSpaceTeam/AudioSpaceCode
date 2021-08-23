@@ -1,59 +1,10 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8"/>-->
-<!--    <title>Register</title>-->
-<!--    <th:block th:replace="partials/style.html :: style"></th:block>-->
-<!--<body>-->
-<!--&lt;!&ndash;<th:block th:include="partials/navbar.html :: navbar"></th:block>&ndash;&gt;-->
-
-<!--<nav th:replace="partials/navbar.html :: navbar"></nav>-->
-<!--<div class="container">-->
-<!--    <h1>Register for Audio Space</h1>-->
-<!--    <form th:action="@{/register}" method="POST" th:object="${user}">-->
-
-<!--        <label for="displayName">Display Name</label>-->
-<!--        <input id="displayName" th:field="*{displayName}"/>-->
-<!--        <br>-->
-<!--        <label for="username">Username</label>-->
-<!--        <input id="username" th:field="*{username}"/>-->
-<!--        <br>-->
-<!--        <label for="email">Email</label>-->
-<!--        <input id="email" th:field="*{email}"/>-->
-<!--        <br>-->
-<!--        <label for="password">Password</label>-->
-<!--        <input id="password" type="password" th:field="*{password}"/>-->
-<!--        <br>-->
-<!--        <label for="passwordConfirm">Confirm password</label>-->
-<!--        <input id="passwordConfirm"/>-->
-<!--        <br>-->
-<!--        <label for="bio">Enter a bio</label>-->
-<!--        <input id="bio" th:field="*{bio}"/>-->
-<!--        <br>-->
-<!--        <p>Are you a promoter?-->
-<!--            <br>-->
-<!--            <input type="radio" id="true" name="isPromoter" value="true">-->
-<!--            <label for="true">Yes</label>-->
-<!--            <input type="radio" id="false" name="isPromoter" value="false">-->
-<!--            <label for="false">No</label>-->
-<!--        </p>-->
-<!--        <br>-->
-<!--        <input value="Sign up!" type="submit"/>-->
-<!--    </form>-->
-<!--</div>-->
-
-<!--<th:block th:replace="partials/scripts.html :: scripts"></th:block>-->
-<!--</body>-->
-<!--</html>-->
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
   <title>Create account</title>
   <meta charset="UTF-8"/>
   <th:block th:replace="partials/style.html :: style"></th:block>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
 </head>
 <body>
@@ -70,8 +21,11 @@
         <p class="lead text-danger" th:if="${hasErrors}" th:text="${errorText}">
           Sorry that username is taken!
         </p>
+<!--        <p id="jsErrorMsg" class="lead text-danger">-->
+<!--          Javascript change this.-->
+<!--        </p>-->
 
-        <form th:action="@{/register}" method="POST" th:object="${user}" class="mb-3">
+        <form id="registerForm" th:action="@{/register}" method="POST" th:object="${user}" class="mb-3">
           <div class="row">
             <div class="form-group col-12 col-sm-6">
               <label for="displayName">Display Name:</label>
@@ -151,7 +105,7 @@
                     No
                   </label>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block mb-3" value="Sign up!">
+                <button id="submitButton" type="submit" class="btn btn-primary btn-block mb-3" value="Sign up!">
                   Create account
                 </button>
                 <div class="alert alert-info small" role="alert">
@@ -172,8 +126,32 @@
   </div>
 
 </div>
-<h3 id="testJ">Testing Jquery</h3>
 <footer th:replace="partials/footer.html :: footer"></footer>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<script th:src="@{/js/form-functions.js}"></script>
+<script>
+  $('#registerForm').submit(function (event) {
+    event.preventDefault();
+    let goodForm = true;
+    // console.log(goodUsername($('#username').val()));
+    if (!goodUsername($('#username').val())) {
+      alert("Your username is invalid. Please do not put any special characters or spaces.");
+      goodForm = false;
+    }
+    if (!goodEmail($('#email').val())) {
+      alert("Your Email is invalid.");
+      goodForm = false;
+    }
+
+    if (!longPassword($('#password').val())) {
+      alert("Your password needs to be at least 6 characters long.");
+      goodForm = false;
+    }
+
+    if (goodForm) {
+      this.submit();
+    }
+  });
+</script>
 </body>
 </html>

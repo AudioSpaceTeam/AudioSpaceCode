@@ -51,11 +51,6 @@
             <hr>
             <h5>Bands playing at the event: </h5>
             <br>
-            <input hidden type="checkbox" th:id="ignore" name="bandIds" value="ignore" checked>
-            <div th:each="user: ${users}">
-                <label th:for="${user.getId()}"><input type="checkbox" th:id="${user.id}" name="bandIds"
-                                                       th:value="${user.id}" th:text="${user.username}"></label>
-            </div>
             <hr class="my-4">
             <h5>Genres for the Event: </h5>
             <br>
@@ -66,8 +61,8 @@
                                                           th:text="${genre.genreName}"></label>
             </div>
             <hr class="my-4">
-            <!--    <button type="submit" class="btn btn-dark mt-3">Submit</button>-->
-            <a class="contact-btn" href="/event/create">Create Event</a>
+<!--                <button type="submit" class="btn btn-dark mt-3">Submit</button>-->
+            <a class="contact-btn" onclick="this.parentNode.submit();">Create Event</a>
             <hr>
         </form>
         <br>

@@ -43,9 +43,11 @@
                         <div class="card-body displayEvent">
                             <p class="card-text">
                             <span th:text="${event.title}"></span> @ <span th:text="${event.location}"></span>
-                            <p th:text="${event.description}">
-                            <p th:text="${event.startDateTime}">
-                            <div align="right">
+                          <p th:text="${event.description}"></p>
+
+                            <p th:text="${event.getDate()}"></p>
+                            <p th:text="${event.getTime()}"></p>
+                          <div align="right">
                                 <a th:href="@{|/event/${event.getId()}|}">More info</a>
                             </div>
                         </div>

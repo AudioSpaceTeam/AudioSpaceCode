@@ -7,100 +7,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 </head>
 <body>
-<nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container">
-    <!--Profile Card ================================================================================================-->
-    <div class="profile-card-container">
-        <div class="profile-card">
-            <div class="card-header">
-                <div class="pic">
-                    <img th:src="${user.imageUrl}" alt="No Profile Picture">
-                </div>
-                <div class="name" th:text="${user.displayName}"></div>
-                <div class="desc" th:if="${user.getPromoter()}">
-                    <div>Promoter</div>
-                </div>
-                <div class="desc" th:if="!${user.getPromoter()}">
-                    <div>Musician/Band</div>
-                </div>
-                <div class="sm">
-                    <a href="" class="fab fa-facebook"></a>
-                    <a href="" class="fab fa-twitter"></a>
-                    <a href="" class="fab fa-youtube"></a>
-                    <a href="" class="fab fa-star"></a>
-                </div>
-                <a href="" class="contact-btn">Contact</a>
-                <a class="contact-btn" th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}">
-                    Edit Profile
-                </a>
-                    <!-- Rating trigger modal -->
-                    <button th:if="${!profileOwner}" type="button" class="btn contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Review Promoter
-                    </button>
-
-            </div>
-            <!--CardFooter============================================================================================-->
-            <div class="card-footer">
-                <div class="numbers">
-                    <div class="item">
-
-                        <span th:text="${ratingAverage}"></span>
-                        <a  data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
-
-                        <div class="border"></div>
+    <nav th:replace="partials/navbar.html :: navbar"></nav>
+    <div class="container">
+        <!--Profile Card ================================================================================================-->
+        <div class="profile-card-container">
+            <div class="profile-card">
+                <div class="card-header">
+                    <div class="pic">
+                        <img th:src="${user.imageUrl}" alt="No Profile Picture">
                     </div>
-                    <div class="item">
-                        <span>120</span>Followers
-                        <div class="border"></div>
+                    <div class="name" th:text="${user.displayName}"></div>
+                    <div class="desc" th:if="${user.getPromoter()}">
+                        <div>Promoter</div>
                     </div>
-                    <div class="item">
-                        <span>120</span>Following
-                        <div class="border"></div>
+                    <div class="desc" th:if="!${user.getPromoter()}">
+                        <div>Musician/Band</div>
+                    </div>
+                    <div class="sm">
+                        <a href="" class="fab fa-facebook"></a>
+                        <a href="" class="fab fa-twitter"></a>
+                        <a href="" class="fab fa-youtube"></a>
+                        <a href="" class="fab fa-star"></a>
+                    </div>
+                    <a href="" class="contact-btn">Contact</a>
+                    <a class="contact-btn" th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}">
+                        Edit Profile
+                    </a>
+                        <!-- Rating trigger modal -->
+                        <button th:if="${!profileOwner}" type="button" class="btn contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Review Promoter
+                        </button>
+                </div>
+                <!--CardFooter============================================================================================-->
+                <div class="card-footer">
+                    <div class="numbers">
+                        <div class="item">
+                            <span th:text="${ratingAverage}"></span>
+                            <a  data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
+                            <div class="border"></div>
+                        </div>
+                        <div class="item">
+                            <span>120</span>Followers
+                            <div class="border"></div>
+                        </div>
+                        <div class="item">
+                            <span>120</span>Following
+                            <div class="border"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--EndOfProfileCard==============================================================================================-->
-    <!--CurrentEventsProfile =========================================================================================-->
-    <div th:if="${user.getPromoter()}">
-        <h3 class="text-center">Your Planned Events:</h3>
-        <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
-            <div th:each="event : ${userEvents}">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${event.title}"></h5>
-                        <h6 class="card-subtitle mb-2 text-muted" th:textl="${event.location}"></h6>
-                        <p class="card-text" th:text="${event.description}"></p>
-                        <a th:href="@{|/event/${event.getId}|}" class="btn btn-dark">Event Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Bellow is for the performers profile======================================================================-->
-        <div th:if="!${user.getPromoter()}">
+        <!--EndOfProfileCard==============================================================================================-->
+        <!--CurrentEventsProfile =========================================================================================-->
+        <div th:if="${user.getPromoter()}">
             <h3 class="text-center">Your Planned Events:</h3>
-            <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-                <div th:each="event : ${user.slotted}">
-                    <!--    added button delete account-->
-                    <!--            <form th:action="@{/events/{id}/delete}" th:method="POST">-->
-                    <!--                <button th:type="submit" class="btn-submit">Delete Account</button>-->
-                    <!--            </form>-->
-                    <!--Below is for the performers profile-->
+            <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
+                <div th:each="event : ${userEvents}">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <div class="card card-events">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${event.title}"></h5>
+                                <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
+                                <p class="card-text" th:text="${event.description}"></p>
+                                <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!--Bellow is for the performers profile======================================================================-->
             <div th:if="!${user.getPromoter()}">
-                <h3 class="text-left">Current planned events:</h3>
+                <h3 class="text-center">Your Planned Events:</h3>
                 <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-                    <div th:each="event : ${userEvents}">
-
-                        <div class="col d-flex align-items-center justify-content-center">
-                            <div class="card" style="width: 18rem; height: 20rem">
-                                <div class="card-body">
-                                    <h5 class="card-title" th:text="${event.title}"></h5>
-                                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
-                                    <p class="card-text" th:text="${event.description}"></p>
-                                    <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
+                    <div th:each="event : ${user.slotted}">
+                    </div>
+                </div>
+                <div th:if="!${user.getPromoter()}">
+                    <h3 class="text-left">Current planned events:</h3>
+                    <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                        <div th:each="event : ${userEvents}">
+                            <div class="col d-flex align-items-center justify-content-center">
+                                <div class="card" style="width: 18rem; height: 20rem">
+                                    <div class="card-body">
+                                        <h5 class="card-title" th:text="${event.title}"></h5>
+                                        <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
+                                        <p class="card-text" th:text="${event.description}"></p>
+                                        <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -108,71 +102,66 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!--Modals========================================================================================================-->
-    <!-- Create Rating Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" th:text="${user.username}">Modal Title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form th:action="@{/profile}" th:method="post" th:object="${review}">
-                    <div class="modal-body">
-                        <p>Your Rating:</p>
-                        <div class="rating d-flex flex-row align-items-center justify-content-start">
-                            <div class="rotate d-flex flex-row align-items-center justify-content-center">
-                                <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label for="5"><i class="fas fa-star"></i></label>
-                                <input type="radio" name="rating" value="4" id="4" th:field="*{rating}"><label for="4"><i class="fas fa-star"></i></label>
-                                <input type="radio" name="rating" value="3" id="3" th:field="*{rating}"><label for="3"><i class="fas fa-star"></i></label>
-                                <input type="radio" name="rating" value="2" id="2" th:field="*{rating}"><label for="2"><i class="fas fa-star"></i></label>
-                                <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label for="1"><i class="fas fa-star"></i></label>
-                                <br>
+        <!--Modals========================================================================================================-->
+        <!-- Create Rating Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" th:text="${user.username}">Modal Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form th:action="@{/profile}" th:method="post" th:object="${review}">
+                        <div class="modal-body">
+                            <p>Your Rating:</p>
+                            <div class="rating d-flex flex-row align-items-center justify-content-start">
+                                <div class="rotate d-flex flex-row align-items-center justify-content-center">
+                                    <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label for="5"><i class="fas fa-star"></i></label>
+                                    <input type="radio" name="rating" value="4" id="4" th:field="*{rating}"><label for="4"><i class="fas fa-star"></i></label>
+                                    <input type="radio" name="rating" value="3" id="3" th:field="*{rating}"><label for="3"><i class="fas fa-star"></i></label>
+                                    <input type="radio" name="rating" value="2" id="2" th:field="*{rating}"><label for="2"><i class="fas fa-star"></i></label>
+                                    <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label for="1"><i class="fas fa-star"></i></label>
+                                    <br>
+                                </div>
                             </div>
+                            <textarea class="textRect" th:field="*{body}" placeholder="Comments:"></textarea>
                         </div>
-                        <textarea class="textRect" th:field="*{body}" placeholder="Comments:"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                            <input hidden name="currentUserID" th:value="${currentUser.id}">
-                            <input hidden name="userID" th:value="${user.id}">
-                            <button type="submit" class="btn btn-warning">Submit Review</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                    
-                </form>
-                
+                        <div class="modal-footer">
+                                <input hidden name="currentUserID" th:value="${currentUser.id}">
+                                <input hidden name="userID" th:value="${user.id}">
+                                <button type="submit" class="btn btn-warning">Submit Review</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-<!-- View Ratings Modal -->
-    <div class="modal fade" id="ratingsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ratingsModalLabel" th:text="${user.username}">Modal Title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                    <div class="modal-body">
-                        <div class="scroll container">
-                            <div th:each="review : ${user.getReviewsReceived()}">
-                                <div class="d-flex flex-row justify-content-between align-items-center">
-                                    <p class="rate" th:text="'Rating: ' + ${review.rating} + '☆'"></p>
-                                </div>
-                                <div class="lightBG">
-                                    <p class="comment" th:text="${review.getReviewer().getDisplayName()} + ':'"></p>
-                                    <p class="textSize" th:text="${review.body}"></p>
+    <!-- View Ratings Modal -->
+        <div class="modal fade" id="ratingsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ratingsModalLabel" th:text="${user.username}">Modal Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                        <div class="modal-body">
+                            <div class="scroll container">
+                                <div th:each="review : ${user.getReviewsReceived()}">
+                                    <div class="d-flex flex-row justify-content-between align-items-center">
+                                        <p class="rate" th:text="'Rating: ' + ${review.rating} + '☆'"></p>
+                                    </div>
+                                    <div class="lightBG">
+                                        <p class="comment" th:text="${review.getReviewer().getDisplayName()} + ':'"></p>
+                                        <p class="textSize" th:text="${review.body}"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-</div>
-<th:block th:replace="partials/scripts.html :: scripts"></th:block>
-<footer th:replace="partials/footer.html :: footer"></footer>
+    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
+    <footer th:replace="partials/footer.html :: footer"></footer>
 </body>
 </html>

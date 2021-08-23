@@ -206,3 +206,52 @@ body {
 .modal-content{
   padding: .5rem;
 }
+
+/*Star Rating CSS*/
+.rotate{
+  transform: translate(-50%, -50%) rotateY(180deg);
+}
+
+.rating input{
+  display: none;
+}
+
+.rating label i{
+  cursor: pointer;
+}
+/*.rating i:hover{*/
+/*  color:#FFD600;*/
+/*}*/
+/*.rating i::before{*/
+
+/*  !*display: block;*!*/
+/*  font-size: 25px;*/
+/*  color: #1d1c1c;*/
+/*}*/
+
+/*.rating i::after{*/
+/*  !*display: block;*!*/
+/*  font-size: 25px;*/
+/*  opactiy:1;*/
+/*  color: #FFD600;*/
+/*  transition: 0.5s;*/
+/*  text-shadow: 0 2px 5px rgba(0,0,0, 0.5);*/
+/*}*/
+
+
+.rating input:not(:checked) ~ label:hover,
+.rating input:not(:checked) ~ label:hover ~ label{
+  color:#fd4;
+}
+.rating input:checked ~ label{
+  color:#fd4;
+}
+
+input#5:checked ~ label{
+  color: #fe7;
+  text-shadow: 0 0 20px #952;
+}
+
+
+
+

@@ -4,13 +4,13 @@
     <title>Employees</title>
     <meta charset="UTF-8"/>
     <th:block th:replace="partials/style.html :: style"></th:block>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container my-3 my-sm-5">
     <h1 class="mb-3 mb-sm-5 text-center">Meet the team</h1>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3 text-center">
             <img src="https://avatars.githubusercontent.com/u/80721797?v=4" class="img-fluid rounded-circle mb-1"
                  alt="alejandro-cabrera">
@@ -96,7 +96,7 @@
             <h5>Joshua Williams</h5>
             <p>Software Developer</p>
         </div>
-<!--        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3 text-center">-->
+        <!--        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3 text-center">-->
         <!--            <img src="../static/img/logoTransparent.png" class="img-fluid rounded-circle mb-1"-->
         <!--                 alt="audio-space-logo">-->
         <!--            <ul class="list-inline mb-1">-->
@@ -111,7 +111,7 @@
         <!--            <p>Neptune Cohort Codeup</p>-->
         <!--        </div>-->
     </div>
+    <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </div>
-<th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>
 </html>

@@ -36,16 +36,18 @@
     </div>
     <hr class="my-4">
 
-    <!--        map go here-->
-    <div id='map' style="width: 750px; height: 600px; margin: auto;"></div>
-    <div class="hiddenMap" th:each="event: ${eventList}" style="display: none;">
-        <p class="eventId" th:text="${event.id}">
-        <p th:text="${event.startDateTime}"></p>
-        <p class="eventTitle" th:text="${event.title}"></p>
-        <p class="eventLocation" th:text=" ${event.location}"></p>
-        <p th:text="${event.price}"></p>
-        <p th:text="${event.slots}"></p>
-        <p th:text="${event.description}"></p>
+    <!--        map go here, fixed responsive errors-->
+    <div class="row justify-content-center">
+        <div id='map' style="width: 750px; height: 600px; margin: auto;"></div>
+        <div class="hiddenMap" th:each="event: ${eventList}" style="display: none;">
+            <p class="eventId" th:text="${event.id}">
+            <p th:text="${event.startDateTime}"></p>
+            <p class="eventTitle" th:text="${event.title}"></p>
+            <p class="eventLocation" th:text=" ${event.location}"></p>
+            <p th:text="${event.price}"></p>
+            <p th:text="${event.slots}"></p>
+            <p th:text="${event.description}"></p>
+        </div>
     </div>
     <hr class="my-4">
 </div>

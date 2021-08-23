@@ -1,22 +1,40 @@
-/*.ColorPallet{*/
-/*  color:#3E4259;*/
-/*  color:#675F73;*/
-/*  color: #bf8484;*/
-/*  color:#f2f2f0;*/
-/*  color:#535877;*/
-/*  color:#292C3B;*/
-
-
-/*  color: #2b2d3d;*/
-/*  color: #434a4c;*/
-/*  color: #5d3030;*/
-/*  color: #1c1e20;*/
-/*  color: #3a3b53;*/
-/*  color: #1c1e2a;*/
-
-/*}*/
 .container {
   background-color: #d8dedd;
+}
+.containerEvents {
+  display: flex;
+  justify-content: space-between;
+}
+.searchEventCard {
+  padding: 9px;
+  height: 60%;
+  float: left;
+  margin: 10px 0px 0px 8px;
+}
+.eventsDisplayCard {
+  padding: 13px;
+  margin: 10px 0px 0px 8px;
+  width: 80%;
+}
+
+.displayEvent {
+  background-color: #d8dedd;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+  margin: 15px;
+}
+.eventBody {
+  /*display: flex;*/
+  /*justify-content: space-between;*/
+}
+.userImageCard {
+  float: left;
+  margin-right: 10px;
+}
+.mainEvents {
+  margin: 20px;
+  width: 70%;
 }
 .footer-as {
   background-color: #344B47;
@@ -60,14 +78,10 @@ body {
   border-radius: 8px;
   overflow: hidden;
 }
-.card-header{
-  background: #2c3a47;
-  padding: 60px 40px;
-}
 .pic{
   display: inline-block;
   padding: 8px;
-  background: linear-gradient(130deg, #74b9ff, #e66767);
+  background: linear-gradient(130deg, #314541, #759f90);
   margin: auto;
   border-radius: 50%;
   background-size: 200% 200%;
@@ -114,10 +128,6 @@ body {
   font-size: 22px;
   transition: .3s linear;
 }
-
-.sm a:hover{
-  color: #00796D;
-}
 .contact-btn{
   display: inline-block;
   padding: 10px 12px;
@@ -127,10 +137,6 @@ body {
   margin-top: 16px;
   margin: 10px;
   transition: .3s linear;
-}
-.contact-btn:hover{
-  background: #00796D;
-  color: #f2f2f2;
 }
 .card-footer{
   background: #f4f4f4;
@@ -162,13 +168,10 @@ body {
 .eventCard {
   max-width: 60vw;
 }
-
-
 .userName{
   font-size: x-large;
   font-weight: bold;
   padding: .3rem;
-
 }
 .reviews{
   margin-bottom: 0rem;
@@ -207,6 +210,35 @@ body {
   padding: .5rem;
 }
 
+.searchEventCard {
+  padding: 9px;
+  float: left;
+  margin: 10px 0px 0px 8px;
+}
+.btn {
+  background-color: #00796D;
+}
+
+.eventCard {
+  border-radius: 10px;
+  margin: 10px;
+}
+.searchInput {
+  width: 11em;
+  padding: 5px;
+}
+.eventSearchButton {
+  padding: 5px;
+  background-color: #d8dedd;
+  color: #1E2D2C;
+}
+.eventSearchButton:hover {
+  border: 2px solid #4b5454;
+}
+.card {
+  border: none;
+}
+
 /*Star Rating CSS*/
 .rotate{
   transform: translate(-50%, -50%) rotateY(180deg);
@@ -220,26 +252,6 @@ body {
 .rating label i{
   cursor: pointer;
 }
-/*.rating i:hover{*/
-/*  color:#FFD600;*/
-/*}*/
-/*.rating i::before{*/
-
-/*  !*display: block;*!*/
-/*  font-size: 25px;*/
-/*  color: #1d1c1c;*/
-/*}*/
-
-/*.rating i::after{*/
-/*  !*display: block;*!*/
-/*  font-size: 25px;*/
-/*  opactiy:1;*/
-/*  color: #FFD600;*/
-/*  transition: 0.5s;*/
-/*  text-shadow: 0 2px 5px rgba(0,0,0, 0.5);*/
-/*}*/
-
-
 .rating input:not(:checked) ~ label:hover,
 .rating input:not(:checked) ~ label:hover ~ label{
   color:#ffc107;
@@ -256,6 +268,4 @@ input#5:checked ~ label{
 .textRect {
   width: 100%;
 }
-
-
 

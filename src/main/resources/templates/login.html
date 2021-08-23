@@ -4,7 +4,7 @@
     <title>Login</title>
     <meta charset="UTF-8"/>
     <th:block th:replace="partials/style.html :: style"></th:block>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
@@ -18,7 +18,8 @@
                     Oops... something is wrong.
                 </div>
                 <div th:if="${param.logout}">
-                    You have been logged out.
+                    <i class="far fa-smile-wink"></i>
+                    You have been logged out. Have a good one!
                 </div>
                 <form th:action="@{/login}" method="post" class="mb-3">
                     <div class="form-group">

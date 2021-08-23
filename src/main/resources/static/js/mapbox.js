@@ -44,10 +44,11 @@
     for(let i = 0; i < addresses.length; i++) {
         let loc = addresses[i].innerText;
         let titleText = titles[i].innerText;
+        let event = id[i].innerText;
         geocode(loc, MAPBOX_ACCESS_TOKEN).then(function (address) {
             let popup = new mapboxgl.Popup(popupOptions)
                 .setHTML(
-                    '<p style="font-size: 15px; font-weight: bold;">' + titleText + '</p>' +
+                    '<a href="/event/' + event + '" style="font-size: 15px; font-weight: bold;">' + titleText + '</a>' +
                     '<p>' + loc + '</p>'
                 );
             let marker = new mapboxgl.Marker({

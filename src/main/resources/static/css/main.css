@@ -18,8 +18,12 @@
 .container {
   background-color: #d8dedd;
 }
+.container-fluid {
+  background-color: #d8dedd;
+}
 .footer-as {
   background-color: #344B47;
+
 }
 
 *{
@@ -40,9 +44,7 @@ body {
 }
 
 .profile-card-container{
-  position: absolute;
-  right: 50px;
-  margin-top: 15px;
+  /*margin-left: 2rem;*/
 }
 
 #navbarLogo{
@@ -203,6 +205,12 @@ body {
   padding: .5rem;
 }
 
+.scroll2 {
+
+  overflow-x: scroll;
+  padding: .5rem;
+}
+
 .modal-content{
   padding: .5rem;
 }
@@ -272,6 +280,34 @@ input#5:checked ~ label{
   margin-bottom: 1rem;
 }
 
+.eventForms{
+  width: 80vh;
+}
+
+.bars{
+  margin:5rem;
+}
+
+.genres{
+  margin: .5rem;
+}
+
+.genreList{
+  margin: 2rem;
+}
+
+.pleaseFill{
+  margin-left: 6rem;
+}
+
+.eventCards{
+
+}
+
+.contents{
+  margin-bottom: 2rem;
+  background-color: #d8dedd;
+}
 
 
 

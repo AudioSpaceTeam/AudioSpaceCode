@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-    <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Register</title>
-        <th:block th:replace="partials/style.html :: style"></th:block>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    </head>
-    </html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <th:block th:replace="partials/style.html :: style"></th:block>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+</head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container-fluid ">
     <!--Moved Page Title to the top -->
     <h3 class="text-center">Your Planned Events:</h3>
     <div class="d-flex flex-row justify-content-center contents">
-        <div class="eventCards d-flex flex-row justify-content-center scroll2">
+        <div class="eventCards d-flex flex-row justify-content-center">
             <!--CurrentEventsProfile =========================================================================================-->
             <div th:if="${user.getPromoter()}">
                 <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
@@ -78,7 +77,8 @@
                             Edit Profile
                         </a>
                         <!-- Rating trigger modal -->
-                        <button th:if="${!profileOwner}" type="button" class="btn contact-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button th:if="${!profileOwner}" type="button" class="btn contact-btn" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
                             Review Promoter
                         </button>
                     </div>
@@ -87,7 +87,7 @@
                         <div class="numbers">
                             <div class="item">
                                 <span th:text="${ratingAverage}"></span>
-                                <a  data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
+                                <a data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
                                 <div class="border"></div>
                             </div>
                             <div class="item">
@@ -104,37 +104,49 @@
             </div>
             <!--EndOfProfileCard==============================================================================================-->
 
-    <!--Modals========================================================================================================-->
-    <!-- Create Rating Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" th:text="${user.username}">Modal Title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <!--Modals========================================================================================================-->
+            <!-- Create Rating Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel" th:text="${user.username}">Modal Title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form th:action="@{/profile}" th:method="post" th:object="${review}">
+                            <div class="modal-body">
+                                <p>Your Rating:</p>
+                                <div class="rating d-flex flex-row align-items-center justify-content-start">
+                                    <div class="rotate d-flex flex-row align-items-center justify-content-center">
+                                        <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label
+                                            for="5"><i class="fas fa-star"></i></label>
+                                        <input type="radio" name="rating" value="4" id="4" th:field="*{rating}"><label
+                                            for="4"><i class="fas fa-star"></i></label>
+                                        <input type="radio" name="rating" value="3" id="3" th:field="*{rating}"><label
+                                            for="3"><i class="fas fa-star"></i></label>
+                                        <input type="radio" name="rating" value="2" id="2" th:field="*{rating}"><label
+                                            for="2"><i class="fas fa-star"></i></label>
+                                        <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label
+                                            for="1"><i class="fas fa-star"></i></label>
+                                        <br>
+                                    </div>
+                                    <div>
+                                        <textarea class="textRect" th:field="*{body}"
+                                                  placeholder="Comments:"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input hidden name="currentUserID" th:value="${currentUser.id}">
+                                        <input hidden name="userID" th:value="${user.id}">
+                                        <button type="submit" class="btn btn-warning">Submit Review</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <form th:action="@{/profile}" th:method="post" th:object="${review}">
-                    <div class="modal-body">
-                        <p>Your Rating:</p>
-                        <div class="rating d-flex flex-row align-items-center justify-content-start">
-                            <div class="rotate d-flex flex-row align-items-center justify-content-center">
-                                <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label for="5"><i class="fas fa-star"></i></label>
-                                <input type="radio" name="rating" value="4" id="4" th:field="*{rating}"><label for="4"><i class="fas fa-star"></i></label>
-                                <input type="radio" name="rating" value="3" id="3" th:field="*{rating}"><label for="3"><i class="fas fa-star"></i></label>
-                                <input type="radio" name="rating" value="2" id="2" th:field="*{rating}"><label for="2"><i class="fas fa-star"></i></label>
-                                <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label for="1"><i class="fas fa-star"></i></label>
-                                <br>
-                          </div>
-                    <div>                  
-                       <textarea class="textRect" th:field="*{body}" placeholder="Comments:"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <input hidden name="currentUserID" th:value="${currentUser.id}">
-                        <input hidden name="userID" th:value="${user.id}">
-                        <button type="submit" class="btn btn-warning">Submit Review</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -158,7 +170,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

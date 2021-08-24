@@ -1,20 +1,36 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+body {
+  background-color: #344B47;
+  font-family: montserrat, sans-serif;
+}
+
 .container {
-  background-color: #d8dedd;
+  background-color: #a4a7a7;
+
+}
+.container-fluid {
+  background-color: #344B47;
+
 }
 .containerEvents {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 90%;
 }
 .searchEventCard {
   padding: 9px;
   height: 60%;
   float: left;
-  margin: 10px 0px 0px 8px;
+  margin: 100px 0px 0px 0px;
 }
 .eventsDisplayCard {
   padding: 13px;
   margin: 10px 0px 0px 8px;
-  width: 80%;
 }
 
 .displayEvent {
@@ -39,22 +55,11 @@
 .footer-as {
   background-color: #344B47;
 }
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-}
-
-body {
-  background-color: #ffffff;
-  font-family: montserrat, sans-serif;
-  width: 100%;
-  height: 100vh;
-}
 .navbar {
-  background-color: #344B47;
+  background-color: #292929;
+}
+#nav {
+  background-color: #292929;
 }
 
 .profile-card-container{
@@ -140,7 +145,7 @@ body {
 }
 .card-footer{
   background: #f4f4f4;
-  padding: 60px 10px;
+  /*padding: 60px 10px;*/
 }
 .numbers{
   display: flex;
@@ -209,11 +214,8 @@ body {
 .modal-content{
   padding: .5rem;
 }
-
-.searchEventCard {
-  padding: 9px;
-  float: left;
-  margin: 10px 0px 0px 8px;
+#searchCard {
+  background-color: #d8dedd;
 }
 .btn {
   background-color: #00796D;
@@ -237,6 +239,7 @@ body {
 }
 .card {
   border: none;
+  background-color: transparent;
 }
 
 /*Star Rating CSS*/

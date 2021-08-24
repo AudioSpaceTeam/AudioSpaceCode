@@ -1,3 +1,24 @@
+@media only screen and (max-width: 900px) {
+  .searchEventCard {
+    display: none;
+  }
+  #mobileSearch {
+    display: block;
+    padding: 9px;
+  }
+  .mobileOnly>form {
+    display: flex;
+  }
+  .mobileOnly>form>* {
+    margin: 0 10px;
+  }
+  #searchMobile {
+    flex-grow: 1;
+  }
+}
+.mobileOnly {
+  display: none;
+}
 *{
   margin: 0;
   padding: 0;
@@ -10,11 +31,12 @@ body {
 }
 
 .container {
-  background-color: #a4a7a7;
+  background-color: #d8dedd;
+  border-radius: 10px;
 
 }
 .container-fluid {
-  background-color: #344B47;
+  background-color: #344b47;
 
 }
 .containerEvents {
@@ -22,6 +44,7 @@ body {
   justify-content: space-around;
   width: 90%;
 }
+
 .searchEventCard {
   padding: 9px;
   height: 60%;
@@ -31,6 +54,9 @@ body {
 .eventsDisplayCard {
   padding: 13px;
   margin: 10px 0px 0px 8px;
+}
+#indexH3 {
+  color: #d8dedd;
 }
 
 .displayEvent {
@@ -226,7 +252,7 @@ body {
   margin: 10px;
 }
 .searchInput {
-  width: 11em;
+  width: 100%;
   padding: 5px;
 }
 .eventSearchButton {

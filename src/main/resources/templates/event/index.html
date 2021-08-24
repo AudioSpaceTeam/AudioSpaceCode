@@ -8,8 +8,8 @@
     
 </head>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container containerEvents">
-    <div class="card searchEventCard">
+<div class="container-fluid containerEvents">
+    <div class="card searchEventCard" id="searchCard">
         <form th:action="@{/event}" th:method="post">
             <div>
                 <p>

@@ -17,14 +17,6 @@
             events in your country.</p>
     </div>
 
-    <hr class="my-4">
-    <!--            form go here-->
-    <!--        <form>-->
-    <!--            <input class="form-control me-2" id="mapSearch" type="search" placeholder="Enter your location"-->
-    <!--                   style="width: 200px; margin: 3px;">-->
-    <!--            <button class="btn btn-dark" id="btn" type="submit" style="padding: 3px;">Search</button>-->
-    <!--        </form>-->
-
     <form class="row g-3">
         <div class="col-auto">
             <label for="mapSearch" class="visually-hidden"></label>
@@ -34,7 +26,6 @@
     <div class="col-auto">
         <a class="contact-btn" id="btn" href="#">Search</a>
     </div>
-    <hr class="my-4">
 
     <!--        map go here, fixed responsive errors-->
     <div class="row justify-content-center">
@@ -49,7 +40,6 @@
             <p th:text="${event.description}"></p>
         </div>
     </div>
-    <hr class="my-4">
 </div>
 <script th:src="@{/js/keys.js}"></script>
 <script th:src="@{/js/mapbox-geocoder-utils.js}"></script>

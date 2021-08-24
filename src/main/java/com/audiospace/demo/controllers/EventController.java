@@ -41,15 +41,6 @@ public class EventController {
       return "redirect:/event";
     }
     model.addAttribute("event", new Event());
-    //      List for users who are not promoters
-//    List<User> notPromoters = new ArrayList<>();
-//    for (User userP : userDao.findAll()) {
-////        If a user is not a promoter, then we want to add them to the list.
-//      if (!userP.getPromoter()) {
-//        notPromoters.add(userP);
-//      }
-//    }
-//    model.addAttribute("users", notPromoters);
     model.addAttribute("genres", genreDao.findAll());
     return "event/create";
   }
@@ -93,6 +84,8 @@ public class EventController {
 
     }
     boolean isReqOrSlot = isRequester || isSlotted;
+    boolean eventNotFull = event.getSlots() > event.getPerformers().size();
+    model.addAttribute("eventNotFull", eventNotFull);
     model.addAttribute("isReqOrSlot", isReqOrSlot);
     model.addAttribute("isOwner", isOwner);
     model.addAttribute("isPerformer", isPerformer);
@@ -148,22 +141,12 @@ public class EventController {
       return "redirect:/event/" + id;
     } else {
 
-//      List for users who are not promoters
-
-//      List<User> notPromoters = new ArrayList<>();
-//      for (User userP : userDao.findAll()) {
-////        If a user is not a promoter, then we want to add them to the list.
-//        if (!userP.getPromoter()) {
-//          notPromoters.add(userP);
-//        }
-//      }
       List<User> currentPerformers = new ArrayList<>();
       for (User userC : userDao.findAllBySlotted(eventDao.findById(id))) {
         currentPerformers.add(userC);
         userC.setSlotted(new ArrayList<>());
       }
       model.addAttribute("performers", currentPerformers);
-//      model.addAttribute("users", notPromoters);
       model.addAttribute("event", event);
       model.addAttribute("genres", genreDao.findAll());
       return "event/edit";

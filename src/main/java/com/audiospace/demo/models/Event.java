@@ -62,17 +62,33 @@ public class Event {
         this.startDateTime = startDateTime;
     }
 
-    //Endtime
-//    @Column(name = "endDateTime", columnDefinition = "TIMESTAMP")
-//    private LocalDateTime endDateTime;
-//
-//    public LocalDateTime getEndDateTime() {
-//        return endDateTime;
-//    }
-//
-//    public void setEndDateTime(LocalDateTime endDateTime) {
-//        this.endDateTime = endDateTime;
-//    }
+    public String getDate(){
+      String dateTime = startDateTime.toString();
+      String[] dateTimeArray = dateTime.split("T");
+
+      String date = dateTimeArray[0];
+      return date;
+    }
+
+  public String getDateFormat(){
+    String dateTime = startDateTime.toString();
+    String[] dateTimeArray = dateTime.split("T");
+
+    String date = dateTimeArray[0];
+    String[] dateArray = date.split("-");
+
+
+
+    return date;
+  }
+
+  public String getTime(){
+    String dateTime = startDateTime.toString();
+    String[] dateTimeArray = dateTime.split("T");
+
+    String time = dateTimeArray[1];
+    return time;
+  }
 
 
     //  price double

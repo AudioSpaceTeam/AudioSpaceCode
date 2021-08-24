@@ -5,134 +5,61 @@
     <meta charset="UTF-8"/>
     <th:block th:replace="partials/style.html :: style"></th:block>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    
 </head>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container mt-5">
-    <div class="text-center mt-5">
-        <div class="header text-center"><h3 style="color: #00796D">Search you event</h3></div>
-        <h1>Create events as a promoter and search for them by name or by musical genre.</h1>
-        <p>Become the most popular promoter! create events and become known in the world of music.</p>
-    </div>
-
-    <hr class="my-4">
-
-    <div class="text-center mt-5">
+<div class="container-fluid containerEvents">
+    <div class="card searchEventCard" id="searchCard">
         <form th:action="@{/event}" th:method="post">
-
-            <!--            input search name-->
-            <div class="mb-3">
-                <h3><label for="search" class="form-label">Search for Event</label></h3>
-                <input name="search" id="search" type="text" class="form-control"
-                       aria-describedby="search-event" placeholder="Event name">
-              <!--                <form th:action="@{/event/search}" th:method="post">-->
-              <!--                    <h4 class="card-title"><label for="search">Search for an Event: </label></h4>-->
-              <!--                    &lt;!&ndash;          Below searches by description and title.&ndash;&gt;-->
-              <!--                    <input name="search" id="search" type="text">-->
-
-              <div id="#" class="form-text">Or...</div>
+            <div>
+                <p>
+                    <label for="search" class="form-label">Search events</label>
+                    <input name="search" id="search" type="text" class="form-control searchInput" aria-describedby="search-event" placeholder="Event name">
+                </p>
             </div>
-
-            <!--            Checkbox search genre here-->
-          <div class="flex-box">
-            <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
-            <div th:each="genre: ${genres}">
-                <input class="form-check-input" type="checkbox" th:id="${genre.genreName}"
-                       name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}">
-                <label class="form-check-label" th:for="${genre.genreName}"></label>
+            <div class="genre">
+                <p>Select Genre</p>
+                    <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
+                    <div th:each="genre: ${genres}">
+                        <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}"></label>
+                    </div>
             </div>
-
-          </div>
-            <div id="##" class="form-text">Select for genre</div>
             <br>
-            <button class="contact-btn" type="submit">Search!</button>
+            <button class="btn eventSearchButton" type="submit">Search</button>
         </form>
-        <hr class="my-4">
-        <h1>Viewing All Events</h1>
-        <p>Click any event to view all of its content.</p>
     </div>
-
-    <!--    Index page show events in list-->
-    <div class="card text-center" th:each="event : ${events}">
-        <div class="card-header">
-            <h5 class="card-title"><p th:text="${event.title}"></p></h5>
+    <div class="card eventsDisplayCard">
+        <div class="text-center">
+            <h3>Events currently scheduled</h3>
         </div>
-        <div class="card-body">
-            <p class="card-text">
-            <p th:text="${event.description}">
-            <p class="card-text">
-            <p th:text="${event.location}">
-            <p class="card-text">
-            <p class="card-text">
-            <p th:text="${event.slots}">
-            <p class="card-text">
-            <p th:text="${event.price}">
-            <div align="center">
-                <a th:href="@{|/event/${event.getId()}|}" class="btn btn-primary">View Event</a>
+        <div class="eventBody">
+            <div th:each="event : ${events}">
+                <div class="card userImageCard">
+                    <div class="pic">
+                        <img th:src="${event.promoter.imageUrl}" alt="No Profile Picture">
+                    </div>
+                </div>
+                <div class="card mainEvents">
+                    <div class="card">
+                        <div class="card-body displayEvent">
+                            <p class="card-text">
+                            <span th:text="${event.title}"></span> @ <span th:text="${event.location}"></span>
+                            <p th:text="${event.description}">
+                            <p th:text="${event.startDateTime}">
+                            <div align="right">
+                                <a th:href="@{|/event/${event.getId()}|}">More info</a>
+                            </div>
+                        </div>
+                     </div>
+                </div>
             </div>
         </div>
-        <div class="card-footer">
-            <p th:text="${event.startDateTime}">
+        <hr>
+        <div align="right">
+            <a class="contact-btn" href="#top">Back to top</a>
         </div>
     </div>
 </div>
-<hr>
-<a class="contact-btn" href="#top">Go to top</a>
-<hr>
-
-<!--<div class="jumbotron jumbotron-fluid">-->
-<!--    <main class="container">-->
-<!--        <div class="card offwhite-body">-->
-<!--            <div class="card-image">-->
-<!--                <form th:action="@{/event/search}" th:method="post">-->
-<!--                    <h4 class="card-title"><label for="search">Search for an Event: </label></h4>-->
-<!--                    &lt;!&ndash;          Below searches by description and title.&ndash;&gt;-->
-<!--                    <input name="search" id="search" type="text">-->
-<!--                    <h5>Genres for the Event: </h5>-->
-<!--                    <br>-->
-<!--                    <input hidden type="checkbox"-->
-<!--                           th:id="ignore"-->
-<!--                           name="genreIds"-->
-<!--                           value="ignore"-->
-<!--                           checked>-->
-
-<!--                    <div th:each="genre: ${genres}">-->
-<!--                        <label th:for="${genre.genreName}">-->
-<!--                            <input type="checkbox"-->
-<!--                                   th:id="${genre.genreName}"-->
-<!--                                   name="genreIds"-->
-<!--                                   th:value="${genre.genreName}"-->
-<!--                                   th:text="${genre.genreName}">-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                    <button class="btn btn-outline-success" type="submit">Submit</button>-->
-<!--                </form>-->
-<!--            </div>-->
-
-<!--            <div class="card-image">-->
-<!--                <h4 class="card-title">Viewing All Events</h4>-->
-<!--                <p>Click any event to view all of its content.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <br>-->
-<!--        <div th:each="event : ${events}">-->
-<!--            <div class="card offwhite-body">-->
-<!--                <div class="card-content preview-post">-->
-<!--                    <a><p th:text="${event.title}"></p></a>-->
-<!--                    <p th:text="${event.description}"></p>-->
-<!--                    <p th:text="${event.location}"></p>-->
-<!--                    <p th:text="${event.startDateTime}"></p>-->
-<!--                    <p th:text="${event.slots}"></p>-->
-<!--                    <p th:text="${event.price}"></p>-->
-<!--                    <a th:href="@{|/event/${event.getId()}|}" class="btn btn-primary">View Event</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <br>-->
-<!--        </div>-->
-<!--        <br>-->
-<!--    </main>-->
-<!--</div>-->
-
 <footer th:replace="partials/footer.html :: footer"></footer>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 </body>

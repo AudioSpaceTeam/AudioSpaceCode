@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <th:block th:replace="partials/style.html :: style"></th:block>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!DOCTYPE html>
     <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
@@ -32,6 +25,7 @@
                                     <h6 class="card-subtitle mb-2 text-muted" th:text="${event.location}"></h6>
                                     <p class="card-text" th:text="${event.description}"></p>
                                     <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
+
                                 </div>
                             </div>
                         </div>
@@ -110,14 +104,6 @@
             </div>
             <!--EndOfProfileCard==============================================================================================-->
 
-        </div>
-
-
-
-
-
-    </div>
-
     <!--Modals========================================================================================================-->
     <!-- Create Rating Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -138,9 +124,9 @@
                                 <input type="radio" name="rating" value="2" id="2" th:field="*{rating}"><label for="2"><i class="fas fa-star"></i></label>
                                 <input type="radio" name="rating" value="1" id="1" th:field="*{rating}"><label for="1"><i class="fas fa-star"></i></label>
                                 <br>
-                            </div>
-                        </div>
-                        <textarea class="textRect" th:field="*{body}" placeholder="Comments:"></textarea>
+                          </div>
+                    <div>                  
+                       <textarea class="textRect" th:field="*{body}" placeholder="Comments:"></textarea>
                     </div>
                     <div class="modal-footer">
                         <input hidden name="currentUserID" th:value="${currentUser.id}">
@@ -172,6 +158,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

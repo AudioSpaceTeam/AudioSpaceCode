@@ -4,7 +4,7 @@
     var map = new mapboxgl.Map({
     container: 'map', // container ID
 });
-    map.setStyle('mapbox://styles/mapbox/dark-v10')
+    map.setStyle('mapbox://styles/mapbox/streets-v11')
     map.setZoom(12)
     map.setCenter([-98.4916, 29.4252])
     map.addControl(new mapboxgl.NavigationControl());

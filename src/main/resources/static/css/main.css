@@ -43,7 +43,7 @@
   border-radius: 10px;
 }
 .container-fluid {
-  background-color: #d8dedd;
+  background-color: #344B47;
 }
 .footer-as {
   background-color: #344B47;
@@ -60,6 +60,7 @@ body {
   font-family: montserrat, sans-serif;
 }
 .containerEvents {
+  background-color: #344B47;
   display: flex;
   justify-content: space-around;
   width: 90%;
@@ -364,7 +365,7 @@ input#5:checked ~ label{
 
 .contents{
   margin-bottom: 2rem;
-  background-color: #d8dedd;
+  background-color: #344B47
 }
 
 

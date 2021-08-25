@@ -222,7 +222,9 @@
                                     <!--Here go the avatar img-->
                                     <div class="col-12 col-sm-auto mb-3">
                                         <div class="mx-auto" style="width: 140px;">
+                                          <div class="pic">
                                             <img th:src="${user.imageUrl}" alt="No Profile Picture">
+                                          </div>
                                             <div class="control" id="nameBox"></div>
                                             <div class="control" id="urlBox"></div>
                                         </div>
@@ -265,7 +267,7 @@
                                                         <div class="col">
                                                             <div class="form-group">
                                                                 <label for="displayName">Display Name</label>
-                                                                <input class="form-control" type="text" name="name"
+                                                                <input class="form-control" type="text"
                                                                        placeholder="Stone Cold"
                                                                        th:field="*{displayName}"
                                                                        id="displayName">
@@ -295,27 +297,29 @@
                                                 </div>
                                             </div>
                                             <!--change password form-->
-                                            <div class="row">
-                                                <div class="col-12 col-sm-6 mb-3">
-                                                    <div class="mb-2"><b>Change Password</b></div>
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <div class="form-group">
-                                                                <label>Current Password</label>
-                                                                <input class="form-control" type="password"
-                                                                       placeholder="••••••">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <div class="form-group">
-                                                                <label>New Password</label>
-                                                                <input class="form-control" type="password"
-                                                                       placeholder="••••••">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+<!--                                      TODO: Put this in a separate modal, or change controller to check values and work accordingly. -->
+<!--                                      -->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-12 col-sm-6 mb-3">-->
+<!--                                                    <div class="mb-2"><b>Change Password</b></div>-->
+<!--                                                    <div class="row">-->
+<!--                                                        <div class="col">-->
+<!--                                                            <div class="form-group">-->
+<!--                                                                <label>Current Password</label>-->
+<!--                                                                <input class="form-control" type="password"-->
+<!--                                                                       placeholder="••••••">-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="row">-->
+<!--                                                        <div class="col">-->
+<!--                                                            <div class="form-group">-->
+<!--                                                                <label>New Password</label>-->
+<!--                                                                <input class="form-control" type="password"-->
+<!--                                                                       placeholder="••••••">-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
                                                     <!--confirm password-->
                                                     <div class="row">
                                                         <div class="col">

@@ -222,7 +222,9 @@
                                     <!--Here go the avatar img-->
                                     <div class="col-12 col-sm-auto mb-3">
                                         <div class="mx-auto" style="width: 140px;">
-                                            <img th:src="${user.imageUrl}" alt="No Profile Picture">
+                                          <div class="pic">
+                                            <img id="changeImage" th:src="${user.imageUrl}" alt="No Profile Picture">
+                                          </div>
                                             <div class="control" id="nameBox"></div>
                                             <div class="control" id="urlBox"></div>
                                         </div>
@@ -241,7 +243,7 @@
                                             <!--change avatar pic-->
                                             <div class="control mt-2">
                                                 <button class="btn btn-primary" type="button" id="picker">
-                                                    <input type="hidden" id="fileupload" name="fileupload">
+                                                    <input type="hidden" th:value="${user.imageUrl}" id="fileupload" name="fileupload">
                                                     <i class="fa fa-fw fa-camera"></i>
                                                     <span>Change Photo</span>
                                                     <!--<div class="control" id="nameBox"></div>-->
@@ -265,7 +267,7 @@
                                                         <div class="col">
                                                             <div class="form-group">
                                                                 <label for="displayName">Display Name</label>
-                                                                <input class="form-control" type="text" name="name"
+                                                                <input class="form-control" type="text"
                                                                        placeholder="Stone Cold"
                                                                        th:field="*{displayName}"
                                                                        id="displayName">
@@ -295,27 +297,29 @@
                                                 </div>
                                             </div>
                                             <!--change password form-->
-                                            <div class="row">
-                                                <div class="col-12 col-sm-6 mb-3">
-                                                    <div class="mb-2"><b>Change Password</b></div>
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <div class="form-group">
-                                                                <label>Current Password</label>
-                                                                <input class="form-control" type="password"
-                                                                       placeholder="••••••">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <div class="form-group">
-                                                                <label>New Password</label>
-                                                                <input class="form-control" type="password"
-                                                                       placeholder="••••••">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+<!--                                      TODO: Put this in a separate modal, or change controller to check values and work accordingly. -->
+<!--                                      -->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-12 col-sm-6 mb-3">-->
+<!--                                                    <div class="mb-2"><b>Change Password</b></div>-->
+<!--                                                    <div class="row">-->
+<!--                                                        <div class="col">-->
+<!--                                                            <div class="form-group">-->
+<!--                                                                <label>Current Password</label>-->
+<!--                                                                <input class="form-control" type="password"-->
+<!--                                                                       placeholder="••••••">-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="row">-->
+<!--                                                        <div class="col">-->
+<!--                                                            <div class="form-group">-->
+<!--                                                                <label>New Password</label>-->
+<!--                                                                <input class="form-control" type="password"-->
+<!--                                                                       placeholder="••••••">-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
                                                     <!--confirm password-->
                                                     <div class="row">
                                                         <div class="col">
@@ -335,7 +339,7 @@
                                                 </div>
                                                 <!--checkbox menu-->
                                                 <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                                                    <div class="mb-2"><b>Choose you Groove</b></div>
+                                                    <div class="mb-2"><b>Please Confirm your Password before sending changes!</b></div>
                                                     <!--Genres Id-->
                                                     <div class="row">
                                                         <div class="col">
@@ -459,6 +463,8 @@
         nameBox.appendChild(name);
         urlBox.appendChild(document.createTextNode('Uploaded to: '));
         urlBox.appendChild(url);
+        $('#changeImage').attr('src',url);
+
     };
 </script>
 </body>

@@ -68,14 +68,13 @@
                             <p th:text="${event.getDateFormat()}">
                             <p th:text="${event.getTime()}">
                             <div align="right">
-                                <a th:href="@{|/event/${event.getId()}|}">More info</a>
+                                <a th:href="@{|/event/${event.getId()}|}" style="text-decoration: none">More info</a>
                             </div>
                         </div>
                      </div>
                 </div>
             </div>
         </div>
-        <hr>
         <div align="right">
             <a class="contact-btn" href="#top">Back to top</a>
         </div>

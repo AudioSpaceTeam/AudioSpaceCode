@@ -1,24 +1,28 @@
-
 @media only screen and (max-width: 900px) {
-  .searchEventCard {
-    display: none;
-  }
-  #mobileSearch {
-    display: block;
-    padding: 9px;
-  }
-  .mobileOnly>form {
-    display: flex;
-  }
-  .mobileOnly>form>* {
-    margin: 0 10px;
-  }
-  #searchMobile {
-    flex-grow: 1;
-  }
+    .searchEventCard {
+        display: none;
+    }
+
+    #mobileSearch {
+        display: block;
+        padding: 9px;
+    }
+
+    .mobileOnly > form {
+        display: flex;
+    }
+
+    .mobileOnly > form > * {
+        margin: 0 10px;
+    }
+
+    #searchMobile {
+        flex-grow: 1;
+    }
 }
+
 .mobileOnly {
-  display: none;
+    display: none;
 }
 
 /*.ColorPallet{*/
@@ -39,9 +43,10 @@
 
 /*}*/
 .container {
-  background-color: #d8dedd;
-  border-radius: 10px;
+    background-color: #d8dedd;
+    border-radius: 10px;
 }
+
 
 #container{
   /*border: 1.5px solid darkgray;*/
@@ -54,83 +59,96 @@
   /*background-color: #344B47;*/
   background-color: black;
 }
+
 .footer-as {
-  background-color: #344B47;
+    background-color: #344B47;
 
 }
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
 }
+
 body {
-  background-color: #344B47;
-  font-family: montserrat, sans-serif;
+    background-color: #344B47;
+    font-family: montserrat, sans-serif;
 }
+
 .containerEvents {
-  background-color: #344B47;
-  display: flex;
-  justify-content: space-around;
-  width: 90%;
+    background-color: #344B47;
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
 }
 
 .searchEventCard {
-  padding: 9px;
-  height: 60%;
-  float: left;
-  margin: 100px 0px 0px 0px;
+    padding: 9px;
+    height: 60%;
+    float: left;
+    margin: 100px 0px 0px 0px;
 }
+
 .eventsDisplayCard {
-  padding: 13px;
-  margin: 10px 0px 0px 8px;
+    padding: 13px;
+    margin: 10px 0px 0px 8px;
 }
+
 #indexH3 {
-  color: #d8dedd;
+    color: #d8dedd;
 }
 
 .displayEvent {
-  background-color: #d8dedd;
-  border-radius: 10px;
-  width: 100%;
-  padding: 10px;
-  margin: 15px;
+    background-color: #d8dedd;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    margin: 15px;
 }
+
 .eventBody {
-  /*display: flex;*/
-  /*justify-content: space-between;*/
+    /*display: flex;*/
+    /*justify-content: space-between;*/
 }
+
 .userImageCard {
-  float: left;
-  margin-right: 10px;
+    float: left;
+    margin-right: 10px;
 }
+
 .mainEvents {
-  margin: 20px;
-  width: 70%;
+    margin: 20px;
+    width: 70%;
 }
+
 .footer-as {
-  background-color: #344B47;
+    background-color: #344B47;
 }
+
 .navbar {
-  background-color: #292929;
+    background-color: #292929;
 }
+
 #nav {
-  background-color: #292929;
+    background-color: #292929;
 }
 
-.profile-card-container{
-  /*margin-left: 2rem;*/
+.profile-card-container {
+    /*margin-left: 2rem;*/
 }
 
-#navbarLogo{
-  width: 100%;
-  height: 100%;
+#navbarLogo {
+    width: 100%;
+    height: 100%;
 }
 
-#navbarA{
-  width: 5%;
-  height: 100%;
+#navbarA {
+    width: 5%;
+    height: 100%;
 }
+
 
 .profile-card{
   width: 350px;
@@ -147,8 +165,11 @@ body {
   border-radius: 50%;
   background-size: 200% 200%;
   animation: animated-gradient 2s linear infinite;
+
 }
+
 @keyframes animated-gradient {
+
   25%{
     background-position: left bottom;
   }
@@ -280,55 +301,57 @@ body {
   border-radius: .5rem;
   background-color: #e3e3e3;
   padding: .5rem;
-}
-
-.comment{
-  margin-bottom: .3rem;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.textSize{
-  font-size: small;
 
 }
+
+.comment {
+    margin-bottom: .3rem;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.textSize {
+    font-size: small;
+
+}
+
 .scroll {
-  height:50vh;
-  overflow-y: scroll;
-  padding: .5rem;
+    height: 50vh;
+    overflow-y: scroll;
+    padding: .5rem;
 }
 
 .scroll2 {
 
-  overflow-x: scroll;
-  padding: .5rem;
+    overflow-x: scroll;
+    padding: .5rem;
 }
 
-.modal-content{
-  padding: .5rem;
+.modal-content {
+    padding: .5rem;
 }
 
 #searchCard {
-  background-color: #d8dedd;
+    background-color: #d8dedd;
 }
 
 .btn {
-  background-color: #00796D;
+    background-color: #00796D;
 }
 
 .searchInput {
-  width: 100%;
-  padding: 5px;
+    width: 100%;
+    padding: 5px;
 }
 
 .eventSearchButton {
-  padding: 5px;
-  background-color: #d8dedd;
-  color: #1E2D2C;
+    padding: 5px;
+    background-color: #d8dedd;
+    color: #1E2D2C;
 }
 
 .eventSearchButton:hover {
-  border: 2px solid #4b5454;
+    border: 2px solid #4b5454;
 }
 
 .card {
@@ -342,73 +365,77 @@ body {
 }
 
 /*Star Rating CSS*/
-.rotate{
-  transform: translate(-50%, -50%) rotateY(180deg);
-  margin-left: 5.5rem;
+.rotate {
+    transform: translate(-50%, -50%) rotateY(180deg);
+    margin-left: 5.5rem;
 }
 
-.rating input{
-  display: none;
+.rating input {
+    display: none;
 }
 
-.rating label i{
-  cursor: pointer;
-  margin-left: 1rem;
+.rating label i {
+    cursor: pointer;
+    margin-left: 1rem;
 }
 
 .rating input:not(:checked) ~ label:hover,
-.rating input:not(:checked) ~ label:hover ~ label{
-  color:#ffc107;
+.rating input:not(:checked) ~ label:hover ~ label {
+    color: #ffc107;
 }
+
 
 .rating input:checked ~ label{
   color:#fd4;
 }
 
-input#5:checked ~ label{
-  color: #ffc107;
-  text-shadow: 0 0 20px #952;
+input#5:checked ~ label {
+    color: #ffc107;
+    text-shadow: 0 0 20px #952;
 }
 
 .textRect {
-  width: 100%;
+    width: 100%;
 }
 
 
 /*CREATE.HTML*/
-.push-down{
-  margin-top: 2rem;
+.push-down {
+    margin-top: 2rem;
 }
 
-.down{
-  margin-top: 3rem;
+.down {
+    margin-top: 3rem;
 }
 
-.TitleForm{
-  width:100%;
-  margin-bottom: 1rem;
+.TitleForm {
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
-.eventForms{
-  width: 80vh;
+.eventForms {
+    width: 80vh;
 }
 
-.bars{
-  margin:5rem;
+.bars {
+    margin: 5rem;
 }
 
-.genres{
-  margin: .5rem;
+.genres {
+    margin: .5rem;
 }
 
-.genreList{
-  margin: 2rem;
+.genreList {
+    margin: 2rem;
 }
 
-.pleaseFill{
-  margin-left: 6rem;
+.pleaseFill {
+    margin-left: 6rem;
 }
 
+a {
+    text-decoration: none;
+}
 
 /*.contents{*/
 /*  margin-bottom: 2rem;*/

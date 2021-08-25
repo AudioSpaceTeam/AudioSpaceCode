@@ -1,5 +1,6 @@
 package com.audiospace.demo.controllers;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -11,6 +12,7 @@ import com.audiospace.demo.models.User;
 import com.audiospace.demo.repositories.GenreRepository;
 import com.audiospace.demo.repositories.UserRepository;
 import com.audiospace.demo.services.EmailService;
+import com.audiospace.demo.services.SendGridService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +27,9 @@ public class EventController {
   private final EventRepository eventDao;
   private final UserRepository userDao;
   private final GenreRepository genreDao;
-  private final EmailService emailSvc;
+  private final SendGridService emailSvc;
 
-  public EventController(EventRepository eventDao, UserRepository userDao, GenreRepository genreDao, EmailService emailSvc) {
+  public EventController(EventRepository eventDao, UserRepository userDao, GenreRepository genreDao, SendGridService emailSvc) {
     this.eventDao = eventDao;
     this.userDao = userDao;
     this.genreDao = genreDao;
@@ -215,7 +217,7 @@ public class EventController {
 
   @PostMapping("/event/add/requester")
   public String eventAddRequester(@RequestParam long id,
-                                  Model model) {
+                                  Model model) throws IOException {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     Event event = eventDao.findById(id);
     User requester = userDao.findById(currentUser.getId());
@@ -225,10 +227,12 @@ public class EventController {
 //    Email stuff below.
     String emailPromoter = requester.getDisplayName() + " Just requested to join your event, " + event.getTitle() + "!";
     String emailPerformer =  "You requested to join your event, " + event.getTitle() + "!";
-
-//    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
-//    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
-
+try {
+  emailSvc.prepareAndSend(event.getPromoter().getEmail(), event.getTitle(), emailPromoter);
+  emailSvc.prepareAndSend(requester.getEmail(), event.getTitle(), emailPerformer);
+} catch (IOException io){
+  io.printStackTrace();
+}
     return "redirect:/event/" + id;
   }
 

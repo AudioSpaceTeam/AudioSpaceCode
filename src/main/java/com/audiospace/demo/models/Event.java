@@ -73,13 +73,13 @@ public class Event {
   public String getDateFormat(){
     String dateTime = startDateTime.toString();
     String[] dateTimeArray = dateTime.split("T");
-
+    String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     String date = dateTimeArray[0];
     String[] dateArray = date.split("-");
-
-
-
-    return date;
+    int monthNumber = Integer.parseInt(dateArray[1]) - 1;
+    String month = months[monthNumber];
+    String result = month + " " + dateArray[2] + " " + dateArray[0];
+    return result;
   }
 
   public String getTime(){

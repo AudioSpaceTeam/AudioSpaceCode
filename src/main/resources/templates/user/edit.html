@@ -193,24 +193,24 @@
 <br>
 <div class="container">
     <br>
-    <div class="row flex-lg-nowrap" id="pick-form"
+    <form class="row flex-lg-nowrap" id="pick-form"
          th:action="@{|/profile/${user.getId()}/edit|}" th:method="post"
          th:object="${user}">
         <!--    left box with links-->
-        <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
-            <div class="card p-3">
-                <div class="e-navlist e-navlist--active-bg">
-                    <ul class="nav">
-                        <li class="nav-item"><a class="nav-link px-2 active" href="/event">
-                            <i class="fas fa-calendar-week"></i> <span>Events</span></a></li>
-                        <li class="nav-item"><a class="nav-link px-2" href="/profile"
-                        ><i class="fas fa-users"></i> <span>Profile</span></a></li>
-                        <li class="nav-item"><a class="nav-link px-2" href="/"
-                        ><i class="fas fa-home"></i> <span>Home</span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<!--        <div class="col-12 col-lg-auto mb-3" style="width: 200px;">-->
+<!--            <div class="card p-3">-->
+<!--                <div class="e-navlist e-navlist&#45;&#45;active-bg">-->
+<!--                    <ul class="nav">-->
+<!--                        <li class="nav-item"><a class="nav-link px-2 active" href="/event">-->
+<!--                            <i class="fas fa-calendar-week"></i> <span>Events</span></a></li>-->
+<!--                        <li class="nav-item"><a class="nav-link px-2" href="/profile"-->
+<!--                        ><i class="fas fa-users"></i> <span>Profile</span></a></li>-->
+<!--                        <li class="nav-item"><a class="nav-link px-2" href="/"-->
+<!--                        ><i class="fas fa-home"></i> <span>Home</span></a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <!--main content with forms-->
         <div class="col">
             <div class="row">
@@ -231,7 +231,6 @@
                                         <div class="text-center text-sm-left mb-2 mb-sm-0">
                                             <h4 class="text-center text-sm-left mb-2 mb-sm-0"
                                                 th:text="${user.displayName}"></h4>
-                                            </h4>
                                             <br>
                                             <div class="desc" th:if="${user.getPromoter()}">
                                                 <p class="mb-0">Promoter</p>
@@ -257,9 +256,8 @@
                                     <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
                                 </ul>
                                 <!--start form here-->
-                                <form class="tab-content pt-3">
+                                <div class="tab-content pt-3">
                                     <div class="tab-pane active">
-                                        <form class="form">
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="row">
@@ -369,46 +367,45 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                        </form>
 
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--logout-->
-                <div class="col-12 col-md-3 mb-3">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <!--logout button access-->
-                            <div class="px-xl-3">
-                                <button class="btn btn-block btn-secondary" sec:authorize="isAuthenticated()">
-                                    <form id="logoutButton" th:action="@{/logout}" th:method="post"
-                                          style="cursor: pointer">
-                                        <a style="color: #fff" class="nav-link" onclick="this.parentNode.submit();"><i
-                                                class="fa fa-sign-out"></i>Logout</a>
-                                    </form>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--contact us-->
-                    <div class="card">
-                        <div class="card-body">
-                            <h6 class="card-title font-weight-bold">Support</h6>
-                            <p class="card-text">Get fast, free help from our friendly assistants.</p>
-                            <button type="button" class="btn btn-block btn-primary">
-                                <span><a style="color: #fff" href="/contact">Contact Us</a></span>
-                            </button>
+<!--              <div class="col-12 col-md-3 mb-3">-->
+<!--                <div class="card mb-3">-->
+<!--                  <div class="card-body">-->
+<!--                    &lt;!&ndash;logout button access&ndash;&gt;-->
+<!--                    <div class="px-xl-3">-->
+<!--                      <button class="btn btn-block btn-secondary" sec:authorize="isAuthenticated()">-->
+<!--                        <form id="logoutButton" th:action="@{/logout}" th:method="post"-->
+<!--                              style="cursor: pointer">-->
+<!--                          <a style="color: #fff" class="nav-link" onclick="this.parentNode.submit();"><i-->
+<!--                            class="fa fa-sign-out"></i>Logout</a>-->
+<!--                        </form>-->
+<!--                      </button>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                    &lt;!&ndash;contact us&ndash;&gt;-->
+<!--                    <div class="card">-->
+<!--                        <div class="card-body">-->
+<!--                            <h6 class="card-title font-weight-bold">Support</h6>-->
+<!--                            <p class="card-text">Get fast, free help from our friendly assistants.</p>-->
+<!--                            <button type="button" class="btn btn-block btn-primary">-->
+<!--                                <span><a style="color: #fff" href="/contact">Contact Us</a></span>-->
+<!--                            </button>-->
 
-                        </div>
-                    </div>
-                </div>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
 
         </div>
-    </div>
+    </form>
 </div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"

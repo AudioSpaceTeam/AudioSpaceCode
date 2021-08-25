@@ -223,7 +223,7 @@
                                     <div class="col-12 col-sm-auto mb-3">
                                         <div class="mx-auto" style="width: 140px;">
                                           <div class="pic">
-                                            <img th:src="${user.imageUrl}" alt="No Profile Picture">
+                                            <img id="changeImage" th:src="${user.imageUrl}" alt="No Profile Picture">
                                           </div>
                                             <div class="control" id="nameBox"></div>
                                             <div class="control" id="urlBox"></div>
@@ -243,7 +243,7 @@
                                             <!--change avatar pic-->
                                             <div class="control mt-2">
                                                 <button class="btn btn-primary" type="button" id="picker">
-                                                    <input type="hidden" id="fileupload" name="fileupload">
+                                                    <input type="hidden" th:value="${user.imageUrl}" id="fileupload" name="fileupload">
                                                     <i class="fa fa-fw fa-camera"></i>
                                                     <span>Change Photo</span>
                                                     <!--<div class="control" id="nameBox"></div>-->
@@ -339,7 +339,7 @@
                                                 </div>
                                                 <!--checkbox menu-->
                                                 <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                                                    <div class="mb-2"><b>Choose you Groove</b></div>
+                                                    <div class="mb-2"><b>Please Confirm your Password before sending changes!</b></div>
                                                     <!--Genres Id-->
                                                     <div class="row">
                                                         <div class="col">
@@ -463,6 +463,8 @@
         nameBox.appendChild(name);
         urlBox.appendChild(document.createTextNode('Uploaded to: '));
         urlBox.appendChild(url);
+        $('#changeImage').attr('src',url);
+
     };
 </script>
 </body>

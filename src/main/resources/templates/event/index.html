@@ -65,7 +65,8 @@
                             <p class="card-text">
                             <span th:text="${event.title}"></span> @ <span th:text="${event.location}"></span>
                             <p th:text="${event.description}">
-                            <p th:text="${event.startDateTime}">
+                            <p th:text="${event.getDateFormat()}">
+                            <p th:text="${event.getTime()}">
                             <div align="right">
                                 <a th:href="@{|/event/${event.getId()}|}">More info</a>
                             </div>

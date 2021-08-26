@@ -280,6 +280,10 @@ input#5:checked ~ label{
   margin-bottom: 2rem;
 }
 
+.formDetails{
+  color:antiquewhite;
+}
+
 .eventForms{
   width: 80vh;
 }

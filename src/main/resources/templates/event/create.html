@@ -24,23 +24,70 @@
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<br>
-<div class="container">
-  <br>
-  <form class="row flex-lg-nowrap" id="pick-form"
-        th:action="@{|/event/create|}" th:method="post"
-        th:object="${event}">
-    <!--main content with forms-->
-    <div class="col">
-      <div class="row">
-        <div class="col mb-3">
-          <div class="card">
-            <div class="card-body">
-              <div class="e-profile">
-                <div class="row">
-                  <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+
+
+
+<div class="container-fluid">
+    <div class="text-center ">
+        <div class="header text-center"><h1 style="color: #00796D">Create an event!</h1></div>
+        <h1>Create events as a promoter and get noticed.</h1>
+        <p>Audio Space's goal is to make the connection between promoters and musicians as easy as possible.<br> Our
+            platform aims to facilitate the process of booking shows and managing events.</p>
+    </div>
+    <hr class="my-4">
+
+    <div class="d-flex flex-column align-items-center ">
+        <form th:action="@{/event/create}" th:method="post" th:object="${event}">
+            <h3 class=" ">Event Info: </h3>
+
+<!--                <div class="d-flex flex-column bg-success col-width">-->
+                <div class="box">
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="title" class="formDetails">Title:</label>
+                            <input class="TitleForm" th:field="*{title}" id="title"/>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="city" class="formDetails">City:</label>
+                            <input class="TitleForm" th:field="*{city}" id="city">
+                        </div>
+                        <div class="col-6">
+                            <label for="state" class="formDetails">State:</label>
+                            <input class="TitleForm" th:field="*{state}" id="state">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 ">
+                            <label for="address" class="formDetails">Address:</label>
+                            <input class="TitleForm" th:field="*{address}" id="address">
+                        </div>
+                        <div class="col-sm-6 ">
+                            <label for="zipcode" class="formDetails">Zipcode:</label>
+                            <input class="TitleForm" th:field="*{zipcode}" id="zipcode">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 ">
+                            <label  for="price" class="formDetails">Price: </label>
+                            <input class="TitleForm" name="price" type="number" step=".01" id="price" placeholder="$">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="slots" class="formDetails">Available slots:</label>
+                            <input class="TitleForm" th:field="*{slots}" type="number" id="slots">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 ">
+                        <label for="dateTime" class="formDetails">Day of Event (date and time):</label>
+                        <input class="TitleForm" type="datetime-local" id="dateTime" name="dateTime">
+                    </div>
+                    <div class="col-sm-12 ">
+                        <label for="description" class="formDetails">Description:</label>
+                        <textarea class="TitleForm" th:field="*{description}" id="description"></textarea>
+      </div>
                   </div>
                 </div>
                 <!--start form here-->
@@ -160,8 +207,11 @@
                 </div>
               </div>
 
-            </div>
-          </div>
+
+        <div class="d-flex flex-row justify-content-center mt-5">
+            <!--    <button type="submit" class="btn btn-dark mt-3">Submit</button>-->
+            <button class="contact-btn" type="submit">Create Event</button>
+
         </div>
       </div>
 </form>

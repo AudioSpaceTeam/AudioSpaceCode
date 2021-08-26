@@ -32,7 +32,16 @@ public class Event {
 
     //  Location String (for reverse geocoding)
     @Column(nullable = false, length = 100)
-    private String location;
+    private String city;
+
+    @Column(nullable = false, length = 100)
+    private String state;
+
+    @Column(nullable = false, length =100)
+    private String address;
+
+    @Column(nullable = false, length = 100)
+    private String zipcode;
 
 //  Event flyer image
 //  Not yet...
@@ -142,102 +151,83 @@ public class Event {
 
   }
 
-  public Event(long id, String title, String description, Integer slots, String location, Double price,
-               User promoter, LocalDateTime startDateTime) {
+    public Event(long id, String title, String description, Integer slots, String city, String state, String address, String zipcode, LocalDateTime startDateTime, Double price, User promoter) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.slots = slots;
+        this.city = city;
+        this.state = state;
+        this.address = address;
+        this.zipcode = zipcode;
+        this.startDateTime = startDateTime;
+        this.price = price;
+        this.promoter = promoter;
+    }
 
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.slots = slots;
-    this.location = location;
-    this.price = price;
-    this.promoter = promoter;
-    this.startDateTime = startDateTime;
+    public long getId() {
+        return id;
+    }
 
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public Event(String title, String description, Integer slots, String location, Double price, User promoter) {
-    this.title = title;
-    this.description = description;
-    this.slots = slots;
-    this.location = location;
-    this.price = price;
-    this.promoter = promoter;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public Event(String title, String description, Integer slots, String location, Double price) {
-    this.title = title;
-    this.description = description;
-    this.slots = slots;
-    this.location = location;
-    this.price = price;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public Event(long id, String title, String description, Integer slots, String location, Double price) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.slots = slots;
-    this.location = location;
-    this.price = price;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public Event(long id, String title, String description, String location) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.location = location;
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  }
+    public Integer getSlots() {
+        return slots;
+    }
 
-  public long getId() {
-    return id;
-  }
+    public void setSlots(Integer slots) {
+        this.slots = slots;
+    }
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    public String getCity() {
+        return city;
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public String getState() {
+        return state;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public void setState(String state) {
+        this.state = state;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public String getAddress() {
+        return address;
+    }
 
-  public Integer getSlots() {
-    return slots;
-  }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-  public void setSlots(Integer slots) {
-    this.slots = slots;
-  }
+    public String getZipcode() {
+        return zipcode;
+    }
 
-  public String getLocation() {
-    return location;
-  }
-
-  public void setLocation(String location) {
-    this.location = location;
-  }
-
-
-//  public Date getDatetime() {
-//    return datetime;
-//  }
-//
-//  public void setDatetime(Date datetime) {
-//    this.datetime = datetime;
-//  }
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
 
     public Double getPrice() {
         return price;
@@ -255,8 +245,7 @@ public class Event {
         this.promoter = promoter;
     }
 
-
-  public List<User> getPerformers() {
+    public List<User> getPerformers() {
     return performers;
   }
 
@@ -271,6 +260,10 @@ public class Event {
 
   public void setRequesters(List<User> requesters) {
     this.requesters = requesters;
+  }
+
+  public String getLocation(){
+      return city + ", " + state + ", " + address + ", " + zipcode;
   }
 
 //  bands sloted?

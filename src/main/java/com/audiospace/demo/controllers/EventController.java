@@ -171,7 +171,8 @@ public class EventController {
       return "redirect:/event";
     }
   }
-//Below is our search, TODO:change to a GET?
+
+  //Below is our search, TODO:change to a GET?
   @PostMapping("/event")
   public String eventSearch(@RequestParam String search,
                             @RequestParam String[] genreIds,
@@ -226,13 +227,13 @@ public class EventController {
     eventDao.save(event);
 //    Email stuff below.
     String emailPromoter = requester.getDisplayName() + " Just requested to join your event, " + event.getTitle() + "!";
-    String emailPerformer =  "You requested to join your event, " + event.getTitle() + "!";
-try {
-  emailSvc.prepareAndSend(event.getPromoter().getEmail(), event.getTitle(), emailPromoter);
-  emailSvc.prepareAndSend(requester.getEmail(), event.getTitle(), emailPerformer);
-} catch (IOException io){
-  io.printStackTrace();
-}
+    String emailPerformer = "You requested to join your event, " + event.getTitle() + "!";
+    try {
+      emailSvc.prepareAndSend(event.getPromoter().getEmail(), event.getTitle(), emailPromoter);
+      emailSvc.prepareAndSend(requester.getEmail(), event.getTitle(), emailPerformer);
+    } catch (IOException io) {
+      io.printStackTrace();
+    }
     return "redirect:/event/" + id;
   }
 
@@ -249,11 +250,13 @@ try {
     eventDao.save(event);
 //    Email stuff below.
     String emailPromoter = requester.getDisplayName() + " has been added to your event, " + event.getTitle() + "!";
-    String emailPerformer =  "Your request to join " + event.getTitle() + " was approved! Please email the promoter at: " + event.getPromoter().getEmail();
-
-//    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
-//    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
-
+    String emailPerformer = "Your request to join " + event.getTitle() + " was approved! Please email the promoter at: " + event.getPromoter().getEmail();
+    try {
+      emailSvc.prepareAndSend(event.getPromoter().getEmail(), event.getTitle(), emailPromoter);
+      emailSvc.prepareAndSend(requester.getEmail(), event.getTitle(), emailPerformer);
+    } catch (IOException io) {
+      io.printStackTrace();
+    }
 
     return "redirect:/event/" + id;
   }
@@ -270,11 +273,13 @@ try {
     eventDao.save(event);
     //    Email stuff below.
     String emailPromoter = requester.getDisplayName() + " had their request to join your event removed.";
-    String emailPerformer =  "Your request to join your event, " + event.getTitle() + "was removed :c.";
-
-//    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
-//    emailSvc.prepareAndSend(requester.getEmail(),event.getTitle(),emailPerformer);
-
+    String emailPerformer = "Your request to join your event, " + event.getTitle() + "was removed :c.";
+    try {
+      emailSvc.prepareAndSend(event.getPromoter().getEmail(), event.getTitle(), emailPromoter);
+      emailSvc.prepareAndSend(requester.getEmail(), event.getTitle(), emailPerformer);
+    } catch (IOException io) {
+      io.printStackTrace();
+    }
 
     return "redirect:/event/" + id;
   }
@@ -291,11 +296,13 @@ try {
     eventDao.save(event);
     //    Email stuff below.
     String emailPromoter = performer.getDisplayName() + " is no longer performing at " + event.getTitle() + ".";
-    String emailPerformer =  "You were removed from " + event.getTitle() + " sorry. :C";
-
-//    emailSvc.prepareAndSend(event.getPromoter().getEmail(),event.getTitle(),emailPromoter);
-//    emailSvc.prepareAndSend(performer.getEmail(),event.getTitle(),emailPerformer);
-
+    String emailPerformer = "You were removed from " + event.getTitle() + " sorry. :C";
+    try {
+      emailSvc.prepareAndSend(event.getPromoter().getEmail(), event.getTitle(), emailPromoter);
+      emailSvc.prepareAndSend(performer.getEmail(), event.getTitle(), emailPerformer);
+    } catch (IOException io) {
+      io.printStackTrace();
+    }
 
     return "redirect:/event/" + id;
   }

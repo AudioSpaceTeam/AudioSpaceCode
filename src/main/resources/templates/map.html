@@ -17,14 +17,6 @@
             events in your country.</p>
     </div>
 
-    <hr class="my-4">
-    <!--            form go here-->
-    <!--        <form>-->
-    <!--            <input class="form-control me-2" id="mapSearch" type="search" placeholder="Enter your location"-->
-    <!--                   style="width: 200px; margin: 3px;">-->
-    <!--            <button class="btn btn-dark" id="btn" type="submit" style="padding: 3px;">Search</button>-->
-    <!--        </form>-->
-
     <form class="row g-3">
         <div class="col-auto">
             <label for="mapSearch" class="visually-hidden"></label>
@@ -32,24 +24,28 @@
         </div>
     </form>
     <div class="col-auto">
-        <a class="contact-btn" id="btn" href="#">Search</a>
+        <a class="contact-btn" id="btn" href="#" style="text-decoration: none">Search</a>
     </div>
-    <hr class="my-4">
 
-    <!--        map go here-->
-    <div id='map' style="width: 750px; height: 600px; margin: auto;"></div>
-    <div class="hiddenMap" th:each="event: ${eventList}" style="display: none;">
-        <p class="eventId" th:text="${event.id}">
-        <p th:text="${event.startDateTime}"></p>
-        <p class="eventTitle" th:text="${event.title}"></p>
-        <p class="eventLocation" th:text=" ${event.location}"></p>
-        <p th:text="${event.price}"></p>
-        <p th:text="${event.slots}"></p>
-        <p th:text="${event.description}"></p>
+    <!--        map go here, fixed responsive errors-->
+    <div class="row justify-content-center">
+        <div class="rounded-3" id='map' style="width: 750px; height: 600px; margin: auto;"></div>
+        <div class="hiddenMap" th:each="event: ${eventList}" style="display: none;">
+            <p class="eventId" th:text="${event.id}">
+            <p th:text="${event.startDateTime}"></p>
+            <p class="eventTitle" th:text="${event.title}"></p>
+            <p class="eventLocation" th:text=" ${event.location}"></p>
+            <p th:text="${event.price}"></p>
+            <p th:text="${event.slots}"></p>
+            <p th:text="${event.description}"></p>
+        </div>
     </div>
-    <hr class="my-4">
+    <br>
 </div>
-<script th:src="@{/js/keys.js}"></script>
+<script>
+  const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic2F2YW5uYW1hcmllIiwiYSI6ImNrczZmZzExbzAwamQyb3BkZTdsaGkweTEifQ.xTwAf1HvBIFQrGDL_jhs8g'
+</script>
+<!--<script th:src="@{/js/keys.js}"></script>-->
 <script th:src="@{/js/mapbox-geocoder-utils.js}"></script>
 <script th:src="@{/js/mapbox.js}"></script>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>

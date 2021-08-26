@@ -71,17 +71,33 @@ public class Event {
         this.startDateTime = startDateTime;
     }
 
-    //Endtime
-//    @Column(name = "endDateTime", columnDefinition = "TIMESTAMP")
-//    private LocalDateTime endDateTime;
-//
-//    public LocalDateTime getEndDateTime() {
-//        return endDateTime;
-//    }
-//
-//    public void setEndDateTime(LocalDateTime endDateTime) {
-//        this.endDateTime = endDateTime;
-//    }
+    public String getDate(){
+      String dateTime = startDateTime.toString();
+      String[] dateTimeArray = dateTime.split("T");
+
+      String date = dateTimeArray[0];
+      return date;
+    }
+
+  public String getDateFormat(){
+    String dateTime = startDateTime.toString();
+    String[] dateTimeArray = dateTime.split("T");
+    String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+    String date = dateTimeArray[0];
+    String[] dateArray = date.split("-");
+    int monthNumber = Integer.parseInt(dateArray[1]) - 1;
+    String month = months[monthNumber];
+    String result = month + " " + dateArray[2] + " " + dateArray[0];
+    return result;
+  }
+
+  public String getTime(){
+    String dateTime = startDateTime.toString();
+    String[] dateTimeArray = dateTime.split("T");
+
+    String time = dateTimeArray[1];
+    return time;
+  }
 
 
     //  price double

@@ -330,8 +330,8 @@ input#5:checked ~ label{
 }
 
 .TitleForm{
-    width:100%;
-    margin-bottom: 1rem;
+  width:100%;
+  margin-bottom: 2rem;
 }
 
 .eventForms{
@@ -362,6 +362,29 @@ input#5:checked ~ label{
 }
 
 .contents{
-    margin-bottom: 2rem;
-    background-color: #344B47
+  margin-bottom: 2rem;
+  background-color: #d8dedd;
 }
+.col-width{
+  width:100%;
+}
+.box{
+  background-color: #344B47;
+ border-radius: 2rem;
+  padding: 5rem;
+
+}
+
+/*Bootstrap Media Queries*/
+@media only screen and (min-width: 200px)and(max-width: 768px){
+  .box{
+    width: 100vh;
+  }
+}
+
+@media only screen and (min-width:768px) {
+  .box{
+    width: 50vw;
+  }
+}
+

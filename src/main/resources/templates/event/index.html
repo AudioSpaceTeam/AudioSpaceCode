@@ -5,7 +5,6 @@
     <meta charset="UTF-8"/>
     <th:block th:replace="partials/style.html :: style"></th:block>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    
 </head>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container-fluid containerEvents">
@@ -24,15 +23,36 @@
                         <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}"></label>
                     </div>
             </div>
-            <br>
+            <a href="/map">Display all on map</a>
             <button class="btn eventSearchButton" type="submit">Search</button>
         </form>
     </div>
     <div class="card eventsDisplayCard">
         <div class="text-center">
-            <h3>Events currently scheduled</h3>
+            <h3 id="indexH3">Events currently scheduled</h3>
         </div>
         <div class="eventBody">
+            <div class="mobileOnly" id="mobileSearch">
+                <form th:action="@{/event}" th:method="post">
+                    <input name="search" id="searchMobile" type="text" class="form-control searchInput" aria-describedby="search-event" placeholder="Event name">
+                    <div class="dropdown">
+                        <button class="btn eventSearchButton dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Genre
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
+                            <div th:each="genre: ${genres}">
+                                <label th:for="${genre.genreName}">
+                                    <li>
+                                        <input type="checkbox" th:id="${genre.genreName}" name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}">
+                                    </li>
+                                </label>
+                            </div>
+                        </ul>
+                    </div>
+                    <button class="btn eventSearchButton" type="submit">Search</button>
+                </form>
+            </div>
             <div th:each="event : ${events}">
                 <div class="card userImageCard">
                     <div class="pic">
@@ -45,16 +65,16 @@
                             <p class="card-text">
                             <span th:text="${event.title}"></span> @ <span th:text="${event.location}"></span>
                             <p th:text="${event.description}">
-                            <p th:text="${event.startDateTime}">
+                            <p th:text="${event.getDateFormat()}">
+                            <p th:text="${event.getTime()}">
                             <div align="right">
-                                <a th:href="@{|/event/${event.getId()}|}">More info</a>
+                                <a th:href="@{|/event/${event.getId()}|}" style="text-decoration: none">More info</a>
                             </div>
                         </div>
                      </div>
                 </div>
             </div>
         </div>
-        <hr>
         <div align="right">
             <a class="contact-btn" href="#top">Back to top</a>
         </div>

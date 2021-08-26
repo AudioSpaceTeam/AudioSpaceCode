@@ -228,6 +228,7 @@ public class EventController {
 //    Email stuff below.
     String emailPromoter = requester.getDisplayName() + " Just requested to join your event, " + event.getTitle() + "!";
     String emailPerformer = "You requested to join your event, " + event.getTitle() + "!";
+
     try {
       emailSvc.prepareAndSend(event.getPromoter().getEmail(), event.getTitle(), emailPromoter);
       emailSvc.prepareAndSend(requester.getEmail(), event.getTitle(), emailPerformer);

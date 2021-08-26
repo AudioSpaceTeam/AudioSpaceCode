@@ -16,7 +16,7 @@
         flex-grow: 1;
     }
     .profileMobileCard {
-        margin-right: 90vw;
+        margin-right: 75vw;
     }
     .mobileCard2 {
         margin-top: 450px;
@@ -31,9 +31,11 @@
     background-color: #d8dedd;
     border-radius: 10px;
 }
+
 .container-fluid {
     background-color: #344B47;
 }
+
 .footer-as {
     background-color: #344B47;
 
@@ -91,9 +93,11 @@ body {
 .footer-as {
     background-color: #344B47;
 }
+
 .navbar {
     background-color: #292929;
 }
+
 #nav {
     background-color: #292929;
 }
@@ -173,10 +177,10 @@ body {
     color: #00796D;
     border: 2px solid #00796D;
     border-radius: 6px;
-    margin-top: 16px;
-    margin: 10px;
+    margin: 16px 10px;
     transition: .3s linear;
 }
+
 .card-footer{
     background: #f4f4f4;
     /*padding: 60px 10px;*/
@@ -185,12 +189,22 @@ body {
     display: flex;
     align-items: center;
 }
+
+#avg-rating:hover{
+    cursor: pointer;
+
+}
+
+
+
 .item{
     flex: 1;
     text-transform: uppercase;
     font-size: 13px;
     color: #00796D;
 }
+
+
 .item span{
     display: block;
     color: #2c3a47;
@@ -239,17 +253,17 @@ body {
     font-size: small;
 
 }
-.scroll {
-    height:50vh;
-    overflow-y: scroll;
-    padding: .5rem;
-}
+/*.scroll {*/
+/*    height:50vh;*/
+/*    overflow-y: scroll;*/
+/*    padding: .5rem;*/
+/*}*/
 
-.scroll2 {
-
-    overflow-x: scroll;
-    padding: .5rem;
-}
+/*.scroll2 {*/
+/*    overflow-y: scroll;*/
+/*    padding: .5rem;*/
+/*    height: 50vh;*/
+/*}*/
 
 .modal-content{
     padding: .5rem;

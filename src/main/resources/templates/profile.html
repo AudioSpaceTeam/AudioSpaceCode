@@ -12,10 +12,8 @@
     <!--Moved Page Title to the top -->
     <h3 class="text-center" id="indexH3">Your Planned Events:</h3>
     <div class="d-flex flex-row justify-content-center contents">
-
-        <div class="eventCards d-flex flex-row justify-content-center ">
-
-            <!--CurrentEventsProfile =========================================================================================-->
+        <div class="eventCards d-flex flex-row justify-content-center mobileCard2">
+            <!--`Current`EventsProfile =========================================================================================-->
             <div th:if="${user.getPromoter()}">
                 <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
                     <div th:each="event : ${userEvents}">
@@ -84,7 +82,7 @@
                         <div class="numbers">
                             <div class="item">
                                 <span th:text="${ratingAverage}"></span>
-                                <a data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
+                                <a id="avg-rating" data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
                             </div>
                         </div>
                     </div>

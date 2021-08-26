@@ -20,47 +20,47 @@
     </div>
     <hr class="my-4">
 
-    <div class="">
-        <h3 class="pleaseFill ">Event Info: </h3>
-        <div class="content d-flex flex-column align-items-center">
-            <form th:action="@{/event/create}" th:method="post" th:object="${event}">
-                <div class="d-flex flex-row justify-content-center eventForms">
-                    <div class="d-flex flex-column col-6 bars">
+    <div class="d-flex flex-column align-items-center ">
+        <form th:action="@{/event/create}" th:method="post" th:object="${event}">
+            <h3 class=" ">Event Info: </h3>
+
+<!--                <div class="d-flex flex-column bg-success col-width">-->
+                <div class="box">
+                    <div class="col-sm-12  ">
                         <label for="title">Title:</label>
-                        <br>
                         <input class="TitleForm" th:field="*{title}" id="title"/>
-                        <br>
-                        <label for="location">Location:</label>
-                        <br>
-                        <input class="TitleForm" th:field="*{location}" id="location">
-                        <br>
-                        <label for="description">Description:</label>
-                        <br>
-                        <textarea class="TitleForm" th:field="*{description}" id="description"></textarea>
-                        <br>
                     </div>
-                    <div class="d-flex flex-column col-6 bars">
-                        <label  for="price">Price: $</label>
-                        <br>
+                    <div class="col-sm-12 ">
+                        <label for="location">Location:</label>
+                        <input class="TitleForm" th:field="*{location}" id="location">
+                    </div>
+                    <div class="col-sm-12 ">
+                        <label  for="price">Price: </label>
                         <input class="TitleForm" name="price" type="number" step=".01" id="price" placeholder="$">
-                        <br>
+                    </div>
+                    <div class="col-sm-12 ">
                         <label for="slots">Available slots:</label>
-                        <br>
                         <input class="TitleForm" th:field="*{slots}" type="number" id="slots">
-                        <br>
+                    </div>
+                    <div class="col-sm-12 ">
                         <label for="dateTime">Day of Event (date and time):</label>
-                        <br>
                         <input class="TitleForm" type="datetime-local" id="dateTime" name="dateTime">
-                        <br>
+                    </div>
+                    <div class="col-sm-12 ">
+                        <label for="description">Description:</label>
+                        <textarea class="TitleForm" th:field="*{description}" id="description"></textarea>
                     </div>
 
                 </div>
+
+<!--                </div>-->
+
             </form>
-        </div>
 
 
 
-                <h3 class="pleaseFill">Select Genres: </h3>
+
+                <h3 class="">Select Genres: </h3>
                 <br>
 
                 <div class="d-flex flex-row justify-content-center">

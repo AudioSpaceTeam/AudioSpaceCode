@@ -15,7 +15,6 @@ import com.sendgrid.Request;
 import com.sendgrid.Response;
 import com.sendgrid.SendGrid;
 
-
 @Service
 public class SendGridService {
   private static final Logger logger = LoggerFactory.getLogger(SendGridService.class);

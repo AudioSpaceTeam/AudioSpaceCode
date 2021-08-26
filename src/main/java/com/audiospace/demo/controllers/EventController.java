@@ -218,7 +218,7 @@ public class EventController {
 
   @PostMapping("/event/add/requester")
   public String eventAddRequester(@RequestParam long id,
-                                  Model model) {
+                                  Model model) throws IOException {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     Event event = eventDao.findById(id);
     User requester = userDao.findById(currentUser.getId());

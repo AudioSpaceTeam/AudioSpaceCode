@@ -42,7 +42,10 @@
     </div>
     <br>
 </div>
-<script th:src="@{/js/keys.js}"></script>
+<script>
+  const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic2F2YW5uYW1hcmllIiwiYSI6ImNrczZmZzExbzAwamQyb3BkZTdsaGkweTEifQ.xTwAf1HvBIFQrGDL_jhs8g'
+</script>
+<!--<script th:src="@{/js/keys.js}"></script>-->
 <script th:src="@{/js/mapbox-geocoder-utils.js}"></script>
 <script th:src="@{/js/mapbox.js}"></script>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>

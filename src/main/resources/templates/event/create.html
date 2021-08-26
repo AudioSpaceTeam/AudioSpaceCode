@@ -1,90 +1,177 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Create Event</title>
-    <th:block th:replace="partials/style.html :: style"></th:block>
+  <meta charset="UTF-8"/>
+  <title>Create Event</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+        crossorigin="anonymous">
+  <!--    font awesome kit-->
+  <script src="https://kit.fontawesome.com/d0d640b552.js" crossorigin="anonymous"></script>
+  <th:block th:replace="partials/style.html :: style"></th:block>
+  <link rel="stylesheet" href="../static/css/main.css">
+  <!--    CSS for fix some visual problems-->
+  <style>
+    body {
+      margin-top: 20px;
+      background: #f8f8f8
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container-fluid">
-    <div class="content displayEvent d-flex flex-column align-items-center">
-    <div class="text-center">
-        <div class="header text-center"><h1 style="color: #00796D">Create an event!</h1></div>
-        <h1>Create events as a promoter and get noticed.</h1>
-        <p>Audio Space's goal is to make the connection between promoters and musicians as easy as possible.<br> Our
-            platform aims to facilitate the process of booking shows and managing events.</p>
-    </div>
-    <hr class="my-4">
-
-    <div class="d-flex flex-column align-items-center ">
-        <form th:action="@{/event/create}" th:method="post" th:object="${event}">
-            <h3 class=" ">Event Info: </h3>
-
-<!--                <div class="d-flex flex-column bg-success col-width">-->
-                <div class="box">
-                    <div class="col-sm-12  ">
-
-                        <label for="title">Title:</label>
-                        <input class="TitleForm" th:field="*{title}" id="title"/>
+<br>
+<div class="container">
+  <br>
+  <form class="row flex-lg-nowrap" id="pick-form"
+        th:action="@{|/event/create|}" th:method="post"
+        th:object="${event}">
+    <!--main content with forms-->
+    <div class="col">
+      <div class="row">
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="e-profile">
+                <div class="row">
+                  <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                    <div class="text-center text-sm-left mb-2 mb-sm-0">
                     </div>
-                    <div class="col-sm-12 ">
-                        <label for="location">Location:</label>
-                        <input class="TitleForm" th:field="*{location}" id="location">
-                    </div>
-
-                    <div class="col-sm-12 ">
-                        <label  for="price">Price: </label>
-                        <input class="TitleForm" name="price" type="number" step=".01" id="price" placeholder="$">
-                    </div>
-                    <div class="col-sm-12 ">
-                        <label for="slots">Available slots:</label>
-                        <input class="TitleForm" th:field="*{slots}" type="number" id="slots">
-                    </div>
-                    <div class="col-sm-12 ">
-                        <label for="dateTime">Day of Event (date and time):</label>
-                        <input class="TitleForm" type="datetime-local" id="dateTime" name="dateTime">
-                    </div>
-                    <div class="col-sm-12 ">
-                        <label for="description">Description:</label>
-                        <textarea class="TitleForm" th:field="*{description}" id="description"></textarea>
-                    </div>
+                  </div>
                 </div>
-
-<!--                </div>-->
-
-            </form>
-
-
-
-
-                <h3 class="">Select Genres: </h3>
-                <br>
-                <div class="dropdown">
-                    <button class="btn eventSearchButton dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Genre
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
-                        <div th:each="genre: ${genres}">
-                            <label th:for="${genre.genreName}">
-                                <li>
-                                    <input type="checkbox" th:id="${genre.genreName}" name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}">
-                                </li>
-                            </label>
+                <!--start form here-->
+                <div class="tab-content pt-3">
+                  <div class="tab-pane active">
+                    <div class="row">
+                      <div class="col">
+                        <div class="row">
+                          <!--Title of Event-->
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="title">Title</label>
+                              <input class="form-control" type="text"
+                                     placeholder="Event Title"
+                                     th:field="*{title}"
+                                     id="title" required>
+                            </div>
+                          </div>
+                          <!--Title of Event-->
+                          <!--Date and Time -->
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="dateTime">Date and Time</label>
+                              <input class="form-control" type="datetime-local"
+                                     id="dateTime" name="dateTime" required>
+                            </div>
+                          </div>
                         </div>
-                    </ul>
-                </div>
+                        <!--Date and Time -->
+                        <div class="row">
 
-                <div class="d-flex flex-row justify-content-center mt-5">
-                    <!--                <button type="submit" class="btn btn-dark mt-3">Submit</button>-->
-                    <a class="contact-btn" type="submit" onclick="this.parentNode.submit();">Create Event</a>
+                          <!--Price-->
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="price">Price</label>
+                              <input class="form-control" type="text"
+                                     placeholder="$5.00"
+                                     step=".01"
+                                     th:field="*{price}"
+                                     id="price" required>
+                            </div>
+                          </div>
+                          <!--Price-->
+                          <!--Slots -->
+                          <div class="col">
+                            <div class="form-group">
+                              <label for="slots">Slots Available</label>
+                              <input class="form-control" type="number"
+                                     id="slots" step="1"
+                                     th:field="*{slots}" required>
+                            </div>
+                          </div>
+                        </div>
+                        <!--Slots -->
+                      </div>
+                      <!--Description text-->
+                      <div class="row">
+                        <div class="col mb-3">
+                          <div class="form-group">
+                            <label for="description">Event Description</label>
+                            <textarea class="form-control" rows="5"
+                                      placeholder="Event Description" th:field="*{description}"
+                                      id="description" required></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Description text-->
+                      <!--Location-->
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="location">Location</label>
+                            <input class="form-control" type="text"
+                                   placeholder="Street Address, City, State"
+                                   th:field="*{location}"
+                                   id="location" required>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Location-->
+
+                    </div>
+                  </div>
+
                 </div>
-            </form>
+                <!--checkbox menu-->
+                <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                  <div class="mb-2"><b>Street Address, City, State</b></div>
+                  <!--Genres Id-->
+                  <div class="row">
+                    <div class="col">
+                      <!--    Stuff below for genreIds-->
+                      <input hidden type="checkbox" th:id="ignore"
+                             name="genreIds"
+                             value="ignore" checked>
+                        <div>Genres for the Event:</div>
+                        <br>
+                        <div th:each="genre: ${genres}">
+                          <label th:for="${genre.genreName}">
+                            <input type="checkbox"
+                                   th:id="${genre.genreName}"
+                                   name="genreIds"
+                                   th:value="${genre.genreName}"
+                                   th:text="${genre.genreName}" required></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col d-flex justify-content-end">
+                  <button class="btn btn-primary" type="submit" value="Submit">
+                    Save
+                    Event
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+</form>
 </div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
-<footer th:replace="partials/footer.html :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="../../static/js/keys.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+
 </body>
 </html>
+

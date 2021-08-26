@@ -132,7 +132,7 @@ public class EventController {
     eventDao.save(event);
     model.addAttribute("user", currentUser);
     model.addAttribute("event", event);
-    return "event/submitted";
+    return "redirect:/event" ;
   }
 
   @GetMapping("/event/{id}/edit")

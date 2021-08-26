@@ -313,7 +313,7 @@ input#5:checked ~ label{
 }
 .box{
   background-color: #344B47;
-  width:60vw;
+ border-radius: 2rem;
   padding: 5rem;
 
 }
@@ -327,7 +327,7 @@ input#5:checked ~ label{
 
 @media only screen and (min-width:768px) {
   .box{
-    width: 60vw;
+    width: 50vw;
   }
 }
 

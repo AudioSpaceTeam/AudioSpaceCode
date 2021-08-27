@@ -55,7 +55,7 @@ VALUES (4, 1),
        (8, 2);
 
 TRUNCATE TABLE audiospace_db.events;
-INSERT INTO audiospace_db.events(description, location, price, slots, start_date_time, title, promoter_id)
+INSERT INTO audiospace_db.events(description,location, price, slots, start_date_time, title, promoter_id)
 VALUES ('This is the Graduation for Neptune! Any bands are welcome, we need a variety.', 'Codeup', 59.99, 3,
         '2021-09-3 12:30:00', 'Graduation', 2),
        ('This is a Rock and Techno event.', 'The Guenther House, San Antonio', 109.99, 2, '2021-08-30 20:00:00',

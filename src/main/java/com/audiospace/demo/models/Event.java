@@ -43,6 +43,9 @@ public class Event {
     @Column(nullable = false, length = 100)
     private String zipcode;
 
+    @Column(nullable = false, length = 100)
+    private String location;
+
 //  Event flyer image
 //  Not yet...
 
@@ -151,9 +154,10 @@ public class Event {
 
   }
 
-    public Event(long id, String title, String description, Integer slots, String city, String state, String address, String zipcode, LocalDateTime startDateTime, Double price, User promoter) {
+    public Event(long id, String title, String location, String description, Integer slots, String city, String state, String address, String zipcode, LocalDateTime startDateTime, Double price, User promoter) {
         this.id = id;
         this.title = title;
+        this.location = location;
         this.description = description;
         this.slots = slots;
         this.city = city;
@@ -163,6 +167,11 @@ public class Event {
         this.startDateTime = startDateTime;
         this.price = price;
         this.promoter = promoter;
+    }
+
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public long getId() {

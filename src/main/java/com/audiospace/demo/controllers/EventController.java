@@ -7,6 +7,7 @@ import com.audiospace.demo.models.Event;
 import com.audiospace.demo.models.Genre;
 import com.audiospace.demo.repositories.EventRepository;
 import com.audiospace.demo.models.User;
+import com.audiospace.demo.repositories.Genre2Repository;
 import com.audiospace.demo.repositories.GenreRepository;
 import com.audiospace.demo.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,11 +24,13 @@ public class EventController {
   private final EventRepository eventDao;
   private final UserRepository userDao;
   private final GenreRepository genreDao;
+  private final Genre2Repository genre2Dao;
 
-  public EventController(EventRepository eventDao, UserRepository userDao, GenreRepository genreDao) {
+  public EventController(EventRepository eventDao, UserRepository userDao, GenreRepository genreDao, Genre2Repository genre2Dao) {
     this.eventDao = eventDao;
     this.userDao = userDao;
     this.genreDao = genreDao;
+    this.genre2Dao = genre2Dao;
   }
 
 
@@ -48,6 +51,7 @@ public class EventController {
     }
     model.addAttribute("users", notPromoters);
     model.addAttribute("genres", genreDao.findAll());
+    model.addAttribute("genres2", genre2Dao.findAll());
     return "event/create";
   }
 
@@ -56,6 +60,7 @@ public class EventController {
   public String viewEvent(Model model) {
     model.addAttribute("events", eventDao.findAll());
     model.addAttribute("genres", genreDao.findAll());
+    model.addAttribute("genres2", genre2Dao.findAll());
     return "event/index";
   }
 
@@ -77,6 +82,7 @@ public class EventController {
                            @ModelAttribute Event event,
                            @RequestParam String[] bandIds,
                            @RequestParam String[] genreIds,
+                           @RequestParam String[] genre2Ids,
                            Model model) {
 
     //Added user

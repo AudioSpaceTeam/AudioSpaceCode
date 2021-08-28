@@ -13,6 +13,15 @@ VALUES ('Rock'),
        ('Rap/Hiphop'),
        ('Reggae');
 
+TRUNCATE TABLE audiospace_db.genres2;
+INSERT INTO audiospace_db.genres2(genre_name)
+VALUES ('Jazz'),
+       ('Blues'),
+       ('Grunge'),
+       ('Punk'),
+       ('Classical'),
+       ('Ambient');
+
 TRUNCATE TABLE audiospace_db.users;
 
 INSERT INTO audiospace_db.users(bio, display_name, email, is_promoter, password, username, image_url)

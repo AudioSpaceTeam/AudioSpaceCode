@@ -377,9 +377,8 @@ input#5:checked ~ label{
   width:100%;
 }
 .box{
-  background-color: #344B47;
- border-radius: 2rem;
-  padding: 5rem;
+ border-radius: 10px;
+
 
 }
 

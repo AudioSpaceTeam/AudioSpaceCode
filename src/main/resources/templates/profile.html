@@ -35,7 +35,7 @@
                     <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
                         <div th:each="event : ${user.slotted}">
                             <div class="col d-flex align-items-center justify-content-center">
-                                <div class="card" style="width: 18rem; height: 20rem">
+                                <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title" th:text="${event.title}"></h5>
                                         <h6 class="card-subtitle mb-2 text-muted" th:text="${event.city}"></h6>

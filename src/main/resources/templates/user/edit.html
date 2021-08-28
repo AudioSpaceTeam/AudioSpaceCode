@@ -1,36 +1,4 @@
 
-<!--TODO: change delete to disable...-->
-<!-- Button trigger modal -->
-<!--  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
-<!--    Delete Account?-->
-<!--  </button>-->
-
-<!--  &lt;!&ndash; Modal &ndash;&gt;-->
-<!--  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog modal-dialog-centered">-->
-<!--      <div class="modal-content">-->
-<!--        <div class="modal-header">-->
-<!--          <h5 class="modal-title" id="exampleModalLabel" th:text="${user.username}">Modal Title</h5>-->
-<!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--        </div>-->
-<!--        <div class="modal-body">-->
-<!--          ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-<!--          <form th:method="post" th:action="@{|/profile/${user.getId()}/delete|}">-->
-<!--            <label for="passwordDelete">Enter your password to confirm deletion: </label>-->
-<!--            <br>-->
-<!--            <input type="password" name="passwordDelete" placeholder="Password" id="passwordDelete"/>-->
-<!--            <br>-->
-<!--            <input hidden name="id" th:value="${user.id}">-->
-<!--            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--            <button type="submit" class="btn btn-danger">Delete Account</button>-->
-<!--          </form>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
@@ -46,12 +14,7 @@
     <!--    CSS for fix some visual problems-->
     <style>
         body {
-            margin-top: 20px;
-            background: #f8f8f8
-        }
-
-        a {
-            text-decoration: none;
+            background-color: #344B47;
         }
     </style>
 </head>
@@ -63,22 +26,6 @@
     <form class="row flex-lg-nowrap" id="pick-form"
          th:action="@{|/profile/${user.getId()}/edit|}" th:method="post"
          th:object="${user}">
-        <!--    left box with links-->
-<!--        <div class="col-12 col-lg-auto mb-3" style="width: 200px;">-->
-<!--            <div class="card p-3">-->
-<!--                <div class="e-navlist e-navlist&#45;&#45;active-bg">-->
-<!--                    <ul class="nav">-->
-<!--                        <li class="nav-item"><a class="nav-link px-2 active" href="/event">-->
-<!--                            <i class="fas fa-calendar-week"></i> <span>Events</span></a></li>-->
-<!--                        <li class="nav-item"><a class="nav-link px-2" href="/profile"-->
-<!--                        ><i class="fas fa-users"></i> <span>Profile</span></a></li>-->
-<!--                        <li class="nav-item"><a class="nav-link px-2" href="/"-->
-<!--                        ><i class="fas fa-home"></i> <span>Home</span></a></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-        <!--main content with forms-->
         <div class="col">
             <div class="row">
                 <div class="col mb-3">
@@ -109,7 +56,7 @@
                                             </div>
                                             <!--change avatar pic-->
                                             <div class="control mt-2">
-                                                <button class="btn btn-primary" type="button" id="picker">
+                                                <button class="btn eventSearchButton" type="button" id="picker">
                                                     <input type="hidden" th:value="${user.imageUrl}" id="fileupload" name="fileupload">
                                                     <i class="fa fa-fw fa-camera"></i>
                                                     <span>Change Photo</span>
@@ -232,7 +179,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col d-flex justify-content-end">
-                                                    <button class="btn btn-primary" type="submit" value="Submit">
+                                                    <button class="btn eventSearchButton" type="submit" value="Submit">
                                                         Save
                                                         Changes
                                                     </button>
@@ -245,35 +192,6 @@
                         </div>
                     </div>
                 </div>
-                <!--logout-->
-<!--              <div class="col-12 col-md-3 mb-3">-->
-<!--                <div class="card mb-3">-->
-<!--                  <div class="card-body">-->
-<!--                    &lt;!&ndash;logout button access&ndash;&gt;-->
-<!--                    <div class="px-xl-3">-->
-<!--                      <button class="btn btn-block btn-secondary" sec:authorize="isAuthenticated()">-->
-<!--                        <form id="logoutButton" th:action="@{/logout}" th:method="post"-->
-<!--                              style="cursor: pointer">-->
-<!--                          <a style="color: #fff" class="nav-link" onclick="this.parentNode.submit();"><i-->
-<!--                            class="fa fa-sign-out"></i>Logout</a>-->
-<!--                        </form>-->
-<!--                      </button>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                    &lt;!&ndash;contact us&ndash;&gt;-->
-<!--                    <div class="card">-->
-<!--                        <div class="card-body">-->
-<!--                            <h6 class="card-title font-weight-bold">Support</h6>-->
-<!--                            <p class="card-text">Get fast, free help from our friendly assistants.</p>-->
-<!--                            <button type="button" class="btn btn-block btn-primary">-->
-<!--                                <span><a style="color: #fff" href="/contact">Contact Us</a></span>-->
-<!--                            </button>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
     </form>
 </div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>

@@ -147,7 +147,12 @@
                     <div class="scroll container">
                         <div th:each="review : ${user.getReviewsReceived()}">
                             <div class="d-flex flex-row justify-content-between align-items-center">
-                                <p class="rate" th:text="'Rating: ' + ${review.rating} + '☆'"></p>
+                                <p class="rate" th:text="'Rating: ' + ${review.rating}"></p>
+                                <div><i class="fas fa-star checked"></i></div>
+                                <div><i class="fas fa-star checked"></i></div>
+                                <div><i class="fas fa-star checked"></i></div>
+                                <div><i class="fas fa-star checked"></i></div>
+                                <div><i class="fas fa-star checked"></i></div>
                             </div>
                             <div class="lightBG">
                                 <p class="comment" th:text="${review.getReviewer().getDisplayName()} + ':'"></p>
@@ -162,5 +167,7 @@
 </div>
 <th:block th:replace="partials/scripts.html :: scripts"></th:block>
 <footer th:replace="partials/footer.html :: footer"></footer>
+
+<script src="../../static/js/star-rating.js"></script>
 </body>
 </html>

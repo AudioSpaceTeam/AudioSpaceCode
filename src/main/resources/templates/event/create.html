@@ -90,9 +90,14 @@
               <label th:for="${genre.genreName}">
                 <li>
                   <input type="checkbox" th:id="${genre.genreName}" name="genreIds"
-                         th:value="${genre.genreName}" th:text="${genre.genreName}">
+                         th:value="${genre.genreName}" th:text="'&nbsp;' + ${genre.genreName}">
                 </li>
               </label>
+            </div>
+            <div th:each="genre: ${genres2}">
+              <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds"
+                                                        th:value="${genre.genreName}"
+                                                        th:text="'&nbsp;' + ${genre.genreName}"></label>
             </div>
           </ul>
         </div>

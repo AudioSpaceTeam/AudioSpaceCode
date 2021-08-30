@@ -210,9 +210,14 @@ body {
     display: flex;
     align-items: center;
 }
+#avg-rating{
+    text-decoration: underline;
+}
 
 #avg-rating:hover{
     cursor: pointer;
+    color: orangered;
+
 
 }
 .item{
@@ -265,6 +270,8 @@ body {
     border-radius: .5rem;
     background-color: #e3e3e3;
     padding: .5rem;
+    border: 2px solid black;
+    margin-bottom: .5rem;
 }
 
 .comment{
@@ -402,33 +409,15 @@ input#5:checked ~ label{
     color: #ffc107;
 }
 
-stars-outer{
-    position: relative;
-    display: inline-block;
+.scroll{
+    height: 30vh;
+    overflow: auto;
 }
 
-.stars-inner{
-    position: absolute;
-    top: 0;
-    left: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
+#ratingsModalLabel{
+    font-weight: bolder;
 }
 
-.stars-outer::before{
-    content: "\f005 \f005 \f005 \f005 \f005";
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    color: #ccc;
-}
-
-.stars-inner::before{
-    content: "\f005 \f005 \f005 \f005 \f005";
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    color: #f8ce0b;
-}
 
 /*Bootstrap Media Queries*/
 @media only screen and (min-width: 200px)and(max-width: 768px){

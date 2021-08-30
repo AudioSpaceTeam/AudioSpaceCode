@@ -63,14 +63,16 @@ a:visited {
 
 /* mouse over link */
 a:hover {
-    color: #344B47;
+    color: #435f58;
 }
 
 /* selected link */
 a:active {
     color: #1e2c2a;
 }
-
+.eventLocation {
+    color: #435f58;
+}
 
 * {
     margin: 0;
@@ -236,9 +238,14 @@ body {
     display: flex;
     align-items: center;
 }
+#avg-rating{
+    text-decoration: underline;
+}
 
 #avg-rating:hover {
     cursor: pointer;
+    color: orangered;
+
 
 }
 
@@ -298,6 +305,8 @@ body {
     border-radius: .5rem;
     background-color: #e3e3e3;
     padding: .5rem;
+    border: 2px solid black;
+    margin-bottom: .5rem;
 }
 
 .comment {
@@ -464,6 +473,17 @@ input#5:checked ~ label {
     border-radius: 10px;
 
 
+.scroll{
+    height: 30vh;
+    overflow: auto;
+}
+
+#ratingsModalLabel{
+    font-weight: bolder;
+}
+
+
+
 }
 
 /*Bootstrap Media Queries*/
@@ -476,6 +496,7 @@ input#5:checked ~ label {
         border-radius: 50%;
     }
 }
+
 
 
 @media only screen and (min-width: 200px)and(max-width: 768px) {
@@ -493,6 +514,9 @@ input#5:checked ~ label {
 
 #homeContainer, #footer {
     width: 95%;
+}
+p {
+    margin-bottom: 0;
 }
 
 

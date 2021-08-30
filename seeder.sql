@@ -22,6 +22,7 @@ VALUES ('Jazz'),
        ('Classical'),
        ('Ambient');
 
+
 # new seeder. Run seeder below.
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -80,6 +81,9 @@ VALUES (4, 1),
        (7, 5),
        (8, 1),
        (8, 2);
+
+# Andrea? or the manager to schedule time off.
+SET FOREIGN_KEY_CHECKS = 0;
 
 TRUNCATE TABLE audiospace_db.events;
 INSERT INTO audiospace_db.events(description,location,address,city,state,zipcode, price, slots, start_date_time, title, promoter_id)

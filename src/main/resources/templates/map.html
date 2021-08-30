@@ -12,8 +12,8 @@
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container mt-5">
     <div class="text-center mt-5">
-        <div class="header text-center"><h3 style="color: #00796D">Search you city</h3></div>
-        <h1>Create events as a promoter and find the exact location with your application.</h1>
+<!--        <div class="header text-center"><h3 style="color: #00796D">Search you city</h3></div>-->
+        <h2>Create events as a promoter and find the exact location with your application.</h2>
         <p>We want to make life easier and we know that extra help doesn't hurt. Use the map application to search for
             events in your country.</p>
     </div>
@@ -24,8 +24,10 @@
             <input type="search" class="form-control" id="mapSearch" placeholder="Enter you location">
         </div>
     </form>
+    <p></p>
     <div class="col-auto">
-        <a class="contact-btn" id="btn" href="#" style="text-decoration: none">Search</a>
+        <a class="btn eventSearchButton btn-block" id="btn" href="#" style="text-decoration: none">Search</a>
+        <p></p>
     </div>
 
     <!--        map go here, fixed responsive errors-->

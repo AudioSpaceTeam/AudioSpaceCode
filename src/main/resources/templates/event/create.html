@@ -17,12 +17,12 @@
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 
 
-<div class="container">
+<div class="container"   style="width: 60vw;">
   <div class="contents">
     <div class="d-flex flex-column align-items-center displayEvent">
       <div class="text-center ">
         <div class="header text-center"><h1 style="color: #00796D">Create an event!</h1></div>
-        <h1>Create events as a promoter and get noticed.</h1>
+        <h2>Create events as a promoter and get noticed.</h2>
         <p>Audio Space's goal is to make the connection between promoters and musicians as easy as possible.<br>
           Our
           platform aims to facilitate the process of booking shows and managing events.</p>
@@ -31,9 +31,7 @@
 
       <form th:action="@{/event/create}" th:method="post" th:object="${event}">
         <h3 class=" ">Event Info: </h3>
-
-        <!--                <div class="d-flex flex-column bg-success col-width">-->
-        <div class="box displayEvent">
+        <div class="box displayEvent" style="margin: 0px;">
           <div class="row">
             <div class="col-12">
               <label for="title">Title:</label>
@@ -78,58 +76,26 @@
           </div>
           <div class="col-sm-12 ">
             <label for="description">Description:</label>
-            <textarea class="TitleForm" th:field="*{description}" id="description"></textarea>
-          </div>
-
-        </div>
-
-        <div class="genre">
-          <p>Select Genre:</p>
-          <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
-          <div th:each="genre: ${genres}">
-            <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds"
-                                                      th:value="${genre.genreName}"
-                                                      th:text="${genre.genreName}"></label>
-          </div>
-          <div th:each="genre: ${genres2}">
-            <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds"
-                                                      th:value="${genre.genreName}"
-                                                      th:text="${genre.genreName}"></label>
+            <textarea class="TitleForm" th:field="*{description}" id="description" style="height:200px; margin-bottom: 0;"></textarea>
           </div>
         </div>
-
-        <!--Old genre stuff-->
-        <!--                <h3 class="">Select Genres: </h3>-->
-        <!--                <div class="box">-->
-
-        <!--                    <div class="row">-->
-        <!--                        <div class="col-6">-->
-        <!--                            <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>-->
-        <!--                            <div th:each="genre: ${genres}">-->
-
-        <!--                                <label class="genres" th:for="${genre.getGenreName()}"><input type="checkbox"-->
-        <!--                                                                                              th:id="${genre.genreName}"-->
-        <!--                                                                                              name="genreIds"-->
-        <!--                                                                                              th:value="${genre.genreName}"-->
-        <!--                                                                                              th:text="${genre.genreName}"></label>-->
-
-        <!--                            </div>-->
-        <!--                        </div>-->
-        <!--                        <div class="col-6">-->
-        <!--                            <input hidden type="checkbox" th:id="ignore" name="genre2Ids" value="ignore" checked>-->
-        <!--                            <div th:each="genre2: ${genres2}">-->
-        <!--                                <label class="genres" th:for="${genre2.getGenreName()}">-->
-        <!--                                    <input type="checkbox" th:id="${genre2.genreName}" name="genre2Ids"-->
-        <!--                                           th:value="${genre2.genreName}" th:text="${genre2.genreName}">-->
-        <!--                                </label>-->
-        <!--                            </div>-->
-        <!--                        </div>-->
-
-        <!--                    </div>-->
-
-        <!--                </div>-->
-        <!---->
-        <!--Old genre stuff-->
+        <div class="dropdown" style="margin-top: 0px;">
+          <button class="btn eventSearchButton dropdown-toggle" type="button" id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+            Genre
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
+            <div th:each="genre: ${genres}">
+              <label th:for="${genre.genreName}">
+                <li>
+                  <input type="checkbox" th:id="${genre.genreName}" name="genreIds"
+                         th:value="${genre.genreName}" th:text="${genre.genreName}">
+                </li>
+              </label>
+            </div>
+          </ul>
+        </div>
 
         <input hidden type="checkbox" th:id="ignore" name="bandIdsP" value="ignore" checked>
         <div th:each="band: ${event.performers}">
@@ -142,10 +108,8 @@
           <input hidden type="checkbox" th:id="${band.id}" name="bandIdsR"
                  th:value="${band.id}" checked>
         </div>
-
         <div class="d-flex flex-row justify-content-center mt-5">
-          <!--    <button type="submit" class="btn btn-dark mt-3">Submit</button>-->
-          <button class="btn eventSearchButton" type="submit">Create Event</button>
+          <button class="btn eventSearchButton" type="submit" style="width: 100%;">Create Event</button>
         </div>
       </form>
 

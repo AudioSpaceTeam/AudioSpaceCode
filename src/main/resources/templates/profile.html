@@ -139,19 +139,20 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ratingsModalLabel" th:text="${user.username}">Modal Title</h5>
+                    <h3 class="modal-title" id="ratingsModalLabel" th:text="${user.username}">Modal Title</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="scroll container">
+                    <div class="scroll">
                         <div th:each="review : ${user.getReviewsReceived()}">
 
                             <div class="lightBG">
                                 <div class="d-flex flex-row justify-content-start">
-                                    <p class="comment" th:text="${review.getReviewer().getDisplayName()} + ': '"></p>
-                                    <div th:switch="${review.rating}">
+                                    <h4 class="comment" th:text="${review.getReviewer().getDisplayName()} + ':'"></h4>
+                                </div>
+                                    <div th:switch="${review.rating}" class="d-flex flex-row justify-content-start">
                                         <div th:case="'1'">
-                                            <div class="d-flex flex-row">
+                                            <div class="d-flex flex-row justify-content-start">
                                                 <div><i class="fas fa-star  colorStar" data-value="1"></i></div>
                                                 <div><i class="fas fa-star  star2" data-value="2"></i></div>
                                                 <div><i class="fas fa-star  star3" data-value="3"></i></div>
@@ -161,7 +162,8 @@
 
                                         </div>
                                         <div th:case="'2'">
-                                            <div class="d-flex flex-row">
+
+                                            <div class="d-flex flex-row justify-content-start">
                                                 <div><i class="fas fa-star  colorStar" data-value="1"></i></div>
                                                 <div><i class="fas fa-star  colorStar" data-value="2"></i></div>
                                                 <div><i class="fas fa-star  star3" data-value="3"></i></div>
@@ -171,7 +173,7 @@
 
                                         </div>
                                         <div th:case="'3'">
-                                            <div class="d-flex flex-row">
+                                            <div class="d-flex flex-row justify-content-start">
                                                 <div><i class="fas fa-star  colorStar" data-value="1"></i></div>
                                                 <div><i class="fas fa-star  colorStar" data-value="2"></i></div>
                                                 <div><i class="fas fa-star  colorStar" data-value="3"></i></div>
@@ -181,15 +183,17 @@
 
                                         </div>
                                         <div th:case="'4'">
-                                            <div class="d-flex flex-row"></div>
-                                            <div><i class="fas fa-star  colorStar" data-value="1"></i></div>
-                                            <div><i class="fas fa-star  colorStar" data-value="2"></i></div>
-                                            <div><i class="fas fa-star  colorStar" data-value="3"></i></div>
-                                            <div><i class="fas fa-star  colorStar" data-value="4"></i></div>
-                                            <div><i class="fas fa-star  star5" data-value="5"></i></div>
+                                            <div class="d-flex flex-row justify-content-start">
+                                                <div><i class="fas fa-star  colorStar" data-value="1"></i></div>
+                                                <div><i class="fas fa-star  colorStar" data-value="2"></i></div>
+                                                <div><i class="fas fa-star  colorStar" data-value="3"></i></div>
+                                                <div><i class="fas fa-star  colorStar" data-value="4"></i></div>
+                                                <div><i class="fas fa-star  star5" data-value="5"></i></div>
+                                            </div>
+
                                         </div>
                                         <div th:case="'5'">
-                                            <div class="d-flex flex-row">
+                                            <div class="d-flex flex-row justify-content-start">
                                                 <div><i class="fas fa-star  colorStar" data-value="1"></i></div>
                                                 <div><i class="fas fa-star  colorStar" data-value="2"></i></div>
                                                 <div><i class="fas fa-star  colorStar" data-value="3"></i></div>
@@ -199,10 +203,11 @@
 
                                         </div>
                                     </div>
-
+                                        <p class="textSized-flex flex-row justify-content-start" th:text="${review.body}"></p>
                                 </div>
-                                <p class="textSize" th:text="${review.body}"></p>
-                            </div>
+
+
+
 
 
                         </div>

@@ -23,7 +23,7 @@ public class Event {
     private String title;
 
     //  Below sets up parameters for our column in the table in the DB.
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false, length = 1000)
     private String description;
 
     //  Max BAnds INT

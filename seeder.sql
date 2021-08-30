@@ -23,6 +23,7 @@ VALUES ('Jazz'),
        ('Ambient');
 
 # Not yet.
+SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE audiospace_db.genres;
 INSERT INTO audiospace_db.genres(genre_name)
 VALUES ('Rock'),
@@ -113,6 +114,7 @@ VALUES ('Graduation','This is the Graduation for Neptune! Any bands are welcome,
        ('In need of a singer that plays piano','If you like kids, and wouldn"t mind performing for them, please contact us through email. Your music will bring joy and wonder to all! ', 'San Antonio', 'TX', '333 N Santa Rosa St', '78207', 500.00,1,'2021-12-3 12:30:00', 3);
 
 # Andrea? or the manager to schedule time off.
+SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE audiospace_db.events;
 INSERT INTO audiospace_db.events(description,location,address,city,state,zipcode, price, slots, start_date_time, title, promoter_id)
 VALUES ('This is the Graduation for Neptune! Any bands are welcome, we need a variety.', 'Codeup','600 Navarro St','San Antonio','Texas',78205,59.99, 3,

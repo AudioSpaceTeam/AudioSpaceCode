@@ -63,14 +63,16 @@ a:visited {
 
 /* mouse over link */
 a:hover {
-    color: #344B47;
+    color: #435f58;
 }
 
 /* selected link */
 a:active {
     color: #1e2c2a;
 }
-
+.eventLocation {
+    color: #435f58;
+}
 
 * {
     margin: 0;
@@ -493,6 +495,9 @@ input#5:checked ~ label {
 
 #homeContainer, #footer {
     width: 95%;
+}
+p {
+    margin-bottom: 0;
 }
 
 

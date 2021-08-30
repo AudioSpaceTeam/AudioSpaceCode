@@ -16,8 +16,8 @@
             <h2>Event details:</h2>
             <h4 th:text="${event.title}"></h4>
             <span th:text="${event.description}"></span><br>
-            <span th:text="'This event pays $' + ${event.price} + '0 per band'"></span>
-            <p><span th:text="${event.slots}"></span> slots available to play at <span th:text="${event.location}"></span> starting @ <span th:text="${event.startDateTime}"></span></p>
+            <span th:text="'This event pays $' + ${event.price} + ' per band.'"></span>
+            <p><span th:text="${event.slots}"></span> slots available to play at <span th:text="${event.location}"></span> starting @ <span th:text="${event.getTime()}"></span> on <span th:text="${event.getDateFormat()}"></span>.</p>
               <p>Current lineup to perform:</p>
               <ul>
                   <li th:each="slotted : ${event.performers}">

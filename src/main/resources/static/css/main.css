@@ -342,6 +342,20 @@ body {
     color: #d8dedd;
 }
 
+/*this button style is for when the background of where the button is green because of hover effect makes it look bad*/
+.btn-bkgnd-green{
+    border: 2px solid #344B47;
+    padding: 5px;
+    background-color: #d8dedd;
+    color: #344B47;
+}
+
+.btn-bkgnd-green:hover{
+    border: 2px solid #d8dedd;
+    background-color: #344B47;
+    color: #d8dedd;
+}
+
 
 .card {
     border: none;

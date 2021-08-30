@@ -22,6 +22,22 @@ VALUES ('Jazz'),
        ('Classical'),
        ('Ambient');
 
+# Not yet.
+TRUNCATE TABLE audiospace_db.genres;
+INSERT INTO audiospace_db.genres(genre_name)
+VALUES ('Rock'),
+       ('Latin Music'),
+       ('Country'),
+       ('Techno'),
+       ('Rap/Hiphop'),
+       ('Reggae'),
+       ('Jazz'),
+       ('Blues'),
+       ('Grunge'),
+       ('Punk'),
+       ('Classical'),
+       ('Ambient');
+
 TRUNCATE TABLE audiospace_db.users;
 
 INSERT INTO audiospace_db.users(bio, display_name, email, is_promoter, password, username, image_url)

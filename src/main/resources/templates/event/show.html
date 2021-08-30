@@ -27,7 +27,7 @@
             <a th:href="@{|/profile/${event.getPromoter().getId()}|}">View <span th:text="${event.getPromoter().getDisplayName()}"></span>'s profile</a>
             <p><a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a></p>
             <!--              Below are options for the Performers/request-->
-            <div th:if="!${currentUser.getPromoter()}">
+            <div th:if="${!currentUser.getPromoter()}">
               <!--                Below we are checking if the person is the NOT a requester or a performer...-->
               <form th:if="!${isReqOrSlot}" th:action="@{|/event/add/requester|}" th:method="post" style="cursor: pointer">
                 <input hidden name="id" th:value="${event.getId()}">

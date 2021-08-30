@@ -180,6 +180,9 @@ public class EventController {
     return "redirect:/event/" + eventDao.findByTitle(event.getTitle()).getId();
   }
 
+//  @GetMapping("event/submitted")
+//  public String submission()
+
   @GetMapping("/event/{id}/edit")
   public String editEvent(@PathVariable long id, Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

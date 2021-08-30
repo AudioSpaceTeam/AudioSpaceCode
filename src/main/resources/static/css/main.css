@@ -49,6 +49,7 @@
 
 }
 
+
 /* unvisited link */
 a:link {
     color: #344B47;
@@ -69,6 +70,7 @@ a:hover {
 a:active {
     color: #1e2c2a;
 }
+
 
 * {
     margin: 0;
@@ -154,12 +156,14 @@ body {
     height: 100%;
 }
 
+
 .profile-card {
     width: 350px;
     text-align: center;
     border-radius: 8px;
     overflow: hidden;
 }
+
 
 .pic {
     display: inline-block;
@@ -186,12 +190,14 @@ body {
     }
 }
 
+
 .pic img {
     display: block;
     width: 100px;
     height: 100px;
     border-radius: 50%;
 }
+
 
 .name {
     color: #150f0f;
@@ -200,10 +206,12 @@ body {
     margin: 10px 0;
 }
 
+
 .desc {
     font-size: 18px;
     color: #00796D;
 }
+
 
 .sm {
     display: flex;
@@ -211,12 +219,14 @@ body {
     margin: 20px 0;
 }
 
+
 .sm a {
     color: #f2f2f2;
     width: 56px;
     font-size: 22px;
     transition: .3s linear;
 }
+
 
 .card-footer {
     background: #f4f4f4;
@@ -231,6 +241,7 @@ body {
     cursor: pointer;
 
 }
+
 
 .item {
     flex: 1;
@@ -299,6 +310,7 @@ body {
     font-size: small;
 
 }
+
 
 .modal-content {
     padding: .5rem;
@@ -372,6 +384,9 @@ input#5:checked ~ label {
 .textRect {
     width: 100%;
 }
+/*.checked{*/
+/*    color:#ffc107;*/
+/*}*/
 
 
 /*CREATE.HTML*/
@@ -383,6 +398,7 @@ input#5:checked ~ label {
     margin-top: 3rem;
 }
 
+
 .TitleForm {
     width: 100%;
     margin-bottom: 2rem;
@@ -390,6 +406,7 @@ input#5:checked ~ label {
 
 .formDetails {
     color: antiquewhite;
+
 }
 
 .eventForms {
@@ -420,6 +437,7 @@ input#5:checked ~ label {
     margin-left: 6rem;
 }
 
+
 .contents {
     margin-bottom: 2rem;
 }
@@ -445,11 +463,13 @@ input#5:checked ~ label {
     }
 }
 
+
 @media only screen and (min-width: 200px)and(max-width: 768px) {
     .box {
         width: 100vh;
     }
 }
+
 
 @media only screen and (min-width: 768px) {
     .box {
@@ -460,4 +480,5 @@ input#5:checked ~ label {
 #homeContainer, #footer {
     width: 95%;
 }
+
 

@@ -63,7 +63,7 @@ public class EventController {
 
     model.addAttribute("event", new Event());
     model.addAttribute("genres", genres);
-    model.addAttribute("genres2",genres2);
+    model.addAttribute("genres2", genres2);
 
     return "event/create";
   }
@@ -95,7 +95,7 @@ public class EventController {
 
     model.addAttribute("event", new Event());
     model.addAttribute("genres", genres);
-    model.addAttribute("genres2",genres2);
+    model.addAttribute("genres2", genres2);
     return "event/index";
   }
 
@@ -146,7 +146,8 @@ public class EventController {
   public String saveCreate(@RequestParam(name = "dateTime") String dateTime,
                            @RequestParam(name = "price") String price,
                            @ModelAttribute Event event,
-                           // @RequestParam String[] bandIds,
+                           @RequestParam String[] bandIdsR,
+                           @RequestParam String[] bandIdsP,
                            @RequestParam String[] genreIds,
                            Model model) {
 
@@ -154,8 +155,37 @@ public class EventController {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     event.setPromoter(userDao.findById(currentUser.getId()));
     event.setPrice(Double.parseDouble(price));
-
     event.setStartDateTime(LocalDateTime.parse(dateTime));
+
+    List<User> currentRequesters = new ArrayList<>();
+    for (String band : bandIdsR) {
+      if (band.equalsIgnoreCase("ignore")) {
+        continue;
+      }
+      System.out.println(band + " Band id");
+
+//      We are ADDING to the slotted performers list,
+//      We are finding the user BY ID
+//      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
+      long bandNum = Long.parseLong(band);
+      currentRequesters.add(userDao.findById(bandNum));
+    }
+    event.setRequesters(currentRequesters);
+
+    List<User> currentPerformers = new ArrayList<>();
+    for (String band : bandIdsR) {
+      if (band.equalsIgnoreCase("ignore")) {
+        continue;
+      }
+      System.out.println(band + " Band id");
+
+//      We are ADDING to the slotted performers list,
+//      We are finding the user BY ID
+//      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
+      long bandNum = Long.parseLong(band);
+      currentPerformers.add(userDao.findById(bandNum));
+    }
+    event.setRequesters(currentPerformers);
 
     List<Genre> selectedGenres = new ArrayList<>();
 
@@ -171,6 +201,7 @@ public class EventController {
       selectedGenres.add(genreDao.findGenreByGenreName(genre));
     }
     event.setGenres(selectedGenres);
+
 
     eventDao.save(event);
     model.addAttribute("user", currentUser);
@@ -193,9 +224,32 @@ public class EventController {
         currentPerformers.add(userC);
         userC.setSlotted(new ArrayList<>());
       }
+      List<Genre> genresList = genreDao.findAll();
+      List<Genre> genres = new ArrayList<>();
+      List<Genre> genres2 = new ArrayList<>();
+//   Adding to genres for left side
+      genres.add(genresList.get(0));
+      genres.add(genresList.get(1));
+      genres.add(genresList.get(2));
+      genres.add(genresList.get(3));
+      genres.add(genresList.get(4));
+      genres.add(genresList.get(5));
+
+      genres2.add(genresList.get(6));
+      genres2.add(genresList.get(7));
+      genres2.add(genresList.get(8));
+      genres2.add(genresList.get(9));
+      genres2.add(genresList.get(10));
+      genres2.add(genresList.get(11));
+
+
+      model.addAttribute("event", new Event());
+      model.addAttribute("genres", genres);
+      model.addAttribute("genres2", genres2);
+
       model.addAttribute("performers", currentPerformers);
       model.addAttribute("event", event);
-      model.addAttribute("genres", genreDao.findAll());
+//      model.addAttribute("genres", genreDao.findAll());
       return "event/edit";
     }
   }
@@ -276,7 +330,7 @@ public class EventController {
 
     model.addAttribute("event", new Event());
     model.addAttribute("genres", genres);
-    model.addAttribute("genres2",genres2);
+    model.addAttribute("genres2", genres2);
 
     model.addAttribute("events", queryGenreEvents);
 //    model.addAttribute("genres", genreDao.findAll());

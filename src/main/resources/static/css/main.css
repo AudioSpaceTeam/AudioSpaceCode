@@ -380,6 +380,9 @@ input#5:checked ~ label{
 .genreList{
     margin: 2rem;
 }
+.nav-link {
+    color: #1e2c2a;
+}
 
 .pleaseFill{
     margin-left: 6rem;

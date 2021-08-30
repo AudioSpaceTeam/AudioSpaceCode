@@ -30,7 +30,7 @@ VALUES ('Professional Promoter born and raised in San antonio.', 'Elliot', 'Elli
         'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
        ('I used to perform, but now I manage talent hit me up @ notAustin@gmail.com.', 'Dripstin Whipley',
         'notAustin@gmail.com', true, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'austino',
-        'https://cdn.filestackcontent.com/JP0iJwllTDuDNs11QhJL'),
+        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
        ('Howdy I am Doug Dimmadome! Owner of the DimsDale DimmaDome! I am looking to forward to working with small artist, and help them out to get them some exposure.',
         'Doug DimmaDome', 'Doug@dimmadome.com', true, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC',
         'dougdimma', 'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
@@ -39,16 +39,16 @@ VALUES ('Professional Promoter born and raised in San antonio.', 'Elliot', 'Elli
         'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
        ('I am a Country/Latin music artist from Colorado.', 'Stick the Kid', 'stick@hotmail.com', false,
         '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'stickyboi',
-        'https://cdn.filestackcontent.com/Se3dPxQQqW2ILwMm6rr1'),
+        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
        ('I am a Reggae Artist but I also make Techno/Hiphop Music.', 'Snoop Lion', 'snoop@hotmail.com', false,
         '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'snooplion',
-        'https://cdn.filestackcontent.com/5o9gKUvQ5eXgXstqomvF'),
+        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
        ('Hip hop artist, I also dabble in techno. I am a full time coder in real life tho. I just do this for fun.',
         'D3BUG', 'notJay@ymail.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'debuggin',
-        'https://cdn.filestackcontent.com/PjNv7DRSRLKccjMTEbOh'),
-       ('I make Latin Music, but recently I have been making a few Rock songs.', 'Twenti Juan Savage',
+        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
+       ('I make Latin Music, but recently I have been making a few Rock songs.', 'Lonely Road',
         'notJaun@gmail.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', '2juanS',
-        'https://cdn.filestackcontent.com/4470CtaRwOK1STMtK0AL');
+        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50');
 
 TRUNCATE TABLE audiospace_db.users_genres;
 INSERT INTO audiospace_db.users_genres(user_id, genre_id)

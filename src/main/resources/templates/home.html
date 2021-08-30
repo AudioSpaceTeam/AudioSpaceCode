@@ -17,10 +17,13 @@
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container my-3 my-sm-5" id="homeContainer">
     <div class="text-center mt-5">
-        <div class="header text-center"><h3>Welcome to Audio Space</h3></div>
-        <h1>Create events as a promoter and invite musicians to play.</h1>
+        <div class="header text-center"><h1>Welcome to Audio Space</h1></div>
+        <h3>Create events as a promoter and invite musicians to play.</h3>
         <p>Audio Space's goal is to make the connection between promoters and musicians as easy as possible. Our
             platform aims to facilitate the process of booking shows and managing events.</p>
+        <form sec:authorize="!isAuthenticated()">
+            <button class="btn eventSearchButton" formaction="/login">Sign up!</button>
+        </form>
     </div>
 
     <hr class="my-4">
@@ -66,7 +69,7 @@
         <hr>
         <!--small video gallery for show the events we did-->
         <div class="container my-3 my-sm-5">
-            <h1 class="text-center mt-5">Video Gallery</h1>
+            <h2 class="text-center mt-5">Video Gallery</h2>
             <p class="text-center mt-5">A compilation of some events to which our firm Audio Space has worked
                 together.</p>
             <hr>
@@ -235,7 +238,7 @@
     </div>
 
     <div class="text-center mt-5">
-        <div><h1>Creating events, promoting your shows, and growing your fan base made easy.</h1></div>
+        <div><h3>Creating events, promoting your shows, and growing your fan base made easy.</h3></div>
         <div class="my-4">
             <p class="text-center">Once you register as a promoter, creating an event to promote is simple.
                 Click on the

@@ -62,7 +62,7 @@ VALUES ('Professional Promoter born and raised in San antonio.', 'Elliot', 'Elli
         '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'snooplion',
         'https://cdn.filestackcontent.com/A5cDBw0NTYatYAao4Epw'),
        ('Hip hop artist, I also dabble in techno. I am a full time coder in real life tho. I just do this for fun.',
-        'D3BUG', 'notJay@ymail.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'debuggin',
+        'Ripper', 'notJay@ymail.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'ripper',
         'https://cdn.filestackcontent.com/GwvG3uhAQRuLes4mNVTI'),
        ('I make Latin Music, but recently I have been making a few Rock songs.', 'Lonely Road',
         'notJaun@gmail.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', '2juanS',

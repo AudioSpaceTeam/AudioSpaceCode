@@ -22,8 +22,10 @@ VALUES ('Jazz'),
        ('Classical'),
        ('Ambient');
 
+
 # Not yet.
-SET FOREIGN_KEY_CHECKS = 0;
+# Not yet. Run seeder below.
+
 TRUNCATE TABLE audiospace_db.genres;
 INSERT INTO audiospace_db.genres(genre_name)
 VALUES ('Rock'),
@@ -81,6 +83,7 @@ VALUES (4, 1),
        (8, 2);
 
 
+
 # TRUNCATE TABLE audiospace_db.events;
 # INSERT INTO audiospace_db.events(description,location, price, slots, start_date_time, title, promoter_id)
 # VALUES ('This is the Graduation for Neptune! Any bands are welcome, we need a variety.', 'Codeup', 59.99, 3,
@@ -115,6 +118,7 @@ VALUES ('Graduation','This is the Graduation for Neptune! Any bands are welcome,
 
 # Andrea? or the manager to schedule time off.
 SET FOREIGN_KEY_CHECKS = 0;
+
 TRUNCATE TABLE audiospace_db.events;
 INSERT INTO audiospace_db.events(description,location,address,city,state,zipcode, price, slots, start_date_time, title, promoter_id)
 VALUES ('This is the Graduation for Neptune! Any bands are welcome, we need a variety.', 'Codeup','600 Navarro St','San Antonio','Texas',78205,59.99, 3,
@@ -137,7 +141,6 @@ VALUES ('This is the Graduation for Neptune! Any bands are welcome, we need a va
         'The Rosenberg Sky Room','430 E Commerce St','San Antonio','Texas',78212, 70.99, 10, '2021-10-02 16:00:00', 'Get-together', 3),
        ('Looking for Country or Latin style performers. This event is for a company outting.',
         'The Veranda','1746 Lockhill Selma Rd','San Antonio','Texas',78213, 97.99, 2, '2021-10-24 11:00:00', 'Company Fun', 3);
-
 
 TRUNCATE TABLE audiospace_db.events_genres;
 INSERT INTO audiospace_db.events_genres(event_id, genre_id)
@@ -226,4 +229,3 @@ VALUES ('Yea where is my money at bro. You weren\'t even there!', 1, 1, 4),
        ('PHENOMENAL PERFORMANCE!', 5, 8, 3);
 
 SET FOREIGN_KEY_CHECKS = 1;
-

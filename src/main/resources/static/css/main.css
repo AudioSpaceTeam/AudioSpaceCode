@@ -398,6 +398,10 @@ input#5:checked ~ label{
 
 }
 
+.colorStar{
+    color: #ffc107;
+}
+
 stars-outer{
     position: relative;
     display: inline-block;

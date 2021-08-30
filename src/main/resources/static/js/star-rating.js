@@ -39,35 +39,35 @@
 // console.log(typeof rating[1].innerHTML);
 
 
-let reviewAvg = $('.rate').text();
-
-const ratings ={
-    reviews: reviewAvg
-}
-
-
-//total stars
-const starsTotal = 5;
-
-//run getRatings when DOM loads
-document.addEventListener("DOMContentLoaded", getRatings);
-
-//get ratings
-function getRatings(){
-    for(let rating in ratings){
-        //get percentage
-        const starPercentage = (ratings[rating] / starsTotal) * 100;
-
-        //round to nearest 10
-        const starPercentageRounded = (Math.round(starPercentage / 10) * 10);
-
-
-        console.log(starPercentageRounded)
-
-// set width of stars-inner to percentage
-        document.querySelector(".${rating}.stars-inner").style.width = starPercentageRounded;
-
-    }
-}
+// let reviewAvg = $('.rate').text();
+//
+// const ratings ={
+//     reviews: reviewAvg
+// }
+//
+//
+// //total stars
+// const starsTotal = 5;
+//
+// //run getRatings when DOM loads
+// document.addEventListener("DOMContentLoaded", getRatings);
+//
+// //get ratings
+// function getRatings(){
+//     for(let rating in ratings){
+//         //get percentage
+//         const starPercentage = (ratings[rating] / starsTotal) * 100;
+//
+//         //round to nearest 10
+//         const starPercentageRounded = (Math.round(starPercentage / 10) * 10);
+//
+//
+//         console.log(starPercentageRounded)
+//
+// // set width of stars-inner to percentage
+//         document.querySelector(".${rating}.stars-inner").style.width = starPercentageRounded;
+//
+//     }
+// }
 
 

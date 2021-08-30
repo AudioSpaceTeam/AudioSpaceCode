@@ -69,7 +69,7 @@
                 <div class="card userImageCard">
                     <div class="pic">
                         <a th:href="@{|/profile/${event.getPromoter().getId()}|}">
-                            <img th:src="${event.promoter.imageUrl}" alt="No Profile Picture">
+                            <img id="event-image" th:src="${event.promoter.imageUrl}" alt="No Profile Picture">
                         </a>
                     </div>
                 </div>

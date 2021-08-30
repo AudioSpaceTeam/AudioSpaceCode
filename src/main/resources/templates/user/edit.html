@@ -237,13 +237,17 @@
         fileInput.value = fileData.url;
 
         // Some ugly DOM code to show some data.
-        const name = document.createTextNode('Selected: ' + fileData.filename);
+        const name = document.createTextNode('Selected image: ' + fileData.filename);
         const url = document.createElement('a');
         url.href = fileData.url;
         url.appendChild(document.createTextNode(fileData.url));
         nameBox.appendChild(name);
-        urlBox.appendChild(document.createTextNode('Uploaded to: '));
-        urlBox.appendChild(url);
+        // urlBox.appendChild(document.createTextNode("Uploaded to: "));
+        // urlBox.appendChild(url);
+        let showUrl = document.createElement('a');
+        showUrl.href = fileData.url;
+        showUrl.appendChild(document.createTextNode('Uploaded here'));
+        urlBox.appendChild(showUrl);
         $('#changeImage').attr('src',url);
 
     };

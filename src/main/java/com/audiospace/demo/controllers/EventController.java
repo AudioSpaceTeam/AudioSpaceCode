@@ -42,8 +42,29 @@ public class EventController {
     if (!currentUser.getPromoter()) {
       return "redirect:/event";
     }
+    List<Genre> genresList = genreDao.findAll();
+    List<Genre> genres = new ArrayList<>();
+    List<Genre> genres2 = new ArrayList<>();
+//   Adding to genres for left side
+    genres.add(genresList.get(0));
+    genres.add(genresList.get(1));
+    genres.add(genresList.get(2));
+    genres.add(genresList.get(3));
+    genres.add(genresList.get(4));
+    genres.add(genresList.get(5));
+
+    genres2.add(genresList.get(6));
+    genres2.add(genresList.get(7));
+    genres2.add(genresList.get(8));
+    genres2.add(genresList.get(9));
+    genres2.add(genresList.get(10));
+    genres2.add(genresList.get(11));
+
+
     model.addAttribute("event", new Event());
-    model.addAttribute("genres", genreDao.findAll());
+    model.addAttribute("genres", genres);
+    model.addAttribute("genres2",genres2);
+
     return "event/create";
   }
 
@@ -52,7 +73,29 @@ public class EventController {
   @GetMapping("/event")
   public String viewEvent(Model model) {
     model.addAttribute("events", eventDao.findAll());
-    model.addAttribute("genres", genreDao.findAll());
+//    model.addAttribute("genres", genreDao.findAll());
+    List<Genre> genresList = genreDao.findAll();
+    List<Genre> genres = new ArrayList<>();
+    List<Genre> genres2 = new ArrayList<>();
+//   Adding to genres for left side
+    genres.add(genresList.get(0));
+    genres.add(genresList.get(1));
+    genres.add(genresList.get(2));
+    genres.add(genresList.get(3));
+    genres.add(genresList.get(4));
+    genres.add(genresList.get(5));
+
+    genres2.add(genresList.get(6));
+    genres2.add(genresList.get(7));
+    genres2.add(genresList.get(8));
+    genres2.add(genresList.get(9));
+    genres2.add(genresList.get(10));
+    genres2.add(genresList.get(11));
+
+
+    model.addAttribute("event", new Event());
+    model.addAttribute("genres", genres);
+    model.addAttribute("genres2",genres2);
     return "event/index";
   }
 
@@ -212,9 +255,31 @@ public class EventController {
         }
       }
     }
+    List<Genre> genresList = genreDao.findAll();
+    List<Genre> genres = new ArrayList<>();
+    List<Genre> genres2 = new ArrayList<>();
+//   Adding to genres for left side
+    genres.add(genresList.get(0));
+    genres.add(genresList.get(1));
+    genres.add(genresList.get(2));
+    genres.add(genresList.get(3));
+    genres.add(genresList.get(4));
+    genres.add(genresList.get(5));
+
+    genres2.add(genresList.get(6));
+    genres2.add(genresList.get(7));
+    genres2.add(genresList.get(8));
+    genres2.add(genresList.get(9));
+    genres2.add(genresList.get(10));
+    genres2.add(genresList.get(11));
+
+
+    model.addAttribute("event", new Event());
+    model.addAttribute("genres", genres);
+    model.addAttribute("genres2",genres2);
 
     model.addAttribute("events", queryGenreEvents);
-    model.addAttribute("genres", genreDao.findAll());
+//    model.addAttribute("genres", genreDao.findAll());
     return "event/index";
   }
 

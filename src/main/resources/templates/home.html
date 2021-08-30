@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <title>Home</title>
     <meta charset="UTF-8"/>
@@ -245,7 +245,7 @@
                 personal
                 profile!</p>
         </div>
-        <form>
+        <form sec:authorize="!isAuthenticated()">
             <button class="btn eventSearchButton" formaction="/login">Sign up!</button>
         </form>
         <br><br>

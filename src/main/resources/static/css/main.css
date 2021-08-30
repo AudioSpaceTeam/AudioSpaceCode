@@ -435,6 +435,16 @@ input#5:checked ~ label {
 }
 
 /*Bootstrap Media Queries*/
+
+@media only screen and (max-width: 600px){
+    .pic img#event-image {
+        display: block;
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+    }
+}
+
 @media only screen and (min-width: 200px)and(max-width: 768px) {
     .box {
         width: 100vh;

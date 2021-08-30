@@ -127,6 +127,9 @@ public class EventController {
     return "event/submitted";
   }
 
+//  @GetMapping("event/submitted")
+//  public String submission()
+
   @GetMapping("/event/{id}/edit")
   public String editEvent(@PathVariable long id, Model model) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -173,7 +173,7 @@ public class EventController {
     event.setRequesters(currentRequesters);
 
     List<User> currentPerformers = new ArrayList<>();
-    for (String band : bandIdsR) {
+    for (String band : bandIdsP) {
       if (band.equalsIgnoreCase("ignore")) {
         continue;
       }
@@ -185,7 +185,7 @@ public class EventController {
       long bandNum = Long.parseLong(band);
       currentPerformers.add(userDao.findById(bandNum));
     }
-    event.setRequesters(currentPerformers);
+    event.setPerformers(currentPerformers);
 
     List<Genre> selectedGenres = new ArrayList<>();
 
@@ -430,6 +430,78 @@ public class EventController {
     }
 
     return "redirect:/event/" + id;
+  }
+
+  //For create.html
+  @PostMapping("/event/{id}/edit")
+  public String saveEdit(@RequestParam(name = "dateTime") String dateTime,
+                           @RequestParam(name = "price") String price,
+                           @ModelAttribute Event event,
+                           @RequestParam String[] bandIdsR,
+                           @RequestParam String[] bandIdsP,
+                           @RequestParam String[] genreIds,
+                           @PathVariable long id,
+                           Model model) {
+
+    //Added user
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    event.setPromoter(userDao.findById(currentUser.getId()));
+    event.setPrice(Double.parseDouble(price));
+    event.setStartDateTime(LocalDateTime.parse(dateTime));
+    event.setId(id);
+
+    List<User> currentRequesters = new ArrayList<>();
+    for (String band : bandIdsR) {
+      if (band.equalsIgnoreCase("ignore")) {
+        continue;
+      }
+      System.out.println(band + " Band id");
+
+//      We are ADDING to the slotted performers list,
+//      We are finding the user BY ID
+//      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
+      long bandNum = Long.parseLong(band);
+      currentRequesters.add(userDao.findById(bandNum));
+    }
+    event.setRequesters(currentRequesters);
+
+    List<User> currentPerformers = new ArrayList<>();
+    for (String band : bandIdsP) {
+      if (band.equalsIgnoreCase("ignore")) {
+        continue;
+      }
+      System.out.println(band + " Band id");
+
+//      We are ADDING to the slotted performers list,
+//      We are finding the user BY ID
+//      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
+      long bandNum = Long.parseLong(band);
+      currentPerformers.add(userDao.findById(bandNum));
+    }
+    event.setPerformers(currentPerformers);
+
+    List<Genre> selectedGenres = new ArrayList<>();
+
+    for (String genre : genreIds) {
+      if (genre.equalsIgnoreCase("ignore")) {
+        continue;
+      }
+      System.out.println(genre + " Genre id");
+
+//      We are ADDING to the slotted performers list,
+//      We are finding the user BY ID
+//      We are PARSING the long from the STRING ARRAY, because checkboxes return string arrays.
+      selectedGenres.add(genreDao.findGenreByGenreName(genre));
+    }
+    event.setGenres(selectedGenres);
+
+
+    eventDao.save(event);
+    model.addAttribute("user", currentUser);
+    model.addAttribute("event", event);
+//    return "event/submitted";
+
+    return "redirect:/event/" + eventDao.findByTitle(event.getTitle()).getId();
   }
 
 

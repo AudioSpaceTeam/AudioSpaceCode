@@ -23,8 +23,8 @@ VALUES ('Jazz'),
        ('Ambient');
 
 
-# Not yet.
-# Not yet. Run seeder below.
+# new seeder. Run seeder below.
+SET FOREIGN_KEY_CHECKS = 0;
 
 TRUNCATE TABLE audiospace_db.genres;
 INSERT INTO audiospace_db.genres(genre_name)
@@ -46,28 +46,28 @@ TRUNCATE TABLE audiospace_db.users;
 INSERT INTO audiospace_db.users(bio, display_name, email, is_promoter, password, username, image_url)
 VALUES ('Professional Promoter born and raised in San antonio.', 'Elliot', 'Elliot@gmail.com', true,
         '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'elliboi',
-        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
+        'https://cdn.filestackcontent.com/zT21FEt7S0SNbeo1gzUP'),
        ('I used to perform, but now I manage talent hit me up @ notAustin@gmail.com.', 'Dripstin Whipley',
         'notAustin@gmail.com', true, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'austino',
-        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
+        'https://cdn.filestackcontent.com/NNQgJD2LRAeaSGtFjSdX'),
        ('Howdy I am Doug Dimmadome! Owner of the DimsDale DimmaDome! I am looking to forward to working with small artist, and help them out to get them some exposure.',
         'Doug DimmaDome', 'Doug@dimmadome.com', true, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC',
-        'dougdimma', 'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
+        'dougdimma', 'https://cdn.filestackcontent.com/wu1lKHYSRm6ipdCISFAY'),
        ('I have always wanted to be a Rock Star since I was young. Now I am chasing my dreams.', 'Bill Dipperly',
         'bill@dipperly.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'billdill',
-        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
+        'https://cdn.filestackcontent.com/WAv5sPUSRCagHxOfkH70'),
        ('I am a Country/Latin music artist from Colorado.', 'Stick the Kid', 'stick@hotmail.com', false,
         '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'stickyboi',
-        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
+        'https://cdn.filestackcontent.com/vOncEMsTOqS1V8jANrmC'),
        ('I am a Reggae Artist but I also make Techno/Hiphop Music.', 'Snoop Lion', 'snoop@hotmail.com', false,
         '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'snooplion',
-        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
+        'https://cdn.filestackcontent.com/A5cDBw0NTYatYAao4Epw'),
        ('Hip hop artist, I also dabble in techno. I am a full time coder in real life tho. I just do this for fun.',
         'D3BUG', 'notJay@ymail.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'debuggin',
-        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50'),
+        'https://cdn.filestackcontent.com/GwvG3uhAQRuLes4mNVTI'),
        ('I make Latin Music, but recently I have been making a few Rock songs.', 'Lonely Road',
         'notJaun@gmail.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', '2juanS',
-        'https://cdn.filestackcontent.com/nffA9ioLQOKUoTmpFq50');
+        'https://cdn.filestackcontent.com/Ab5DAktIQnCxYl8KNbDi');
 
 TRUNCATE TABLE audiospace_db.users_genres;
 INSERT INTO audiospace_db.users_genres(user_id, genre_id)
@@ -82,64 +82,31 @@ VALUES (4, 1),
        (8, 1),
        (8, 2);
 
-
-
-# TRUNCATE TABLE audiospace_db.events;
-# INSERT INTO audiospace_db.events(description,location, price, slots, start_date_time, title, promoter_id)
-# VALUES ('This is the Graduation for Neptune! Any bands are welcome, we need a variety.', 'Codeup', 59.99, 3,
-#         '2021-09-3 12:30:00', 'Graduation', 2),
-#        ('This is a Rock and Techno event.', 'The Guenther House, San Antonio', 109.99, 2, '2021-08-30 20:00:00',
-#         'Super Cool Event', 2),
-#        ('This is a Country and Latin event. This is for a birthday party.',
-#         'The St. Anthony, a Luxury Collection Hotel, San Antonio', 59.99, 3, '2021-08-18 14:27:00', 'Upside Down', 1),
-#        ('Bar Opening Need Rock Bands only!', 'Paramour Roof Top Bar, San Antonio', 50.99, 6, '2021-09-18 22:30:00',
-#         'Grand Opening', 1),
-#        ('This is for a comedy event, live music will be played during breaks, We are looking for Rap/hiphop or Techno performers.',
-#         'TriPoint, San Antonio', 108.99, 5, '2021-10-20 20:30:00', 'TriPoint Comedy', 1),
-#        ('Exclusive event for investors. Only need instrumentals playing, no lyrics and nothing too distracting.',
-#         'The Argyle, San Antonio', 35.99, 4, '2021-09-10 11:30:00', 'Chill Event', 2),
-#        ('Looking to show off local talent, All are welcome to apply.', 'Los Patios, San Antonio', 70.99, 10,
-#         '2021-09-10 15:00:00', 'Exposure Event', 1),
-#        ('Looking for live Latin ambient music for background music. Also need to hype up award presenting moments.',
-#         'Casa Rio, San Antonio', 180.99, 3, '2021-09-12 14:00:00', 'Awards Ceremony', 1),
-#        ('Looking for some chill background music for a get-together. Preferably Rap/hiphop or Reggae. I\'m open to techno tho.',
-#         'The Rosenberg Sky Room, San Antonio', 70.99, 10, '2021-10-02 16:00:00', 'Get-together', 3),
-#        ('Looking for Country or Latin style performers. This event is for a company outting.',
-#         'The Veranda, San Antonio', 97.99, 2, '2021-10-24 11:00:00', 'Company Fun', 3);
-
-TRUNCATE TABLE audiospace_db.events;
-INSERT INTO audiospace_db.events(title, description, city, state, address,zipcode,price,slots,start_date_time, promoter_id)
-VALUES ('Graduation','This is the Graduation for Neptune! Any bands are welcome, we need a variety', 'San Antonio', 'TX', 'Codeup', '78205', 109.99,5,'2021-09-3 12:30:00', 2),
-       ('Looking for three Metal Bands!','In need of three scary looking, horror themed, metal bands for an upcoming event!', 'San Antonio', 'TX', '4202 Thousand Oaks Dr', '78217', 100.00,3,'2021-09-3 12:30:00', 1),
-       (' Bar 414: Jazz Music','Need jazz musician players to get together and play some nice relaxing music.', 'Houston', 'TX', '205 E Houston St', '78205', 200.99,5,'2021-09-3 12:30:00', 2),
-       ('The Nook Ampitheater: In need of a DJ!','In search of an awesome DJ with a great repitore of songs! Must know how to speak in front of the mic!', 'Austin', 'TX', '309 E 6th St', '78701', 50.00,1,'2021-09-3 12:30:00', 2),
-       ('Need a country Singer!','Our band has an upcoming gig tomorrow, and our singer flaked on us! If you like country and like to express your emotions through singing hit us up ASAP!', 'San Antonio', 'TX', '1134 W Hildebrand Ave', '78201', 109.99,1,'2021-09-3 12:30:00', 2),
-       ('In need of a singer that plays piano','If you like kids, and wouldn"t mind performing for them, please contact us through email. Your music will bring joy and wonder to all! ', 'San Antonio', 'TX', '333 N Santa Rosa St', '78207', 500.00,1,'2021-12-3 12:30:00', 3);
-
 # Andrea? or the manager to schedule time off.
 SET FOREIGN_KEY_CHECKS = 0;
 
 TRUNCATE TABLE audiospace_db.events;
 INSERT INTO audiospace_db.events(description,location,address,city,state,zipcode, price, slots, start_date_time, title, promoter_id)
-VALUES ('This is the Graduation for Neptune! Any bands are welcome, we need a variety.', 'Codeup','600 Navarro St','San Antonio','Texas',78205,59.99, 3,
+VALUES ('PAYS WELL!!! Experience the beauty of the Central Park fireflies along with Bach music for cello solo performed by acclaimed Cellist Elad Kabilio. This is the Graduation for Neptune! Any bands are welcome, we need a variety.', 'Codeup','600 Navarro St','San Antonio','Texas',78205,59.99, 3,
         '2021-09-3 12:30:00', 'Graduation', 2),
-       ('This is a Rock and Techno event.', 'The Guenther House','205 E Guenther','San Antonio','Texas',78204, 109.99, 2, '2021-08-30 20:00:00',
+       ('Captivating views of the Manhattan skyline including the Statue of Liberty, Brooklyn Bridge, Ellis Island, the Freedom Tower and more.', 'The Guenther House','205 E Guenther','San Antonio','Texas',78204, 109.99, 2, '2021-08-30 20:00:00',
         'Super Cool Event', 2),
-       ('This is a Country and Latin event. This is for a birthday party.',
+       ('The program will include selections from Bach''s masterful Suites for cello solo paired with night music such as Moon River and Debussy''s Clair De Lune.',
         'The St. Anthony, a Luxury Collection Hotel','300 East Travis Street','San Antonio','Texas',78205, 59.99, 3, '2021-08-18 14:27:00', 'Upside Down', 1),
-       ('Bar Opening Need Rock Bands only!', 'Paramour Roof Top Bar, 4th Floor','102 9th St','San Antonio','Texas',78215, 50.99, 6, '2021-09-18 22:30:00',
+       ('*INVITE THE WHOLE FAMILY! The right place to celebrate your birthday, surprise birthday, bachelor/bachelorette, family reunion, graduation, holidays & many more', 'Paramour Roof Top Bar, 4th Floor','102 9th St','San Antonio','Texas',78215, 50.99, 6, '2021-09-18 22:30:00',
         'Grand Opening', 1),
-       ('This is for a comedy event, live music will be played during breaks, We are looking for Rap/hiphop or Techno performers.',
+       (' We''re excited to make our return to this room - formerly Rose Gold - which has been reshaped and rejuvenated with a Funktion One sound system. We''ll be welcoming our guests Conor and A. Alvarez to the decks with us for this night of deep grooves. This is a free party',
         'TriPoint, San Antonio','3233 N St Marys St','San Antonio','Texas',78212, 108.99, 5, '2021-10-20 20:30:00', 'TriPoint Comedy', 1),
-       ('Exclusive event for investors. Only need instrumentals playing, no lyrics and nothing too distracting.',
+       ('A summer evening on the Hudson is a visit to the world’s best city in the 2019 Time Out Index. Warm breezes, city views and brilliant sunsets melting into moonlit waves. What a better way to enjoy them with three floors of music, friends & family, food & the Statue of Liberty!',
         'The Argyle, San Antonio','934 Patterson Ave','San Antonio','Texas',78209, 35.99, 4, '2021-09-10 11:30:00', 'Chill Event', 2),
-       ('Looking to show off local talent, All are welcome to apply.', 'Los Patios','934 Patterson Ave','San Antonio','Texas',78209, 70.99, 10,
+       ('Looking to show off local talent, All are welcome to apply. While attending the event, you may be exposed to the risk of contracting a communicable disease, including but not limited to COVID-19. While we have put in place preventative measures to reduce the spread of COVID-19, we cannot guarantee that you will not become infected with COVID-19.',
+        'Los Patios','934 Patterson Ave','San Antonio','Texas',78209, 70.99, 10,
         '2021-09-10 15:00:00', 'Exposure Event', 1),
-       ('Looking for live Latin ambient music for background music. Also need to hype up award presenting moments.',
+       ('Looking for live Latin ambient music for background music. Also need to hype up award presenting moments. Unwind from the week and relax on the water while you indulge on breathtaking views of Manhattan and the Statue of Liberty. While on board, be sure to check out our fully stocked bar! Order drinks straight to your table or at the bar!',
         'Casa Rio','430 E Commerce St,','San Antonio','Texas',78205, 180.99, 3, '2021-09-12 14:00:00', 'Awards Ceremony', 1),
-       ('Looking for some chill background music for a get-together. Preferably Rap/hiphop or Reggae. I\'m open to techno tho.',
+       ('Dress to Impress, this is an upscale venue in heart of New York City. Sneakers and jeans are ok for guys. Ladies heels, sandels, wedges ok... no sneakers. Admission at doorman''s discretion.',
         'The Rosenberg Sky Room','430 E Commerce St','San Antonio','Texas',78212, 70.99, 10, '2021-10-02 16:00:00', 'Get-together', 3),
-       ('Looking for Country or Latin style performers. This event is for a company outting.',
+       ('Swing by for a relaxing and lovely sunset concert - audience members are welcome to bring blankets or lawn chairs for their comfort, something to drink or snack on, and some questions! Family or date night friendly.',
         'The Veranda','1746 Lockhill Selma Rd','San Antonio','Texas',78213, 97.99, 2, '2021-10-24 11:00:00', 'Company Fun', 3);
 
 TRUNCATE TABLE audiospace_db.events_genres;

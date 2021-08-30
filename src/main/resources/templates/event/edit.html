@@ -29,7 +29,7 @@
       </div>
       <hr class="my-4">
 
-      <form th:action="@{/event/create}" th:method="post" th:object="${event}">
+      <form th:action="@{|/event/${event.id}/edit|}" th:method="post" th:object="${event}">
         <h3 class=" ">Event Info: </h3>
 
         <!--                <div class="d-flex flex-column bg-success col-width">-->
@@ -140,11 +140,13 @@
                  th:value="${band.id}" checked>
 
         </div>
+
         <input hidden type="checkbox" th:id="ignore" name="bandIdsR" value="ignore" checked>
         <div th:each="band: ${event.requesters}">
           <input hidden type="checkbox" th:id="${band.id}" name="bandIdsR"
                  th:value="${band.id}" checked>
         </div>
+
       </form>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">

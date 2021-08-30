@@ -42,9 +42,11 @@ public class Event {
 
     @Column(nullable = false, length = 100)
     private String zipcode;
-//
-//    @Column(nullable = false, length = 100)
-//    private String location;
+
+
+   @Column(nullable = true, length = 100)
+    private String location;
+
 
 //  Event flyer image
 //  Not yet...

@@ -10,9 +10,8 @@
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container-fluid ">
     <!--Moved Page Title to the top -->
-    <h3 class="text-center" id="indexH3">Your Planned Events:</h3>
-    <div class="d-flex flex-row justify-content-center contents">
-        <div class="eventCards d-flex flex-row justify-content-center mobileCard2">
+    <div class="d-flex flex-row justify-content-center mt-3 contents">
+        <div class="d-flex flex-row justify-content-center mobileCard2">
             <!--`Current`EventsProfile =========================================================================================-->
             <div th:if="${user.getPromoter()}">
                 <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
@@ -23,7 +22,7 @@
                                     <h5 class="card-title" th:text="${event.title}"></h5>
                                     <h6 class="card-subtitle mb-2 text-muted" th:text="${event.city}"></h6>
                                     <p class="card-text" th:text="${event.description}"></p>
-                                    <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
+                                    <a th:href="@{|/event/${event.getId()}|}" class="btn eventSearchButton">Event Details</a>
 
                                 </div>
                             </div>
@@ -36,12 +35,12 @@
                     <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
                         <div th:each="event : ${user.slotted}">
                             <div class="col d-flex align-items-center justify-content-center">
-                                <div class="card" style="width: 18rem; height: 20rem">
+                                <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title" th:text="${event.title}"></h5>
                                         <h6 class="card-subtitle mb-2 text-muted" th:text="${event.city}"></h6>
                                         <p class="card-text" th:text="${event.description}"></p>
-                                        <a th:href="@{|/event/${event.getId()}|}" class="btn btn-dark">Event Details</a>
+                                        <a th:href="@{|/event/${event.getId()}|}" class="btn  eventSearchButton">Event Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -67,12 +66,12 @@
                             <div>Musician/Band</div>
                         </div>
                         <div th:text="${user.bio}"></div><br>
-                        <a href=/contact class="contact-btn">Contact</a>
-                        <a class="contact-btn" th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}">
+<!--                        <a th:if="!" href=/contact class="btn eventSearchButton">Contact</a>-->
+                        <a class="btn eventSearchButton" th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}">
                             Edit Profile
                         </a>
                         <!-- Rating trigger modal -->
-                        <button th:if="${!profileOwner}" type="button" class="btn contact-btn" data-bs-toggle="modal"
+                        <button th:if="${!profileOwner}" type="button" class="btn eventSearchButton" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                             Review Promoter
                         </button>

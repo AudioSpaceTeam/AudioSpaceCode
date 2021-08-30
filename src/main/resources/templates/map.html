@@ -7,12 +7,13 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet'/>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
     <th:block th:replace="partials/style.html :: style"></th:block>
+</head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <div class="container mt-5">
     <div class="text-center mt-5">
-        <div class="header text-center"><h3 style="color: #00796D">Search you city</h3></div>
-        <h1>Create events as a promoter and find the exact location with your application.</h1>
+<!--        <div class="header text-center"><h3 style="color: #00796D">Search you city</h3></div>-->
+        <h2>Create events as a promoter and find the exact location with your application.</h2>
         <p>We want to make life easier and we know that extra help doesn't hurt. Use the map application to search for
             events in your country.</p>
     </div>
@@ -23,8 +24,10 @@
             <input type="search" class="form-control" id="mapSearch" placeholder="Enter you location">
         </div>
     </form>
+    <p></p>
     <div class="col-auto">
-        <a class="contact-btn" id="btn" href="#" style="text-decoration: none">Search</a>
+        <a class="btn eventSearchButton btn-block" id="btn" href="#" style="text-decoration: none">Search</a>
+        <p></p>
     </div>
 
     <!--        map go here, fixed responsive errors-->
@@ -43,7 +46,7 @@
     <br>
 </div>
 <script>
-  const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic2F2YW5uYW1hcmllIiwiYSI6ImNrczZmZzExbzAwamQyb3BkZTdsaGkweTEifQ.xTwAf1HvBIFQrGDL_jhs8g'
+    const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic2F2YW5uYW1hcmllIiwiYSI6ImNrczZmZzExbzAwamQyb3BkZTdsaGkweTEifQ.xTwAf1HvBIFQrGDL_jhs8g'
 </script>
 <!--<script th:src="@{/js/keys.js}"></script>-->
 <script th:src="@{/js/mapbox-geocoder-utils.js}"></script>

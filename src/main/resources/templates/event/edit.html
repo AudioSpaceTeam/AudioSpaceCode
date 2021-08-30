@@ -1,107 +1,188 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"/>
   <title>Edit Event</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+        crossorigin="anonymous">
+  <!--    font awesome kit-->
+  <script src="https://kit.fontawesome.com/d0d640b552.js" crossorigin="anonymous"></script>
   <th:block th:replace="partials/style.html :: style"></th:block>
+  <link rel="stylesheet" href="../static/css/main.css">
+  <!--    CSS for fix some visual problems-->
+
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 
+
 <div class="container">
+  <div class="contents">
+    <div class="d-flex flex-column align-items-center displayEvent">
+      <div class="text-center ">
+        <div class="header text-center"><h1 style="color: #00796D">Create an event!</h1></div>
+        <h1>Create events as a promoter and get noticed.</h1>
+        <p>Audio Space's goal is to make the connection between promoters and musicians as easy as possible.<br>
+          Our
+          platform aims to facilitate the process of booking shows and managing events.</p>
+      </div>
+      <hr class="my-4">
 
+      <form th:action="@{/event/create}" th:method="post" th:object="${event}">
+        <h3 class=" ">Event Info: </h3>
 
-  <h1>Edit an Event</h1>
+        <!--                <div class="d-flex flex-column bg-success col-width">-->
+        <div class="box displayEvent">
+          <div class="row">
+            <div class="col-12">
+              <label for="title">Title:</label>
+              <input class="TitleForm" th:field="*{title}" id="title"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label for="city">City:</label>
+              <input class="TitleForm" th:field="*{city}" id="city">
+            </div>
+            <div class="col-6">
+              <label for="state">State:</label>
+              <input class="TitleForm" th:field="*{state}" id="state">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 ">
+              <label for="address">Address:</label>
+              <input class="TitleForm" th:field="*{address}" id="address">
+            </div>
+            <div class="col-sm-6 ">
+              <label for="zipcode">Zipcode:</label>
+              <input class="TitleForm" th:field="*{zipcode}" id="zipcode">
+            </div>
+          </div>
 
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Delete Event?
-  </button>
+          <div class="row">
+            <div class="col-sm-6 ">
+              <label for="price">Price: </label>
+              <input class="TitleForm" name="price" type="number" step=".01" id="price" placeholder="$" th:value="${event.price}">
+            </div>
+            <div class="col-sm-6">
+              <label for="slots">Available slots:</label>
+              <input class="TitleForm" th:field="*{slots}" type="number" id="slots">
+            </div>
+          </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel" th:text="${event.title}">Modal Title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="col-sm-12 ">
+            <label for="dateTime">Day of Event (date and time):</label>
+            <input class="TitleForm" type="datetime-local" id="dateTime" name="dateTime" th:value="${event.startDateTime}">
+          </div>
+          <div class="col-sm-12 ">
+            <label for="description">Description:</label>
+            <textarea class="TitleForm" th:field="*{description}"  th:text="${event.description}" id="description"></textarea>
+          </div>
+
         </div>
-        <div class="modal-body">
-          ARE YOU SURE YOU WANT TO DELETE THIS EVENT?
+
+        <div class="genre">
+          <p>Select Genre:</p>
+          <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
+          <div th:each="genre: ${genres}">
+            <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds"
+                                                      th:value="${genre.genreName}"
+                                                      th:text="${genre.genreName}"></label>
+          </div>
+          <div th:each="genre: ${genres2}">
+            <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds"
+                                                      th:value="${genre.genreName}"
+                                                      th:text="${genre.genreName}"></label>
+          </div>
         </div>
-        <div class="modal-footer">
-          <form th:method="post" th:action="@{|/event/${event.getId()}/delete|}">
-            <input hidden name="id" th:value="${event.id}">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-danger">Delete Event</button>
-          </form>
+
+        <!--Old genre stuff-->
+        <!--                <h3 class="">Select Genres: </h3>-->
+        <!--                <div class="box">-->
+
+        <!--                    <div class="row">-->
+        <!--                        <div class="col-6">-->
+        <!--                            <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>-->
+        <!--                            <div th:each="genre: ${genres}">-->
+
+        <!--                                <label class="genres" th:for="${genre.getGenreName()}"><input type="checkbox"-->
+        <!--                                                                                              th:id="${genre.genreName}"-->
+        <!--                                                                                              name="genreIds"-->
+        <!--                                                                                              th:value="${genre.genreName}"-->
+        <!--                                                                                              th:text="${genre.genreName}"></label>-->
+
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="col-6">-->
+        <!--                            <input hidden type="checkbox" th:id="ignore" name="genre2Ids" value="ignore" checked>-->
+        <!--                            <div th:each="genre2: ${genres2}">-->
+        <!--                                <label class="genres" th:for="${genre2.getGenreName()}">-->
+        <!--                                    <input type="checkbox" th:id="${genre2.genreName}" name="genre2Ids"-->
+        <!--                                           th:value="${genre2.genreName}" th:text="${genre2.genreName}">-->
+        <!--                                </label>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+
+        <!--                    </div>-->
+
+        <!--                </div>-->
+        <!---->
+        <!--Old genre stuff-->
+        <div class="d-flex flex-row justify-content-center mt-5">
+          <!--    <button type="submit" class="btn btn-dark mt-3">Submit</button>-->
+          <button class="btn eventSearchButton" type="submit">Save Changes</button>
+        </div>
+        <input hidden type="checkbox" th:id="ignore" name="bandIdsP" value="ignore" checked>
+        <div th:each="band: ${event.performers}">
+          <input hidden type="checkbox" th:id="${band.id}" name="bandIdsP"
+                 th:value="${band.id}" checked>
+
+        </div>
+        <input hidden type="checkbox" th:id="ignore" name="bandIdsR" value="ignore" checked>
+        <div th:each="band: ${event.requesters}">
+          <input hidden type="checkbox" th:id="${band.id}" name="bandIdsR"
+                 th:value="${band.id}" checked>
+        </div>
+      </form>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete Event?
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" th:text="${event.title}">Modal Title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ARE YOU SURE YOU WANT TO DELETE THIS EVENT?
+            </div>
+            <div class="modal-footer">
+              <form th:method="post" th:action="@{|/event/${event.getId()}/delete|}">
+                <input hidden name="id" th:value="${event.id}">
+                <button type="button" class="btn eventSearchButton" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn eventSearchButton">Delete Event</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
+
+
     </div>
   </div>
-
-  <form th:action="@{/event/create}" th:method="post" th:object="${event}">
-
-    <label for="title">Title:</label>
-    <br>
-    <input th:field="*{title}" id="title"/>
-    <br>
-    <label for="location">Location:</label>
-    <br>
-    <input th:field="*{location}" id="location">
-    <br>
-    <label for="price">Price:</label>
-    <br>
-    <input name="price" type="number" step=".01" id="price" placeholder="$" th:value="${event.price}">
-    <br>
-    <label for="slots">Available slots:</label>
-    <br>
-    <input th:field="*{slots}" type="number" id="slots">
-    <br>
-    <label for="description">Description:</label>
-    <br>
-    <textarea th:field="*{description}" th:text="${event.description}" id="description"></textarea>
-    <br>
-    <label for="dateTime">Day of Event (date and time):</label>
-    <input  type="datetime-local" th:value="${event.startDateTime}" id="dateTime" name="dateTime">
-    <br>
-    <h5>Bands playing at the event: </h5>
-    <br>
-    <input hidden type="checkbox" th:id="ignore" name="bandIds" value="ignore" checked>
-    <div th:each="user: ${users}">
-    <label th:for="${user.getId()}"><input type="checkbox" th:id="${user.id}" name="bandIds" th:value="${user.id}" th:text="${user.username}">User</label>
-    </div>
-
-    <h5>Performers currently added...: </h5>
-    <div th:each="userS : ${performers}">
-<!--      <input hidden type="checkbox" th:id="${userS.id}" name="removeBandIds" th:value="${userS.id}" checked>-->
-      <p th:text="${userS.username}"></p>
-    </div>
-    <br>
-    <h5>Genres for the Event: </h5>
-    <br>
-    <input hidden type="checkbox" th:id="ignore" name="genreIds" value="ignore" checked>
-    <div th:each="genre: ${genres}">
-      <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds" th:value="${genre.genreName}" th:text="${genre.genreName}"></label>
-    </div>
-
-
-    <input hidden th:field="*{id}" th:value="${event.id}">
-    <button type="submit">Submit</button>
-  </form>
-
 </div>
-
-
-
-<th:block th:replace="partials/scripts.html :: scripts"></th:block>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
-
-<th:block th:replace="partials/scripts.html :: scripts"></th:block>
 <footer th:replace="partials/footer.html :: footer"></footer>
+<th:block th:replace="partials/scripts.html :: scripts"></th:block>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="../../static/js/keys.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+
 </body>
 </html>

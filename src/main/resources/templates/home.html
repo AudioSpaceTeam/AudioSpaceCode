@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Home</title>
     <meta charset="UTF-8"/>
@@ -13,9 +13,9 @@
         }
     </style>
 </head>
+<body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-
-<div class="container my-3 my-sm-5">
+<div class="container my-3 my-sm-5" id="homeContainer">
     <div class="text-center mt-5">
         <div class="header text-center"><h3>Welcome to Audio Space</h3></div>
         <h1>Create events as a promoter and invite musicians to play.</h1>
@@ -115,9 +115,9 @@
                     </figure>
                 </div>
                 <!-- 3.- video -->
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <figure class="figure">
-                            <div class="embed-responsive embed-responsive-16by9 figure-img">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <figure class="figure">
+                        <div class="embed-responsive embed-responsive-16by9 figure-img">
                             <iframe class="rounded mx-auto d-block" width="560" height="315"
                                     src="https://www.youtube.com/embed/FrJvKZNEh7g"
                                     title="YouTube video player"
@@ -246,7 +246,7 @@
                 profile!</p>
         </div>
         <form>
-        <button class="btn eventSearchButton" formaction="/login">Sign up!</button>
+            <button class="btn eventSearchButton" formaction="/login">Sign up!</button>
         </form>
         <br><br>
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -101,6 +102,16 @@ public class Event {
     String[] dateTimeArray = dateTime.split("T");
 
     String time = dateTimeArray[1];
+
+    try {
+      String _24HourTime = time;
+      SimpleDateFormat _24HourSDF = new SimpleDateFormat("HH:mm");
+      SimpleDateFormat _12HourSDF = new SimpleDateFormat("hh:mm a");
+      Date _24HourDt = _24HourSDF.parse(_24HourTime);
+      return _12HourSDF.format(_24HourDt);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     return time;
   }
 

@@ -66,7 +66,7 @@ VALUES ('Professional Promoter born and raised in San antonio.', 'Elliot', 'Elli
         'Ripper', 'notJay@ymail.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'ripper',
         'https://cdn.filestackcontent.com/GwvG3uhAQRuLes4mNVTI'),
        ('I make Latin Music, but recently I have been making a few Rock songs.', 'Lonely Road',
-        'notJaun@gmail.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', '2juanS',
+        'notJaun@gmail.com', false, '$2a$10$6B0X5JkY7PbzIdwWjk5fyuymdlb8OFrWXxFI7VYQn9lAaY0PRxHOC', 'lonely',
         'https://cdn.filestackcontent.com/Ab5DAktIQnCxYl8KNbDi');
 
 TRUNCATE TABLE audiospace_db.users_genres;
@@ -90,7 +90,7 @@ INSERT INTO audiospace_db.events(description,location,address,city,state,zipcode
 VALUES ('PAYS WELL!!! Experience the beauty of the Central Park fireflies along with Bach music for cello solo performed by acclaimed Cellist Elad Kabilio. This is the Graduation for Neptune! Any bands are welcome, we need a variety.', 'Codeup','600 Navarro St','San Antonio','Texas',78205,59.99, 3,
         '2021-09-3 12:30:00', 'Graduation', 2),
        ('Captivating views of the Manhattan skyline including the Statue of Liberty, Brooklyn Bridge, Ellis Island, the Freedom Tower and more.', 'The Guenther House','205 E Guenther','San Antonio','Texas',78204, 109.99, 2, '2021-08-30 20:00:00',
-        'Super Cool Event', 2),
+        'Party Marty', 2),
        ('The program will include selections from Bach''s masterful Suites for cello solo paired with night music such as Moon River and Debussy''s Clair De Lune.',
         'The St. Anthony, a Luxury Collection Hotel','300 East Travis Street','San Antonio','Texas',78205, 59.99, 3, '2021-08-18 14:27:00', 'Upside Down', 1),
        ('*INVITE THE WHOLE FAMILY! The right place to celebrate your birthday, surprise birthday, bachelor/bachelorette, family reunion, graduation, holidays & many more', 'Paramour Roof Top Bar, 4th Floor','102 9th St','San Antonio','Texas',78215, 50.99, 6, '2021-09-18 22:30:00',
@@ -98,7 +98,7 @@ VALUES ('PAYS WELL!!! Experience the beauty of the Central Park fireflies along 
        (' We''re excited to make our return to this room - formerly Rose Gold - which has been reshaped and rejuvenated with a Funktion One sound system. We''ll be welcoming our guests Conor and A. Alvarez to the decks with us for this night of deep grooves. This is a free party',
         'TriPoint, San Antonio','3233 N St Marys St','San Antonio','Texas',78212, 108.99, 5, '2021-10-20 20:30:00', 'TriPoint Comedy', 1),
        ('A summer evening on the Hudson is a visit to the world’s best city in the 2019 Time Out Index. Warm breezes, city views and brilliant sunsets melting into moonlit waves. What a better way to enjoy them with three floors of music, friends & family, food & the Statue of Liberty!',
-        'The Argyle, San Antonio','934 Patterson Ave','San Antonio','Texas',78209, 35.99, 4, '2021-09-10 11:30:00', 'Chill Event', 2),
+        'The Argyle, San Antonio','934 Patterson Ave','San Antonio','Texas',78209, 35.99, 4, '2021-09-10 11:30:00', 'Chillalcious', 2),
        ('Looking to show off local talent, All are welcome to apply. While attending the event, you may be exposed to the risk of contracting a communicable disease, including but not limited to COVID-19. While we have put in place preventative measures to reduce the spread of COVID-19, we cannot guarantee that you will not become infected with COVID-19.',
         'Los Patios','934 Patterson Ave','San Antonio','Texas',78209, 70.99, 10,
         '2021-09-10 15:00:00', 'Exposure Event', 1),

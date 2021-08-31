@@ -549,3 +549,9 @@ label{
     margin: 15px
 }
 
+#event-profile-username{
+    text-align: center;
+    margin-top: 5px;
+    color: #d8dedd;
+}
+

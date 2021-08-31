@@ -1,5 +1,9 @@
 * {
     font-family: 'PT Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
 }
 @media only screen and (max-width: 900px) {
     .searchEventCard {
@@ -73,15 +77,9 @@ a:hover {
 a:active {
     color: #1e2c2a;
 }
+
 .eventLocation {
     color: #435f58;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
 }
 
 body {
@@ -241,7 +239,8 @@ body {
     display: flex;
     align-items: center;
 }
-#avg-rating{
+
+#avg-rating {
     text-decoration: underline;
 }
 
@@ -312,6 +311,11 @@ body {
     margin-bottom: .5rem;
 }
 
+
+.colorStar {
+    color: #ffc107;
+}
+
 .comment {
     margin-bottom: .3rem;
     font-weight: bold;
@@ -357,14 +361,14 @@ body {
 }
 
 /*this button style is for when the background of where the button is green because of hover effect makes it look bad*/
-.btn-bkgnd-green{
+.btn-bkgnd-green {
     border: 2px solid #344B47;
     padding: 5px;
     background-color: #d8dedd;
     color: #344B47;
 }
 
-.btn-bkgnd-green:hover{
+.btn-bkgnd-green:hover {
     border: 2px solid #d8dedd;
     background-color: #344B47;
     color: #d8dedd;
@@ -456,6 +460,7 @@ input#5:checked ~ label {
 .genreList {
     margin: 2rem;
 }
+
 .nav-link {
     color: #1e2c2a;
 }
@@ -478,17 +483,22 @@ input#5:checked ~ label {
 }
 
 
-.scroll{
+.scroll {
     height: 30vh;
     overflow: auto;
+}
+
+#exampleModalLabel {
+    font-weight: bolder;
 }
 
 #ratingsModalLabel{
     font-weight: bolder;
 }
+
 /*Bootstrap Media Queries*/
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 600px) {
     .pic img#event-image {
         display: block;
         width: 75px;
@@ -496,7 +506,6 @@ input#5:checked ~ label {
         border-radius: 50%;
     }
 }
-
 
 
 @media only screen and (min-width: 200px)and(max-width: 768px) {
@@ -515,8 +524,10 @@ input#5:checked ~ label {
 #homeContainer, #footer {
     width: 95%;
 }
+
 p {
     margin-bottom: 0;
+
 }
 
 label{
@@ -525,6 +536,10 @@ label{
     font-weight: bold;
 }
 
-.colorStar {
-    color: #ffc107;
+#fixAleProblem {
+    background-color: #d8dedd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px
 }
+

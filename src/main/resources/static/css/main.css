@@ -346,11 +346,12 @@ body {
 }
 
 .card-header {
-    background-color: #d8dedd;
+    margin-top: 15px;
+    background-color: #bdc5c2;
 }
 
 .eventSearchButton:hover {
-    border: 2px solid #344B47;
+    border: 2px solid #344b47;
     background-color: #344B47;
     color: #d8dedd;
 }

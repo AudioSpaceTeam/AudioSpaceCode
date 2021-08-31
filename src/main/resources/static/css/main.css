@@ -52,9 +52,13 @@
     background-color: #344B47;
 }
 
+#seperate-navbar-links{
+    display: flex;
+    justify-content: flex-end;
+}
+
 .footer-as {
     background-color: #344B47;
-
 }
 
 
@@ -607,14 +611,15 @@ input#5:checked ~ label {
 }
 
 
-@media only screen and (min-width: 1020px){
-    body{
+@media only screen and (min-width: 1020px) {
+    body {
         background-color: rebeccapurple;
     }
 
-    .searchFunction{
+    .searchFunction {
         display: none;
     }
+}
 
 label{
     margin-top: 10px;

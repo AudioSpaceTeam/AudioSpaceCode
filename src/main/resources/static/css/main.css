@@ -27,10 +27,7 @@
         flex-grow: 1;
     }
 
-    /*.profileMobileCard {*/
-    /*    margin-right: 65vw;*/
-    /*    margin-top: 32rem;*/
-    /*}*/
+
 
     .mobileCard2 {
         margin-top: 450px;
@@ -179,12 +176,9 @@ body {
     overflow: hidden;
     border: #344B47 solid 4px;
     margin-top: 16px;
-    transition: transform 250ms;
 }
 
-.profile-card:hover{
-    transform: translateY(-10px);
-}
+
 
 
 .pic {
@@ -266,6 +260,9 @@ body {
 #avg-rating {
     text-decoration: underline;
 }
+#avg-rating2 {
+    text-decoration: underline;
+}
 
 #avg-rating:hover {
     cursor: pointer;
@@ -295,9 +292,7 @@ body {
     background: #bbb;
 }
 
-.card-events {
-    width: 20em;
-}
+
 
 .eventCard {
     max-width: 60vw;
@@ -575,6 +570,10 @@ input#5:checked ~ label {
     .searchFunction2 {
         display: none;
     }
+
+    .profileLarge{
+        display: none;
+    }
 }
 
 
@@ -610,6 +609,10 @@ input#5:checked ~ label {
     .newbtn{
         width: 100%;
         margin:1em 0px;
+    }
+
+    .profileLarge{
+        display: none;
     }
 }
 
@@ -657,8 +660,46 @@ input#5:checked ~ label {
         margin:0px 0px 0px 2rem;
     }
 
-    .form-control{
-        margin-left: 1.4rem;
+    .searchBar{
+        margin-left: 1.4rem !important;
     }
+
+    .profileSmall{
+        display: none;
+    }
+
+    .marginTop {
+        margin-top: 56px !important;
+    }
+
+
+    #cards{
+        border: #344B47 solid 3px;
+        transition: transform 250ms;
+    }
+    #cards:hover{
+        transform: translateY(-10px);
+
+    }
+    .profile-card {
+        background-color: #bdc5c2;
+        width: 350px;
+        text-align: center;
+        border-radius: 8px;
+        overflow: hidden;
+        border: #344B47 solid 4px;
+        margin-top: 16px;
+        transition: transform 250ms;
+    }
+
+    .profile-card:hover{
+        transform: translateY(-10px);
+    }
+
+    .card-events {
+        width: 20em;
+
+    }
+
 }
 

@@ -518,3 +518,13 @@ input#5:checked ~ label {
 p {
     margin-bottom: 0;
 }
+
+label{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.colorStar {
+    color: #ffc107;
+}

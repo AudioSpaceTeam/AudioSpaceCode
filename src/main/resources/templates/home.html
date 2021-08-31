@@ -11,6 +11,13 @@
         body {
             background-color: #344B47;
         }
+        #signUp{
+          border: 2px solid #344B47;
+          padding: 5px;
+          background-color: #d8dedd;
+          color: #344B47;
+          margin: 9px;
+        }
     </style>
 </head>
 <body>
@@ -22,7 +29,7 @@
         <p>Audio Space's goal is to make the connection between promoters and musicians as easy as possible. Our
             platform aims to facilitate the process of booking shows and managing events.</p>
         <form sec:authorize="!isAuthenticated()">
-            <button class="btn eventSearchButton" formaction="/login">Sign up!</button>
+            <button class="btn eventSearchButton" formaction="/register">Sign up!</button>
         </form>
     </div>
 
@@ -249,7 +256,7 @@
                 profile!</p>
         </div>
         <form sec:authorize="!isAuthenticated()">
-            <button class="btn eventSearchButton" formaction="/login">Sign up!</button>
+            <button class="btn eventSearchButton btn-block" id="signUp" formaction="/login">Sign up!</button>
         </form>
         <br><br>
 

@@ -82,9 +82,6 @@ VALUES (4, 1),
        (8, 1),
        (8, 2);
 
-# Andrea? or the manager to schedule time off.
-SET FOREIGN_KEY_CHECKS = 0;
-
 TRUNCATE TABLE audiospace_db.events;
 INSERT INTO audiospace_db.events(description,location,address,city,state,zipcode, price, slots, start_date_time, title, promoter_id)
 VALUES ('PAYS WELL!!! Experience the beauty of the Central Park fireflies along with Bach music for cello solo performed by acclaimed Cellist Elad Kabilio. This is the Graduation for Neptune! Any bands are welcome, we need a variety.', 'Codeup','600 Navarro St','San Antonio','Texas',78205,59.99, 3,

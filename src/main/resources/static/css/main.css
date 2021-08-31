@@ -626,7 +626,7 @@ input#5:checked ~ label {
     .searchFunction {
         display: none;
     }
-}
+
 
     label {
         margin-top: 10px;
@@ -647,23 +647,25 @@ input#5:checked ~ label {
         margin-top: 5px;
         color: #d8dedd;
     }
-    .newSearch{
+
+    .newSearch {
         width: 100%;
         margin-left: 0 !important;
         margin-right: 0 !important;
         margin-bottom: 1rem;
     }
 
-    .noPadding{
+    .noPadding {
         padding: 0;
     }
-    .newbtn{
+
+    .newbtn {
         width: 50%;
-        margin:0px 0px 0px 2rem;
+        margin: 0px 0px 0px 2rem;
     }
 
-    .form-control{
-        margin-left: 1.4rem;
+    .form-control {
+        /*margin-left: 1.4rem;*/
     }
 }
 

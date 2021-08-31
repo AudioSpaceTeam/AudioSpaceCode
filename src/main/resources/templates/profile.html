@@ -8,86 +8,102 @@
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container-fluid ">
+<div class="container ">
     <!--Moved Page Title to the top -->
-    <div class="d-flex flex-row justify-content-center mt-3 contents">
-        <div class="d-flex flex-row justify-content-center mobileCard2">
-            <!--`Current`EventsProfile =========================================================================================-->
-            <div th:if="${user.getPromoter()}">
-                <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
-                    <div th:each="event : ${userEvents}">
-                        <div class="col d-flex align-items-center justify-content-center">
-                            <div class="card card-events">
-                                <div class="card-body displayEvent">
-                                    <h5 class="card-title" th:text="${event.title}"></h5>
-                                    <h6 class="card-subtitle mb-2 text-muted" th:text="${event.city}"></h6>
-                                    <p class="card-text" th:text="${event.description}"></p>
-                                    <a th:href="@{|/event/${event.getId()}|}" class="btn eventSearchButton">Event Details</a>
+    <div class="d-flex flex-row justify-content-center  mt-3 contents ">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Bellow is for the performers profile======================================================================-->
-                <div th:if="!${user.getPromoter()}">
-                    <h3 class="text-left">Current planned events:</h3>
-                    <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-                        <div th:each="event : ${user.slotted}">
+            <div class="col-8 bg info">
+                <!--`Current`EventsProfile =========================================================================================-->
+                <div th:if="${user.getPromoter()}">
+                    <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
+                        <div th:each="event : ${userEvents}">
                             <div class="col d-flex align-items-center justify-content-center">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title" th:text="${event.title}"></h5>
-                                        <h6 class="card-subtitle mb-2 text-muted" th:text="${event.city}"></h6>
-                                        <p class="card-text" th:text="${event.description}"></p>
-                                        <a th:href="@{|/event/${event.getId()}|}" class="btn  eventSearchButton">Event Details</a>
+                                <div class="card card-events">
+                                    <div class="d-flex flex-column card-body displayEvent">
+                                        <div class="d-flex flex-row titleBox">
+                                            <h5 class="card-title" th:text="${event.title}"></h5>
+                                        </div>
+                                        <h6 class="card-subtitle mb-2 text-muted titleBox" th:text="${event.city}"></h6>
+                                        <div class="anotherBox scroll element roundBox">
+                                            <div class="anotherBox ">
+                                                <p class="card-text" id="eventDescrip" th:text="${event.description}"></p>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-center align-items-center">
+                                            <a th:href="@{|/event/${event.getId()}|}" class="btn eventSearchButton" id="newButton">Event Details</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!--ProfileCard Column -->
-        <div class="profile-card-container d-flex col-4  justify-content-center ">
-            <!--Profile Card ================================================================================================-->
-            <div class="profileMobileCard">
-                <div class="profile-card">
-                    <div class="card-header ">
-                        <div class="pic">
-                            <img th:src="${user.imageUrl}" alt="No Profile Picture">
+
+
+                    <!--Bellow is for the performers profile======================================================================-->
+                    <div th:if="!${user.getPromoter()}">
+                        <h3 class="text-left">Current planned events:</h3>
+                        <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
+                            <div th:each="event : ${user.slotted}">
+                                <div class="col d-flex align-items-center justify-content-center">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title" th:text="${event.title}"></h5>
+                                            <h6 class="card-subtitle mb-2 text-muted" th:text="${event.city}"></h6>
+                                            <p class="card-text" th:text="${event.description}"></p>
+                                            <a th:href="@{|/event/${event.getId()}|}" class="btn  eventSearchButton">Event Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="name" th:text="${user.displayName}"></div>
-                        <div class="desc" th:if="${user.getPromoter()}">
-                            <div>Promoter</div>
-                        </div>
-                        <div class="desc" th:if="!${user.getPromoter()}">
-                            <div>Musician/Band</div>
-                        </div>
-                        <div th:text="${user.bio}"></div><br>
-<!--                        <a th:if="!" href=/contact class="btn eventSearchButton">Contact</a>-->
-                        <a class="btn eventSearchButton" th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}">
-                            Edit Profile
-                        </a>
-                        <!-- Rating trigger modal -->
-                        <button th:if="${!profileOwner}" type="button" class="btn eventSearchButton" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                            Review Promoter
-                        </button>
                     </div>
-                    <!--CardFooter============================================================================================-->
-                    <div class="card-footer">
-                        <div class="numbers">
-                            <div class="item">
-                                <span th:text="${ratingAverage}"></span>
-                                <a id="avg-rating" data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating</a>
+            </div>
+
+        <!--ProfileCard Column -->
+        <div class="col-4">
+            <div class="d-flex flex-row justify-content-center marginTop">
+                <!--Profile Card ================================================================================================-->
+                <div class="profileMobileCard">
+                    <div class="profile-card">
+                        <div class="card-header ">
+                            <div class="pic">
+                                <img th:src="${user.imageUrl}" alt="No Profile Picture">
+                            </div>
+                            <div class="name" th:text="${user.displayName}"></div>
+                            <div class="desc" th:if="${user.getPromoter()}">
+                                <div>Promoter</div>
+                            </div>
+                            <div class="desc" th:if="!${user.getPromoter()}">
+                                <div>Musician/Band</div>
+                            </div>
+                            <div th:text="${user.bio}"></div><br>
+                            <!--                        <a th:if="!" href=/contact class="btn eventSearchButton">Contact</a>-->
+                            <a class="btn eventSearchButton" th:if="${profileOwner}" th:href="@{|/profile/${user.getId()}/edit|}">
+                                Edit Profile
+                            </a>
+                            <!-- Rating trigger modal -->
+                            <button th:if="${!profileOwner}" type="button" class="btn eventSearchButton" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                Review Promoter
+                            </button>
+                        </div>
+                        <!--CardFooter============================================================================================-->
+                        <div class="card-footer">
+                            <div class="numbers">
+                                <div class="item">
+                                    <a id="avg-rating" data-bs-toggle="modal" data-bs-target="#ratingsModal">Average Rating:</a>
+                                    <span th:text="${ratingAverage}"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--EndOfProfileCard==============================================================================================-->
+
+        </div>     <!--EndOfProfileCard==============================================================================================-->
+    </div>
 
             <!--Modals========================================================================================================-->
             <!-- Create Rating Modal -->
@@ -101,9 +117,12 @@
                         </div>
                         <form th:action="@{/profile}" th:method="post" th:object="${review}">
                             <div class="modal-body">
-                                <p>Your Rating:</p>
+                                <div class="d-flex flex-row justify-content-start">
+                                    <p>Your Rating:</p>
+                                </div>
+
                                 <div class="rating flex-row align-items-center justify-content-start">
-                                    <div class="rotate flex-row align-items-center justify-content-center">
+                                    <div class="rotate flex-row align-items-center justify-content-start">
                                         <input type="radio" name="rating" value="5" id="5" th:field="*{rating}"><label
                                             for="5"><i class="fas fa-star"></i></label>
                                         <input type="radio" name="rating" value="4" id="4" th:field="*{rating}"><label
@@ -132,8 +151,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
+
     <!-- View Ratings Modal -->
     <div class="modal fade" id="ratingsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

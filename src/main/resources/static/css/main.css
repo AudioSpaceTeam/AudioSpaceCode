@@ -337,7 +337,12 @@ body {
 .colorStar {
     color: #ffc107;
 }
-
+.details {
+    text-align: justify;
+}
+.showButtons {
+    float: right;
+}
 .comment {
     margin-bottom: .3rem;
     font-weight: bold;
@@ -409,6 +414,7 @@ body {
     margin-right: 8rem;
     margin-top: 1rem;
 }
+
 
 .rating input {
     display: none;
@@ -600,6 +606,7 @@ input#5:checked ~ label {
     }
 }
 
+
 @media only screen and (min-width: 1020px){
     body{
         background-color: rebeccapurple;
@@ -608,5 +615,24 @@ input#5:checked ~ label {
     .searchFunction{
         display: none;
     }
+
+label{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#fixAleProblem {
+    background-color: #d8dedd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px
+
+}
+
+#event-profile-username{
+    text-align: center;
+    margin-top: 5px;
+    color: #d8dedd;
 }
 

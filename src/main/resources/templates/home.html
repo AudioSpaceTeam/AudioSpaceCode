@@ -11,6 +11,13 @@
         body {
             background-color: #344B47;
         }
+        .signUp{
+          border: 2px solid #344B47;
+          padding: 5px;
+          background-color: #d8dedd;
+          color: #344B47;
+          margin: 9px;
+        }
     </style>
 </head>
 <body>
@@ -22,11 +29,10 @@
         <p>Audio Space's goal is to make the connection between promoters and musicians as easy as possible. Our
             platform aims to facilitate the process of booking shows and managing events.</p>
         <form sec:authorize="!isAuthenticated()">
-            <button class="btn eventSearchButton" formaction="/login">Sign up!</button>
+            <button class="btn eventSearchButton btn-block signUp" formaction="/login">Sign up!</button>
         </form>
     </div>
 
-    <hr class="my-4">
     <!--Carousel go Here-->
     <div class="container my-3 my-sm-5">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -216,7 +222,7 @@
                          class="rounded mx-auto d-block w-100" width="600" height="450" alt="party">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://lh3.googleusercontent.com/proxy/1JOiauTz-YK6EvZj5kb0BViXnMmX2e2hNIvbjlbMeFqjNV9ggJoavv8Dj5aICmHwfxav4g_8ciWW9ywNgWr-SPXVqXycYowtICpzNrUwxjL2ExqI9nUPpcr-hVx89jJ-rLqe29id4kGp_YQ"
+                    <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/16/2021/03/Event-planning.jpg"
                          class="rounded mx-auto d-block w-100" width="600" height="450" alt="party">
                 </div>
 
@@ -249,7 +255,7 @@
                 profile!</p>
         </div>
         <form sec:authorize="!isAuthenticated()">
-            <button class="btn eventSearchButton" formaction="/login">Sign up!</button>
+            <button class="btn eventSearchButton btn-block signUp" formaction="/login">Sign up!</button>
         </form>
         <br><br>
 

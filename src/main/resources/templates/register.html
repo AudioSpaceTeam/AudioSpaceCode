@@ -9,6 +9,7 @@
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
+<br>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <div class="row">
@@ -21,10 +22,6 @@
                 <p class="lead text-danger" th:if="${hasErrors}" th:text="${errorText}">
                     Sorry that username is taken!
                 </p>
-                <!--        <p id="jsErrorMsg" class="lead text-danger">-->
-                <!--          Javascript change this.-->
-                <!--        </p>-->
-
                 <form id="registerForm" th:action="@{/register}" method="POST" th:object="${user}" class="mb-3">
                     <div class="row">
                         <div class="form-group col-12 col-sm-6">
@@ -105,15 +102,15 @@
                                         No
                                     </label>
                                 </div>
-
-                                <button id="submitButton" type="submit" class="eventSearchButton  btn btn-block mb-3"
+                                <br>
+                                <button id="submitButton" type="submit" class="eventSearchButton  btn btn-block mb-3" style="width: 100%; margin:1em 0px;"
                                         value="Sign up!">
 
                                     Create account
                                 </button>
                                 <div class="text-center">
                                     <p>or</p>
-                                    <a href="/login" class="eventSearchButton btn">Login</a>
+                                    <a href="/login" class="eventSearchButton btn" style="width: 100%; margin:1em 0px;">Login</a>
                                 </div>
                             </div>
                         </div>

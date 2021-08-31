@@ -20,7 +20,7 @@
             </div>
             <div class="genre"><br>
                 <p><b>Select Genre:</b></p>
-                <input hidden type="checkbox" th:id="ignore"  class="genreIds" name="genreIds" value="ignore" checked>
+                <input hidden type="checkbox" th:id="ignore" class="genreIds" name="genreIds" value="ignore" checked>
                 <div th:each="genre: ${genres}">
                     <label th:for="${genre.genreName}"><input type="checkbox" th:id="${genre.genreName}" name="genreIds"
                                                               th:value="${genre.genreName}"
@@ -31,7 +31,8 @@
                                                               th:value="${genre.genreName}"
                                                               th:text="'&nbsp;' + ${genre.genreName}"></label>
                 </div>
-            </div><br>
+            </div>
+            <br>
             <button class="btn eventSearchButton" type="submit" style="width: 100%; margin: 0px;">Search</button>
         </form>
     </div>

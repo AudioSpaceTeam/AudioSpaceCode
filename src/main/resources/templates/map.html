@@ -19,17 +19,31 @@
         <br>
     </div>
 
-    <form class="row g-3">
-        <div class="col-auto">
-            <label for="mapSearch" class="visually-hidden"></label>
-            <input type="search" class="form-control" id="mapSearch" placeholder="Enter you location">
+
+        <div class="d-flex flex-row align-items-center searchrow">
+            <div class="col-8">
+
+                    <form class="row g-3">
+                        <div class="col-auto">
+                            <label for="mapSearch" class="visually-hidden"></label>
+                            <input type="search" class="form-control" id="mapSearch" placeholder="Enter you location">
+                        </div>
+                    </form>
+
+
+            </div>
+            <div class="col-4">
+                <div class="col-auto">
+                    <a class="btn eventSearchButton btn-block newbtn" id="btn" href="#" style="text-decoration: none">Search</a>
+                    <p></p>
+                </div>
+            </div>
         </div>
-    </form>
-    <p></p>
-    <div class="col-auto">
-        <a class="btn eventSearchButton btn-block" id="btn" href="#" style="text-decoration: none">Search</a>
-        <p></p>
-    </div>
+
+
+
+
+
 
     <!--        map go here, fixed responsive errors-->
     <div class="row justify-content-center">

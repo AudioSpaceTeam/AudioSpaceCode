@@ -12,14 +12,14 @@
     <!--Moved Page Title to the top -->
     <div class="d-flex flex-row justify-content-center  mt-3 contents ">
 
-            <div class="col-8 bg info">
+            <div class="col-8 ">
                 <!--`Current`EventsProfile =========================================================================================-->
                 <div th:if="${user.getPromoter()}">
-                    <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
+                    <div class="eventCard row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4 align-items-center">
                         <div th:each="event : ${userEvents}">
                             <div class="col d-flex align-items-center justify-content-center">
                                 <div class="card card-events">
-                                    <div class="d-flex flex-column card-body displayEvent">
+                                    <div class="d-flex flex-column card-body displayEvent" id="cards">
                                         <div class="d-flex flex-row titleBox">
                                             <h5 class="card-title" th:text="${event.title}"></h5>
                                         </div>
@@ -62,11 +62,11 @@
             </div>
 
         <!--ProfileCard Column -->
-        <div class="col-4">
+        <div class="col-4 ">
             <div class="d-flex flex-row justify-content-center marginTop">
                 <!--Profile Card ================================================================================================-->
-                <div class="profileMobileCard">
-                    <div class="profile-card">
+                <div class="profileMobileCard ">
+                    <div class="profile-card ">
                         <div class="card-header ">
                             <div class="pic">
                                 <img th:src="${user.imageUrl}" alt="No Profile Picture">

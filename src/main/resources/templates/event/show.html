@@ -8,24 +8,36 @@
 </head>
 <body class="main">
   <nav th:replace="partials/navbar.html :: navbar"></nav>
-  <div class="container mt-5">
-    <div class="jumbotron jumbotron-fluid card ">
+  <div class="container mt-5" style="padding: 20px 20px 20px 28px;">
+    <div class="jumbotron jumbotron-fluid card">
       <div class="d-flex">
         <div class="card-image">
           <div class="form-group">
-            <h2>Event details:</h2>
+            <h2>
+              <b class="details">Event details:</b>
+              <div align="right" class="showButtons">
+                <div class="card userImageCard" style="float: none;">
+                  <div class="pic" align="center">
+                    <a th:href="@{|/profile/${event.getPromoter().getId()}|}">
+                      <img id="event-image" th:src="${event.promoter.imageUrl}" alt="No Profile Picture">
+                    </a>
+                  </div>
+                </div>
+                <div align="center">
+                  <a th:href="@{|/profile/${event.getPromoter().getId()}|}" class="btn eventSearchButton"><span th:text="${event.getPromoter().getDisplayName()}"></span></a>
+                </div>
+              </div>
+            </h2><br>
             <h4 th:text="${event.title}"></h4>
             <span th:text="${event.description}"></span><br>
             <span th:text="'This event pays $' + ${event.price} + ' per band.'"></span>
-            <p><span th:text="${event.slots}"></span> slots available to play at <span th:text="${event.location}"></span> starting @ <span th:text="${event.getTime()}"></span> on <span th:text="${event.getDateFormat()}"></span>.</p>
-              <p>Current lineup to perform:</p>
+            <p><span th:text="${event.slots}"></span> slots available to play at <span th:text="${event.location}"></span> starting @ <span th:text="${event.getTime()}"></span> on <span th:text="${event.getDateFormat()}"></span>.<br><br></p>
+            <p><b>Current lineup to perform:</b></p>
               <ul>
                   <li th:each="slotted : ${event.performers}">
                       <span th:text="${slotted.displayName}"></span>
                   </li>
-              </ul>
-            <a th:href="@{|/profile/${event.getPromoter().getId()}|}">View <span th:text="${event.getPromoter().getDisplayName()}"></span>'s profile</a>
-            <p><a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}">Edit Event</a></p>
+              </ul><br>
             <!--              Below are options for the Performers/request-->
             <div th:if="${!currentUser.getPromoter()}">
               <!--                Below we are checking if the person is the NOT a requester or a performer...-->
@@ -54,9 +66,8 @@
                 <p class="text-danger">Sorry This event is full. Please edit this event and increase the slots to add more performers, OR remove a performer before adding a new one.</p>
               </div>
 
-              <h5>Event Roster Controls Below.</h5>
+              <h5><b>Event Roster Controls Below</b></h5>
               <div th:each="requester : ${event.getRequesters()}">
-                <h6>Options for <span th:text="${requester.username}"></span></h6>
                 <form th:action="@{/event/add/performer}" th:method="post" style="cursor: pointer">
                   <input hidden name="id" th:value="${event.getId()}">
                   <input hidden name="requesterId" th:value="${requester.getId()}">
@@ -70,12 +81,16 @@
               </div>
               <!--                These are for removing performers.-->
               <div th:each="performer : ${event.performers}">
-                <h6>Options for <span th:text="${performer.username}"></span></h6>
                 <form th:action="@{/event/remove/performer}" th:method="post" style="cursor: pointer">
                   <input hidden name="id" th:value="${event.getId()}">
                   <input hidden name="performerId" th:value="${performer.getId()}">
-                  <a class="btn eventSearchButton" onclick="this.parentNode.submit();">Remove: <span th:text="${performer.username}"></span> from performers List.</a>
+                  <a class="btn eventSearchButton" onclick="this.parentNode.submit();">Remove: <span th:text="${performer.username}"></span> from performers List.</a><br><br>
                 </form>
+              </div>
+              <div align="right" class="showButtons" style="margin-right: 10px;">
+                <p>
+                  <a th:if="${isOwner}" th:href="@{|/event/${event.getId()}/edit|}" class="btn eventSearchButton">Edit Event</a><br>
+                </p>
               </div>
             </div>
           </div>

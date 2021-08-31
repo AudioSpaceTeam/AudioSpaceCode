@@ -315,7 +315,12 @@ body {
 .colorStar {
     color: #ffc107;
 }
-
+.details {
+    text-align: justify;
+}
+.showButtons {
+    float: right;
+}
 .comment {
     margin-bottom: .3rem;
     font-weight: bold;
@@ -387,6 +392,7 @@ body {
     margin-right: 3.5rem;
     margin-top: 1rem;
 }
+
 
 .rating input {
     display: none;

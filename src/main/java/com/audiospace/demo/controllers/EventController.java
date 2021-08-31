@@ -501,7 +501,7 @@ public class EventController {
     model.addAttribute("event", event);
 //    return "event/submitted";
 
-    return "redirect:/event/" + eventDao.findByTitle(event.getTitle()).getId();
+    return "redirect:/event/" + id;
   }
 
 

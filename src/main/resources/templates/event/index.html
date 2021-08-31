@@ -32,7 +32,7 @@
                                                               th:text="'&nbsp;' + ${genre.genreName}"></label>
                 </div>
             </div><br>
-            <button class="btn eventSearchButton" type="submit" style="width: 100%;">Search</button>
+            <button class="btn eventSearchButton" type="submit" style="width: 100%; margin: 0px;">Search</button>
         </form>
     </div>
     <div class="card eventsDisplayCard">
@@ -75,12 +75,12 @@
                 <div class="card mainEvents">
                     <div class="card">
                         <div class="card-body displayEvent">
-                            <b><span th:text="${event.title}"></span></b><br>
-                            <span th:text="${event.location}" class="eventLocation"></span>
-                            <p th:text="${event.description}">
+                            <h5><span th:text="${event.title}"></span></h5><br>
                             <p th:text="${event.getDateFormat()}">
                                 <span th:text="${event.getTime()}"></span>
                             </p>
+                            <span th:text="${event.location}" class="eventLocation"></span>
+                            <p th:text="${event.description}">
                             <div align="right">
                                 <a th:href="@{|/event/${event.getId()}|}" style="text-decoration: none">More info</a>
                             </div>

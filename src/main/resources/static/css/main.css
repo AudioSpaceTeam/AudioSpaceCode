@@ -1,3 +1,7 @@
+* {
+  font-family: 'PT Sans', sans-serif;
+}
+
 @media only screen and (max-width: 900px) {
     .searchEventCard {
         display: none;
@@ -112,7 +116,7 @@ body {
 .displayEvent {
     background-color: #d8dedd;
     border-radius: 10px;
-    /*width: 100%;*/
+    max-width: 56vw;
     padding: 10px;
     margin: 15px;
 }
@@ -354,6 +358,7 @@ body {
     margin-bottom: 0rem;
     background-color: #d8dedd;
     color: #344B47;
+    margin: 9px;
 }
 
 .card-header {
@@ -423,9 +428,6 @@ input#5:checked ~ label {
 .textRect {
     width: 100%;
 }
-/*.checked{*/
-/*    color:#ffc107;*/
-/*}*/
 
 
 /*CREATE.HTML*/
@@ -509,6 +511,7 @@ input#5:checked ~ label {
     font-weight: bolder;
 }
 
+
 .card-body{
     height: 20vh;
     border: solid 3px  #344B47;
@@ -564,6 +567,7 @@ input#5:checked ~ label {
 #exampleModalLabel{
     font-weight: bolder;
 }
+
 
 /*Bootstrap Media Queries*/
 

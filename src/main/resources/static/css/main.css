@@ -144,9 +144,6 @@ body {
     background-color: #d8dedd;
 }
 
-.profile-card-container {
-    /*margin-left: 2rem;*/
-}
 
 #navbarLogo {
     width: 100%;
@@ -161,9 +158,20 @@ body {
 
 .profile-card {
     width: 350px;
+    transition: transform 250ms;
     text-align: center;
     border-radius: 8px;
     overflow: hidden;
+    border: solid 4px #344B47
+}
+
+.profile-card:hover{
+    transform: translateY(-10px);
+
+    box-shadow:
+            0px 3px 5px -1px rgba(0, 0, 0, .8),
+            0px 6px 10px 0px rgba(0, 0, 0, .8),
+            0px 1px 18px 0px rgba(0,0,0,.7);
 }
 
 
@@ -272,6 +280,7 @@ body {
 
 .card-events {
     width: 20em;
+
 }
 
 .eventCard {
@@ -309,6 +318,10 @@ body {
     margin-bottom: .5rem;
 }
 
+.colorStar{
+    color: #ffc107;
+}
+
 .comment {
     margin-bottom: .3rem;
     font-weight: bold;
@@ -337,6 +350,8 @@ body {
 .eventSearchButton {
     border: 2px solid #344B47;
     padding: 5px;
+    margin-top: .5rem;
+    margin-bottom: 0rem;
     background-color: #d8dedd;
     color: #344B47;
 }
@@ -374,7 +389,8 @@ body {
 /*Star Rating CSS*/
 .rotate {
     transform: translate(-50%, -50%) rotateY(180deg);
-    margin-left: 5.5rem;
+    margin-right: 3.5rem;
+    margin-top: 1rem;
 }
 
 .rating input {
@@ -471,6 +487,7 @@ input#5:checked ~ label {
 
 .box {
     border-radius: 10px;
+}
 
 
 .scroll{
@@ -478,12 +495,74 @@ input#5:checked ~ label {
     overflow: auto;
 }
 
+/*element {*/
+/*    -ms-overflow-style: none; !* for Internet Explorer, Edge *!*/
+/*    scrollbar-width: none; !* for Firefox *!*/
+/*    overflow-y: scroll;*/
+/*}*/
+
+/*element::-webkit-scrollbar {*/
+/*    display: none; !* for Chrome, Safari, and Opera *!*/
+/*}*/
+
 #ratingsModalLabel{
     font-weight: bolder;
 }
 
+.card-body{
+    height: 20vh;
+    border: solid 3px  #344B47;
+    transition: transform 250ms;
+}
 
+.card-body:hover {
+    transform: translateY(-10px);
+    background-color: #344B47;
+    color: whitesmoke;
+    box-shadow:
+            0px 3px 5px -1px rgba(0, 0, 0, .8),
+            0px 6px 10px 0px rgba(0, 0, 0, .8),
+            0px 1px 18px 0px rgba(0,0,0,.7);
+}
 
+#eventDescrip{
+    color: black !important;
+}
+
+.wierdButton{
+    marign-top: 1rem;
+}
+
+.anotherBox{
+    height: 15vh;
+    padding:1rem;
+    background-color: whitesmoke;
+
+}
+.roundBox{
+    border-radius: .5rem;
+}
+
+.card-text{
+    background-color: whitesmoke;
+
+}
+
+.marginTop{
+    margin-top: 32px;
+}
+#newButton{
+    height: 2rem;
+    width:7rem;
+    border: solid 2px white;
+}
+
+#newButton:hover{
+    border: solid 2px white;
+}
+
+#exampleModalLabel{
+    font-weight: bolder;
 }
 
 /*Bootstrap Media Queries*/

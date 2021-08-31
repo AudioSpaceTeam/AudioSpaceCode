@@ -72,6 +72,9 @@
                             <img id="event-image" th:src="${event.promoter.imageUrl}" alt="No Profile Picture">
                         </a>
                     </div>
+                    <div id="event-profile-username">
+                        <h5 th:text="${event.promoter.username}"></h5>
+                    </div>
                 </div>
                 <div class="card mainEvents">
                     <div class="card">

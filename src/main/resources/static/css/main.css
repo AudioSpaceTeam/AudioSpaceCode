@@ -607,32 +607,32 @@ input#5:checked ~ label {
 }
 
 
-@media only screen and (min-width: 1020px){
-    body{
-        background-color: rebeccapurple;
-    }
+@media only screen and (min-width: 1020px) {
+  body {
+    background-color: rebeccapurple;
+  }
 
-    .searchFunction{
-        display: none;
-    }
+  .searchFunction {
+    display: none;
+  }
 
-label{
+  label {
     margin-top: 10px;
     margin-bottom: 5px;
     font-weight: bold;
-}
+  }
 
-#fixAleProblem {
+  #fixAleProblem {
     background-color: #d8dedd;
     border-radius: 10px;
     padding: 10px;
     margin: 15px
 
-}
+  }
 
-#event-profile-username{
+  #event-profile-username {
     text-align: center;
     margin-top: 5px;
     color: #d8dedd;
-}
+  }
 

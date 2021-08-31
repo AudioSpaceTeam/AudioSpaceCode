@@ -17,14 +17,14 @@
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 
 
-<div class="container" style="width: 60vw;">
+<div class="container">
     <div class="contents">
-        <div class="d-flex flex-column align-items-center displayEvent">
+        <div class="d-flex flex-column align-items-center" id="fixAleProblem">
             <div class="text-center ">
                 <h3>Create events as a promoter and get noticed.</h3>
                 <p>Complete the form and create your event. Do not forget to choose a musical genre!</p>
             </div>
-            <hr class="my-4">
+            <br>
 
             <form th:action="@{/event/create}" th:method="post" th:object="${event}">
                 <h3 class=" ">Event Info: </h3>

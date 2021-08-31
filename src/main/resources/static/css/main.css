@@ -1,5 +1,5 @@
 * {
-  font-family: 'PT Sans', sans-serif;
+    font-family: 'PT Sans', sans-serif;
 }
 
 @media only screen and (max-width: 900px) {
@@ -74,6 +74,7 @@ a:hover {
 a:active {
     color: #1e2c2a;
 }
+
 .eventLocation {
     color: #435f58;
 }
@@ -169,13 +170,12 @@ body {
     border: solid 4px #344B47
 }
 
-.profile-card:hover{
+.profile-card:hover {
     transform: translateY(-10px);
 
-    box-shadow:
-            0px 3px 5px -1px rgba(0, 0, 0, .8),
-            0px 6px 10px 0px rgba(0, 0, 0, .8),
-            0px 1px 18px 0px rgba(0,0,0,.7);
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, .8),
+    0px 6px 10px 0px rgba(0, 0, 0, .8),
+    0px 1px 18px 0px rgba(0, 0, 0, .7);
 }
 
 
@@ -250,7 +250,8 @@ body {
     display: flex;
     align-items: center;
 }
-#avg-rating{
+
+#avg-rating {
     text-decoration: underline;
 }
 
@@ -322,7 +323,7 @@ body {
     margin-bottom: .5rem;
 }
 
-.colorStar{
+.colorStar {
     color: #ffc107;
 }
 
@@ -372,14 +373,14 @@ body {
 }
 
 /*this button style is for when the background of where the button is green because of hover effect makes it look bad*/
-.btn-bkgnd-green{
+.btn-bkgnd-green {
     border: 2px solid #344B47;
     padding: 5px;
     background-color: #d8dedd;
     color: #344B47;
 }
 
-.btn-bkgnd-green:hover{
+.btn-bkgnd-green:hover {
     border: 2px solid #d8dedd;
     background-color: #344B47;
     color: #d8dedd;
@@ -470,6 +471,7 @@ input#5:checked ~ label {
 .genreList {
     margin: 2rem;
 }
+
 .nav-link {
     color: #1e2c2a;
 }
@@ -492,7 +494,7 @@ input#5:checked ~ label {
 }
 
 
-.scroll{
+.scroll {
     height: 30vh;
     overflow: auto;
 }
@@ -507,14 +509,14 @@ input#5:checked ~ label {
 /*    display: none; !* for Chrome, Safari, and Opera *!*/
 /*}*/
 
-#ratingsModalLabel{
+#ratingsModalLabel {
     font-weight: bolder;
 }
 
 
-.card-body{
+.card-body {
     height: 20vh;
-    border: solid 3px  #344B47;
+    border: solid 3px #344B47;
     transition: transform 250ms;
 }
 
@@ -522,56 +524,57 @@ input#5:checked ~ label {
     transform: translateY(-10px);
     background-color: #344B47;
     color: whitesmoke;
-    box-shadow:
-            0px 3px 5px -1px rgba(0, 0, 0, .8),
-            0px 6px 10px 0px rgba(0, 0, 0, .8),
-            0px 1px 18px 0px rgba(0,0,0,.7);
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, .8),
+    0px 6px 10px 0px rgba(0, 0, 0, .8),
+    0px 1px 18px 0px rgba(0, 0, 0, .7);
 }
 
-#eventDescrip{
+#eventDescrip {
     color: black !important;
 }
 
-.wierdButton{
+.wierdButton {
     marign-top: 1rem;
 }
 
-.anotherBox{
+.anotherBox {
     height: 15vh;
-    padding:1rem;
+    padding: 1rem;
     background-color: whitesmoke;
 
 }
-.roundBox{
+
+.roundBox {
     border-radius: .5rem;
 }
 
-.card-text{
+.card-text {
     background-color: whitesmoke;
 
 }
 
-.marginTop{
+.marginTop {
     margin-top: 32px;
 }
-#newButton{
+
+#newButton {
     height: 2rem;
-    width:7rem;
+    width: 7rem;
     border: solid 2px white;
 }
 
-#newButton:hover{
+#newButton:hover {
     border: solid 2px white;
 }
 
-#exampleModalLabel{
+#exampleModalLabel {
     font-weight: bolder;
 }
 
 
 /*Bootstrap Media Queries*/
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 600px) {
     .pic img#event-image {
         display: block;
         width: 75px;
@@ -579,7 +582,6 @@ input#5:checked ~ label {
         border-radius: 50%;
     }
 }
-
 
 
 @media only screen and (min-width: 200px)and(max-width: 768px) {
@@ -598,8 +600,15 @@ input#5:checked ~ label {
 #homeContainer, #footer {
     width: 95%;
 }
+
 p {
     margin-bottom: 0;
 }
 
+#fixAleProblem {
+    background-color: #d8dedd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px
+}
 

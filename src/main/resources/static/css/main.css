@@ -49,9 +49,13 @@
     background-color: #344B47;
 }
 
+#seperate-navbar-links{
+    display: flex;
+    justify-content: flex-end;
+}
+
 .footer-as {
     background-color: #344B47;
-
 }
 
 
@@ -626,6 +630,7 @@ input#5:checked ~ label {
         display: none;
     }
 
+
     label {
         margin-top: 10px;
         margin-bottom: 5px;
@@ -645,20 +650,23 @@ input#5:checked ~ label {
         margin-top: 5px;
         color: #d8dedd;
     }
-    .newSearch{
+
+    .newSearch {
         width: 100%;
         margin-left: 0 !important;
         margin-right: 0 !important;
         margin-bottom: 1rem;
     }
 
-    .noPadding{
+    .noPadding {
         padding: 0;
     }
-    .newbtn{
+
+    .newbtn {
         width: 50%;
-        margin:0px 0px 0px 2rem;
+        margin: 0px 0px 0px 2rem;
     }
+
 
     .searchBar{
         margin-left: 1.4rem !important;
@@ -679,6 +687,7 @@ input#5:checked ~ label {
     }
     #cards:hover{
         transform: translateY(-10px);
+
 
     }
     .profile-card {

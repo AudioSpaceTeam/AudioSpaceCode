@@ -10,7 +10,7 @@
 </head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<div class="container py-1">
+<div class="container py-1 noPadding mt-3">
     <div class="text-center mt-5">
         <!--        <div class="header text-center"><h3 style="color: #00796D">Search you city</h3></div>-->
         <h1 class="mt-3">Create events as a promoter and find the exact location with your application.</h1>
@@ -19,14 +19,31 @@
         <br>
     </div>
 
-        <div class="d-flex flex-row align-items-center justify-content-start bg-warning  row-cols-sm-1 row-cols-md-1 searchFunction">
+        <div class="searchFunction">
+            <div class="d-flex flex-row align-items-center justify-content-start row-cols-sm-1 row-cols-md-1">
 
-                    <label for="mapSearch" class="visually-hidden"></label>
-                    <input type="search" class="form-control" id="mapSearch" placeholder="Enter you location">
+            <label for="mapSearch" class="visually-hidden"></label>
+            <input type="search" class="form-control" id="mapSearch" placeholder="Enter you location">
         </div>
     <div class="d-flex flex-row row-cols-sm-1 row-cols-md-1 justify-content-center align-items-center">
         <a class="btn eventSearchButton btn-block newbtn" id="btn" href="#" style="text-decoration: none">Search</a>
     </div>
+        </div>
+    <!-- For large screens================================================================================================ -->
+    <div class="searchFunction2">
+            <div class="d-flex flex-row align-items-center justify-content-start  row-cols-lg-2 row-cols-xlg-2 newSearch">
+                <div class="col-6">
+                    <label for="mapSearch" class="visually-hidden"></label>
+                    <input type="search" class="form-control" placeholder="Enter you location">
+                </div>
+                <div class="col-6">
+                    <a class="btn eventSearchButton btn-block newbtn" href="#" style="text-decoration: none">Search</a>
+                </div>
+
+
+        </div>
+    </div>
+
 
 
 
@@ -35,7 +52,7 @@
 
         <!--        map go here, fixed responsive errors-->
         <div class="row justify-content-center">
-            <div class="rounded-3" id='map' style="width: 100%; height: 600px; padding-left: 10rem;"></div>
+            <div class="rounded-3" id='map' style="width: 95%; height: 600px; position: relative"></div>
             <div class="hiddenMap" th:each="event: ${eventList}" style="display: none;">
                 <p class="eventId" th:text="${event.id}">
                 <p th:text="${event.startDateTime}"></p>
@@ -46,7 +63,7 @@
                 <p th:text="${event.description}"></p>
             </div>
         </div>
-        <br>
+
 
 
 

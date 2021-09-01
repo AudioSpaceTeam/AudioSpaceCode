@@ -538,13 +538,18 @@ input#5:checked ~ label {
     .box {
         width: 100vh;
     }
+    #event-profile-username {
+        text-align: center;
+        margin-top: 5px;
+        color: #d8dedd;
+    }
 
     .newbtn{
         width: 100%;
         margin:1em 0px 0px 0px;
     }
     body{
-        background-color: #ffc107;
+        background-color: #344B47;
     }
     .searchFunction2 {
         display: none;
@@ -558,12 +563,16 @@ input#5:checked ~ label {
 
 @media only screen and (min-width:769px) and (max-width: 1019px)  {
     body{
-        background-color: #2c3a47;
+        background-color: #344B47;
     }
     .box {
         width: 50vw;
     }
-
+    #event-profile-username {
+        text-align: center;
+        margin-top: 5px;
+        color: #d8dedd;
+    }
 
     #homeContainer, #footer {
         width: 95%;
@@ -601,7 +610,7 @@ input#5:checked ~ label {
 
 @media only screen and (min-width: 1020px) {
     body {
-        background-color: rebeccapurple;
+        background-color: #344B47;
     }
 
     .searchFunction {

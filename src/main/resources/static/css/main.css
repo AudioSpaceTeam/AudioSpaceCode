@@ -527,31 +527,6 @@ input#5:checked ~ label {
     font-weight: bolder;
 }
 
-/*#mapSearch{*/
-/*    width:30rem;*/
-/*    margin:0;*/
-
-/*}*/
-
-
-
-/*.searchrow{*/
-/*    width:70vw;*/
-/*    !*margin-left: 17rem;*!*/
-/*}*/
-
-
-
-
-/*Bootstrap Media Queries*/
-
-/*@media only screen and (min-width: 200px)and(max-width: 600px) {*/
-/*  */
-
-/*   */
-
-/*}*/
-
 
 @media only screen and (max-width: 768px) {
     .pic img#event-image {

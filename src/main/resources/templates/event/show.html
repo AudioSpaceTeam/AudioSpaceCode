@@ -11,7 +11,7 @@
   <div class="container mt-5" style="padding: 20px 20px 20px 28px;">
     <div class="jumbotron jumbotron-fluid card">
       <div class="d-flex">
-        <div class="card-image">
+        <div class="card-image" style="width: 100%">
           <div class="form-group">
             <h2>
               <b class="details">Event details:</b>
@@ -24,7 +24,7 @@
                   </div>
                 </div>
                 <div align="center">
-                  <a th:href="@{|/profile/${event.getPromoter().getId()}|}" class="btn eventSearchButton"><span th:text="${event.getPromoter().getDisplayName()}"></span></a>
+                  <a th:href="@{|/profile/${event.getPromoter().getId()}|}" style="font-size: 25px;"><span th:text="${event.getPromoter().getDisplayName()}"></span></a>
                 </div>
               </div>
             </h2><br>
@@ -84,7 +84,7 @@
                 <form th:action="@{/event/remove/performer}" th:method="post" style="cursor: pointer">
                   <input hidden name="id" th:value="${event.getId()}">
                   <input hidden name="performerId" th:value="${performer.getId()}">
-                  <a class="btn eventSearchButton" onclick="this.parentNode.submit();">Remove: <span th:text="${performer.username}"></span> from performers List</a><br><br>
+                  <a class="btn eventSearchButton" onclick="this.parentNode.submit();">Remove: <span th:text="${performer.username}"></span> from performers List</a>
                 </form>
               </div>
               <div align="right" class="showButtons" style="margin-right: 10px;">

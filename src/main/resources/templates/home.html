@@ -29,7 +29,7 @@
         <p>Audio Space's goal is to make the connection between promoters and musicians as easy as possible. Our
             platform aims to facilitate the process of booking shows and managing events.</p>
         <form sec:authorize="!isAuthenticated()">
-            <button class="btn eventSearchButton btn-block signUp mx-auto" formaction="/login">Sign up!</button>
+            <button class="btn eventSearchButton btn-block signUp mx-auto" formaction="/register">Sign up!</button>
         </form>
     </div>
 
@@ -254,9 +254,6 @@
                 personal
                 profile!</p>
         </div>
-        <form sec:authorize="!isAuthenticated()">
-            <button class="btn eventSearchButton btn-block signUp" formaction="/login">Sign up!</button>
-        </form>
         <br><br>
 
     </div>
